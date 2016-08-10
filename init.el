@@ -3,6 +3,8 @@
 ;; place for my libs
 (add-to-list 'load-path "~/.emacs.d/libs")
 
+(global-set-key [f9] 'menu-bar-open) ;; Sometimes need
+
 (setq-default indent-tabs-mode 't)
 (setq indent-tabs-mode t)
 (setq-default tab-width 8)
@@ -14,6 +16,13 @@
               c-indentation 8
               indent-tabs-mode 't
               c-default-style "linux")
+
+
+;;------------------------------------------------------------------------
+;;
+;; C/C++
+;;
+;;------------------------------------------------------------------------
 
 ;;------------------------------------------------------------------------
 ;; activate whitespace-mode to view all whitespace characters
@@ -116,6 +125,43 @@
 (windmove-default-keybindings)
 ;; when cursor is on edge, move to the other side, as in a torus space
 (setq windmove-wrap-around t )
+
+
+;;------------------------------------------------------------------------
+;;
+;; TAGS
+;;
+;;------------------------------------------------------------------------
+(custom-set-variables
+ '(helm-gtags-prefix-key "\C-t")
+ '(helm-gtags-suggested-key-mapping t))
+
+;; Enable helm-gtags-mode
+(add-hook 'c-mode-hook 'helm-gtags-mode)
+(add-hook 'c++-mode-hook 'helm-gtags-mode)
+(add-hook 'asm-mode-hook 'helm-gtags-mode)
+
+;; Set key bindings
+(eval-after-load "helm-gtags"
+  '(progn
+     (define-key helm-gtags-mode-map (kbd "M-t") 'helm-gtags-find-tag)
+     (define-key helm-gtags-mode-map (kbd "M-r") 'helm-gtags-find-rtag)
+     (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
+     (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
+     (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+     (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-histor    ;; Enable helm-gtags-mode
+       (add-hook 'c-mode-hook 'helm-gtags-mode)
+       (add-hook 'c++-mode-hook 'helm-gtags-mode)
+       (add-hook 'asm-mode-hook 'helm-gtags-mode)
+       ;; Set key bindings
+       (eval-after-load "helm-gtags"
+	 '(progn
+	    (define-key helm-gtags-mode-map (kbd "M-t") 'helm-gtags-find-tag)
+	    (define-key helm-gtags-mode-map (kbd "M-r") 'helm-gtags-find-rtag)
+	    (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
+	    (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
+	    (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+	    (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-histor))))))
 
 ;;------------------------------------------------------------------------
 ;;
@@ -468,3 +514,17 @@ LINE alone still moves to the beginning of the specified line (like LINE:0)."
 			'(("input" . 'font-lock-keyword-face)))
 (font-lock-add-keywords 'mql-mode
 			'(("sinput" . 'font-lock-keyword-face)))
+
+			(add-hook 'c-mode-hook (lambda () (setq comment-start "//"
+					comment-end   "")))
+
+;;------------------------------------------------------------------------
+;;
+;; Customize comments
+;;
+;;------------------------------------------------------------------------
+;;(add-to-list 'auto-mode-alist '("\\.[ch]\\'" . c++-mode))
+(add-to-list 'load-path "~/.emacs.d/elpa/comment-dwim-2")
+(require 'comment-dwim-2)
+(global-set-key (kbd "M-;") 'comment-dwim-2)
+(setq comment-dwim-2--inline-comment-behavior 'reindent-comment)
