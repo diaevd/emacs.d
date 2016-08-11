@@ -306,18 +306,6 @@ LINE alone still moves to the beginning of the specified line (like LINE:0)."
 ;; 
 (autoload 'perldb-ui "perldb-ui" "perl debugger" t)
 
-;;;; faces
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Courier New" :foundry "outline" :slant normal :weight bold :height 113 :width normal))))
- '(cperl-array-face ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
- '(cperl-hash-face ((t (:inherit font-lock-variable-name-face :slant italic :weight bold)))))
-
-
 ;; (eval-after-load 'cperl-mode
 ;; '(progn
 ;; 
@@ -585,4 +573,30 @@ LINE alone still moves to the beginning of the specified line (like LINE:0)."
 (setq comment-dwim-2--inline-comment-behavior 'reindent-comment)
 (add-hook 'c-mode-hook (lambda () (setq comment-start "//"
 					comment-end   "")))
+
+;; Don't ask me additional about unsaved buffers
+(defun my-kill-emacs ()
+  "save some buffers, then exit unconditionally"
+  (interactive)
+  (save-some-buffers nil t)
+  (kill-emacs))
+(global-set-key (kbd "C-x C-c") 'my-kill-emacs)
+
+;;;; faces
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Courier New" :foundry "outline" :slant normal :weight bold :height 113 :width normal))))
+ '(cperl-array-face ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
+ '(cperl-hash-face ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
+;; '(fa-face-semi ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
+;; '(fa-face-type-compound ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
+;; '(fa-face-type-definition ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
+;; '(fa-face-type ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
+ '(fa-face-hint ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
+ '(fa-face-hint-bold ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
+ )
+
 

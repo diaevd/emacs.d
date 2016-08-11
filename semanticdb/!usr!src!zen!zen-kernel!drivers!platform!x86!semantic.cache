@@ -1,0 +1,1100 @@
+;; Object x86/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "x86/"
+  :tables
+  (list
+    (semanticdb-table "msi-wmi.c"
+      :major-mode 'c-mode
+      :tags 
+        '( ("pr_fmt" variable (:constant-flag t) nil [851 857])
+            ("linux/kernel.h" include (:system-flag t) nil [888 913])
+            ("linux/input.h" include (:system-flag t) nil [914 938])
+            ("linux/input/sparse-keymap.h" include (:system-flag t) nil [939 977])
+            ("linux/acpi.h" include (:system-flag t) nil [978 1001])
+            ("linux/backlight.h" include (:system-flag t) nil [1002 1030])
+            ("linux/slab.h" include (:system-flag t) nil [1031 1054])
+            ("linux/module.h" include (:system-flag t) nil [1055 1080])
+            ("acpi/video.h" include (:system-flag t) nil [1081 1104])
+            ("MODULE_AUTHOR" function
+               (:prototype-flag t
+                :type "int")
+                nil [1106 1156])
+            ("MODULE_DESCRIPTION" function
+               (:prototype-flag t
+                :type "int")
+                nil [1157 1209])
+            ("MODULE_LICENSE" function
+               (:prototype-flag t
+                :type "int")
+                nil [1210 1232])
+            ("DRV_NAME" variable (:constant-flag t) nil [1242 1250])
+            ("MSIWMI_BIOS_GUID" variable (:constant-flag t) nil [1330 1346])
+            ("MSIWMI_MSI_EVENT_GUID" variable (:constant-flag t) nil [1394 1415])
+            ("MSIWMI_WIND_EVENT_GUID" variable (:constant-flag t) nil [1463 1485])
+            ("MODULE_ALIAS" function
+               (:prototype-flag t
+                :type "int")
+                nil [1526 1564])
+            ("MODULE_ALIAS" function
+               (:prototype-flag t
+                :type "int")
+                nil [1565 1608])
+            ("MODULE_ALIAS" function
+               (:prototype-flag t
+                :type "int")
+                nil [1609 1653])
+            ("msi_scancodes" type
+               (:members 
+                  ( ("MSI_KEY_BRIGHTNESSUP" variable
+                       (:constant-flag t
+                        :default-value (1750 1754)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [1727 1754])
+                    ("MSI_KEY_BRIGHTNESSDOWN" variable
+                       (:constant-flag t
+                        :type "int")
+                        (reparse-symbol enumsubparts) [1757 1780])
+                    ("MSI_KEY_VOLUMEUP" variable
+                       (:constant-flag t
+                        :type "int")
+                        (reparse-symbol enumsubparts) [1782 1799])
+                    ("MSI_KEY_VOLUMEDOWN" variable
+                       (:constant-flag t
+                        :type "int")
+                        (reparse-symbol enumsubparts) [1801 1820])
+                    ("MSI_KEY_MUTE" variable
+                       (:constant-flag t
+                        :type "int")
+                        (reparse-symbol enumsubparts) [1822 1835])
+                    ("WIND_KEY_TOUCHPAD" variable
+                       (:constant-flag t
+                        :default-value (1878 1882)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [1858 1882])
+                    ("WIND_KEY_BLUETOOTH" variable
+                       (:constant-flag t
+                        :default-value (1935 1939)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [1914 1939])
+                    ("WIND_KEY_CAMERA" variable
+                       (:constant-flag t
+                        :type "int")
+                        (reparse-symbol enumsubparts) [1973 1989])
+                    ("WIND_KEY_WLAN" variable
+                       (:constant-flag t
+                        :default-value (2036 2040)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [2019 2040])
+                    ("WIND_KEY_TURBO" variable
+                       (:constant-flag t
+                        :type "int")
+                        (reparse-symbol enumsubparts) [2104 2119])
+                    ("WIND_KEY_ECO" variable
+                       (:constant-flag t
+                        :default-value (2171 2175)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [2155 2175])
+                    ("GP_KEY_EJECTCD" variable
+                       (:constant-flag t
+                        :default-value (2255 2259)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [2229 2259])
+                    ("GP_KEY_DISPLAY_OFF" variable
+                       (:constant-flag t
+                        :default-value (2304 2308)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [2278 2308])
+                    ("GP_KEY_COOLERBOOST" variable
+                       (:constant-flag t
+                        :default-value (2499 2503)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [2473 2503])
+                    ("GP_KEY_WLAN_ON" variable
+                       (:constant-flag t
+                        :default-value (2610 2615)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [2584 2615])
+                    ("GP_KEY_WWLAN_ON" variable
+                       (:constant-flag t
+                        :default-value (2668 2673)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [2642 2673])
+                    ("GP_KEY_BLUETOOTH_ON" variable
+                       (:constant-flag t
+                        :default-value (2726 2731)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [2700 2731])
+                    ("GP_KEY_WLAN_OFF" variable
+                       (:constant-flag t
+                        :default-value (2789 2794)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [2763 2794])
+                    ("GP_KEY_WWLAN_OFF" variable
+                       (:constant-flag t
+                        :default-value (2848 2853)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [2822 2853])
+                    ("GP_KEY_WIFI_OFF" variable
+                       (:constant-flag t
+                        :default-value (2937 2942)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [2911 2942])
+                    ("GP_KEY_BLUETOOTH_OFF" variable
+                       (:constant-flag t
+                        :default-value (3034 3039)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [3008 3039])
+                    ("GP_KEY_GPANEL" variable
+                       (:constant-flag t
+                        :default-value (3098 3102)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [3072 3102])
+                    ("GP_KEY_KEY_TOUCHPAD_ON" variable
+                       (:constant-flag t
+                        :default-value (3183 3188)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [3157 3188])
+                    ("GP_KEY_P1" variable
+                       (:constant-flag t
+                        :default-value (3388 3392)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [3362 3392])
+                    ("GP_KEY_ECO" variable
+                       (:constant-flag t
+                        :default-value (3465 3470)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [3439 3470])
+                    ("GP_KEY_CAMERA_ON" variable
+                       (:constant-flag t
+                        :default-value (3538 3543)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [3512 3543])
+                    ("GP_KEY_CAMERA_OFF" variable
+                       (:constant-flag t
+                        :default-value (3589 3594)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [3563 3594])
+                    ("GP_KEY_SUSPEND" variable
+                       (:constant-flag t
+                        :default-value (3640 3644)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [3614 3644])
+                    ("GP_KEY_BRIGHTNESSUP" variable
+                       (:constant-flag t
+                        :default-value (3695 3700)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [3669 3700])
+                    ("GP_KEY_BRIGHTNESSDOWN" variable
+                       (:constant-flag t
+                        :default-value (3746 3751)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [3720 3751])
+                    ("GP_KEY_VOLUMEUP" variable
+                       (:constant-flag t
+                        :default-value (3799 3803)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [3773 3803])
+                    ("GP_KEY_VOLUMEDOWN" variable
+                       (:constant-flag t
+                        :default-value (3853 3857)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [3827 3857])
+                    ("GP_KEY_MUTE" variable
+                       (:constant-flag t
+                        :default-value (3906 3910)
+                        :type "int")
+                        (reparse-symbol enumsubparts) [3880 3910]))                  
+                :type "enum")
+                nil [1655 3928])
+            ("msi_wmi_keymap" variable
+               (:dereference 1
+                :typemodifiers ("static")
+                :default-value "{
+	{ KE_KEY, MSI_KEY_BRIGHTNESSUP,		{KEY_BRIGHTNESSUP} },
+	{ KE_KEY, MSI_KEY_BRIGHTNESSDOWN,	{KEY_BRIGHTNESSDOWN} },
+	{ KE_KEY, MSI_KEY_VOLUMEUP,		{KEY_VOLUMEUP} },
+	{ KE_KEY, MSI_KEY_VOLUMEDOWN,		{KEY_VOLUMEDOWN} },
+	{ KE_KEY, MSI_KEY_MUTE,			{KEY_MUTE} },
+
+	/* These keys work without WMI. Ignore them to avoid double keycodes */
+	{ KE_IGNORE, WIND_KEY_TOUCHPAD,		{KEY_TOUCHPAD_TOGGLE} },
+	{ KE_IGNORE, WIND_KEY_BLUETOOTH,	{KEY_BLUETOOTH} },
+	{ KE_IGNORE, WIND_KEY_CAMERA,		{KEY_CAMERA} },
+	{ KE_KEY, WIND_KEY_WLAN,		{KEY_WLAN} },
+
+	/* These are unknown WMI events found on MSI Wind */
+	{ KE_IGNORE, 0x00 },
+	{ KE_IGNORE, 0x62 },
+	{ KE_IGNORE, 0x63 },
+
+	/* These are MSI Wind keys that should be handled via WMI */
+	{ KE_KEY, WIND_KEY_TURBO,		{KEY_PROG1} },
+	{ KE_KEY, WIND_KEY_ECO,			{KEY_PROG2} },
+
+	/* MSI GP70 keys */
+	{ KE_IGNORE, GP_KEY_EJECTCD,		{ KEY_EJECTCD } },
+	{ KE_KEY, GP_KEY_DISPLAY_OFF,		{ KEY_SCREENLOCK } },
+	/* GP_KEY_AIRPLANE         = ???, atkbd: code 0xbd (Use 'setkeycodes e03d <keycode>' to make it known) */
+	{ KE_IGNORE, GP_KEY_COOLERBOOST },
+	/* Doing circle: WLAN On -> BT On -> WLAN Off -> BT Off */
+	{ KE_KEY, GP_KEY_WLAN_ON,		{ KEY_WLAN } },
+	{ KE_KEY, GP_KEY_WWLAN_ON,		{ KEY_WLAN } },
+	{ KE_KEY, GP_KEY_BLUETOOTH_ON,		{ KEY_BLUETOOTH } },
+	{ KE_KEY, GP_KEY_WLAN_OFF,		{ KEY_WLAN } },
+	{ KE_KEY, GP_KEY_BLUETOOTH_OFF,		{ KEY_BLUETOOTH } },
+	{ KE_KEY, GP_KEY_WWLAN_OFF,		{ KEY_BLUETOOTH } },
+	{ KE_KEY, GP_KEY_WIFI_OFF,		{ KEY_WLAN } },
+	{ KE_KEY, GP_KEY_GPANEL,		{ KEY_PROG1 } },
+	{ KE_IGNORE, GP_KEY_KEY_TOUCHPAD_ON,	{ KEY_TOUCHPAD_ON } },
+	/* { KE_IGNORE, GP_KEY_TOUCHPAD_OFF,	{ KEY_TOUCHPAD_OFF } }, */
+	/* GP_KEY_SWITCHVIDEOMODE  = ???, Fn+F2 Switch Video Output (handled by ACPI) */
+	{ KE_KEY, GP_KEY_P1,			{ KEY_PROG2 } },
+	{ KE_KEY, GP_KEY_ECO,			{ KEY_PROG3 } },
+	{ KE_IGNORE, GP_KEY_CAMERA_ON,		{ KEY_CAMERA } },
+	{ KE_IGNORE, GP_KEY_CAMERA_OFF,		{ KEY_CAMERA } },
+	{ KE_KEY, GP_KEY_SUSPEND,		{ KEY_SUSPEND } },
+	{ KE_IGNORE, GP_KEY_BRIGHTNESSUP,	{ KEY_BRIGHTNESSUP } },
+	{ KE_IGNORE, GP_KEY_BRIGHTNESSDOWN,	{ KEY_BRIGHTNESSDOWN } },
+	{ KE_IGNORE, GP_KEY_VOLUMEUP,		{ KEY_VOLUMEUP } },
+	{ KE_IGNORE, GP_KEY_VOLUMEDOWN,		{ KEY_VOLUMEDOWN } },
+	{ KE_IGNORE, GP_KEY_MUTE,		{ KEY_MUTE } },
+	{ KE_END, 0 }
+}"
+                :type ("key_entry" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [3930 6219])
+            ("last_pressed" variable
+               (:typemodifiers ("static")
+                :type ("ktime_t" type (:type "class") nil nil))
+                nil [6221 6249])
+            ("event_wmi" variable
+               (:pointer 1
+                :typemodifiers ("static")
+                :constant-flag t
+                :type ("" type
+                     (:members 
+                        ( ("guid" variable
+                             (:pointer 1
+                              :constant-flag t
+                              :type "char")
+                              (reparse-symbol classsubparts) [6274 6291])
+                          ("quirk_last_pressed" variable (:type "bool") (reparse-symbol classsubparts) [6293 6317]))                        
+                      :type "struct")
+                      nil nil))
+                nil [6251 6421])
+            ("event_wmis" variable
+               (:dereference 1
+                :typemodifiers ("static")
+                :constant-flag t
+                :default-value "{
+	{ MSIWMI_MSI_EVENT_GUID, true },
+	{ MSIWMI_WIND_EVENT_GUID, false },
+}"
+                :type ("" type
+                     (:members 
+                        ( ("guid" variable
+                             (:pointer 1
+                              :constant-flag t
+                              :type "char")
+                              (reparse-symbol classsubparts) [6274 6291])
+                          ("quirk_last_pressed" variable (:type "bool") (reparse-symbol classsubparts) [6293 6317]))                        
+                      :type "struct")
+                      nil nil))
+                nil [6251 6421])
+            ("backlight" variable
+               (:pointer 1
+                :typemodifiers ("static")
+                :type ("backlight_device" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [6423 6465])
+            ("backlight_map" variable
+               (:dereference 1
+                :typemodifiers ("static")
+                :default-value "{ 0x00, 0x33, 0x66, 0x99, 0xCC, 0xFF }"
+                :type "int")
+                nil [6467 6535])
+            ("msi_wmi_input_dev" variable
+               (:pointer 1
+                :typemodifiers ("static")
+                :type ("input_dev" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [6537 6580])
+            ("msi_wmi_query_block" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("instance" variable (:type "int") (reparse-symbol arg-sub-list) [6613 6626])
+                    ("ret" variable
+                       (:pointer 1
+                        :type "int")
+                        (reparse-symbol arg-sub-list) [6627 6636]))                  
+                :type "int")
+                nil [6582 7309])
+            ("msi_wmi_set_block" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("instance" variable (:type "int") (reparse-symbol arg-sub-list) [7340 7353])
+                    ("value" variable (:type "int") (reparse-symbol arg-sub-list) [7354 7364]))                  
+                :type "int")
+                nil [7311 7628])
+            ("bl_get" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("bd" variable
+                       (:pointer 1
+                        :type ("backlight_device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [7648 7676]))                  
+                :type "int")
+                nil [7630 8272])
+            ("bl_set_status" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("bd" variable
+                       (:pointer 1
+                        :type ("backlight_device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [8299 8327]))                  
+                :type "int")
+                nil [8274 8532])
+            ("msi_backlight_ops" variable
+               (:typemodifiers ("static")
+                :constant-flag t
+                :default-value "{
+	.get_brightness	= bl_get,
+	.update_status	= bl_set_status,
+}"
+                :type ("backlight_ops" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [8534 8652])
+            ("msi_wmi_notify" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("value" variable (:type ("u32" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8681 8691])
+                    ("context" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [8692 8706]))                  
+                :type "void")
+                nil [8654 10867])
+            ("msi_wmi_backlight_setup" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [10911 10916]))                  
+                :type ("__init" type (:type "class") nil nil))
+                nil [10880 11424])
+            ("msi_wmi_input_setup" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [11464 11469]))                  
+                :type ("__init" type (:type "class") nil nil))
+                nil [11437 12060])
+            ("msi_wmi_init" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [12093 12098]))                  
+                :type ("__init" type (:type "class") nil nil))
+                nil [12073 13427])
+            ("msi_wmi_exit" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [13461 13466]))                  
+                :type ("__exit" type (:type "class") nil nil))
+                nil [13441 13665])
+            ("module_init" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("msi_wmi_init" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13679 13692]))                  
+                :type "int")
+                nil [13667 13693])
+            ("module_exit" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("msi_wmi_exit" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13706 13719]))                  
+                :type "int")
+                nil [13694 13720]))          
+      :file "msi-wmi.c"
+      :pointmax 13721
+      :fsize 13720
+      :lastmodtime '(22222 21904 315024 640000)
+      :unmatched-syntax '((VOID 13436 . 13440) (STATIC 13429 . 13435) (INT 12069 . 12072) (STATIC 12062 . 12068) (INT 11433 . 11436) (STATIC 11426 . 11432) (INT 10876 . 10879) (STATIC 10869 . 10875) (string "\"5B3CC38A-40D9-7245-8AE6-1145B751BE3F\"" 1629 . 1651) (string 1622 . 1628) (string "\"B6F3EEF2-3D2F-49DC-9DE3-85BCE18C62F2\"" 1585 . 1606) (string 1578 . 1584) (string "\"551A1F84-FBDD-4125-91DB-3EA8F44F1D45\"" 1546 . 1562) (string 1539 . 1545) (string 1225 . 1230) (string 1176 . 1207) (string 1120 . 1154))
+      :lexical-table 
+        '(("MSIWMI_BIOS_GUID" . ((string "\"551A1F84-FBDD-4125-91DB-3EA8F44F1D45\"" 1347 . 1385)))
+          ("MSIWMI_MSI_EVENT_GUID" . ((string "\"B6F3EEF2-3D2F-49DC-9DE3-85BCE18C62F2\"" 1416 . 1454)))
+          ("MSIWMI_WIND_EVENT_GUID" . ((string "\"5B3CC38A-40D9-7245-8AE6-1145B751BE3F\"" 1486 . 1524)))
+          ("DRV_NAME" . ((string "\"msi-wmi\"" 1251 . 1260)))
+          ("pr_fmt" (spp-arg-list ("fmt") 857 . 862) . 
+              ((symbol "KBUILD_MODNAME" 863 . 877) (string "\": \"" 878 . 882) (symbol "fmt" 883 . 886)))
+          )
+)
+    (semanticdb-table "wmi.c"
+      :major-mode 'c-mode
+      :tags 
+        '( ("pr_fmt" variable (:constant-flag t) nil [1222 1228])
+            ("linux/kernel.h" include (:system-flag t) nil [1259 1284])
+            ("linux/init.h" include (:system-flag t) nil [1285 1308])
+            ("linux/types.h" include (:system-flag t) nil [1309 1333])
+            ("linux/device.h" include (:system-flag t) nil [1334 1359])
+            ("linux/list.h" include (:system-flag t) nil [1360 1383])
+            ("linux/acpi.h" include (:system-flag t) nil [1384 1407])
+            ("linux/slab.h" include (:system-flag t) nil [1408 1431])
+            ("linux/module.h" include (:system-flag t) nil [1432 1457])
+            ("ACPI_MODULE_NAME" function
+               (:prototype-flag t
+                :type "int")
+                nil [1459 1483])
+            ("MODULE_AUTHOR" function
+               (:prototype-flag t
+                :type "int")
+                nil [1484 1517])
+            ("MODULE_DESCRIPTION" function
+               (:prototype-flag t
+                :type "int")
+                nil [1518 1564])
+            ("MODULE_LICENSE" function
+               (:prototype-flag t
+                :type "int")
+                nil [1565 1587])
+            ("ACPI_WMI_CLASS" variable (:constant-flag t) nil [1597 1611])
+            ("LIST_HEAD" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("wmi_block_list" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [1636 1651]))                  
+                :type "int")
+                nil [1619 1652])
+            ("guid_block" type
+               (:members 
+                  ( ("guid" variable
+                       (:dereference 1
+                        :type "char")
+                        (reparse-symbol classsubparts) [1675 1689])
+                    ("" type
+                       (:members 
+                          ( ("object_id" variable
+                               (:dereference 1
+                                :type "char")
+                                (reparse-symbol classsubparts) [1701 1719])
+                            ("" type
+                               (:members 
+                                  ( ("notify_id" variable (:type "unsigned char") (reparse-symbol classsubparts) [1734 1758])
+                                    ("reserved" variable (:type "unsigned char") (reparse-symbol classsubparts) [1762 1785]))                                  
+                                :type "struct")
+                                (reparse-symbol classsubparts) [1722 1790]))                          
+                        :type "union")
+                        (reparse-symbol classsubparts) [1691 1794])
+                    ("instance_count" variable (:type ("u8" type (:type "class") nil nil)) (reparse-symbol classsubparts) [1796 1814])
+                    ("flags" variable (:type ("u8" type (:type "class") nil nil)) (reparse-symbol classsubparts) [1816 1825]))                  
+                :type "struct")
+                nil [1654 1828])
+            ("wmi_block" type
+               (:members 
+                  ( ("list" variable (:type ("list_head" type
+                         (:prototype t
+                          :type "struct")
+                          nil nil)) (reparse-symbol classsubparts) [1850 1872])
+                    ("gblock" variable (:type ("guid_block" type
+                         (:prototype t
+                          :type "struct")
+                          nil nil)) (reparse-symbol classsubparts) [1874 1899])
+                    ("handle" variable (:type ("acpi_handle" type (:type "class") nil nil)) (reparse-symbol classsubparts) [1901 1920])
+                    ("handler" variable (:type ("wmi_notify_handler" type (:type "class") nil nil)) (reparse-symbol classsubparts) [1922 1949])
+                    ("handler_data" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol classsubparts) [1951 1970])
+                    ("dev" variable (:type ("device" type
+                         (:prototype t
+                          :type "struct")
+                          nil nil)) (reparse-symbol classsubparts) [1972 1990]))                  
+                :type "struct")
+                nil [1830 1993])
+            ("ACPI_WMI_EXPENSIVE" variable (:constant-flag t) nil [2120 2138])
+            ("ACPI_WMI_METHOD" variable (:constant-flag t) nil [2153 2168])
+            ("ACPI_WMI_STRING" variable (:constant-flag t) nil [2209 2224])
+            ("ACPI_WMI_EVENT" variable (:constant-flag t) nil [2278 2292])
+            ("debug_event" variable
+               (:typemodifiers ("static")
+                :type "bool")
+                nil [2327 2351])
+            ("module_param" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("debug_event" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2365 2377])
+                    ("" variable (:type "bool") (reparse-symbol arg-sub-list) [2378 2383]))                  
+                :type "int")
+                nil [2352 2390])
+            ("MODULE_PARM_DESC" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("debug_event" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2408 2420]))                  
+                :type "int")
+                nil [2391 2448])
+            ("debug_dump_wdg" variable
+               (:typemodifiers ("static")
+                :type "bool")
+                nil [2450 2477])
+            ("module_param" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("debug_dump_wdg" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2491 2506])
+                    ("" variable (:type "bool") (reparse-symbol arg-sub-list) [2507 2512]))                  
+                :type "int")
+                nil [2478 2519])
+            ("MODULE_PARM_DESC" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("debug_dump_wdg" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2537 2552]))                  
+                :type "int")
+                nil [2520 2595])
+            ("acpi_wmi_remove" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("device" variable
+                       (:pointer 1
+                        :type ("acpi_device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [2624 2651]))                  
+                :type "int")
+                nil [2597 2652])
+            ("acpi_wmi_add" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("device" variable
+                       (:pointer 1
+                        :type ("acpi_device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [2677 2704]))                  
+                :type "int")
+                nil [2653 2705])
+            ("acpi_wmi_notify" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("device" variable
+                       (:pointer 1
+                        :type ("acpi_device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [2734 2761])
+                    ("event" variable (:type ("u32" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2762 2772]))                  
+                :type "void")
+                nil [2706 2773])
+            ("wmi_device_ids" variable
+               (:dereference 1
+                :typemodifiers ("static")
+                :constant-flag t
+                :default-value "{
+	{\"PNP0C14\", 0},
+	{\"pnp0c14\", 0},
+	{\"\", 0},
+}"
+                :type ("acpi_device_id" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [2775 2877])
+            ("MODULE_DEVICE_TABLE" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("acpi" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2898 2903])
+                    ("" variable (:type ("wmi_device_ids" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2904 2919]))                  
+                :type "int")
+                nil [2878 2920])
+            ("acpi_wmi_driver" variable
+               (:typemodifiers ("static")
+                :default-value "{
+	.name = \"wmi\",
+	.class = ACPI_WMI_CLASS,
+	.ids = wmi_device_ids,
+	.ops = {
+		.add = acpi_wmi_add,
+		.remove = acpi_wmi_remove,
+		.notify = acpi_wmi_notify,
+	},
+}"
+                :type ("acpi_driver" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [2922 3131])
+            ("wmi_parse_hexbyte" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("src" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("u8" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [3500 3514]))                  
+                :type "int")
+                nil [3471 3720])
+            ("wmi_swap_bytes" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("src" variable
+                       (:pointer 1
+                        :type ("u8" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [4002 4010])
+                    ("dest" variable
+                       (:pointer 1
+                        :type ("u8" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [4011 4020]))                  
+                :type "void")
+                nil [3975 4267])
+            ("wmi_parse_guid" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("src" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("u8" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [4638 4652])
+                    ("dest" variable
+                       (:pointer 1
+                        :type ("u8" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [4653 4662]))                  
+                :type "bool")
+                nil [4611 4997])
+            ("find_guid" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("guid_string" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [5021 5045])
+                    ("out" variable
+                       (:pointer 2
+                        :type ("wmi_block" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [5046 5069]))                  
+                :type "bool")
+                nil [4999 5485])
+            ("wmi_method_enable" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("wblock" variable
+                       (:pointer 1
+                        :type ("wmi_block" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [5524 5549])
+                    ("enable" variable (:type "int") (reparse-symbol arg-sub-list) [5550 5561]))                  
+                :type ("acpi_status" type (:type "class") nil nil))
+                nil [5487 5912])
+            ("wmi_evaluate_method" function
+               (:arguments 
+                  ( ("guid_string" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [6310 6334])
+                    ("instance" variable (:type ("u8" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6335 6347])
+                    ("method_id" variable (:type ("u32" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6348 6362])
+                    ("in" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("acpi_buffer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [6363 6392])
+                    ("out" variable
+                       (:pointer 1
+                        :type ("acpi_buffer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [6393 6417]))                  
+                :type ("acpi_status" type (:type "class") nil nil))
+                nil [6278 7419])
+            ("EXPORT_SYMBOL_GPL" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("wmi_evaluate_method" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7438 7458]))                  
+                :type "int")
+                nil [7420 7459])
+            ("wmi_query_block" function
+               (:arguments 
+                  ( ("guid_string" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [7789 7813])
+                    ("instance" variable (:type ("u8" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7814 7826])
+                    ("out" variable
+                       (:pointer 1
+                        :type ("acpi_buffer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [7827 7851]))                  
+                :type ("acpi_status" type (:type "class") nil nil))
+                nil [7761 9463])
+            ("EXPORT_SYMBOL_GPL" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("wmi_query_block" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9482 9498]))                  
+                :type "int")
+                nil [9464 9499])
+            ("wmi_set_block" function
+               (:arguments 
+                  ( ("guid_string" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [9812 9836])
+                    ("instance" variable (:type ("u8" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9837 9849])
+                    ("in" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("acpi_buffer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [9850 9879]))                  
+                :type ("acpi_status" type (:type "class") nil nil))
+                nil [9786 10822])
+            ("EXPORT_SYMBOL_GPL" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("wmi_set_block" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10841 10855]))                  
+                :type "int")
+                nil [10823 10856])
+            ("wmi_dump_wdg" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("g" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("guid_block" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [10883 10910]))                  
+                :type "void")
+                nil [10858 11499])
+            ("wmi_notify_debug" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("value" variable (:type ("u32" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11530 11540])
+                    ("context" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [11541 11555]))                  
+                :type "void")
+                nil [11501 12354])
+            ("wmi_install_notify_handler" function
+               (:arguments 
+                  ( ("guid" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [12646 12663])
+                    ("handler" variable (:type ("wmi_notify_handler" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12664 12691])
+                    ("data" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [12692 12703]))                  
+                :type ("acpi_status" type (:type "class") nil nil))
+                nil [12607 13456])
+            ("EXPORT_SYMBOL_GPL" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("wmi_install_notify_handler" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13475 13502]))                  
+                :type "int")
+                nil [13457 13503])
+            ("wmi_remove_notify_handler" function
+               (:arguments 
+                  ( ("guid" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [13691 13708]))                  
+                :type ("acpi_status" type (:type "class") nil nil))
+                nil [13653 14553])
+            ("EXPORT_SYMBOL_GPL" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("wmi_remove_notify_handler" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [14572 14598]))                  
+                :type "int")
+                nil [14554 14599])
+            ("wmi_get_event_data" function
+               (:arguments 
+                  ( ("event" variable (:type ("u32" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [14866 14876])
+                    ("out" variable
+                       (:pointer 1
+                        :type ("acpi_buffer" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14877 14901]))                  
+                :type ("acpi_status" type (:type "class") nil nil))
+                nil [14835 15450])
+            ("EXPORT_SYMBOL_GPL" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("wmi_get_event_data" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [15469 15488]))                  
+                :type "int")
+                nil [15451 15489])
+            ("wmi_has_guid" function
+               (:arguments 
+                  ( ("guid_string" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [15692 15716]))                  
+                :type "bool")
+                nil [15674 15758])
+            ("EXPORT_SYMBOL_GPL" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("wmi_has_guid" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [15777 15790]))                  
+                :type "int")
+                nil [15759 15791])
+            ("modalias_show" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [15848 15867])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [15868 15898])
+                    ("buf" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [15907 15917]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [15819 16101])
+            ("DEVICE_ATTR_RO" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("modalias" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [16124 16133]))                  
+                :type "int")
+                nil [16102 16134])
+            ("wmi_attrs" variable
+               (:pointer 1
+                :dereference 1
+                :typemodifiers ("static")
+                :default-value "{
+	&dev_attr_modalias.attr,
+	NULL,
+}"
+                :type ("attribute" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [16136 16212])
+            ("ATTRIBUTE_GROUPS" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("wmi" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [16230 16234]))                  
+                :type "int")
+                nil [16213 16235])
+            ("wmi_dev_uevent" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [16263 16282])
+                    ("env" variable
+                       (:pointer 1
+                        :type ("kobj_uevent_env" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [16283 16311]))                  
+                :type "int")
+                nil [16237 16678])
+            ("wmi_dev_free" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [16705 16724]))                  
+                :type "void")
+                nil [16680 16821])
+            ("wmi_class" variable
+               (:default-value "{
+	.name = \"wmi\",
+	.dev_release = wmi_dev_free,
+	.dev_uevent = wmi_dev_uevent,
+	.dev_groups = wmi_groups,
+}"
+                :type "int")
+                nil [16843 16963])
+            ("wmi_create_device" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("gblock" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("guid_block" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [16994 17026])
+                    ("wblock" variable
+                       (:pointer 1
+                        :type ("wmi_block" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [17035 17060])
+                    ("handle" variable (:type ("acpi_handle" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [17061 17080]))                  
+                :type "int")
+                nil [16965 17250])
+            ("wmi_free_devices" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [17281 17286]))                  
+                :type "void")
+                nil [17252 17546])
+            ("guid_already_parsed" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("guid_string" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [17580 17604]))                  
+                :type "bool")
+                nil [17548 17777])
+            ("parse_wdg" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("handle" variable (:type ("acpi_handle" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [17857 17876]))                  
+                :type "int")
+                nil [17836 19300])
+            ("acpi_wmi_ec_space_handler" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("function" variable (:type ("u32" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [19469 19482])
+                    ("address" variable (:type ("acpi_physical_address" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [19483 19513])
+                    ("bits" variable (:type ("u32" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [19522 19531])
+                    ("value" variable
+                       (:pointer 1
+                        :type ("u64" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [19532 19543])
+                    ("handler_context" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [19552 19574])
+                    ("region_context" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [19575 19596]))                  
+                :type ("acpi_status" type (:type "class") nil nil))
+                nil [19424 20194])
+            ("acpi_wmi_notify" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("device" variable
+                       (:pointer 1
+                        :type ("acpi_device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [20224 20251])
+                    ("event" variable (:type ("u32" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [20252 20262]))                  
+                :type "void")
+                nil [20196 20824])
+            ("acpi_wmi_remove" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("device" variable
+                       (:pointer 1
+                        :type ("acpi_device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [20853 20880]))                  
+                :type "int")
+                nil [20826 21020])
+            ("acpi_wmi_add" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("device" variable
+                       (:pointer 1
+                        :type ("acpi_device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [21046 21073]))                  
+                :type "int")
+                nil [21022 21602])
+            ("acpi_wmi_init" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [21636 21641]))                  
+                :type ("__init" type (:type "class") nil nil))
+                nil [21615 21958])
+            ("acpi_wmi_exit" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [21993 21998]))                  
+                :type ("__exit" type (:type "class") nil nil))
+                nil [21972 22112])
+            ("subsys_initcall" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("acpi_wmi_init" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [22130 22144]))                  
+                :type "int")
+                nil [22114 22145])
+            ("module_exit" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("acpi_wmi_exit" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [22158 22172]))                  
+                :type "int")
+                nil [22146 22173]))          
+      :file "wmi.c"
+      :pointmax 22174
+      :fsize 22173
+      :lastmodtime '(22176 6778 243555 316000)
+      :unmatched-syntax '((VOID 21967 . 21971) (STATIC 21960 . 21966) (INT 21611 . 21614) (STATIC 21604 . 21610) (CLASS 16837 . 16842) (STRUCT 16830 . 16836) (STATIC 16823 . 16829) (string 2556 . 2593) (number 2513 . 2517) (string 2424 . 2446) (number 2384 . 2388) (string 1580 . 1585) (string 1537 . 1562) (string 1498 . 1515) (string 1476 . 1481))
+      :lexical-table 
+        '(("ACPI_WMI_EXPENSIVE" . ((number "0x1" 2141 . 2144)))
+          ("ACPI_WMI_METHOD" . ((number "0x2" 2174 . 2177)))
+          ("ACPI_WMI_STRING" . ((number "0x4" 2230 . 2233)))
+          ("pr_fmt" (spp-arg-list ("fmt") 1228 . 1233) . 
+              ((symbol "KBUILD_MODNAME" 1234 . 1248) (string "\": \"" 1249 . 1253) (symbol "fmt" 1254 . 1257)))
+          ("ACPI_WMI_EVENT" . ((number "0x8" 2299 . 2302)))
+          ("ACPI_WMI_CLASS" . ((string "\"wmi\"" 1612 . 1617)))
+          )
+))
+  :file "!usr!src!zen!zen-kernel!drivers!platform!x86!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")
