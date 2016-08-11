@@ -17,152 +17,6 @@
               indent-tabs-mode 't
               c-default-style "linux")
 
-
-;;------------------------------------------------------------------------
-;;
-;; C/C++
-;;
-;;------------------------------------------------------------------------
-
-;;------------------------------------------------------------------------
-;; activate whitespace-mode to view all whitespace characters
-(global-set-key (kbd "C-c w") 'whitespace-mode)
-
-;; show unncessary whitespace that can mess up your diff
-(add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
-
-;; Package: clean-aindent-mode
-;;(require 'clean-aindent-mode)
-(add-hook 'prog-mode-hook 'clean-aindent-mode)
-(defun my-pkg-init()
-  (electric-indent-mode -1)  ; no electric indent, auto-indent is sufficient
-  (clean-aindent-mode t)
-  (setq clean-aindent-is-simple-indent t)
-  (define-key global-map (kbd "RET") 'newline-and-indent))
-(add-hook 'after-init-hook 'my-pkg-init)
-
-;; Package: dtrt-indent
-(add-to-list 'load-path "~/.emacs.d/elpa/dtrt-indent")
-(require 'dtrt-indent)
-(dtrt-indent-mode 1)
-
-;; Package: ws-butler
-(add-to-list 'load-path "~/.emacs.d/elpa/ws-butler")
-(require 'ws-butler)
-(add-hook 'c-mode-common-hook 'ws-butler-mode)
-
-;; useful snippets
-(add-to-list 'load-path "~/.emacs.d/elpa/yasnippet")
-(require 'yasnippet)
-(yas-global-mode 1)
-
-;; http://melpa.org/#/yasnippet
-;; for yasnippets
-(add-to-list 'load-path "~/.emacs.d/elpa/dropdown-list")
-(require 'dropdown-list)
-(setq yas-prompt-functions
-      '(yas-dropdown-prompt
-        yas-ido-prompt
-        yas-x-prompt
-        yas-completing-prompt
-        yas-no-prompt))
-
-;; Package: smartparens
-
-(add-to-list 'load-path "~/.emacs.d/elpa/smartparens")
-(require 'smartparens-config)
-(show-smartparens-global-mode +1)
-(smartparens-global-mode 1)
-
-;; when you press RET, the curly braces automatically
-;; add another newline
-(sp-with-modes '(c-mode c++-mode)
-  (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
-  (sp-local-pair "/*" "*/" :post-handlers '((" | " "SPC")
-                                            ("* ||\n[i]" "RET"))))
-
-;; Compilation Support
-;; C-o Display matched location, but do not switch point to matched buffer
-;; M-n Move to next error message, but do not visit error location
-;; M-p Move to next previous message, but do not visit error location
-;; M-g n Move to next error message, visit error location
-;; M-g p Move to previous error message, visit error location
-;; RET Visit location of error at poiint
-;; M-{ Move point to the next error message or match occurring in a different file
-;; M-} Move point to the previous error message or match occurring in a different file
-;; q Quit *compilation* buffer
-(global-set-key (kbd "<f5>") (lambda ()
-                               (interactive)
-                               (setq-local compilation-read-command nil)
-                               (call-interactively 'compile)))
-
-;; Debugging
-;; 1. GUD interaction buffer
-;; 2. Locals/Registers buffer
-;; 3. Primary Source buffer
-;; 4. I/O buffer for debugging program
-;; 5. Stack buffer6. Breakpoints/Threads buffer
-(setq
- ;; use gdb-many-windows by default
- gdb-many-windows t
- ;; Non-nil means display source file containing the main routine at startup
- gdb-show-main t
- )
-
-;; scroll one line at a time (less "jumpy" than defaults)
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-(setq wheel-progressive-speed nil) ;; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-(setq auto-window-vscroll nil) ;; disable auto scrolling
-(setq-default scroll-margin 1)
-(setq-default scroll-step 1) ;; keyboard scroll one line at a time
-(setq-default scroll-conservatively 0) ;; lags fix (like ssh sessions)
-(setq-default scroll-up-aggressively 0.01)
-(setq-default scroll-down-aggressively 0.01)
-
-;; shift+arrows_keys is for select by default, however change it so
-;; use Shift+arrow_keys to move cursor around split panes
-(windmove-default-keybindings)
-;; when cursor is on edge, move to the other side, as in a torus space
-(setq windmove-wrap-around t )
-
-
-;;------------------------------------------------------------------------
-;;
-;; TAGS
-;;
-;;------------------------------------------------------------------------
-(custom-set-variables
- '(helm-gtags-prefix-key "\C-t")
- '(helm-gtags-suggested-key-mapping t))
-
-;; Enable helm-gtags-mode
-(add-hook 'c-mode-hook 'helm-gtags-mode)
-(add-hook 'c++-mode-hook 'helm-gtags-mode)
-(add-hook 'asm-mode-hook 'helm-gtags-mode)
-
-;; Set key bindings
-(eval-after-load "helm-gtags"
-  '(progn
-     (define-key helm-gtags-mode-map (kbd "M-t") 'helm-gtags-find-tag)
-     (define-key helm-gtags-mode-map (kbd "M-r") 'helm-gtags-find-rtag)
-     (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
-     (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
-     (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
-     (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-histor    ;; Enable helm-gtags-mode
-       (add-hook 'c-mode-hook 'helm-gtags-mode)
-       (add-hook 'c++-mode-hook 'helm-gtags-mode)
-       (add-hook 'asm-mode-hook 'helm-gtags-mode)
-       ;; Set key bindings
-       (eval-after-load "helm-gtags"
-	 '(progn
-	    (define-key helm-gtags-mode-map (kbd "M-t") 'helm-gtags-find-tag)
-	    (define-key helm-gtags-mode-map (kbd "M-r") 'helm-gtags-find-rtag)
-	    (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
-	    (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
-	    (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
-	    (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-histor))))))
-
 ;;------------------------------------------------------------------------
 ;;
 ;; MELPA
@@ -172,7 +26,7 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+            '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
@@ -498,6 +352,210 @@ LINE alone still moves to the beginning of the specified line (like LINE:0)."
 
 ;;------------------------------------------------------------------------
 ;;
+;; C/C++
+;;
+;;------------------------------------------------------------------------
+
+;;------------------------------------------------------------------------
+;; activate whitespace-mode to view all whitespace characters
+(global-set-key (kbd "C-c w") 'whitespace-mode)
+
+;; show unncessary whitespace that can mess up your diff
+(add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
+
+;; Package: clean-aindent-mode
+;;(require 'clean-aindent-mode)
+(add-hook 'prog-mode-hook 'clean-aindent-mode)
+(defun my-pkg-init()
+  (electric-indent-mode -1)  ; no electric indent, auto-indent is sufficient
+  (clean-aindent-mode t)
+  (setq clean-aindent-is-simple-indent t)
+  (define-key global-map (kbd "RET") 'newline-and-indent))
+(add-hook 'after-init-hook 'my-pkg-init)
+
+;; Package: dtrt-indent
+(add-to-list 'load-path "~/.emacs.d/elpa/dtrt-indent")
+(require 'dtrt-indent)
+(dtrt-indent-mode 1)
+
+;; Package: ws-butler
+(add-to-list 'load-path "~/.emacs.d/elpa/ws-butler")
+(require 'ws-butler)
+(add-hook 'c-mode-common-hook 'ws-butler-mode)
+
+;; useful snippets
+(add-to-list 'load-path "~/.emacs.d/elpa/yasnippet")
+(require 'yasnippet)
+(yas-global-mode 1)
+
+;; http://melpa.org/#/yasnippet
+;; for yasnippets
+(add-to-list 'load-path "~/.emacs.d/elpa/dropdown-list")
+(require 'dropdown-list)
+(setq yas-prompt-functions
+      '(yas-dropdown-prompt
+        yas-ido-prompt
+        yas-x-prompt
+        yas-completing-prompt
+        yas-no-prompt))
+
+;; Package: smartparens
+
+(add-to-list 'load-path "~/.emacs.d/elpa/smartparens")
+(require 'smartparens-config)
+(show-smartparens-global-mode +1)
+(smartparens-global-mode 1)
+
+;; when you press RET, the curly braces automatically
+;; add another newline
+(sp-with-modes '(c-mode c++-mode)
+  (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
+  (sp-local-pair "/*" "*/" :post-handlers '((" | " "SPC")
+                                            ("* ||\n[i]" "RET"))))
+
+;; Compilation Support
+;; C-o Display matched location, but do not switch point to matched buffer
+;; M-n Move to next error message, but do not visit error location
+;; M-p Move to next previous message, but do not visit error location
+;; M-g n Move to next error message, visit error location
+;; M-g p Move to previous error message, visit error location
+;; RET Visit location of error at poiint
+;; M-{ Move point to the next error message or match occurring in a different file
+;; M-} Move point to the previous error message or match occurring in a different file
+;; q Quit *compilation* buffer
+(global-set-key (kbd "<f5>") (lambda ()
+                               (interactive)
+                               (setq-local compilation-read-command nil)
+                               (call-interactively 'compile)))
+
+;; Debugging
+;; 1. GUD interaction buffer
+;; 2. Locals/Registers buffer
+;; 3. Primary Source buffer
+;; 4. I/O buffer for debugging program
+;; 5. Stack buffer6. Breakpoints/Threads buffer
+(setq
+ ;; use gdb-many-windows by default
+ gdb-many-windows t
+ ;; Non-nil means display source file containing the main routine at startup
+ gdb-show-main t
+ )
+
+;; scroll one line at a time (less "jumpy" than defaults)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+(setq wheel-progressive-speed nil) ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+(setq auto-window-vscroll nil) ;; disable auto scrolling
+(setq-default scroll-margin 1)
+(setq-default scroll-step 1) ;; keyboard scroll one line at a time
+(setq-default scroll-conservatively 0) ;; lags fix (like ssh sessions)
+(setq-default scroll-up-aggressively 0.01)
+(setq-default scroll-down-aggressively 0.01)
+
+;; shift+arrows_keys is for select by default, however change it so
+;; use Shift+arrow_keys to move cursor around split panes
+(windmove-default-keybindings)
+;; when cursor is on edge, move to the other side, as in a torus space
+(setq windmove-wrap-around t )
+
+
+;;------------------------------------------------------------------------
+;;
+;; TAGS
+;;
+;;------------------------------------------------------------------------
+(require 'helm)
+
+(custom-set-variables
+ '(helm-gtags-prefix-key "C-t")
+ '(helm-gtags-suggested-key-mapping t))
+
+;; Enable helm-gtags-mode
+(add-hook 'c-mode-hook 'helm-gtags-mode)
+(add-hook 'c++-mode-hook 'helm-gtags-mode)
+(add-hook 'asm-mode-hook 'helm-gtags-mode)
+
+;; customize
+(custom-set-variables
+ '(helm-gtags-path-style 'relative)
+ '(helm-gtags-ignore-case t)
+ '(helm-gtags-auto-update t)
+ '(helm-gtags-display-style t)
+ )
+
+;; Set key bindings
+(eval-after-load "helm-gtags"
+  '(progn
+     (define-key helm-gtags-mode-map (kbd "M-t") 'helm-gtags-find-tag)
+     (define-key helm-gtags-mode-map (kbd "M-r") 'helm-gtags-find-rtag)
+     (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
+     (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
+     (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+     (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
+     (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)))
+
+;;------------------------------------------------------------------------
+
+(add-to-list 'load-path "~/.emacs.d/libs/function-args")
+(require 'function-args)
+(fa-config-default)
+(set-default 'semantic-case-fold t)
+(semantic-add-system-include "/usr/include" 'c-mode)
+(semantic-add-system-include "/usr/include/boost" 'c++-mode)
+
+;;------------------------------------------------------------------------
+;; (use-package helm-mode
+;;   :ensure helm
+;;   :config (helm-mode 1)
+;;   :bind (("M-x"       . undefined)
+;; 	 ("M-x"       . helm-M-x)
+;; 	 ("M-y"       . helm-show-kill-ring)
+;; 	 ("C-x C-b"   . helm-buffers-list)
+;; 	 ("C-x C-f"   . helm-find-files)
+;; 	 ("C-c <SPC>" . helm-all-mark-rings)
+;; 	 ("C-x r b"   . helm-filtered-bookmarks)
+;; 	 ("C-h r"     . helm-info-emacs)
+;; 	 ("C-:"       . helm-eval-expression-with-eldoc)
+;; 	 ("C-,"       . helm-calcul-expression)
+;; 	 ("C-h i"     . helm-info-at-point)
+;; 	 ("C-x C-d"   . helm-browse-project)
+;; 	 ("<f1>"      . helm-resume)
+;; 	 ("C-h C-f"   . helm-apropos)
+;; 	 ("C-h a"     . helm-apropos)
+;; ;;	 ("<f5> s"    . helm-find)
+;; 	 ("<f2>"      . helm-execute-kmacro)
+;; 	 ("C-c i"     . helm-imenu-in-all-buffers)
+;; 	 ("C-s"       . helm-occur)
+;; 	 ))
+
+;; (use-package helm-adaptive
+;;   :config (helm-adaptive-mode 1))
+
+;; (use-package helm-ring
+;;   :config (helm-push-mark-mode 1))
+
+;; (use-package helm-utils
+;;   ;; Popup buffer-name or filename in grep/moccur/imenu-all etc...
+;;   :config (helm-popup-tip-mode 1))
+
+;; (use-package helm-sys
+;;   :config (helm-top-poll-mode 1))
+
+;; (use-package projectile
+;;   :ensure projectile
+;;   :bind (("C-h f" . helm-projectile))
+;;   )
+
+;; (use-package helm-projectile
+;;   :ensure helm-projectile
+;;   :bind (("C-h s" . helm-do-ag))
+;;   )
+
+;; (use-package helm-ag
+;;   :ensure helm-ag)
+
+;;------------------------------------------------------------------------
+;;
 ;; MQL
 ;;
 ;;;; -- https://github.com/kostafey/kostafeys-emacs-confik/blob/master/artifacts/mql-mode.el
@@ -515,9 +573,6 @@ LINE alone still moves to the beginning of the specified line (like LINE:0)."
 (font-lock-add-keywords 'mql-mode
 			'(("sinput" . 'font-lock-keyword-face)))
 
-			(add-hook 'c-mode-hook (lambda () (setq comment-start "//"
-					comment-end   "")))
-
 ;;------------------------------------------------------------------------
 ;;
 ;; Customize comments
@@ -528,3 +583,6 @@ LINE alone still moves to the beginning of the specified line (like LINE:0)."
 (require 'comment-dwim-2)
 (global-set-key (kbd "M-;") 'comment-dwim-2)
 (setq comment-dwim-2--inline-comment-behavior 'reindent-comment)
+(add-hook 'c-mode-hook (lambda () (setq comment-start "//"
+					comment-end   "")))
+

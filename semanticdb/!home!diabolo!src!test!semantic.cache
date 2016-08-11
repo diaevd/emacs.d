@@ -1,0 +1,24 @@
+;; Object test/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "test/"
+  :tables
+  (list
+    (semanticdb-table "test2.c"
+      :major-mode 'c-mode
+      :tags 
+        '( ("stdio.h" include (:system-flag t) nil [109 127])
+            ("stdlib.h" include (:system-flag t) nil [128 147])
+            ("string.h" include (:system-flag t) nil [148 167])
+            ("main" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [178 183]))                  
+                :type "int")
+                nil [169 383]))          
+      :file "test2.c"
+      :pointmax 384
+      :fsize 383
+      :lastmodtime '(22443 52758 23610 183000)
+      :unmatched-syntax nil))
+  :file "!home!diabolo!src!test!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")
