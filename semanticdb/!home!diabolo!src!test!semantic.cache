@@ -13,11 +13,16 @@
                (:arguments 
                   ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [178 183]))                  
                 :type "int")
-                nil [169 383]))          
+                nil [169 383])
+            ("fp" variable
+               (:pointer 1
+                :default-value "fopen(\"file\", \"r\")"
+                :type ("FILE" type (:type "class") nil nil))
+                nil [297 327]))          
       :file "test2.c"
       :pointmax 384
       :fsize 383
-      :lastmodtime '(22443 52758 23610 183000)
+      :lastmodtime '(22445 25778 846436 274000)
       :unmatched-syntax nil)
     (semanticdb-table "test.c"
       :major-mode 'c-mode

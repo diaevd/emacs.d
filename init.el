@@ -1,4 +1,4 @@
-(setq user-mail-address "diaevd@gmail.com")
+;;(setq user-mail-address "diaevd@gmail.com")
 (setq-default major-mode 'text-mode)
 (setq column-number-mode t)
 ;; place for my libs
@@ -523,8 +523,13 @@
 			'(("input" . 'font-lock-keyword-face)))
 (font-lock-add-keywords 'mql-mode
 			'(("sinput" . 'font-lock-keyword-face)))
-
-(global-set-key (kbd "C-c C-f") 'imenu-tree)
+;;------------------------------------------------------------------------
+;;
+;; Visual parts
+;;
+;;------------------------------------------------------------------------
+(global-set-key (kbd "C-c C-v") 'imenu-tree)
+(global-set-key (kbd "C-c C-f") 'helm-find-files)
 ;;------------------------------------------------------------------------
 ;;
 ;; Customize comments
@@ -548,6 +553,110 @@
 
 ;;------------------------------------------------------------------------
 ;;
+;; Mail
+;;
+;;------------------------------------------------------------------------
+(require 'mu4e)
+
+;; default
+;; (setq mu4e-maildir "~/Maildir")
+
+(setq mu4e-drafts-folder "/[Gmail].Drafts")
+(setq mu4e-sent-folder   "/[Gmail].Sent Mail")
+(setq mu4e-trash-folder  "/[Gmail].Trash")
+
+;; don't save message to Sent Messages, Gmail/IMAP takes care of this
+(setq mu4e-sent-messages-behavior 'delete)
+
+;; (See the documentation for `mu4e-sent-messages-behavior' if you have
+;; additional non-Gmail addresses and want assign them different
+;; behavior.)
+
+;; setup some handy shortcuts
+;; you can quickly switch to your Inbox -- press ``ji''
+;; then, when you want archive some messages, move them to
+;; the 'All Mail' folder by pressing ``ma''.
+
+(setq mu4e-maildir-shortcuts
+      '( ("/INBOX"               . ?i)
+	 ("/[Gmail].Sent Mail"   . ?s)
+	 ("/[Gmail].Trash"       . ?t)
+	 ("/[Gmail].All Mail"    . ?a)))
+
+;; allow for updating mail using 'U' in the main view:
+(setq mu4e-get-mail-command "offlineimap"
+      mu4e-update-interval 900)             ;; update every 15 minutes.
+
+
+;; mu4e-action-view-in-browser is built into mu4e
+;; by adding it to these lists of custom actions
+;; it can be invoked by first pressing a, then selecting
+;;(add-to-list ‘mu4e-headers-actions ‘("in browser" . mu4e-action-view-in-browser) t)
+;;(add-to-list ‘mu4e-view-actions ‘("in browser" . mu4e-action-view-in-browser) t)
+
+;; don’t keep message buffers around
+(setq message-kill-buffer-on-exit t)
+;; attachments go here
+(setq mu4e-attachment-dir "~/Downloads")
+
+
+;; something about ourselves
+(setq
+ user-mail-address "diaevd@gmail.com"
+ user-full-name  "Evgeny Duzhakov"
+ mu4e-compose-signature
+ (concat
+  "WBR,\n"
+  "Evgeny Duzhakov aka diabolo"
+  "Skype: diaevd\n"
+  "ICQ: 5176006\n"))
+
+(setq message-kill-buffer-on-exit t)
+;; Use fancy chars
+(setq mu4e-use-fancy-chars t)
+
+;; Try to display images in mu4e
+(setq
+ mu4e-view-show-images t
+ mu4e-view-image-max-width 800)
+
+;; when you want to use some external command for html->text
+;; conversion, e.g. the ‘html2text’ program
+;; (cpbotha: html2text sees to work better than the built-in one)
+(setq mu4e-html2text-command "html2text -utf8")
+
+;; Silly mu4e only shows names in From: by default. Of course we also
+;; want the addresses.
+(setq mu4e-view-show-addresses t)
+
+;; Re-index every 15 minutes.
+(setq mu4e-update-interval (* 15 60))
+
+;; sending mail -- replace USERNAME with your gmail username
+;; also, make sure the gnutls command line utils are installed
+;; package 'gnutls-bin' in Debian/Ubuntu
+
+(require 'smtpmail)
+(setq message-send-mail-function 'smtpmail-send-it
+      starttls-use-gnutls t
+      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+      smtpmail-auth-credentials
+      '(("smtp.gmail.com" 587 "diaevd@gmail.com" nil))
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587)
+
+;; alternatively, for emacs-24 you can use:
+;;(setq message-send-mail-function 'smtpmail-send-it
+;;     smtpmail-stream-type 'starttls
+;;     smtpmail-default-smtp-server "smtp.gmail.com"
+;;     smtpmail-smtp-server "smtp.gmail.com"
+;;     smtpmail-smtp-service 587)
+
+;; don't keep message buffers around
+(setq message-kill-buffer-on-exit t)
+;;------------------------------------------------------------------------
+;;
 ;; Goto functions
 ;;
 ;;------------------------------------------------------------------------
@@ -555,16 +664,31 @@
   (interactive "nColumn: ")
   (move-to-column column t))
 
-
 ;;;;;;;; (string-match "\\`\\([0-9]*\\):\\([0-9]*\\)\\'\\)\\)'" line))
-(defun go-to-line-column (line column)
+(defun go-to-line-and-column (line column)
   (interactive "nLine: \nnColumn: ")
   (goto-line line)
   (move-to-column column)
   )
 
+(defun go-to-line-and-column-cond (lc-cond)
+  "Go to line:column"
+  (interactive "sL:C:: ")
+  (let (line delim column max-lines)
+    (setq max-lines (count-lines (point-min) (point-max)))
+    (save-match-data
+      (string-match "^\\([0-9]*\\)\\([,:]?\\)\\([0-9]*\\)$" lc-cond)
+      (setq line (string-to-number (match-string 1 lc-cond)))
+      (setq delim (match-string 2 lc-cond))
+      (setq column (string-to-number (match-string 3 lc-cond)))
+      (if (> line 0) (goto-line line))
+      (move-to-column column)
+      (message "Set marker to line %d column %d" line column)
+      )))
+
 (global-set-key (kbd "M-g M-c") 'go-to-column)
-(global-set-key (kbd "M-g l") 'go-to-line-column)
+(global-set-key (kbd "M-g l") 'go-to-line-and-column)
+(global-set-key (kbd "M-g M-l") 'go-to-line-and-column-cond)
 
 ;;;; faces
 (custom-set-faces

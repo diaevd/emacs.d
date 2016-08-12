@@ -2,6 +2,7 @@
 
 ;; ----- ido-last-directory-list -----
 (
+ ("/home/diabolo/src/" . "test/")
  ("/home/diabolo/.emacs.d/elpa/yasnippet/" . "snippets/")
  ("/home/diabolo/.emacs.d/elpa/" . "yasnippet/")
  ("/home/diabolo/.emacs.d/" . "elpa/")
@@ -12,16 +13,30 @@
 
 ;; ----- ido-work-directory-list -----
 (
+ "/home/diabolo/.emacs.d/"
+ "/home/diabolo/src/test/"
  "/usr/src/zen/zen-kernel/drivers/platform/x86/"
 )
 
 ;; ----- ido-work-file-list -----
 (
+ "init.el"
+ "test.c"
  "Kconfig"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
+ ("/home/diabolo/.emacs.d/" (22446 15458 627012 61000) "ido.last" "ido.last~" "recentf" "recentf~" "init.el" "init.el~" "semanticdb/" "helm-adaptive-history" "abbrev_defs" "README.md" "ac-comphist.dat" ".gitignore" ".git/" "snippets/" "pde/" "Emacs-PDE-0.2.16/" "libs/" "ac-dict/" "elpa/" "auto-save-list/" "../" "./")
+
+ ("/home/diabolo/src/lisp/" (22446 12965 265252 542000) ".#test.el" "test.el" "test.el~" "#cperl-mode.el#" "perl-mode.el" "cperl-mode.el" "../" "./")
+
+ ("/home/diabolo/" (22446 3539 927693 497000) ".texmf-var/" ".mu/" ".offlineimaprc" ".offlineimaprc~" "Maildir/" ".offlineimap/" ".emacs~" ".perldb" ".emacs-20160810" ".dropbox-dist/" "perl5/" ".TelegramDesktop/" ".cpanm/" ".viminfo" ".perlconsole_history" ".profile" ".profile~" ".bash_aliases" ".bash_aliases~" "vmware/" ".vmware/" ".ovftool.ssldb" "Shared VMs/" ".isomaster" ".clang-format" ".clang-format~" "#Global_Value_Signal_System.mq4#" ".netloadrc" ".netwatch.1.0c" ".AndroidStudioPreview2.0/" ".tmux.conf" ".tmux.conf~" ".d/" "cd/" "switch-client" ".tmux.conf-backup" ".tmux.conf.backup.conf" "q" ".voltron/" ".lldbinit" ".lldbinit~" ".lldb/" "Chemical_Brothers_-_Salmon_Dance_Ring.flac" ".audacity-data/" ".DataGrip10/" ".dbeaver/" ".oracle_jre_usage/" ".eclipse/" ".psql_history" "logfile" ".gitconfig" "testdisk.log" "backup/" ".bcast/" ".openshot/" ".avidemux6/" ".lives" "livestmp/" ".lives-dir/" "kdenlive/" "etc/" ".python-eggs/" ".qemu-launcher/" ".gnome2_private/" ".gnome2/" ".gtkrc-2.0" ".gtkrc-2.0-backup" ".AndroidStudio1.5/" "Devel/" "scriptMonkey/" ".IntelliJIdea15/" "checkout/" ".cvspass" ".grive-sync.log" ".grive-last-sync.log" ".nvidia-settings-rc" ".nvidia-settings-rc~" ".Xauthority" ".gitconfig~" ".arkose/" ".bazaar/" ".kchmviewer/" ".xinitrc" ".Valley/" ".mplayer/" ".phoronix-test-suite/" ".codeintel/" ".emacs.d/" ".nemiver/" ".qd/" "hardcopy.0" ".ncftp/" "Snapshots/" ".CLion12/" "tmp/" ".watershed/" ".gradle/" ".AndroidStudio1.4/" ".disks/" "mnt/" ".blueproximity/" ".thumbnails/" ".gimp-2.8/" ".yjp/" ".icons/" ".themes/" ".elegant_gnome_backup/" ".codeblocks/" ".selected_editor" ".wine/" ".slickedit/" "VirtualBox VMs/" ".ccache/" ".hardinfo/" ".xbindkeysrc" ".xbindkeys_config/" ".rnd" ".bzr.log" "src/" ".gstreamer-0.10/" ".purple/" ".AndroidStudio1.2/" "Android/" ".FontForge/" ".android/" ".java/" ".lesshst" ".IntelliJIdea14/" "app/" "devel/" "android/" ".gksu.lock" "Google Drive/" ".grive-setup.log" ".gdfuse/" "GDrive/" "App/" ".gnome/" ".pki/" ".Skype/" "bin/" ".kde/" "Dropbox/" ".dropbox/" ".macromedia/" ".adobe/" ".mozilla/" ".toprc" ".aptitude/" ".nv/" ".bash_history" ".sudo_as_admin_successful" ".ssh/" ".gnupg/" ".gconf/" ".local/" ".ICEauthority" ".dbus/" ".config/" "Videos/" "Pictures/" "Music/" "Documents/" "Public/" "Templates/" "Downloads/" "Desktop/" ".cache/" ".bashrc" ".bash_logout" "../" "./")
+
+ ("/home/diabolo/src/test/" (22443 52758 442584 197000) "test2.c" "test2.c~" "GSYMS" "GRTAGS" "GPATH" "GTAGS" "#test2.c#" "#test.c#" "test.c" "test.c~" "3dliga/" "Ivideon/" "libNamedPipe/" "bash/" "../" "./")
+
+ ("/home/diabolo/src/" (22443 58256 838700 28000) "utils/" "lisp/" "online/" "qt/" "perl5/" "Virus/" "db/" "Projects/" "qemu/" "cs_bb/" "graphics/" "gnome/" "test/" "asm/" "secure/" "FX/" "video/" "cracks/" "devel/" "clion/" "Android/" "sys/" "KernelAdiutor/" "drivers/" "IrrLicht/" "gambas2_2.24.0-1.dsc" "gambas2_2.24.0-1.debian.tar.xz" "gambas2_2.24.0-1_amd64.build" "gambas2_2.24.0.orig.tar.xz" "gambas2-2.24.0/" "zen/" "acpi/" "wmidump/" "pidgin-webkit/" "../" "./")
+
  ("/usr/src/zen/zen-kernel/drivers/platform/x86/" (22444 2006 537751 437000) "#msi-wmi.c#" "msi-wmi.c" "msi-laptop.c" "Makefile" "toshiba_acpi.c" "toshiba-wmi.c" "thinkpad_acpi.c" "sony-laptop.c" "intel_scu_ipc.c" "intel_mid_powerbtn.c" "intel_menlow.c" "intel_ips.c" "ideapad-laptop.c" "ibm_rtl.c" "compal-laptop.c" "asus-wmi.c" "apple-gmux.c" "acer-wmi.c" "Kconfig" "xo15-ebook.c" "xo1-rfkill.c" "wmi.c" "tp_smapi.c" "toshiba_haps.c" "toshiba_bluetooth.c" "topstar-laptop.c" "thinkpad_ec.c" "tc1100-wmi.c" "surfacepro3_button.c" "samsung-q10.c" "samsung-laptop.c" "pvpanic.c" "panasonic-laptop.c" "mxm-wmi.c" "intel_scu_ipcutil.c" "intel_pmic_gpio.c" "intel_pmc_ipc.c" "intel_oaktrail.c" "intel_mid_thermal.c" "intel_ips.h" "intel-smartconnect.c" "intel-rst.c" "hp_accel.c" "hp-wmi.c" "hp-wireless.c" "hdaps.c" "fujitsu-tablet.c" "fujitsu-laptop.c" "eeepc-wmi.c" "eeepc-laptop.c" "dell-wmi.c" "dell-wmi-aio.c" "dell-smo8800.c" "dell-rbtn.h" "dell-rbtn.c" "dell-laptop.c" "classmate-laptop.c" "asus-wmi.h" "asus-nb-wmi.c" "asus-laptop.c" "amilo-rfkill.c" "alienware-wmi.c" "acerhdf.c" "../" "./")
 
  ("/home/diabolo/.emacs.d/elpa/yasnippet/snippets/" (22443 35897 530022 358000) "sh-mode/" "udev-mode/" "erlang-mode/" "python-mode/" "text-mode/" "html-mode/" "makefile-automake-mode/" "haskell-mode/" "nsis-mode/" "scala-mode/" "latex-mode/" "lisp-interaction-mode/" "cperl-mode/" "faust-mode/" "c++-mode/" "emacs-lisp-mode/" "ned-mode/" "ensime-mode" "erc-mode/" "java-mode/" "sql-mode/" "perl-mode/" ".gitignore" "lisp-mode/" "elixir-mode/" "web-mode" "rename_add_contr.py" "groovy-mode/" "prog-mode/" "nix-mode/" "typerex-mode" "nesc-mode/" "nxml-mode/" "rst-mode/" "antlr-mode/" "LICENSE" "f90-mode/" "tuareg-mode/" "chef-mode/" "ruby-mode/" "lua-mode/" "git-commit-mode/" "makefile-bsdmake-mode/" "c-mode/" "cider-repl-mode" "enh-ruby-mode" "css-mode/" "org-mode/" "js2-mode" "makefile-gmake-mode/" "csharp-mode/" "snippet-mode/" "conf-unix-mode/" "cc-mode/" "dix-mode/" "clojure-mode/" "cpp-omnet-mode/" "fundamental-mode/" "go-mode/" "CONTRIBUTORS.txt" "octave-mode/" "malabar-mode/" "yaml-mode/" "js3-mode" "applescript-mode/" ".nosearch" "js-mode/" "README.md" "makefile-mode/" "markdown-mode/" "m4-mode/" "cmake-mode/" "../" "./")
@@ -30,15 +45,7 @@
 
  ("/home/diabolo/.emacs.d/elpa/" (22443 36194 380340 767000) "yasnippet/" "yasnippet-20160801.1142/" "ws-butler/" "ws-butler-20150126.759/" "dtrt-indent/" "dtrt-indent-20160620.329/" "clean-aindent-mode-20150816.2029/" "anything-20151018.1903/" "perl-completion-20090527.2336/" "plsense-20151104.645/" "log4e-20150105.505/" "yaxception-20150105.652/" "use-package-20160226.1618/" "bind-key-20160227.48/" "diminish-20151215.915/" "perl6-mode-20160117.1109/" "pkg-info-20150517.443/" "epl-20150517.433/" "clang-format-20151116.438/" "auto-complete-1.5.0/" "popup-0.5.3/" "realgud-20160110.1440/" "load-relative-1.2.signed" "load-relative-1.2/" "list-utils-20140508.1341/" "loc-changes-20150302.848/" "test-simple-20151110.1943/" "archives/" "gnupg/" "../" "./")
 
- ("/home/diabolo/.emacs.d/" (22443 36251 690449 370000) "snippets/" "pde/" "Emacs-PDE-0.2.16/" "libs/" "ac-comphist.dat" "ac-dict/" "elpa/" "auto-save-list/" "../" "./")
-
  ("/home/" (21925 4132 0 0) "diabolo/" "../" "./")
-
- ("/home/diabolo/" (22443 36235 550992 621000) ".emacs" ".emacs~" ".perldb" ".emacs-20160810" ".dropbox-dist/" "perl5/" ".TelegramDesktop/" ".cpanm/" ".viminfo" ".perlconsole_history" ".profile" ".profile~" ".bash_aliases" ".bash_aliases~" "vmware/" ".vmware/" ".ovftool.ssldb" "Shared VMs/" ".isomaster" ".clang-format" ".clang-format~" "#Global_Value_Signal_System.mq4#" ".netloadrc" ".netwatch.1.0c" ".AndroidStudioPreview2.0/" ".tmux.conf" ".tmux.conf~" ".d/" "cd/" "switch-client" ".tmux.conf-backup" ".tmux.conf.backup.conf" "q" ".voltron/" ".lldbinit" ".lldbinit~" ".lldb/" "Chemical_Brothers_-_Salmon_Dance_Ring.flac" ".audacity-data/" ".DataGrip10/" ".dbeaver/" ".oracle_jre_usage/" ".eclipse/" ".psql_history" "logfile" ".gitconfig" "testdisk.log" "backup/" ".bcast/" ".openshot/" ".avidemux6/" ".lives" "livestmp/" ".lives-dir/" "kdenlive/" "etc/" ".python-eggs/" ".qemu-launcher/" ".gnome2_private/" ".gnome2/" ".gtkrc-2.0" ".gtkrc-2.0-backup" ".AndroidStudio1.5/" "Devel/" "scriptMonkey/" ".IntelliJIdea15/" "checkout/" ".cvspass" ".grive-sync.log" ".grive-last-sync.log" ".nvidia-settings-rc" ".nvidia-settings-rc~" ".Xauthority" ".gitconfig~" ".arkose/" ".bazaar/" ".kchmviewer/" ".xinitrc" ".Valley/" ".mplayer/" ".phoronix-test-suite/" ".codeintel/" ".emacs.d/" ".nemiver/" ".qd/" "hardcopy.0" ".ncftp/" "Snapshots/" ".CLion12/" "tmp/" ".watershed/" ".gradle/" ".AndroidStudio1.4/" ".disks/" "mnt/" ".blueproximity/" ".thumbnails/" ".gimp-2.8/" ".yjp/" ".icons/" ".themes/" ".elegant_gnome_backup/" ".codeblocks/" ".selected_editor" ".wine/" ".slickedit/" "VirtualBox VMs/" ".ccache/" ".hardinfo/" ".xbindkeysrc" ".xbindkeys_config/" ".rnd" ".bzr.log" "src/" ".gstreamer-0.10/" ".purple/" ".AndroidStudio1.2/" "Android/" ".FontForge/" ".android/" ".java/" ".lesshst" ".IntelliJIdea14/" "app/" "devel/" "android/" ".gksu.lock" "Google Drive/" ".grive-setup.log" ".gdfuse/" "GDrive/" "App/" ".gnome/" ".pki/" ".Skype/" "bin/" ".kde/" "Dropbox/" ".dropbox/" ".macromedia/" ".adobe/" ".mozilla/" ".toprc" ".aptitude/" ".nv/" ".bash_history" ".sudo_as_admin_successful" ".ssh/" ".gnupg/" ".gconf/" ".local/" ".ICEauthority" ".dbus/" ".config/" "Videos/" "Pictures/" "Music/" "Documents/" "Public/" "Templates/" "Downloads/" "Desktop/" ".cache/" ".bashrc" ".bash_logout" "../" "./")
-
- ("/home/diabolo/src/" (22443 20987 227485 944000) "lisp/" "online/" "qt/" "perl5/" "Virus/" "db/" "Projects/" "qemu/" "cs_bb/" "graphics/" "gnome/" "test/" "asm/" "secure/" "FX/" "video/" "cracks/" "devel/" "clion/" "Android/" "sys/" "KernelAdiutor/" "drivers/" "IrrLicht/" "gambas2_2.24.0-1.dsc" "gambas2_2.24.0-1.debian.tar.xz" "gambas2_2.24.0-1_amd64.build" "gambas2_2.24.0.orig.tar.xz" "gambas2-2.24.0/" "zen/" "acpi/" "wmidump/" "pidgin-webkit/" "../" "./")
-
- ("/home/diabolo/src/test/" (22443 36283 529354 678000) "test2.c" "test2.c~" "#test2.c#" "test.c" "test.c~" "3dliga/" "Ivideon/" "libNamedPipe/" "bash/" "../" "./")
 )
 
 ;; ----- ido-unc-hosts-cache -----
