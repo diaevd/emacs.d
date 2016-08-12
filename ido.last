@@ -2,7 +2,7 @@
 
 ;; ----- ido-last-directory-list -----
 (
- ("/home/diabolo/src/" . "test/")
+ ("/home/diabolo/src/" . "lisp/")
  ("/home/diabolo/.emacs.d/elpa/yasnippet/" . "snippets/")
  ("/home/diabolo/.emacs.d/elpa/" . "yasnippet/")
  ("/home/diabolo/.emacs.d/" . "elpa/")
@@ -13,6 +13,7 @@
 
 ;; ----- ido-work-directory-list -----
 (
+ "/home/diabolo/src/lisp/"
  "/home/diabolo/.emacs.d/"
  "/home/diabolo/src/test/"
  "/usr/src/zen/zen-kernel/drivers/platform/x86/"
@@ -20,6 +21,7 @@
 
 ;; ----- ido-work-file-list -----
 (
+ "test.el"
  "init.el"
  "test.c"
  "Kconfig"
@@ -27,9 +29,9 @@
 
 ;; ----- ido-dir-file-cache -----
 (
- ("/home/diabolo/.emacs.d/" (22446 15458 627012 61000) "ido.last" "ido.last~" "recentf" "recentf~" "init.el" "init.el~" "semanticdb/" "helm-adaptive-history" "abbrev_defs" "README.md" "ac-comphist.dat" ".gitignore" ".git/" "snippets/" "pde/" "Emacs-PDE-0.2.16/" "libs/" "ac-dict/" "elpa/" "auto-save-list/" "../" "./")
+ ("/home/diabolo/.emacs.d/" (22446 21862 408950 577000) "ido.last" "ido.last~" "recentf" "recentf~" "init.el" "init.el~" "semanticdb/" "helm-adaptive-history" "abbrev_defs" "README.md" "ac-comphist.dat" ".gitignore" ".git/" "snippets/" "pde/" "Emacs-PDE-0.2.16/" "libs/" "ac-dict/" "elpa/" "auto-save-list/" "../" "./")
 
- ("/home/diabolo/src/lisp/" (22446 12965 265252 542000) ".#test.el" "test.el" "test.el~" "#cperl-mode.el#" "perl-mode.el" "cperl-mode.el" "../" "./")
+ ("/home/diabolo/src/lisp/" (22446 17522 148737 12000) "test.el" "test.el~" "#cperl-mode.el#" "perl-mode.el" "cperl-mode.el" "../" "./")
 
  ("/home/diabolo/" (22446 3539 927693 497000) ".texmf-var/" ".mu/" ".offlineimaprc" ".offlineimaprc~" "Maildir/" ".offlineimap/" ".emacs~" ".perldb" ".emacs-20160810" ".dropbox-dist/" "perl5/" ".TelegramDesktop/" ".cpanm/" ".viminfo" ".perlconsole_history" ".profile" ".profile~" ".bash_aliases" ".bash_aliases~" "vmware/" ".vmware/" ".ovftool.ssldb" "Shared VMs/" ".isomaster" ".clang-format" ".clang-format~" "#Global_Value_Signal_System.mq4#" ".netloadrc" ".netwatch.1.0c" ".AndroidStudioPreview2.0/" ".tmux.conf" ".tmux.conf~" ".d/" "cd/" "switch-client" ".tmux.conf-backup" ".tmux.conf.backup.conf" "q" ".voltron/" ".lldbinit" ".lldbinit~" ".lldb/" "Chemical_Brothers_-_Salmon_Dance_Ring.flac" ".audacity-data/" ".DataGrip10/" ".dbeaver/" ".oracle_jre_usage/" ".eclipse/" ".psql_history" "logfile" ".gitconfig" "testdisk.log" "backup/" ".bcast/" ".openshot/" ".avidemux6/" ".lives" "livestmp/" ".lives-dir/" "kdenlive/" "etc/" ".python-eggs/" ".qemu-launcher/" ".gnome2_private/" ".gnome2/" ".gtkrc-2.0" ".gtkrc-2.0-backup" ".AndroidStudio1.5/" "Devel/" "scriptMonkey/" ".IntelliJIdea15/" "checkout/" ".cvspass" ".grive-sync.log" ".grive-last-sync.log" ".nvidia-settings-rc" ".nvidia-settings-rc~" ".Xauthority" ".gitconfig~" ".arkose/" ".bazaar/" ".kchmviewer/" ".xinitrc" ".Valley/" ".mplayer/" ".phoronix-test-suite/" ".codeintel/" ".emacs.d/" ".nemiver/" ".qd/" "hardcopy.0" ".ncftp/" "Snapshots/" ".CLion12/" "tmp/" ".watershed/" ".gradle/" ".AndroidStudio1.4/" ".disks/" "mnt/" ".blueproximity/" ".thumbnails/" ".gimp-2.8/" ".yjp/" ".icons/" ".themes/" ".elegant_gnome_backup/" ".codeblocks/" ".selected_editor" ".wine/" ".slickedit/" "VirtualBox VMs/" ".ccache/" ".hardinfo/" ".xbindkeysrc" ".xbindkeys_config/" ".rnd" ".bzr.log" "src/" ".gstreamer-0.10/" ".purple/" ".AndroidStudio1.2/" "Android/" ".FontForge/" ".android/" ".java/" ".lesshst" ".IntelliJIdea14/" "app/" "devel/" "android/" ".gksu.lock" "Google Drive/" ".grive-setup.log" ".gdfuse/" "GDrive/" "App/" ".gnome/" ".pki/" ".Skype/" "bin/" ".kde/" "Dropbox/" ".dropbox/" ".macromedia/" ".adobe/" ".mozilla/" ".toprc" ".aptitude/" ".nv/" ".bash_history" ".sudo_as_admin_successful" ".ssh/" ".gnupg/" ".gconf/" ".local/" ".ICEauthority" ".dbus/" ".config/" "Videos/" "Pictures/" "Music/" "Documents/" "Public/" "Templates/" "Downloads/" "Desktop/" ".cache/" ".bashrc" ".bash_logout" "../" "./")
 

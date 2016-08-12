@@ -672,8 +672,13 @@
   )
 
 (defun go-to-line-and-column-cond (lc-cond)
-  "Go to line:column"
-  (interactive "sL:C:: ")
+  "Allow a specification of LINE:COLUMN or LINE,COLUMN instead of just COLUMN.
+Just :COLUMN or ,COLUMN moves to the specified column on the current line.
+LINE alone still moves to the beginning of the specified line (like LINE:0 or LINE,0).
+By Default I'm bind it to M-g M-l.
+The default value of the column is decrement by -1 
+because all compilers consider the number of column from 1 (just for copy-past)"
+  (interactive "sLine:Column:: ")
   (let (line delim column max-lines)
     (setq max-lines (count-lines (point-min) (point-max)))
     (save-match-data
@@ -681,9 +686,12 @@
       (setq line (string-to-number (match-string 1 lc-cond)))
       (setq delim (match-string 2 lc-cond))
       (setq column (string-to-number (match-string 3 lc-cond)))
-      (if (> line 0) (goto-line line))
+      (if (not (equal delim "")) (if (> column 0) (setq column (1- column))))
+      (if (= 0 line) (setq line (line-number-at-pos)))
+      (if (> line max-lines) (setq line max-lines))
+      (goto-line line)
       (move-to-column column)
-      (message "Set marker to line %d column %d" line column)
+      (message "Marker set to line %d column %s delim '%s'" (line-number-at-pos) (current-column) delim)
       )))
 
 (global-set-key (kbd "M-g M-c") 'go-to-column)
