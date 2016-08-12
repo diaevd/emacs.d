@@ -1,5 +1,6 @@
 (setq user-mail-address "diaevd@gmail.com")
 (setq-default major-mode 'text-mode)
+(setq column-number-mode t)
 ;; place for my libs
 (add-to-list 'load-path "~/.emacs.d/libs")
 
@@ -64,52 +65,6 @@
 (global-set-key [S-f12] 'clang-format-region)
 
 
-;;------------------------------------------------------------------------
-;;
-;; Goto functions
-;;
-;;------------------------------------------------------------------------
-(defun go-to-column (column)
-  (interactive "nColumn: ")
-  (move-to-column column t))
-
-(defadvice goto-line (around goto-column activate)
-  "Allow a specification of LINE:COLUMN instead of just COLUMN.
-Just :COLUMN moves to the specified column on the current line.
-Just LINE: moves to the current column on the specified line.
-LINE alone still moves to the beginning of the specified line (like LINE:0)."
-  (if (symbolp line) (setq line (symbol-name line)))
-  (let ((column (save-match-data
-		  (if (and (stringp line)
-			   (string-match "\\`\\([0-9]*\\):\\([0-9]*\\)\\'" line))
-		      (prog1
-			  (match-string 2 line)
-			(setq line (match-string 1 line)))
-		    nil))))
-    (if (stringp column)
-	(setq column (if (= (length column) 0)
-			 (current-column)
-		       (string-to-int column))))
-    (if (stringp line)
-	(setq line (if (= (length line) 0)
-		       (if buffer
-			   (save-excursion
-			     (set-buffer buffer)
-			     (line-number-at-pos))
-			 nil)
-		     (string-to-int line))))
-    (if line
-	ad-do-it)
-    (if column
-	(let ((limit (- (save-excursion (forward-line 1) (point))
-			(point))))
-	  (when (< column limit)
-	    (beginning-of-line)
-	    (forward-char column))))))
-
-(global-set-key (kbd "M-g M-c") 'go-to-column)
-
-;;(global-set-key (kbd "M-g l") 'goto-line)
 ;;------------------------------------------------------------------------
 ;; Make sure "Anything" is available
 (require 'anything)
@@ -389,17 +344,54 @@ LINE alone still moves to the beginning of the specified line (like LINE:0)."
 
 ;; Package: smartparens
 
-(add-to-list 'load-path "~/.emacs.d/elpa/smartparens")
-(require 'smartparens-config)
-(show-smartparens-global-mode +1)
-(smartparens-global-mode 1)
+;; (add-to-list 'load-path "~/.emacs.d/elpa/smartparens")
+;; (require 'smartparens-config)
+;; (show-smartparens-global-mode +1)
+;; (smartparens-global-mode -1)
+
+;; (use-package smartparens-config
+;;    :ensure smartparens
+;;    :config
+;;    (progn
+;;      (show-smartparens-global-mode t)))
+
+;; (sp-pair "'" nil :actions :rem)
+;; (sp-pair "\"" nil :actions :rem)
+;; (sp-pair "(" nil :actions :rem)
+;; (sp-pair "{" nil :actions :rem)
+
+;; (add-hook 'c-mode-hook 'turn-on-smartparens-strict-mode)
+;; (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
+;; (add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
 
 ;; when you press RET, the curly braces automatically
 ;; add another newline
-(sp-with-modes '(c-mode c++-mode)
-  (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
-  (sp-local-pair "/*" "*/" :post-handlers '((" | " "SPC")
-                                            ("* ||\n[i]" "RET"))))
+;;(sp-with-modes '(c-mode c++-mode)
+;;  (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
+;;  (sp-local-pair "/*" "*/" :post-handlers '((" | " "SPC")
+;;                                            ("* ||\n[i]" "RET"))))
+
+;;------------------------------------------------------------------------
+;;
+;; Fuck off the smartparens we can use beter show-paren-mode or highlight-parentheses
+;;
+;;------------------------------------------------------------------------
+(require 'highlight-parentheses)
+
+(define-globalized-minor-mode global-highlight-parentheses-mode
+  highlight-parentheses-mode
+  (lambda ()
+    (highlight-parentheses-mode t)))
+
+(global-highlight-parentheses-mode t)
+
+;;(show-paren-mode 1)
+;; (require 'paren)
+;; (set-face-background 'show-paren-match (face-background 'default))
+;; (set-face-foreground 'show-paren-match "#def")
+;; (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
+
+;;------------------------------------------------------------------------
 
 ;; Compilation Support
 ;; C-o Display matched location, but do not switch point to matched buffer
@@ -452,8 +444,6 @@ LINE alone still moves to the beginning of the specified line (like LINE:0)."
 ;; TAGS
 ;;
 ;;------------------------------------------------------------------------
-(require 'helm)
-
 (custom-set-variables
  '(helm-gtags-prefix-key "C-t")
  '(helm-gtags-suggested-key-mapping t))
@@ -492,56 +482,29 @@ LINE alone still moves to the beginning of the specified line (like LINE:0)."
 (semantic-add-system-include "/usr/include/boost" 'c++-mode)
 
 ;;------------------------------------------------------------------------
-;; (use-package helm-mode
-;;   :ensure helm
-;;   :config (helm-mode 1)
-;;   :bind (("M-x"       . undefined)
-;; 	 ("M-x"       . helm-M-x)
-;; 	 ("M-y"       . helm-show-kill-ring)
-;; 	 ("C-x C-b"   . helm-buffers-list)
-;; 	 ("C-x C-f"   . helm-find-files)
-;; 	 ("C-c <SPC>" . helm-all-mark-rings)
-;; 	 ("C-x r b"   . helm-filtered-bookmarks)
-;; 	 ("C-h r"     . helm-info-emacs)
-;; 	 ("C-:"       . helm-eval-expression-with-eldoc)
-;; 	 ("C-,"       . helm-calcul-expression)
-;; 	 ("C-h i"     . helm-info-at-point)
-;; 	 ("C-x C-d"   . helm-browse-project)
-;; 	 ("<f1>"      . helm-resume)
-;; 	 ("C-h C-f"   . helm-apropos)
-;; 	 ("C-h a"     . helm-apropos)
-;; ;;	 ("<f5> s"    . helm-find)
-;; 	 ("<f2>"      . helm-execute-kmacro)
-;; 	 ("C-c i"     . helm-imenu-in-all-buffers)
-;; 	 ("C-s"       . helm-occur)
-;; 	 ))
+(require 'helm)
+(require 'helm-config)
 
-;; (use-package helm-adaptive
-;;   :config (helm-adaptive-mode 1))
+;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
 
-;; (use-package helm-ring
-;;   :config (helm-push-mark-mode 1))
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ;; rebind tab to run persistent action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ;; make TAB works in terminal
+(define-key helm-map (kbd "C-z") 'helm-select-action) ;; list actions using C-z
 
-;; (use-package helm-utils
-;;   ;; Popup buffer-name or filename in grep/moccur/imenu-all etc...
-;;   :config (helm-popup-tip-mode 1))
+(when (executable-find "curl")
+  (setq helm-google-suggest-use-curl-p t))
 
-;; (use-package helm-sys
-;;   :config (helm-top-poll-mode 1))
+(setq helm-split-window-in-side-p           t ;; open helm buffer inside current window, not occupy whole other window
+      helm-move-to-line-cycle-in-source     t ;; move to end or beginning of source when reaching top or bottom of source.
+      helm-ff-search-library-in-sexp        t ;; search for library in `require' and `declare-function' sexp.
+      helm-scroll-amount                    8 ;; scroll 8 lines other window using M-<next>/M-<prior>
+      helm-ff-file-name-history-use-recentf t)
 
-;; (use-package projectile
-;;   :ensure projectile
-;;   :bind (("C-h f" . helm-projectile))
-;;   )
-
-;; (use-package helm-projectile
-;;   :ensure helm-projectile
-;;   :bind (("C-h s" . helm-do-ag))
-;;   )
-
-;; (use-package helm-ag
-;;   :ensure helm-ag)
-
+(helm-mode 1)
 ;;------------------------------------------------------------------------
 ;;
 ;; MQL
@@ -561,6 +524,7 @@ LINE alone still moves to the beginning of the specified line (like LINE:0)."
 (font-lock-add-keywords 'mql-mode
 			'(("sinput" . 'font-lock-keyword-face)))
 
+(global-set-key (kbd "C-c C-f") 'imenu-tree)
 ;;------------------------------------------------------------------------
 ;;
 ;; Customize comments
@@ -581,6 +545,26 @@ LINE alone still moves to the beginning of the specified line (like LINE:0)."
   (save-some-buffers nil t)
   (kill-emacs))
 (global-set-key (kbd "C-x C-c") 'my-kill-emacs)
+
+;;------------------------------------------------------------------------
+;;
+;; Goto functions
+;;
+;;------------------------------------------------------------------------
+(defun go-to-column (column)
+  (interactive "nColumn: ")
+  (move-to-column column t))
+
+
+;;;;;;;; (string-match "\\`\\([0-9]*\\):\\([0-9]*\\)\\'\\)\\)'" line))
+(defun go-to-line-column (line column)
+  (interactive "nLine: \nnColumn: ")
+  (goto-line line)
+  (move-to-column column)
+  )
+
+(global-set-key (kbd "M-g M-c") 'go-to-column)
+(global-set-key (kbd "M-g l") 'go-to-line-column)
 
 ;;;; faces
 (custom-set-faces

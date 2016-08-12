@@ -423,8 +423,8 @@
       :file "msi-wmi.c"
       :pointmax 13721
       :fsize 13720
-      :lastmodtime '(22222 21904 315024 640000)
-      :unmatched-syntax '((VOID 13436 . 13440) (STATIC 13429 . 13435) (INT 12069 . 12072) (STATIC 12062 . 12068) (INT 11433 . 11436) (STATIC 11426 . 11432) (INT 10876 . 10879) (STATIC 10869 . 10875) (string "\"5B3CC38A-40D9-7245-8AE6-1145B751BE3F\"" 1629 . 1651) (string 1622 . 1628) (string "\"B6F3EEF2-3D2F-49DC-9DE3-85BCE18C62F2\"" 1585 . 1606) (string 1578 . 1584) (string "\"551A1F84-FBDD-4125-91DB-3EA8F44F1D45\"" 1546 . 1562) (string 1539 . 1545) (string 1225 . 1230) (string 1176 . 1207) (string 1120 . 1154))
+      :lastmodtime '(22444 2006 87756 315000)
+      :unmatched-syntax nil
       :lexical-table 
         '(("MSIWMI_BIOS_GUID" . ((string "\"551A1F84-FBDD-4125-91DB-3EA8F44F1D45\"" 1347 . 1385)))
           ("MSIWMI_MSI_EVENT_GUID" . ((string "\"B6F3EEF2-3D2F-49DC-9DE3-85BCE18C62F2\"" 1416 . 1454)))
@@ -1093,6 +1093,1302 @@
               ((symbol "KBUILD_MODNAME" 1234 . 1248) (string "\": \"" 1249 . 1253) (symbol "fmt" 1254 . 1257)))
           ("ACPI_WMI_EVENT" . ((number "0x8" 2299 . 2302)))
           ("ACPI_WMI_CLASS" . ((string "\"wmi\"" 1612 . 1617)))
+          )
+)
+    (semanticdb-table "msi-laptop.c"
+      :major-mode 'c-mode
+      :tags 
+        '( ("pr_fmt" variable (:constant-flag t) nil [2073 2079])
+            ("linux/module.h" include (:system-flag t) nil [2110 2135])
+            ("linux/kernel.h" include (:system-flag t) nil [2136 2161])
+            ("linux/init.h" include (:system-flag t) nil [2162 2185])
+            ("linux/acpi.h" include (:system-flag t) nil [2186 2209])
+            ("linux/dmi.h" include (:system-flag t) nil [2210 2232])
+            ("linux/backlight.h" include (:system-flag t) nil [2233 2261])
+            ("linux/platform_device.h" include (:system-flag t) nil [2262 2296])
+            ("linux/rfkill.h" include (:system-flag t) nil [2297 2322])
+            ("linux/i8042.h" include (:system-flag t) nil [2323 2347])
+            ("linux/input.h" include (:system-flag t) nil [2348 2372])
+            ("linux/input/sparse-keymap.h" include (:system-flag t) nil [2373 2411])
+            ("acpi/video.h" include (:system-flag t) nil [2412 2435])
+            ("MSI_DRIVER_VERSION" variable (:constant-flag t) nil [2445 2463])
+            ("MSI_LCD_LEVEL_MAX" variable (:constant-flag t) nil [2479 2496])
+            ("MSI_EC_COMMAND_WIRELESS" variable (:constant-flag t) nil [2508 2531])
+            ("MSI_EC_COMMAND_WIRELESS" variable (:constant-flag t) nil [2508 2531])
+            ("MSI_EC_COMMAND_WIRELESS" variable (:constant-flag t) nil [2508 2531])
+            ("MSI_EC_COMMAND_WIRELESS" variable (:constant-flag t) nil [2508 2531])
+            ("MSI_EC_COMMAND_LCD_LEVEL" variable (:constant-flag t) nil [2545 2569])
+            ("MSI_STANDARD_EC_COMMAND_ADDRESS" variable (:constant-flag t) nil [2584 2615])
+            ("MSI_STANDARD_EC_BLUETOOTH_MASK" variable (:constant-flag t) nil [2629 2659])
+            ("MSI_STANDARD_EC_WEBCAM_MASK" variable (:constant-flag t) nil [2677 2704])
+            ("MSI_STANDARD_EC_WLAN_MASK" variable (:constant-flag t) nil [2722 2747])
+            ("MSI_STANDARD_EC_3G_MASK" variable (:constant-flag t) nil [2765 2788])
+            ("MSI_STANDARD_EC_SCM_LOAD_ADDRESS" variable (:constant-flag t) nil [2859 2891])
+            ("MSI_STANDARD_EC_SCM_LOAD_MASK" variable (:constant-flag t) nil [2905 2934])
+            ("MSI_STANDARD_EC_FUNCTIONS_ADDRESS" variable (:constant-flag t) nil [2954 2987])
+            ("MSI_STANDARD_EC_TURBO_MASK" variable (:constant-flag t) nil [3040 3066])
+            ("MSI_STANDARD_EC_ECO_MASK" variable (:constant-flag t) nil [3121 3145])
+            ("MSI_STANDARD_EC_TOUCHPAD_MASK" variable (:constant-flag t) nil [3192 3221])
+            ("MSI_STANDARD_EC_TURBO_COOLDOWN_MASK" variable (:constant-flag t) nil [3296 3331])
+            ("MSI_STANDARD_EC_FAN_ADDRESS" variable (:constant-flag t) nil [3350 3377])
+            ("MSI_STANDARD_EC_AUTOFAN_MASK" variable (:constant-flag t) nil [3436 3464])
+            ("SIMPLE_DEV_PM_OPS" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("msi_laptop_pm" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [3584 3598])
+                    ("" variable (:type ("NULL" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [3599 3604])
+                    ("" variable (:type ("msi_laptop_resume" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [3605 3623]))                  
+                :type "int")
+                nil [3559 3624])
+            ("MSI_STANDARD_EC_DEVICES_EXISTS_ADDRESS" variable (:constant-flag t) nil [3634 3672])
+            ("force" variable
+               (:typemodifiers ("static")
+                :type "bool")
+                nil [3679 3697])
+            ("module_param" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("force" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [3711 3717])
+                    ("" variable (:type "bool") (reparse-symbol arg-sub-list) [3718 3723]))                  
+                :type "int")
+                nil [3698 3727])
+            ("MODULE_PARM_DESC" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("force" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [3745 3751]))                  
+                :type "int")
+                nil [3728 3790])
+            ("auto_brightness" variable
+               (:typemodifiers ("static")
+                :type "int")
+                nil [3792 3819])
+            ("module_param" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("auto_brightness" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [3833 3849])
+                    ("" variable (:type "int") (reparse-symbol arg-sub-list) [3850 3854]))                  
+                :type "int")
+                nil [3820 3858])
+            ("MODULE_PARM_DESC" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("auto_brightness" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [3876 3892]))                  
+                :type "int")
+                nil [3859 3974])
+            ("msi_laptop_keymap" variable
+               (:dereference 1
+                :typemodifiers ("static")
+                :constant-flag t
+                :default-value "{
+	{KE_KEY, KEY_TOUCHPAD_ON, {KEY_TOUCHPAD_ON} },	/* Touch Pad On */
+	{KE_KEY, KEY_TOUCHPAD_OFF, {KEY_TOUCHPAD_OFF} },/* Touch Pad On */
+	{KE_KEY, KEY_WLAN, {KEY_WLAN} },/* Touch Pad On */
+	{KE_END, 0}
+}"
+                :type ("key_entry" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [3976 4232])
+            ("msi_laptop_input_dev" variable
+               (:pointer 1
+                :typemodifiers ("static")
+                :type ("input_dev" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [4234 4280])
+            ("wlan_s" variable
+               (:typemodifiers ("static")
+                :type "int")
+                nil [4282 4323])
+            ("bluetooth_s" variable
+               (:typemodifiers ("static")
+                :type "int")
+                nil [4282 4323])
+            ("threeg_s" variable
+               (:typemodifiers ("static")
+                :type "int")
+                nil [4282 4323])
+            ("threeg_exists" variable
+               (:typemodifiers ("static")
+                :type "int")
+                nil [4324 4349])
+            ("rfk_wlan" variable
+               (:pointer 1
+                :type ("rfkill" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [4358 4411])
+            ("rfk_bluetooth" variable
+               (:pointer 1
+                :type ("rfkill" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [4358 4411])
+            ("rfk_threeg" variable
+               (:pointer 1
+                :type ("rfkill" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [4358 4411])
+            ("quirk_entry" type
+               (:members 
+                  ( ("old_ec_model" variable (:type "bool") (reparse-symbol classsubparts) [4459 4477])
+                    ("load_scm_model" variable (:type "bool") (reparse-symbol classsubparts) [5060 5080])
+                    ("ec_delay" variable (:type "bool") (reparse-symbol classsubparts) [5141 5155])
+                    ("ec_read_only" variable (:type "bool") (reparse-symbol classsubparts) [5368 5386]))                  
+                :type "struct")
+                nil [4437 5389])
+            ("quirks" variable
+               (:pointer 1
+                :typemodifiers ("static")
+                :type ("quirk_entry" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [5391 5425])
+            ("set_lcd_level" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("level" variable (:type "int") (reparse-symbol arg-sub-list) [5475 5485]))                  
+                :type "int")
+                nil [5450 5697])
+            ("get_lcd_level" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [5724 5729]))                  
+                :type "int")
+                nil [5699 5908])
+            ("get_auto_brightness" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [5941 5946]))                  
+                :type "int")
+                nil [5910 6122])
+            ("set_auto_brightness" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("enable" variable (:type "int") (reparse-symbol arg-sub-list) [6155 6166]))                  
+                :type "int")
+                nil [6124 6477])
+            ("set_device_state" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("buf" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [6511 6527])
+                    ("count" variable (:type ("size_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6528 6541])
+                    ("mask" variable (:type ("u8" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6542 6550]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [6479 7125])
+            ("get_wireless_state" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("wlan" variable
+                       (:pointer 1
+                        :type "int")
+                        (reparse-symbol arg-sub-list) [7157 7167])
+                    ("bluetooth" variable
+                       (:pointer 1
+                        :type "int")
+                        (reparse-symbol arg-sub-list) [7168 7183]))                  
+                :type "int")
+                nil [7127 7428])
+            ("get_wireless_state_ec_standard" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [7472 7477]))                  
+                :type "int")
+                nil [7430 7772])
+            ("get_threeg_exists" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [7803 7808]))                  
+                :type "int")
+                nil [7774 8005])
+            ("bl_get_brightness" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("b" variable
+                       (:pointer 1
+                        :type ("backlight_device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [8066 8093]))                  
+                :type "int")
+                nil [8037 8122])
+            ("bl_update_status" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("b" variable
+                       (:pointer 1
+                        :type ("backlight_device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [8153 8180]))                  
+                :type "int")
+                nil [8125 8228])
+            ("msibl_ops" variable
+               (:typemodifiers ("static")
+                :constant-flag t
+                :default-value "{
+	.get_brightness = bl_get_brightness,
+	.update_status  = bl_update_status,
+}"
+                :type ("backlight_ops" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [8230 8355])
+            ("msibl_device" variable
+               (:pointer 1
+                :typemodifiers ("static")
+                :type ("backlight_device" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [8357 8402])
+            ("show_wlan" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [8452 8471])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [8473 8503])
+                    ("buf" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [8504 8514]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [8427 8759])
+            ("store_wlan" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [8787 8806])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [8808 8838])
+                    ("buf" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [8839 8855])
+                    ("count" variable (:type ("size_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8856 8869]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [8761 8938])
+            ("show_bluetooth" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [8970 8989])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [8991 9021])
+                    ("buf" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [9022 9032]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [8940 9282])
+            ("store_bluetooth" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [9315 9334])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [9336 9366])
+                    ("buf" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [9367 9383])
+                    ("count" variable (:type ("size_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9384 9397]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [9284 9471])
+            ("show_threeg" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [9500 9519])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [9521 9551])
+                    ("buf" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [9552 9562]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [9473 9767])
+            ("store_threeg" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [9797 9816])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [9818 9848])
+                    ("buf" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [9849 9865])
+                    ("count" variable (:type ("size_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9866 9879]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [9769 9946])
+            ("show_lcd_level" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [9978 9997])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [9999 10029])
+                    ("buf" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [10030 10040]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [9948 10144])
+            ("store_lcd_level" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [10177 10196])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [10198 10228])
+                    ("buf" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [10229 10245])
+                    ("count" variable (:type ("size_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10246 10259]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [10146 10461])
+            ("show_auto_brightness" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [10499 10518])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [10520 10550])
+                    ("buf" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [10551 10561]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [10463 10671])
+            ("store_auto_brightness" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [10710 10729])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [10731 10761])
+                    ("buf" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [10762 10778])
+                    ("count" variable (:type ("size_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10779 10792]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [10673 10981])
+            ("show_touchpad" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [11012 11031])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [11033 11063])
+                    ("buf" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [11064 11074]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [10983 11353])
+            ("show_turbo" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [11381 11400])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [11402 11432])
+                    ("buf" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [11433 11443]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [11355 11719])
+            ("show_eco" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [11745 11764])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [11766 11796])
+                    ("buf" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [11797 11807]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [11721 12081])
+            ("show_turbo_cooldown" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [12118 12137])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [12139 12169])
+                    ("buf" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [12170 12180]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [12083 12517])
+            ("show_auto_fan" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [12548 12567])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [12569 12599])
+                    ("buf" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [12600 12610]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [12519 12882])
+            ("store_auto_fan" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dev" variable
+                       (:pointer 1
+                        :type ("device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [12914 12933])
+                    ("attr" variable
+                       (:pointer 1
+                        :type ("device_attribute" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [12935 12965])
+                    ("buf" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [12966 12982])
+                    ("count" variable (:type ("size_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [12983 12996]))                  
+                :type ("ssize_t" type (:type "class") nil nil))
+                nil [12884 13215])
+            ("DEVICE_ATTR" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("lcd_level" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13236 13246])
+                    ("" variable (:type ("show_lcd_level" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13253 13268])
+                    ("" variable (:type ("store_lcd_level" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13269 13285]))                  
+                :type "int")
+                nil [13217 13286])
+            ("DEVICE_ATTR" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("auto_brightness" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13306 13322])
+                    ("" variable (:type ("show_auto_brightness" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13329 13350])
+                    ("" variable (:type ("store_auto_brightness" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13356 13378]))                  
+                :type "int")
+                nil [13287 13379])
+            ("DEVICE_ATTR" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("bluetooth" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13399 13409])
+                    ("" variable (:type ("show_bluetooth" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13416 13431])
+                    ("" variable (:type ("NULL" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13432 13437]))                  
+                :type "int")
+                nil [13380 13438])
+            ("DEVICE_ATTR" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("wlan" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13458 13463])
+                    ("" variable (:type ("show_wlan" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13470 13480])
+                    ("" variable (:type ("NULL" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13481 13486]))                  
+                :type "int")
+                nil [13439 13487])
+            ("DEVICE_ATTR" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("threeg" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13507 13514])
+                    ("" variable (:type ("show_threeg" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13521 13533])
+                    ("" variable (:type ("NULL" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13534 13539]))                  
+                :type "int")
+                nil [13488 13540])
+            ("DEVICE_ATTR" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("touchpad" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13560 13569])
+                    ("" variable (:type ("show_touchpad" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13576 13590])
+                    ("" variable (:type ("NULL" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13591 13596]))                  
+                :type "int")
+                nil [13541 13597])
+            ("DEVICE_ATTR" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("turbo_mode" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13617 13628])
+                    ("" variable (:type ("show_turbo" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13635 13646])
+                    ("" variable (:type ("NULL" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13647 13652]))                  
+                :type "int")
+                nil [13598 13653])
+            ("DEVICE_ATTR" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("eco_mode" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13673 13682])
+                    ("" variable (:type ("show_eco" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13689 13698])
+                    ("" variable (:type ("NULL" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13699 13704]))                  
+                :type "int")
+                nil [13654 13705])
+            ("DEVICE_ATTR" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("turbo_cooldown" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13725 13740])
+                    ("" variable (:type ("show_turbo_cooldown" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13747 13767])
+                    ("" variable (:type ("NULL" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13768 13773]))                  
+                :type "int")
+                nil [13706 13774])
+            ("DEVICE_ATTR" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("auto_fan" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13794 13803])
+                    ("" variable (:type ("show_auto_fan" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13810 13824])
+                    ("" variable (:type ("store_auto_fan" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [13825 13840]))                  
+                :type "int")
+                nil [13775 13841])
+            ("msipf_attributes" variable
+               (:pointer 1
+                :dereference 1
+                :typemodifiers ("static")
+                :default-value "{
+	&dev_attr_bluetooth.attr,
+	&dev_attr_wlan.attr,
+	&dev_attr_touchpad.attr,
+	&dev_attr_turbo_mode.attr,
+	&dev_attr_eco_mode.attr,
+	&dev_attr_turbo_cooldown.attr,
+	&dev_attr_auto_fan.attr,
+	NULL
+}"
+                :type ("attribute" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [13843 14086])
+            ("msipf_old_attributes" variable
+               (:pointer 1
+                :dereference 1
+                :typemodifiers ("static")
+                :default-value "{
+	&dev_attr_lcd_level.attr,
+	&dev_attr_auto_brightness.attr,
+	NULL
+}"
+                :type ("attribute" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [14088 14208])
+            ("msipf_attribute_group" variable
+               (:typemodifiers ("static")
+                :default-value "{
+	.attrs = msipf_attributes
+}"
+                :type ("attribute_group" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [14210 14295])
+            ("msipf_old_attribute_group" variable
+               (:typemodifiers ("static")
+                :default-value "{
+	.attrs = msipf_old_attributes
+}"
+                :type ("attribute_group" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [14297 14390])
+            ("msipf_driver" variable
+               (:typemodifiers ("static")
+                :default-value "{
+	.driver = {
+		.name = \"msi-laptop-pf\",
+		.pm = &msi_laptop_pm,
+	},
+}"
+                :type ("platform_driver" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [14392 14509])
+            ("msipf_device" variable
+               (:pointer 1
+                :typemodifiers ("static")
+                :type ("platform_device" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [14511 14555])
+            ("quirk_old_ec_model" variable
+               (:typemodifiers ("static")
+                :default-value "{
+	.old_ec_model = true,
+}"
+                :type ("quirk_entry" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [14579 14653])
+            ("quirk_load_scm_model" variable
+               (:typemodifiers ("static")
+                :default-value "{
+	.load_scm_model = true,
+	.ec_delay = true,
+}"
+                :type ("quirk_entry" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [14655 14752])
+            ("quirk_load_scm_ro_model" variable
+               (:typemodifiers ("static")
+                :default-value "{
+	.load_scm_model = true,
+	.ec_read_only = true,
+}"
+                :type ("quirk_entry" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [14754 14858])
+            ("dmi_check_cb" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("dmi" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("dmi_system_id" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [14884 14916]))                  
+                :type "int")
+                nil [14860 15017])
+            ("msi_dmi_table" variable
+               (:dereference 1
+                :default-value "{
+	{
+		.ident = \"MSI S270\",
+		.matches = {
+			DMI_MATCH(DMI_SYS_VENDOR, \"MICRO-STAR INT'L CO.,LTD\"),
+			DMI_MATCH(DMI_PRODUCT_NAME, \"MS-1013\"),
+			DMI_MATCH(DMI_PRODUCT_VERSION, \"0131\"),
+			DMI_MATCH(DMI_CHASSIS_VENDOR,
+				  \"MICRO-STAR INT'L CO.,LTD\")
+		},
+		.driver_data = &quirk_old_ec_model,
+		.callback = dmi_check_cb
+	},
+	{
+		.ident = \"MSI S271\",
+		.matches = {
+			DMI_MATCH(DMI_SYS_VENDOR, \"Micro-Star International\"),
+			DMI_MATCH(DMI_PRODUCT_NAME, \"MS-1058\"),
+			DMI_MATCH(DMI_PRODUCT_VERSION, \"0581\"),
+			DMI_MATCH(DMI_BOARD_NAME, \"MS-1058\")
+		},
+		.driver_data = &quirk_old_ec_model,
+		.callback = dmi_check_cb
+	},
+	{
+		.ident = \"MSI S420\",
+		.matches = {
+			DMI_MATCH(DMI_SYS_VENDOR, \"Micro-Star International\"),
+			DMI_MATCH(DMI_PRODUCT_NAME, \"MS-1412\"),
+			DMI_MATCH(DMI_BOARD_VENDOR, \"MSI\"),
+			DMI_MATCH(DMI_BOARD_NAME, \"MS-1412\")
+		},
+		.driver_data = &quirk_old_ec_model,
+		.callback = dmi_check_cb
+	},
+	{
+		.ident = \"Medion MD96100\",
+		.matches = {
+			DMI_MATCH(DMI_SYS_VENDOR, \"NOTEBOOK\"),
+			DMI_MATCH(DMI_PRODUCT_NAME, \"SAM2000\"),
+			DMI_MATCH(DMI_PRODUCT_VERSION, \"0131\"),
+			DMI_MATCH(DMI_CHASSIS_VENDOR,
+				  \"MICRO-STAR INT'L CO.,LTD\")
+		},
+		.driver_data = &quirk_old_ec_model,
+		.callback = dmi_check_cb
+	},
+	{
+		.ident = \"MSI N034\",
+		.matches = {
+			DMI_MATCH(DMI_SYS_VENDOR,
+				\"MICRO-STAR INTERNATIONAL CO., LTD\"),
+			DMI_MATCH(DMI_PRODUCT_NAME, \"MS-N034\"),
+			DMI_MATCH(DMI_CHASSIS_VENDOR,
+			\"MICRO-STAR INTERNATIONAL CO., LTD\")
+		},
+		.driver_data = &quirk_load_scm_model,
+		.callback = dmi_check_cb
+	},
+	{
+		.ident = \"MSI N051\",
+		.matches = {
+			DMI_MATCH(DMI_SYS_VENDOR,
+				\"MICRO-STAR INTERNATIONAL CO., LTD\"),
+			DMI_MATCH(DMI_PRODUCT_NAME, \"MS-N051\"),
+			DMI_MATCH(DMI_CHASSIS_VENDOR,
+			\"MICRO-STAR INTERNATIONAL CO., LTD\")
+		},
+		.driver_data = &quirk_load_scm_model,
+		.callback = dmi_check_cb
+	},
+	{
+		.ident = \"MSI N014\",
+		.matches = {
+			DMI_MATCH(DMI_SYS_VENDOR,
+				\"MICRO-STAR INTERNATIONAL CO., LTD\"),
+			DMI_MATCH(DMI_PRODUCT_NAME, \"MS-N014\"),
+		},
+		.driver_data = &quirk_load_scm_model,
+		.callback = dmi_check_cb
+	},
+	{
+		.ident = \"MSI CR620\",
+		.matches = {
+			DMI_MATCH(DMI_SYS_VENDOR,
+				\"Micro-Star International\"),
+			DMI_MATCH(DMI_PRODUCT_NAME, \"CR620\"),
+		},
+		.driver_data = &quirk_load_scm_model,
+		.callback = dmi_check_cb
+	},
+	{
+		.ident = \"MSI U270\",
+		.matches = {
+			DMI_MATCH(DMI_SYS_VENDOR,
+				\"Micro-Star International Co., Ltd.\"),
+			DMI_MATCH(DMI_PRODUCT_NAME, \"U270 series\"),
+		},
+		.driver_data = &quirk_load_scm_model,
+		.callback = dmi_check_cb
+	},
+	{
+		.ident = \"MSI U90/U100\",
+		.matches = {
+			DMI_MATCH(DMI_SYS_VENDOR,
+				\"MICRO-STAR INTERNATIONAL CO., LTD\"),
+			DMI_MATCH(DMI_PRODUCT_NAME, \"U90/U100\"),
+		},
+		.driver_data = &quirk_load_scm_ro_model,
+		.callback = dmi_check_cb
+	},
+	{
+		.ident = \"MSI GP70 2PE\",
+		.matches = {
+			DMI_MATCH(DMI_SYS_VENDOR, \"Micro-Star International Co., Ltd.\"),
+			DMI_MATCH(DMI_PRODUCT_NAME, \"GP70 2PE\"),
+			DMI_MATCH(DMI_BOARD_VENDOR, \"Micro-Star International Co., Ltd.\"),
+			DMI_MATCH(DMI_BOARD_NAME, \"MS-175A\")
+		},
+		.driver_data = &quirk_load_scm_model,
+		.callback = dmi_check_cb
+	},
+	{ }
+}"
+                :type ("__initdata" type (:type "class") nil nil))
+                nil [15047 18199])
+            ("rfkill_bluetooth_set" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("data" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [18233 18244])
+                    ("blocked" variable (:type "bool") (reparse-symbol arg-sub-list) [18245 18258]))                  
+                :type "int")
+                nil [18201 18476])
+            ("rfkill_wlan_set" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("data" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [18505 18516])
+                    ("blocked" variable (:type "bool") (reparse-symbol arg-sub-list) [18517 18530]))                  
+                :type "int")
+                nil [18478 18645])
+            ("rfkill_threeg_set" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("data" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [18676 18687])
+                    ("blocked" variable (:type "bool") (reparse-symbol arg-sub-list) [18688 18701]))                  
+                :type "int")
+                nil [18647 18814])
+            ("rfkill_bluetooth_ops" variable
+               (:typemodifiers ("static")
+                :constant-flag t
+                :default-value "{
+	.set_block = rfkill_bluetooth_set
+}"
+                :type ("rfkill_ops" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [18816 18909])
+            ("rfkill_wlan_ops" variable
+               (:typemodifiers ("static")
+                :constant-flag t
+                :default-value "{
+	.set_block = rfkill_wlan_set
+}"
+                :type ("rfkill_ops" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [18911 18994])
+            ("rfkill_threeg_ops" variable
+               (:typemodifiers ("static")
+                :constant-flag t
+                :default-value "{
+	.set_block = rfkill_threeg_set
+}"
+                :type ("rfkill_ops" type
+                     (:prototype t
+                      :type "struct")
+                      nil nil))
+                nil [18996 19083])
+            ("rfkill_cleanup" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [19112 19117]))                  
+                :type "void")
+                nil [19085 19381])
+            ("msi_rfkill_set_state" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("rfkill" variable
+                       (:pointer 1
+                        :type ("rfkill" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [19416 19438])
+                    ("blocked" variable (:type "bool") (reparse-symbol arg-sub-list) [19439 19452]))                  
+                :type "bool")
+                nil [19383 19583])
+            ("msi_update_rfkill" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("ignored" variable
+                       (:pointer 1
+                        :type ("work_struct" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [19615 19643]))                  
+                :type "void")
+                nil [19585 19878])
+            ("DECLARE_DELAYED_WORK" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("msi_rfkill_dwork" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [19907 19924])
+                    ("" variable (:type ("msi_update_rfkill" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [19925 19943]))                  
+                :type "int")
+                nil [19879 19944])
+            ("DECLARE_WORK" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("msi_rfkill_work" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [19965 19981])
+                    ("" variable (:type ("msi_update_rfkill" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [19982 20000]))                  
+                :type "int")
+                nil [19945 20001])
+            ("msi_send_touchpad_key" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("ignored" variable
+                       (:pointer 1
+                        :type ("work_struct" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [20037 20065]))                  
+                :type "void")
+                nil [20003 20326])
+            ("DECLARE_DELAYED_WORK" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("msi_touchpad_dwork" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [20355 20374])
+                    ("" variable (:type ("msi_send_touchpad_key" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [20375 20397]))                  
+                :type "int")
+                nil [20327 20398])
+            ("DECLARE_WORK" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("msi_touchpad_work" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [20419 20437])
+                    ("" variable (:type ("msi_send_touchpad_key" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [20438 20460]))                  
+                :type "int")
+                nil [20399 20461])
+            ("msi_laptop_i8042_filter" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("data" variable (:type "unsigned char") (reparse-symbol arg-sub-list) [20499 20518])
+                    ("str" variable (:type "unsigned char") (reparse-symbol arg-sub-list) [20519 20537])
+                    ("port" variable
+                       (:pointer 1
+                        :type ("serio" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [20542 20561]))                  
+                :type "bool")
+                nil [20463 21256])
+            ("msi_init_rfkill" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("ignored" variable
+                       (:pointer 1
+                        :type ("work_struct" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [21286 21314]))                  
+                :type "void")
+                nil [21258 21641])
+            ("DECLARE_DELAYED_WORK" function
+               (:prototype-flag t
+                :typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type ("msi_rfkill_init" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [21670 21686])
+                    ("" variable (:type ("msi_init_rfkill" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [21687 21703]))                  
+                :type "int")
+                nil [21642 21704])
+            ("rfkill_init" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("sdev" variable
+                       (:pointer 1
+                        :type ("platform_device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [21729 21758]))                  
+                :type "int")
+                nil [21706 23074])
+            ("msi_laptop_input_setup" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [23564 23569]))                  
+                :type ("__init" type (:type "class") nil nil))
+                nil [23534 24167])
+            ("msi_laptop_input_destroy" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [24206 24211]))                  
+                :type "void")
+                nil [24169 24306])
+            ("load_scm_model_init" function
+               (:arguments 
+                  ( ("sdev" variable
+                       (:pointer 1
+                        :type ("platform_device" type
+                             (:prototype t
+                              :type "struct")
+                              nil nil))
+                        (reparse-symbol arg-sub-list) [24346 24375]))                  
+                :type ("__init" type (:type "class") nil nil))
+                nil [24319 25429])
+            ("msi_init" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [25458 25463]))                  
+                :type ("__init" type (:type "class") nil nil))
+                nil [25442 27995])
+            ("msi_cleanup" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [28028 28033]))                  
+                :type ("__exit" type (:type "class") nil nil))
+                nil [28009 28731])
+            ("module_init" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("msi_init" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [28745 28754]))                  
+                :type "int")
+                nil [28733 28755])
+            ("module_exit" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("msi_cleanup" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [28768 28780]))                  
+                :type "int")
+                nil [28756 28781])
+            ("MODULE_AUTHOR" function
+               (:prototype-flag t
+                :type "int")
+                nil [28783 28819])
+            ("MODULE_DESCRIPTION" function
+               (:prototype-flag t
+                :type "int")
+                nil [28820 28861])
+            ("MODULE_VERSION" function
+               (:prototype-flag t
+                :type "int")
+                nil [28862 28897])
+            ("MODULE_LICENSE" function
+               (:prototype-flag t
+                :type "int")
+                nil [28898 28920])
+            ("MODULE_ALIAS" function
+               (:prototype-flag t
+                :type "int")
+                nil [28922 29022])
+            ("MODULE_ALIAS" function
+               (:prototype-flag t
+                :type "int")
+                nil [29023 29116])
+            ("MODULE_ALIAS" function
+               (:prototype-flag t
+                :type "int")
+                nil [29117 29230])
+            ("MODULE_ALIAS" function
+               (:prototype-flag t
+                :type "int")
+                nil [29231 29317])
+            ("MODULE_ALIAS" function
+               (:prototype-flag t
+                :type "int")
+                nil [29318 29380])
+            ("MODULE_ALIAS" function
+               (:prototype-flag t
+                :type "int")
+                nil [29381 29443])
+            ("MODULE_ALIAS" function
+               (:prototype-flag t
+                :type "int")
+                nil [29444 29506])
+            ("MODULE_ALIAS" function
+               (:prototype-flag t
+                :type "int")
+                nil [29507 29567])
+            ("MODULE_ALIAS" function
+               (:prototype-flag t
+                :type "int")
+                nil [29568 29633])
+            ("MODULE_ALIAS" function
+               (:prototype-flag t
+                :type "int")
+                nil [29634 29697])
+            ("MODULE_ALIAS" function
+               (:prototype-flag t
+                :type "int")
+                nil [29698 29760]))          
+      :file "msi-laptop.c"
+      :pointmax 29761
+      :fsize 29759
+      :lastmodtime '(22222 21904 315024 640000)
+      :unmatched-syntax nil
+      :lexical-table 
+        '(("MSI_EC_COMMAND_LCD_LEVEL" . ((number "0x11" 2570 . 2574)))
+          ("MSI_STANDARD_EC_FUNCTIONS_ADDRESS" . ((number "0xe4" 2988 . 2992)))
+          ("MSI_STANDARD_EC_TURBO_MASK" . ((semantic-list "(1 << 1)" 3068 . 3076)))
+          ("MSI_LCD_LEVEL_MAX" . ((number "9" 2497 . 2498)))
+          ("MSI_STANDARD_EC_ECO_MASK" . ((semantic-list "(1 << 3)" 3147 . 3155)))
+          ("MSI_STANDARD_EC_TURBO_COOLDOWN_MASK" . ((semantic-list "(1 << 7)" 3332 . 3340)))
+          ("MSI_STANDARD_EC_FAN_ADDRESS" . ((number "0x33" 3379 . 3383)))
+          ("MSI_STANDARD_EC_COMMAND_ADDRESS" . ((number "0x2e" 2616 . 2620)))
+          ("MSI_STANDARD_EC_WEBCAM_MASK" . ((semantic-list "(1 << 1)" 2705 . 2713)))
+          ("MSI_STANDARD_EC_SCM_LOAD_MASK" . ((semantic-list "(1 << 0)" 2936 . 2944)))
+          ("MSI_STANDARD_EC_BLUETOOTH_MASK" . ((semantic-list "(1 << 0)" 2660 . 2668)))
+          ("MSI_STANDARD_EC_3G_MASK" . ((semantic-list "(1 << 4)" 2790 . 2798)))
+          ("MSI_STANDARD_EC_AUTOFAN_MASK" . ((semantic-list "(1 << 0)" 3466 . 3474)))
+          ("MSI_EC_COMMAND_WIRELESS" . ((number "0x10" 2532 . 2536)))
+          ("MSI_DRIVER_VERSION" . ((string "\"0.5\"" 2464 . 2469)))
+          ("MSI_STANDARD_EC_DEVICES_EXISTS_ADDRESS" . ((number "0x2f" 3673 . 3677)))
+          ("pr_fmt" (spp-arg-list ("fmt") 2079 . 2084) . 
+              ((symbol "KBUILD_MODNAME" 2085 . 2099) (string "\": \"" 2100 . 2104) (symbol "fmt" 2105 . 2108)))
+          ("MSI_STANDARD_EC_WLAN_MASK" . ((semantic-list "(1 << 3)" 2748 . 2756)))
+          ("MSI_STANDARD_EC_SCM_LOAD_ADDRESS" . ((number "0x2d" 2892 . 2896)))
+          ("MSI_STANDARD_EC_TOUCHPAD_MASK" . ((semantic-list "(1 << 4)" 3223 . 3231)))
           )
 ))
   :file "!usr!src!zen!zen-kernel!drivers!platform!x86!semantic.cache"
