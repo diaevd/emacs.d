@@ -691,7 +691,7 @@ because all compilers consider the number of COLUMN from 1 (just for copy-past)"
       (if (> line max-lines) (setq line max-lines))
       (goto-line line)
       (move-to-column column)
-      (message "Marker set to line %d column %s delim '%s'" (line-number-at-pos) (current-column) delim)
+      (message "Marker set to line %d column %s" (line-number-at-pos) (current-column))
       )))
 
 (global-set-key (kbd "M-g M-c") 'go-to-column)
