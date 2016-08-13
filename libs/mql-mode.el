@@ -180,16 +180,36 @@
 (defvar ac-source-mql
   '((candidates . mql-source-canidates)))
 
+(defvar mql-version 4)
+(defvar mql-version-string "MQL4")
+
+(defun mql-set-cc-mode ()
+  "Set mode by extention"
+  (interactive)
+
+  (let ((extension (file-name-extension (buffer-file-name))
+		    ))
+         (setq mql-version (cond ((or (equal "mq4" extension)
+                             (equal "ex4" extension)) 4)
+                        ((or (equal "mq5" extension)
+                             (equal "ex5" extension)) 5)
+                        (t mql-compiler-default-version)))
+
+    (case mql-version
+      (4 (c-mode))
+      (5 (c++-mode)))
+    (setq mql-version-string (concat "MQL" (number-to-string mql-version)))))
+
 (defun mql-mode ()
   "Major mode for editing MetaTrader4 MQL file."
   (interactive)
   (kill-all-local-variables)
-  (c-mode)
+  (mql-set-cc-mode)
   (font-lock-add-keywords 'mql-mode mql-mode-keywords)
   (setq major-mode 'mql-mode)
   (set (make-local-variable 'ac-sources) (append ac-sources '(ac-source-mql)))
   (set (make-local-variable 'compilation-scroll-output) t)
-  (setq mode-name "MQL")
+  (setq mode-name mql-version-string)
   (local-set-key (kbd "C-c C-b") 'mql-compile-dispatcher)
   (run-hooks 'mql-mode-hook))
 

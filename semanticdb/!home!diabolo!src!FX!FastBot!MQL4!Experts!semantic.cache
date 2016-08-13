@@ -1097,8 +1097,8 @@
       :file "FastBot.mq4"
       :pointmax 66833
       :fsize 68860
-      :lastmodtime '(22357 30648 614136 326000)
-      :unmatched-syntax '((symbol 5063 . 5068) (symbol 4971 . 4976) (symbol 4891 . 4896) (symbol 4802 . 4807) (symbol 4732 . 4737) (symbol 4643 . 4648) (symbol 4572 . 4577) (symbol 4471 . 4476) (symbol 4300 . 4305) (symbol 3906 . 3911) (symbol 3827 . 3832) (symbol 3739 . 3744) (symbol 3658 . 3663) (symbol 3575 . 3580) (symbol 3486 . 3491) (symbol 3432 . 3437) (symbol 3352 . 3357) (symbol 3245 . 3250) (symbol 3122 . 3127) (symbol 3053 . 3058) (symbol 2995 . 3000) (symbol 2929 . 2934) (symbol 2723 . 2728) (symbol 2646 . 2651) (symbol 2570 . 2575) (symbol 2508 . 2513) (symbol 2444 . 2449) (symbol 2360 . 2365) (symbol 2250 . 2255) (symbol 2136 . 2141) (symbol 2071 . 2076) (symbol 2017 . 2022) (symbol 1956 . 1961) (symbol 1759 . 1764) (symbol 1696 . 1701) (symbol 1615 . 1620) (symbol 1412 . 1417) (symbol 1327 . 1332) (symbol 1236 . 1241) (symbol 1149 . 1154) (symbol 1068 . 1073) (symbol 1015 . 1020) (symbol 944 . 949) (symbol 865 . 870) (symbol 772 . 777) (string 521 . 585) (symbol 511 . 520) (symbol 502 . 510) (punctuation 501 . 502) (string "\"2.01\"" 488 . 500) (symbol 480 . 487) (symbol 471 . 479) (punctuation 470 . 471) (symbol 407 . 413) (symbol 398 . 406) (punctuation 397 . 398) (string 371 . 396) (symbol 366 . 370) (symbol 357 . 365) (punctuation 356 . 357))
+      :lastmodtime '(22447 40380 626442 433000)
+      :unmatched-syntax nil
       :lexical-table 
         '(("FONT_WING_ARROW_DOWN" . ((string "\"\\x0432\"" 33455 . 33463)))
           ("FONT_WING_ARROW_UPLEFT" . ((string "\"\\x0433\"" 33616 . 33624)))
@@ -1169,7 +1169,13 @@
     (semanticdb-table "TrailingStop.mqh"
       :file "TrailingStop.mqh"
       :fsize 10556
-      :lastmodtime '(22334 8787 223249 532000)))
+      :lastmodtime '(22334 8787 223249 532000))
+    (semanticdb-table "FastBot.mq5"
+      :major-mode 'c++-mode
+      :tags nil
+      :file "FastBot.mq5"
+      :pointmax 1
+      :unmatched-syntax nil))
   :file "!home!diabolo!src!FX!FastBot!MQL4!Experts!semantic.cache"
   :semantic-tag-version "2.0"
   :semanticdb-version "2.2")

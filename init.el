@@ -31,6 +31,7 @@
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+;;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize) ;; You might already have this line
 
 ;; MELPA use-package
@@ -507,24 +508,6 @@
 (helm-mode 1)
 ;;------------------------------------------------------------------------
 ;;
-;; MQL
-;;
-;;;; -- https://github.com/kostafey/kostafeys-emacs-confik/blob/master/artifacts/mql-mode.el
-;; https://github.com/jianingy/emacs-ysl/blob/master/site-lisp/extra/mql-mode.el
-;;------------------------------------------------------------------------
-;;(load "~/.emacs.d/mql-mode.el")
-(load "mql-mode")
-(modify-coding-system-alist 'file "\\.mql\\'" 'windows-1251)
-(modify-coding-system-alist 'file "\\.mq4\\'" 'windows-1251)
-(modify-coding-system-alist 'file "\\.mq5\\'" 'windows-1251)
-(modify-coding-system-alist 'file "\\.mqh\\'" 'windows-1251)
-
-(font-lock-add-keywords 'mql-mode
-			'(("input" . 'font-lock-keyword-face)))
-(font-lock-add-keywords 'mql-mode
-			'(("sinput" . 'font-lock-keyword-face)))
-;;------------------------------------------------------------------------
-;;
 ;; Visual parts
 ;;
 ;;------------------------------------------------------------------------
@@ -678,7 +661,7 @@ LINE alone still moves to the beginning of the specified line (like LINE:0 or LI
 By Default I'm bind it to M-g M-l.
 The default value of the COLUMN is decrement by -1 
 because all compilers consider the number of COLUMN from 1 (just for copy-past)"
-  (interactive "sLine:Column:: ")
+  (interactive "sLine,Column: ")
   (let (line delim column max-lines)
     (setq max-lines (count-lines (point-min) (point-max)))
     (save-match-data
@@ -697,8 +680,129 @@ because all compilers consider the number of COLUMN from 1 (just for copy-past)"
 (global-set-key (kbd "M-g M-c") 'go-to-column)
 (global-set-key (kbd "M-g l") 'go-to-line-and-column)
 (global-set-key (kbd "M-g M-l") 'go-to-line-and-column-cond)
+(global-unset-key (kbd "M-g M-g"))
+(global-set-key (kbd "M-g M-g") 'go-to-line-and-column-cond)
 
-;;;; faces
+;;------------------------------------------------------------------------
+;;
+;; Org-Mode
+;;
+;;------------------------------------------------------------------------
+(custom-set-variables
+ '(org-agenda-files (list "~/Documents/org/work.org"
+			  "~/Documents/org/home.org"
+			  "~/Documents/org/links.org"
+			  ))
+ '(org-default-notes-file "~/Documents/org/notes")
+ '(org-directory "~/Documents/org/org")
+ '(org-return-follows-link t)
+)
+
+(require 'org-install)
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+
+(defun my-org ()
+  "Create org-mode windows open files"
+  (interactive)
+  (setq default-frame-alist
+	`((width . ,140)
+	  (height . ,45)
+	  (top . ,5)
+	  (left . ,5)
+	  (user-position . t)
+	  ))
+  (delete-other-windows)
+  (split-window-horizontally)
+  (setq eik-links-win-w 60)
+  (shrink-window-horizontally 32)
+  (find-file "~/Documents/org/links.org")
+  (dedicated-mode)
+  (other-window 1)
+  (find-file "~/Documents/org/daily.org")
+  (split-window-vertically)
+  (split-window-horizontally)
+  (other-window 1)
+  (find-file "~/")
+  (other-window 1)
+  (find-file "~/")
+  (other-window 1)
+  (other-window 1)
+  (dedicated-mode)
+  (end-of-buffer)                       ; Go to the end of buffer
+  (outline-previous-visible-heading 1)  ; Find the last heading
+  (org-cycle)                           ; Make subtree visible								  )
+  )
+
+(global-set-key (kbd "<f2> o") 'my-org)
+(global-set-key (kbd "C-c m") 'org-table-copy-down)
+
+;;------------------------------------------------------------------------
+;;
+;; Faces
+;;
+;;------------------------------------------------------------------------
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+
+;; (load-theme dark-emacs t t)
+;; (load-theme cyberpunk t t)
+;; (load-theme adwaita t t)
+;; (load-theme deeper-blue t t)
+;; (load-theme dichromacy t t)
+;; (load-theme leuven t t)
+;; (load-theme light-blue t t)
+;; (load-theme manoj-dark t t)
+;; (load-theme misterioso t t)
+;; (load-theme tango-dark t t)
+;; (load-theme tango t t)
+;; (load-theme tsdh-dark t t)
+;; (load-theme tsdh-light t t)
+;; (load-theme wheatgrass t t)
+;; (load-theme whiteboard t t)
+;; (load-theme wombat t t)
+
+(setq my-color-themes (list
+		       'dark-emacs
+		       'Adwaita
+		       'Deeper-Blue
+		       'Dichromacy
+		       'Leuven
+		       'Light-Blue
+		       'Manoj-Dark
+		       'misterioso
+		       'tango-dark
+		       'tango
+		       'tsdh-dark
+		       'tsdh-light
+		       'wheatgrass
+		       'whiteboard
+		       'wombat
+		       ))
+
+(defun my-theme-set-default () ;; Set the first row
+  (interactive)
+  (setq theme-current my-color-themes)
+  (load-theme (car theme-current) t nil))
+
+(defun my-describe-theme () ;; Show the current theme
+  (interactive)
+  (message "%s" (car theme-current)))
+
+(defun my-theme-cycle () ;; Set the next theme (fixed by Chris Webber - tanks)
+  (interactive)
+  (setq theme-current (cdr theme-current))
+  (if (null theme-current)
+      (setq theme-current my-color-themes))
+  (load-theme (car theme-current) t nil)
+  (message "%S" (car theme-current)))
+
+(setq theme-current my-color-themes)
+(setq color-theme-is-global nil) ; Initialization
+(my-theme-set-default)
+(global-set-key [f4] 'my-theme-cycle)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -715,4 +819,32 @@ because all compilers consider the number of COLUMN from 1 (just for copy-past)"
  '(fa-face-hint-bold ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
  )
 
+;;------------------------------------------------------------------------
+;;
+;; MQL
+;;
+;;;; -- https://github.com/kostafey/kostafeys-emacs-confik/blob/master/artifacts/mql-mode.el
+;; https://github.com/jianingy/emacs-ysl/blob/master/site-lisp/extra/mql-mode.el
+;;------------------------------------------------------------------------
+;;(load "~/.emacs.d/mql-mode.el")
+(load "mql-mode")
+(modify-coding-system-alist 'file "\\.mql\\'" 'windows-1251)
+(modify-coding-system-alist 'file "\\.mq4\\'" 'windows-1251)
+(modify-coding-system-alist 'file "\\.mq5\\'" 'windows-1251)
+(modify-coding-system-alist 'file "\\.mqh\\'" 'windows-1251)
 
+(font-lock-add-keywords 'mql-mode
+			'(("input" . 'font-lock-keyword-face)))
+(font-lock-add-keywords 'mql-mode
+			'(("sinput" . 'font-lock-keyword-face)))
+
+(add-hook 'mql-mode-hook (lambda () (interactive) (local-set-key (kbd "C-c C-b") 'mql-compile-dispatcher)))
+
+;;------------------------------------------------------------------------
+;;
+;; Registers to open files
+;;
+;;------------------------------------------------------------------------
+;;;; (global-set-key (kbd "<f6>") (lambda() (interactive) (find-file "~/.emacs")))
+(set-register ?e (cons 'file "~/.emacs.d/init.el")) ;; open it with  C-x r j e
+(set-register ?l (cons 'file "~/Documents/org/links.org")) ;; open it with  C-x r j l
