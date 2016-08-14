@@ -13,6 +13,7 @@
 
 ;; ----- ido-work-directory-list -----
 (
+ "/home/diabolo/"
  "/home/diabolo/.emacs.d/libs/"
  "/home/diabolo/Documents/org/"
  "/home/diabolo/.emacs.d/"
@@ -23,6 +24,8 @@
 
 ;; ----- ido-work-file-list -----
 (
+ ".folders-backup"
+ ".folders"
  "mql-mode.el"
  "test-table.org"
  "color-theme-manoj.el"
@@ -31,14 +34,17 @@
  "home.org"
  "test.el"
  "test.c"
- "Kconfig"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
- ("/home/diabolo/.emacs.d/" (22447 39500 143022 714000) "ido.last" "ido.last~" "init.el" "init.el~" "themes/" "recentf" "semanticdb/" "helm-adaptive-history" "abbrev_defs" "README.md" "ac-comphist.dat" ".gitignore" ".git/" "snippets/" "pde/" "Emacs-PDE-0.2.16/" "libs/" "ac-dict/" "elpa/" "auto-save-list/" "../" "./")
+ ("/home/diabolo/Documents/org/" (22447 47465 945348 77000) "links.org" "links.org~" "test-table.org" "test-table.org~" "#test-table.org#" "daily.org" "daily.org~" "work.org" "work.org~" "home.org" "home.org~" "orgcard.pdf" "#test.org#" "../" "./")
 
- ("/home/diabolo/Documents/org/" (22447 38915 590465 28000) "test-table.org" "test-table.org~" "daily.org" "daily.org~" "links.org" "links.org~" "work.org" "work.org~" "home.org" "home.org~" "orgcard.pdf" "#test.org#" "../" "./")
+ ("/home/diabolo/.emacs.d/libs/" (22447 43036 169624 825000) "mql-mode.elc" "function-args/" "gdb-ui.elc" "ffap-perl-module.elc" "bash-completion.elc" "gdb-ui.el" "ffap-perl-module.el" "mql-mode.el" "bash-completion.el" "mql-mode.el-other" "../" "./")
+
+ ("/home/diabolo/" (22447 50446 585707 811000) ".folders-backup" ".folders~" "Mail/" ".texmf-var/" ".mu/" ".offlineimaprc" ".offlineimaprc~" "Maildir/" ".offlineimap/" ".emacs~" ".perldb" ".emacs-20160810" ".dropbox-dist/" "perl5/" ".TelegramDesktop/" ".cpanm/" ".viminfo" ".perlconsole_history" ".profile" ".profile~" ".bash_aliases" ".bash_aliases~" "vmware/" ".vmware/" ".ovftool.ssldb" "Shared VMs/" ".isomaster" ".clang-format" ".clang-format~" "#Global_Value_Signal_System.mq4#" ".netloadrc" ".netwatch.1.0c" ".AndroidStudioPreview2.0/" ".tmux.conf" ".tmux.conf~" ".d/" "cd/" "switch-client" ".tmux.conf-backup" ".tmux.conf.backup.conf" "q" ".voltron/" ".lldbinit" ".lldbinit~" ".lldb/" "Chemical_Brothers_-_Salmon_Dance_Ring.flac" ".audacity-data/" ".DataGrip10/" ".dbeaver/" ".oracle_jre_usage/" ".eclipse/" ".psql_history" "logfile" ".gitconfig" "testdisk.log" "backup/" ".bcast/" ".openshot/" ".avidemux6/" ".lives" "livestmp/" ".lives-dir/" "kdenlive/" "etc/" ".python-eggs/" ".qemu-launcher/" ".gnome2_private/" ".gnome2/" ".gtkrc-2.0" ".gtkrc-2.0-backup" ".AndroidStudio1.5/" "Devel/" "scriptMonkey/" ".IntelliJIdea15/" "checkout/" ".cvspass" ".grive-sync.log" ".grive-last-sync.log" ".nvidia-settings-rc" ".nvidia-settings-rc~" ".Xauthority" ".gitconfig~" ".arkose/" ".bazaar/" ".kchmviewer/" ".xinitrc" ".Valley/" ".mplayer/" ".phoronix-test-suite/" ".codeintel/" ".emacs.d/" ".nemiver/" ".qd/" "hardcopy.0" ".ncftp/" "Snapshots/" ".CLion12/" "tmp/" ".watershed/" ".gradle/" ".AndroidStudio1.4/" ".disks/" "mnt/" ".blueproximity/" ".thumbnails/" ".gimp-2.8/" ".yjp/" ".icons/" ".themes/" ".elegant_gnome_backup/" ".codeblocks/" ".selected_editor" ".wine/" ".slickedit/" "VirtualBox VMs/" ".ccache/" ".hardinfo/" ".xbindkeysrc" ".xbindkeys_config/" ".rnd" ".bzr.log" "src/" ".gstreamer-0.10/" ".purple/" ".AndroidStudio1.2/" "Android/" ".FontForge/" ".android/" ".java/" ".lesshst" ".IntelliJIdea14/" "app/" "devel/" "android/" ".gksu.lock" "Google Drive/" ".grive-setup.log" ".gdfuse/" "GDrive/" "App/" ".gnome/" ".pki/" ".Skype/" "bin/" ".kde/" "Dropbox/" ".dropbox/" ".macromedia/" ".adobe/" ".mozilla/" ".toprc" ".aptitude/" ".nv/" ".bash_history" ".sudo_as_admin_successful" ".ssh/" ".gnupg/" ".gconf/" ".local/" ".ICEauthority" ".dbus/" ".config/" "Videos/" "Pictures/" "Music/" "Documents/" "Public/" "Templates/" "Downloads/" "Desktop/" ".cache/" ".bashrc" ".bash_logout" "../" "./")
+
+ ("/home/diabolo/.emacs.d/" (22447 51191 798186 883000) "ido.last" "ido.last~" "init.el-backup" "init.el" "init.el~" "themes/" "recentf" "semanticdb/" "helm-adaptive-history" "abbrev_defs" "README.md" "ac-comphist.dat" ".gitignore" ".git/" "snippets/" "pde/" "Emacs-PDE-0.2.16/" "libs/" "ac-dict/" "elpa/" "auto-save-list/" "../" "./")
 
  ("/home/diabolo/src/FX/" (22331 24424 561708 673000) "FastBot/" "Fractals/" "Divergence/" "S-RoC/" "Speed_Tick/" "kus-eurousd-m1-opt_mag.set" "kus-eurousd-m1-opt.set" "SURF-Signals.mq4" "Adrin/" "amt5/" "korHarmonics/" "amt4/" "lot_digits.mq4" "Global_Value_Signal_System_preinfo.mq4" "forex-news-indicator/" "Kusungobu-System/" "Global_Value_Signal_System/" "porting/" "ffcal_plot_news/" "fxmax4/" "alpari.txt" "Global_Value_Signal_System2.mq4" "fxmax4.txt" "fxmax4.txt~" "Indicators/" "mt5/" "mt4/" "MT4/" "../" "./")
 
@@ -52,13 +58,9 @@
 
  ("/home/diabolo/src/test/" (22445 25778 880430 380000) "test2.c" "test2.c~" "test.c" "test.c~" "GSYMS" "GRTAGS" "GPATH" "GTAGS" "#test.c#" "3dliga/" "Ivideon/" "libNamedPipe/" "bash/" "../" "./")
 
- ("/home/diabolo/.emacs.d/libs/" (22447 27688 630465 505000) "function-args/" "gdb-ui.elc" "ffap-perl-module.elc" "mql-mode.elc" "bash-completion.elc" "gdb-ui.el" "ffap-perl-module.el" "mql-mode.el" "bash-completion.el" "mql-mode.el-other" "../" "./")
-
  ("/home/diabolo/Documents/" (22446 29547 872255 955000) "org/" "fedja_480.xcf" "Samsung/" "Instructions/" "mts/" "Fonts/" "backup/" "DP-OPERATOPRS-HANDBOOK.pdf" "RR3/" "ZVI_406,407,417,427.pdf" "Virus/" "history/" "dep/" "collectors.txt" "FAN/" "Admin/" "MosEnergo/" "MTV-2429LTA2_MTV-3029LTA2.pdf" "blog.diabolo.su/" "b.txt" "RuTracker/" "CV/" "tz/" "Как подключиться к VPN Gate — WikiTorrents.html" "Как подключиться к VPN Gate — WikiTorrents_files/" "Как обойти блокировку сайта провайдером — WikiTorrents.html" "Как обойти блокировку сайта провайдером — WikiTorrents_files/" "mwf_config" "svetlana.duzhakova.txt" "Devel/" "themes/" "Mobile/" "My Games/" "../" "./")
 
  ("/home/diabolo/src/lisp/" (22446 17522 148737 12000) "test.el" "test.el~" "#cperl-mode.el#" "perl-mode.el" "cperl-mode.el" "../" "./")
-
- ("/home/diabolo/" (22446 3539 927693 497000) ".texmf-var/" ".mu/" ".offlineimaprc" ".offlineimaprc~" "Maildir/" ".offlineimap/" ".emacs~" ".perldb" ".emacs-20160810" ".dropbox-dist/" "perl5/" ".TelegramDesktop/" ".cpanm/" ".viminfo" ".perlconsole_history" ".profile" ".profile~" ".bash_aliases" ".bash_aliases~" "vmware/" ".vmware/" ".ovftool.ssldb" "Shared VMs/" ".isomaster" ".clang-format" ".clang-format~" "#Global_Value_Signal_System.mq4#" ".netloadrc" ".netwatch.1.0c" ".AndroidStudioPreview2.0/" ".tmux.conf" ".tmux.conf~" ".d/" "cd/" "switch-client" ".tmux.conf-backup" ".tmux.conf.backup.conf" "q" ".voltron/" ".lldbinit" ".lldbinit~" ".lldb/" "Chemical_Brothers_-_Salmon_Dance_Ring.flac" ".audacity-data/" ".DataGrip10/" ".dbeaver/" ".oracle_jre_usage/" ".eclipse/" ".psql_history" "logfile" ".gitconfig" "testdisk.log" "backup/" ".bcast/" ".openshot/" ".avidemux6/" ".lives" "livestmp/" ".lives-dir/" "kdenlive/" "etc/" ".python-eggs/" ".qemu-launcher/" ".gnome2_private/" ".gnome2/" ".gtkrc-2.0" ".gtkrc-2.0-backup" ".AndroidStudio1.5/" "Devel/" "scriptMonkey/" ".IntelliJIdea15/" "checkout/" ".cvspass" ".grive-sync.log" ".grive-last-sync.log" ".nvidia-settings-rc" ".nvidia-settings-rc~" ".Xauthority" ".gitconfig~" ".arkose/" ".bazaar/" ".kchmviewer/" ".xinitrc" ".Valley/" ".mplayer/" ".phoronix-test-suite/" ".codeintel/" ".emacs.d/" ".nemiver/" ".qd/" "hardcopy.0" ".ncftp/" "Snapshots/" ".CLion12/" "tmp/" ".watershed/" ".gradle/" ".AndroidStudio1.4/" ".disks/" "mnt/" ".blueproximity/" ".thumbnails/" ".gimp-2.8/" ".yjp/" ".icons/" ".themes/" ".elegant_gnome_backup/" ".codeblocks/" ".selected_editor" ".wine/" ".slickedit/" "VirtualBox VMs/" ".ccache/" ".hardinfo/" ".xbindkeysrc" ".xbindkeys_config/" ".rnd" ".bzr.log" "src/" ".gstreamer-0.10/" ".purple/" ".AndroidStudio1.2/" "Android/" ".FontForge/" ".android/" ".java/" ".lesshst" ".IntelliJIdea14/" "app/" "devel/" "android/" ".gksu.lock" "Google Drive/" ".grive-setup.log" ".gdfuse/" "GDrive/" "App/" ".gnome/" ".pki/" ".Skype/" "bin/" ".kde/" "Dropbox/" ".dropbox/" ".macromedia/" ".adobe/" ".mozilla/" ".toprc" ".aptitude/" ".nv/" ".bash_history" ".sudo_as_admin_successful" ".ssh/" ".gnupg/" ".gconf/" ".local/" ".ICEauthority" ".dbus/" ".config/" "Videos/" "Pictures/" "Music/" "Documents/" "Public/" "Templates/" "Downloads/" "Desktop/" ".cache/" ".bashrc" ".bash_logout" "../" "./")
 
  ("/home/diabolo/src/" (22443 58256 838700 28000) "utils/" "lisp/" "online/" "qt/" "perl5/" "Virus/" "db/" "Projects/" "qemu/" "cs_bb/" "graphics/" "gnome/" "test/" "asm/" "secure/" "FX/" "video/" "cracks/" "devel/" "clion/" "Android/" "sys/" "KernelAdiutor/" "drivers/" "IrrLicht/" "gambas2_2.24.0-1.dsc" "gambas2_2.24.0-1.debian.tar.xz" "gambas2_2.24.0-1_amd64.build" "gambas2_2.24.0.orig.tar.xz" "gambas2-2.24.0/" "zen/" "acpi/" "wmidump/" "pidgin-webkit/" "../" "./")
 

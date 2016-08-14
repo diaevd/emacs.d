@@ -8,496 +8,500 @@
       :tags 
         '( ("SELF_NAME" variable (:constant-flag t) nil [422 431])
             ("SELF_VERSION" variable (:constant-flag t) nil [450 462])
-            ("USE_TRAILING_STOP" variable (:constant-flag t) nil [595 612])
-            ("USE_STANDALONE_ERROR_DESCRIPTION" variable (:constant-flag t) nil [626 658])
+            ("USE_TRAILING_STOP" variable (:constant-flag t) nil [607 624])
+            ("USE_TRAILING_STOP" variable (:constant-flag t) nil [607 624])
+            ("USE_TRAILING_STOP" variable (:constant-flag t) nil [607 624])
+            ("USE_TRAILING_STOP" variable (:constant-flag t) nil [607 624])
+            ("USE_TRAILING_STOP" variable (:constant-flag t) nil [607 624])
+            ("USE_STANDALONE_ERROR_DESCRIPTION" variable (:constant-flag t) nil [638 670])
             ("ESignalMethod" type
                (:members 
                   ( ("E_SIGNAL_METHOD_ACCSPD" variable
                        (:constant-flag t
                         :default-value (712 713)
                         :type "int")
-                        (reparse-symbol enumsubparts) [687 713])
+                        (reparse-symbol enumsubparts) [699 725])
                     ("E_SIGNAL_METHOD_RSIAC" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [734 769]))                  
+                        (reparse-symbol enumsubparts) [746 781]))                  
                 :type "enum")
-                nil [665 770])
+                nil [677 782])
             ("_sEmpty0" variable
                (:default-value "\"=== +++ GENERAL SETTINGS +++ ===\""
                 :type ("string" type (:type "class") nil nil))
-                nil [778 831])
+                nil [790 843])
             ("InpSignalMethod" variable
                (:default-value "E_SIGNAL_METHOD_RSIAC"
                 :type ("ESignalMethod" type (:type "class") nil nil))
-                nil [871 925])
+                nil [883 937])
             ("InpTesterOnly" variable
                (:default-value "false"
                 :type "bool")
-                nil [950 977])
+                nil [962 989])
             ("InpStartLot" variable
                (:default-value "1.0"
                 :type "double")
-                nil [1021 1046])
+                nil [1033 1058])
             ("InpStopLoss" variable
                (:default-value "0"
                 :type "int")
-                nil [1074 1094])
+                nil [1086 1106])
             ("InpTakeProfit" variable
                (:default-value "0"
                 :type "int")
-                nil [1155 1177])
+                nil [1167 1189])
             ("InpSlippage" variable
                (:default-value "10"
                 :type "int")
-                nil [1242 1263])
+                nil [1254 1275])
             ("InpMaxSpread" variable
                (:default-value "0"
                 :type "int")
-                nil [1333 1354])
+                nil [1345 1366])
             ("InpMaxOrders" variable
                (:default-value "1"
                 :type "int")
-                nil [1418 1439])
+                nil [1430 1451])
             ("InpMagic" variable
                (:typemodifiers ("extern")
                 :default-value "31431400"
                 :type "int")
-                nil [1498 1529])
+                nil [1510 1541])
             ("InpRepeat" variable
                (:default-value "10"
                 :type "int")
-                nil [1621 1640])
+                nil [1633 1652])
             ("InpSleep" variable
                (:default-value "1"
                 :type "int")
-                nil [1702 1719])
+                nil [1714 1731])
             ("InpComment" variable
                (:default-value "\"FB\""
                 :type ("string" type (:type "class") nil nil))
-                nil [1765 1790])
+                nil [1777 1802])
             ("InpShowInfo" variable
                (:typemodifiers ("extern")
                 :default-value "true"
                 :type "bool")
-                nil [1819 1850])
+                nil [1831 1862])
             ("g_sInfoPrefix" variable
                (:default-value "\"FastBot\""
                 :type ("string" type (:type "class") nil nil))
-                nil [1892 1925])
+                nil [1904 1937])
             ("g_sInfoFontName" variable
                (:default-value "\"Arial Black\""
                 :type ("string" type (:type "class") nil nil))
-                nil [1962 2001])
+                nil [1974 2013])
             ("g_iInfoFontSize" variable
                (:default-value "10"
                 :type "int")
-                nil [2023 2048])
+                nil [2035 2060])
             ("g_clrInfoFontColor" variable
                (:default-value "clrOrange"
                 :type ("color" type (:type "class") nil nil))
-                nil [2077 2114])
+                nil [2089 2126])
             ("g_eInfoCorner" variable
                (:default-value "CORNER_RIGHT_UPPER"
                 :type ("ENUM_BASE_CORNER" type (:type "class") nil nil))
-                nil [2142 2194])
+                nil [2154 2206])
             ("g_iInfoSubWindow" variable
                (:default-value "0"
                 :type "int")
-                nil [2223 2248])
+                nil [2235 2260])
             ("_sAccSpdEmpty1" variable
                (:default-value "\"=== +++ Accel & Speed Power SETTINGS +++ ===\""
                 :type ("string" type (:type "class") nil nil))
-                nil [2256 2327])
+                nil [2268 2339])
             ("InpAccSpdTimeframe" variable
                (:default-value "PERIOD_H1"
                 :type ("ENUM_TIMEFRAMES" type (:type "class") nil nil))
-                nil [2366 2413])
+                nil [2378 2425])
             ("InpAccSpdTicksPeriod" variable
                (:default-value "20"
                 :type "int")
-                nil [2450 2480])
+                nil [2462 2492])
             ("InpAccSpdBarsPeriod" variable
                (:default-value "10"
                 :type "int")
-                nil [2514 2543])
+                nil [2526 2555])
             ("InpAccSpdOpenLevel" variable
                (:default-value "100.0"
                 :type "double")
-                nil [2576 2610])
+                nil [2588 2622])
             ("InpAccSpdCloseLevel" variable
                (:default-value "80.0"
                 :type "double")
-                nil [2652 2686])
+                nil [2664 2698])
             ("InpAccSpdPrecision" variable
                (:default-value "3"
                 :type "int")
-                nil [2729 2756])
+                nil [2741 2768])
             ("InpAccSpdShowInfo" variable
                (:typemodifiers ("extern")
                 :default-value "true"
                 :type "bool")
-                nil [2788 2825])
+                nil [2800 2837])
             ("g_sAccSpdPrefix" variable
                (:default-value "\"AccSpd\""
                 :type ("string" type (:type "class") nil nil))
-                nil [2861 2895])
+                nil [2873 2907])
             ("g_sAccSpdFontName" variable
                (:default-value "\"Arial Black\""
                 :type ("string" type (:type "class") nil nil))
-                nil [2935 2976])
+                nil [2947 2988])
             ("g_iAccSpdFontSize" variable
                (:default-value "10"
                 :type "int")
-                nil [3001 3028])
+                nil [3013 3040])
             ("g_clrAccSpdFontColor" variable
                (:default-value "clrBrown"
                 :type ("color" type (:type "class") nil nil))
-                nil [3059 3097])
+                nil [3071 3109])
             ("g_eAccSpdCorner" variable
                (:default-value "CORNER_RIGHT_UPPER"
                 :type ("ENUM_BASE_CORNER" type (:type "class") nil nil))
-                nil [3128 3182])
+                nil [3140 3194])
             ("g_iAccSpdSubWindow" variable
                (:default-value "0"
                 :type "int")
-                nil [3216 3243])
+                nil [3228 3255])
             ("_sRSIACEmpty2" variable
                (:default-value "\"=== +++ RSI & Accel Power SETTINGS +++ ===\""
                 :type ("string" type (:type "class") nil nil))
-                nil [3251 3319])
+                nil [3263 3331])
             ("InpRSIACTimeframe" variable
                (:default-value "PERIOD_H1"
                 :type ("ENUM_TIMEFRAMES" type (:type "class") nil nil))
-                nil [3358 3404])
+                nil [3370 3416])
             ("InpRSIACPeriod" variable
                (:default-value "15"
                 :type "int")
-                nil [3438 3462])
+                nil [3450 3474])
             ("InpRSIACEnableCloseByLowTurn" variable
                (:default-value "false"
                 :type "bool")
-                nil [3492 3534])
+                nil [3504 3546])
             ("InpRSIACEnableCloseByOpen" variable
                (:default-value "true"
                 :type "bool")
-                nil [3581 3619])
+                nil [3593 3631])
             ("InpRSIACEnableOpenOnTurn" variable
                (:default-value "true"
                 :type "bool")
-                nil [3664 3701])
+                nil [3676 3713])
             ("InpRSIACEnableOpenByLowTurn" variable
                (:default-value "false"
                 :type "bool")
-                nil [3745 3786])
+                nil [3757 3798])
             ("InpRSIACEnableOpenCross" variable
                (:default-value "false"
                 :type "bool")
-                nil [3833 3870])
+                nil [3845 3882])
             ("InpRSIACEnableReopenWithSafe" variable
                (:default-value "true"
                 :type "bool")
-                nil [3912 3953])
+                nil [3924 3965])
             ("InpRSIACShowInfo" variable
                (:typemodifiers ("extern")
                 :default-value "true"
                 :type "bool")
-                nil [3997 4033])
+                nil [4009 4045])
             ("g_sRSIACPrefix" variable
                (:default-value "\"RSIAC\""
                 :type ("string" type (:type "class") nil nil))
-                nil [4066 4098])
+                nil [4078 4110])
             ("g_sRSIACFontName" variable
                (:default-value "\"Arial Black\""
                 :type ("string" type (:type "class") nil nil))
-                nil [4129 4169])
+                nil [4141 4181])
             ("g_iRSIACFontSize" variable
                (:default-value "10"
                 :type "int")
-                nil [4190 4216])
+                nil [4202 4228])
             ("g_clrRSIACFontColor" variable
                (:default-value "clrOrange"
                 :type ("color" type (:type "class") nil nil))
-                nil [4239 4277])
+                nil [4251 4289])
             ("g_eRSIACCorner" variable
                (:default-value "CORNER_RIGHT_LOWER"
                 :type ("ENUM_BASE_CORNER" type (:type "class") nil nil))
-                nil [4306 4359])
+                nil [4318 4371])
             ("g_iRSIACSubWindow" variable
                (:default-value "0"
                 :type "int")
-                nil [4390 4416])
-            ("TrailingStop.mqh" include nil nil [4443 4470])
+                nil [4402 4428])
+            ("TrailingStop.mqh" include nil nil [4455 4482])
             ("_sTSEmpty0" variable
                (:default-value "\"=== +++ НАСТРОЙКИ TRAILING STOP +++ ===\""
                 :type ("string" type (:type "class") nil nil))
-                nil [4477 4539])
+                nil [4489 4551])
             ("InpTrailingStop" variable
                (:default-value "true"
                 :type "bool")
-                nil [4578 4606])
+                nil [4590 4618])
             ("InpTrailingStopDistance" variable
                (:default-value "60"
                 :type "int")
-                nil [4649 4682])
+                nil [4661 4694])
             ("InpTrailingStopStep" variable
                (:default-value "10"
                 :type "int")
-                nil [4738 4767])
+                nil [4750 4779])
             ("InpTrailingStopEnableLoss" variable
                (:default-value "false"
                 :type "bool")
-                nil [4808 4847])
+                nil [4820 4859])
             ("InpTrailingStopSafe" variable
                (:default-value "true"
                 :type "bool")
-                nil [4897 4929])
+                nil [4909 4941])
             ("InpTrailingStopSafePips" variable
                (:default-value "40"
                 :type "int")
-                nil [4977 5010])
+                nil [4989 5022])
             ("InpTrailingStopSafeDistance" variable
                (:default-value "100"
                 :type "int")
-                nil [5069 5107])
+                nil [5081 5119])
             ("g_sSelfName" variable
                (:typemodifiers ("static")
                 :default-value "SELF_NAME \"-v\" SELF_VERSION"
                 :type ("string" type (:type "class") nil nil))
-                nil [5171 5227])
-            ("g_dWorkingLot" variable (:type "double") nil [5229 5250])
+                nil [5183 5239])
+            ("g_dWorkingLot" variable (:type "double") nil [5241 5262])
             ("g_iLotDigits" variable
                (:default-value "0"
                 :type "int")
-                nil [5251 5272])
+                nil [5263 5284])
             ("g_dSpeedDistAvg" variable
                (:default-value "0.0"
                 :type "double")
-                nil [5274 5372])
+                nil [5286 5384])
             ("g_dSpeedTimeAvg" variable
                (:default-value "0.0"
                 :type "double")
-                nil [5274 5372])
+                nil [5286 5384])
             ("g_dAccelDistAvg" variable
                (:default-value "0.0"
                 :type "double")
-                nil [5274 5372])
+                nil [5286 5384])
             ("g_dAccelTimeAvg" variable
                (:default-value "0.0"
                 :type "double")
-                nil [5274 5372])
+                nil [5286 5384])
             ("g_aSellOrders" variable
                (:dereference 1
                 :type "int")
-                nil [5373 5393])
+                nil [5385 5405])
             ("g_aBuyOrders" variable
                (:dereference 1
                 :type "int")
-                nil [5394 5413])
+                nil [5406 5425])
             ("g_iSellOrders" variable
                (:default-value "0"
                 :type "int")
-                nil [5414 5469])
+                nil [5426 5481])
             ("g_iBuyOrders" variable
                (:default-value "0"
                 :type "int")
-                nil [5414 5469])
-            ("g_iOpenOrders" variable (:type "int") nil [5414 5469])
+                nil [5426 5481])
+            ("g_iOpenOrders" variable (:type "int") nil [5426 5481])
             ("g_bAlertCrossOrders" variable
                (:default-value "false"
                 :type "bool")
-                nil [5470 5503])
+                nil [5482 5515])
             ("g_iSpreadCurrent" variable
                (:default-value "0"
                 :type "int")
-                nil [5504 5565])
+                nil [5516 5577])
             ("g_iSpreadMin" variable
                (:default-value "0"
                 :type "int")
-                nil [5504 5565])
+                nil [5516 5577])
             ("g_iSpreadMax" variable
                (:default-value "0"
                 :type "int")
-                nil [5504 5565])
-            ("SYMPROP" variable (:constant-flag t) nil [5575 5582])
-            ("OnInit" function (:type "int") nil [5601 6527])
+                nil [5516 5577])
+            ("SYMPROP" variable (:constant-flag t) nil [5587 5594])
+            ("OnInit" function (:type "int") nil [5613 6539])
             ("OnDeinit" function
                (:arguments 
                   ( ("reason" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol arg-sub-list) [6543 6560]))                  
+                        (reparse-symbol arg-sub-list) [6555 6572]))                  
                 :type "void")
-                nil [6529 6737])
-            ("OnTick" function (:type "void") nil [6739 14310])
+                nil [6541 6749])
+            ("OnTick" function (:type "void") nil [6751 14322])
             ("IsThereNotSafePositions" function
                (:arguments 
                   ( ("op" variable
                        (:constant-flag t
                         :default-value "-1"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [14341 14358]))                  
+                        (reparse-symbol arg-sub-list) [14353 14370]))                  
                 :type "bool")
-                nil [14312 15515])
+                nil [14324 15527])
             ("CloseAll" function
                (:arguments 
                   ( ("op" variable
                        (:constant-flag t
                         :default-value "-1"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [15530 15547]))                  
+                        (reparse-symbol arg-sub-list) [15542 15559]))                  
                 :type "int")
-                nil [15517 15991])
+                nil [15529 16003])
             ("CloseOrder" function
                (:arguments 
                   ( ("ticket" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol arg-sub-list) [16009 16026])
+                        (reparse-symbol arg-sub-list) [16021 16038])
                     ("op" variable
                        (:constant-flag t
                         :default-value "-1"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [16027 16044]))                  
+                        (reparse-symbol arg-sub-list) [16039 16056]))                  
                 :type "bool")
-                nil [15993 17820])
+                nil [16005 17832])
             ("OpenBuy" function
                (:arguments 
-                  ( ("lot" variable (:type "double") (reparse-symbol arg-sub-list) [17835 17846])
+                  ( ("lot" variable (:type "double") (reparse-symbol arg-sub-list) [17847 17858])
                     ("_comment" variable
                        (:constant-flag t
                         :default-value "NULL"
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [17847 17875])
+                        (reparse-symbol arg-sub-list) [17859 17887])
                     ("_symbol" variable
                        (:constant-flag t
                         :default-value "NULL"
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [17877 17904]))                  
+                        (reparse-symbol arg-sub-list) [17889 17916]))                  
                 :type "bool")
-                nil [17822 20064])
+                nil [17834 20076])
             ("OpenSell" function
                (:arguments 
-                  ( ("lot" variable (:type "double") (reparse-symbol arg-sub-list) [20080 20091])
+                  ( ("lot" variable (:type "double") (reparse-symbol arg-sub-list) [20092 20103])
                     ("_comment" variable
                        (:constant-flag t
                         :default-value "NULL"
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [20092 20120])
+                        (reparse-symbol arg-sub-list) [20104 20132])
                     ("_symbol" variable
                        (:constant-flag t
                         :default-value "NULL"
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [20122 20149]))                  
+                        (reparse-symbol arg-sub-list) [20134 20161]))                  
                 :type "bool")
-                nil [20066 22310])
+                nil [20078 22322])
             ("GetSpreadRange" function
                (:arguments 
                   ( ("curr_spread" variable
                        (:reference 1
                         :type "int")
-                        (reparse-symbol arg-sub-list) [22332 22349])
+                        (reparse-symbol arg-sub-list) [22344 22361])
                     ("min_spread" variable
                        (:reference 1
                         :type "int")
-                        (reparse-symbol arg-sub-list) [22350 22366])
+                        (reparse-symbol arg-sub-list) [22362 22378])
                     ("max_spread" variable
                        (:reference 1
                         :type "int")
-                        (reparse-symbol arg-sub-list) [22367 22383])
+                        (reparse-symbol arg-sub-list) [22379 22395])
                     ("_symbol" variable
                        (:constant-flag t
                         :default-value "NULL"
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [22384 22411]))                  
+                        (reparse-symbol arg-sub-list) [22396 22423]))                  
                 :type "void")
-                nil [22312 22591])
+                nil [22324 22603])
             ("IsSpreadAllowed" function
                (:arguments 
                   ( ("_symbol" variable
                        (:constant-flag t
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [22614 22635])
+                        (reparse-symbol arg-sub-list) [22626 22647])
                     ("max_spread" variable
                        (:constant-flag t
                         :default-value "0"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [22636 22660]))                  
+                        (reparse-symbol arg-sub-list) [22648 22672]))                  
                 :type "bool")
-                nil [22593 22952])
+                nil [22605 22964])
             ("GetCurrentSpread" function
                (:arguments 
                   ( ("_symbol" variable
                        (:constant-flag t
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [22975 22996]))                  
+                        (reparse-symbol arg-sub-list) [22987 23008]))                  
                 :type "int")
-                nil [22954 23490])
+                nil [22966 23502])
             ("IsValidOpenOrder" function
                (:arguments 
                   ( ("_magic" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol arg-sub-list) [23514 23531])
+                        (reparse-symbol arg-sub-list) [23526 23543])
                     ("_symbol" variable
                        (:constant-flag t
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [23532 23553]))                  
+                        (reparse-symbol arg-sub-list) [23544 23565]))                  
                 :type "bool")
-                nil [23492 23740])
+                nil [23504 23752])
             ("GetOpenOrders" function
                (:arguments 
-                  ( ("_magic" variable (:type "int") (reparse-symbol arg-sub-list) [23760 23771])
-                    ("_symbol" variable (:type ("string" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [23772 23787])
+                  ( ("_magic" variable (:type "int") (reparse-symbol arg-sub-list) [23772 23783])
+                    ("_symbol" variable (:type ("string" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [23784 23799])
                     ("_sell_orders" variable
                        (:reference 1
                         :dereference 1
                         :type "int")
-                        (reparse-symbol arg-sub-list) [23792 23812])
+                        (reparse-symbol arg-sub-list) [23804 23824])
                     ("_sell_orders_count" variable
                        (:reference 1
                         :type "int")
-                        (reparse-symbol arg-sub-list) [23813 23837])
+                        (reparse-symbol arg-sub-list) [23825 23849])
                     ("_buy_orders" variable
                        (:reference 1
                         :dereference 1
                         :type "int")
-                        (reparse-symbol arg-sub-list) [23842 23861])
+                        (reparse-symbol arg-sub-list) [23854 23873])
                     ("_buy_orders_count" variable
                        (:reference 1
                         :type "int")
-                        (reparse-symbol arg-sub-list) [23862 23885]))                  
+                        (reparse-symbol arg-sub-list) [23874 23897]))                  
                 :type "int")
-                nil [23742 24518])
+                nil [23754 24530])
             ("ticks_arr" variable
                (:dereference 1
                 :typemodifiers ("static")
                 :type ("MqlTick" type (:type "class") nil nil))
-                nil [24520 24547])
+                nil [24532 24559])
             ("ticks_count" variable
                (:typemodifiers ("static")
                 :default-value "0"
                 :type "int")
-                nil [24548 24575])
+                nil [24560 24587])
             ("TicksCollect" function
                (:arguments 
                   ( ("_max_ticks" variable
                        (:constant-flag t
                         :default-value "40"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [24594 24619])
+                        (reparse-symbol arg-sub-list) [24606 24631])
                     ("_tf" variable
                        (:constant-flag t
                         :default-value "PERIOD_CURRENT"
                         :type ("ENUM_TIMEFRAMES" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [24621 24663])
+                        (reparse-symbol arg-sub-list) [24633 24675])
                     ("_symbol" variable
                        (:constant-flag t
                         :default-value "NULL"
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [24665 24692]))                  
+                        (reparse-symbol arg-sub-list) [24677 24704]))                  
                 :type "int")
-                nil [24577 25387])
+                nil [24589 25399])
             ("CalculateLinierAccSpd" function
                (:arguments 
                   ( ("price_arr" variable
@@ -505,408 +509,408 @@
                         :dereference 1
                         :constant-flag t
                         :type "double")
-                        (reparse-symbol arg-sub-list) [25416 25442])
+                        (reparse-symbol arg-sub-list) [25428 25454])
                     ("time_arr" variable
                        (:reference 1
                         :dereference 1
                         :constant-flag t
                         :type ("datetime" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [25443 25470])
+                        (reparse-symbol arg-sub-list) [25455 25482])
                     ("speed_dist_avg" variable
                        (:reference 1
                         :type "double")
-                        (reparse-symbol arg-sub-list) [25477 25500])
+                        (reparse-symbol arg-sub-list) [25489 25512])
                     ("speed_time_avg" variable
                        (:reference 1
                         :type "double")
-                        (reparse-symbol arg-sub-list) [25537 25560])
+                        (reparse-symbol arg-sub-list) [25549 25572])
                     ("accel_dist_avg" variable
                        (:reference 1
                         :type "double")
-                        (reparse-symbol arg-sub-list) [25590 25613])
+                        (reparse-symbol arg-sub-list) [25602 25625])
                     ("accel_time_avg" variable
                        (:reference 1
                         :type "double")
-                        (reparse-symbol arg-sub-list) [25654 25677])
+                        (reparse-symbol arg-sub-list) [25666 25689])
                     ("period" variable
                        (:constant-flag t
                         :default-value "5"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [25714 25734])
+                        (reparse-symbol arg-sub-list) [25726 25746])
                     ("shift" variable
                        (:constant-flag t
                         :default-value "0"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [25796 25815]))                  
+                        (reparse-symbol arg-sub-list) [25808 25827]))                  
                 :type "bool")
-                nil [25389 28783])
+                nil [25401 28795])
             ("CalulateLinierAccSpdBars" function
                (:arguments 
                   ( ("speed_dist_avg" variable
                        (:reference 1
                         :type "double")
-                        (reparse-symbol arg-sub-list) [28815 28838])
+                        (reparse-symbol arg-sub-list) [28827 28850])
                     ("speed_time_avg" variable
                        (:reference 1
                         :type "double")
-                        (reparse-symbol arg-sub-list) [28839 28862])
+                        (reparse-symbol arg-sub-list) [28851 28874])
                     ("accel_dist_avg" variable
                        (:reference 1
                         :type "double")
-                        (reparse-symbol arg-sub-list) [28863 28886])
+                        (reparse-symbol arg-sub-list) [28875 28898])
                     ("accel_time_avg" variable
                        (:reference 1
                         :type "double")
-                        (reparse-symbol arg-sub-list) [28887 28910])
+                        (reparse-symbol arg-sub-list) [28899 28922])
                     ("_symbol" variable
                        (:constant-flag t
                         :default-value "NULL"
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [28920 28947])
+                        (reparse-symbol arg-sub-list) [28932 28959])
                     ("_tf" variable
                        (:constant-flag t
                         :default-value "PERIOD_M5"
                         :type ("ENUM_TIMEFRAMES" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [28949 28986])
+                        (reparse-symbol arg-sub-list) [28961 28998])
                     ("_shift" variable
                        (:constant-flag t
                         :default-value "0"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [28988 29008])
+                        (reparse-symbol arg-sub-list) [29000 29020])
                     ("_period" variable
                        (:constant-flag t
                         :default-value "10"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [29010 29032]))                  
+                        (reparse-symbol arg-sub-list) [29022 29044]))                  
                 :type "bool")
-                nil [28785 29954])
+                nil [28797 29966])
             ("GetRSIACSignal" function
                (:arguments 
                   ( ("index_rsi" variable
                        (:reference 1
                         :type "int")
-                        (reparse-symbol arg-sub-list) [29975 29990])
+                        (reparse-symbol arg-sub-list) [29987 30002])
                     ("index_ac" variable
                        (:reference 1
                         :type "int")
-                        (reparse-symbol arg-sub-list) [29991 30005])
+                        (reparse-symbol arg-sub-list) [30003 30017])
                     ("_period" variable
                        (:default-value "14"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [30006 30022])
+                        (reparse-symbol arg-sub-list) [30018 30034])
                     ("_tf" variable
                        (:default-value "PERIOD_CURRENT"
                         :type ("ENUM_TIMEFRAMES" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [30024 30060]))                  
+                        (reparse-symbol arg-sub-list) [30036 30072]))                  
                 :type "int")
-                nil [29956 31358])
+                nil [29968 31370])
             ("GetRSIPower" function
                (:arguments 
                   ( ("_period" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol arg-sub-list) [31376 31394])
+                        (reparse-symbol arg-sub-list) [31388 31406])
                     ("_tf" variable
                        (:constant-flag t
                         :default-value "PERIOD_CURRENT"
                         :type ("ENUM_TIMEFRAMES" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [31395 31437])
+                        (reparse-symbol arg-sub-list) [31407 31449])
                     ("_symbol" variable
                        (:constant-flag t
                         :default-value "NULL"
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [31439 31466]))                  
+                        (reparse-symbol arg-sub-list) [31451 31478]))                  
                 :type "int")
-                nil [31360 32214])
+                nil [31372 32226])
             ("GetACPower" function
                (:arguments 
                   ( ("_tf" variable
                        (:constant-flag t
                         :default-value "PERIOD_CURRENT"
                         :type ("ENUM_TIMEFRAMES" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [32231 32273])
+                        (reparse-symbol arg-sub-list) [32243 32285])
                     ("_symbol" variable
                        (:constant-flag t
                         :default-value "NULL"
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [32275 32302]))                  
+                        (reparse-symbol arg-sub-list) [32287 32314]))                  
                 :type "int")
-                nil [32216 33050])
-            ("FONT_WING_ARROW_UP" variable (:constant-flag t) nil [33388 33406])
-            ("FONT_WING_ARROW_DOWN" variable (:constant-flag t) nil [33434 33454])
-            ("FONT_WING_ARROW_LEFT" variable (:constant-flag t) nil [33486 33506])
-            ("FONT_WING_ARROW_RIGHT" variable (:constant-flag t) nil [33539 33560])
-            ("FONT_WING_ARROW_UPLEFT" variable (:constant-flag t) nil [33593 33615])
-            ("FONT_WING_ARROW_UPRIGHT" variable (:constant-flag t) nil [33652 33675])
-            ("FONT_WING_ARROW_DOWNLEFT" variable (:constant-flag t) nil [33712 33736])
-            ("FONT_WING_ARROW_DOWNRIGHT" variable (:constant-flag t) nil [33770 33795])
-            ("FONT_WING_ARROW_UP_BOLD" variable (:constant-flag t) nil [33848 33871])
-            ("FONT_WING_ARROW_DOWN_BOLD" variable (:constant-flag t) nil [33899 33924])
-            ("FONT_WING_ARROW_LEFT_BOLD" variable (:constant-flag t) nil [33956 33981])
-            ("FONT_WING_ARROW_RIGHT_BOLD" variable (:constant-flag t) nil [34014 34040])
-            ("FONT_WING_ARROW_UPLEFT_BOLD" variable (:constant-flag t) nil [34073 34100])
-            ("FONT_WING_ARROW_UPRIGHT_BOLD" variable (:constant-flag t) nil [34137 34165])
-            ("FONT_WING_ARROW_DOWNLEFT_BOLD" variable (:constant-flag t) nil [34202 34231])
-            ("FONT_WING_ARROW_DOWNRIGHT_BOLD" variable (:constant-flag t) nil [34265 34295])
-            ("FONT_WING_ARROW_ANGLE_UP" variable (:constant-flag t) nil [34373 34397])
-            ("FONT_WING_ARROW_ANGLE_DOWN" variable (:constant-flag t) nil [34428 34454])
-            ("FONT_WING_ARROW_ANGLE_LEFT" variable (:constant-flag t) nil [34482 34508])
-            ("FONT_WING_ARROW_ANGLE_RIGHT" variable (:constant-flag t) nil [34537 34564])
-            ("FONT_WING_ARROW_CIRCLE_UP" variable (:constant-flag t) nil [34624 34649])
-            ("FONT_WING_ARROW_CIRCLE_DOWN" variable (:constant-flag t) nil [34680 34707])
-            ("FONT_WING_ARROW_CIRCLE_LEFT" variable (:constant-flag t) nil [34735 34762])
-            ("FONT_WING_ARROW_CIRCLE_RIGHT" variable (:constant-flag t) nil [34791 34819])
-            ("FONT_WING_ARROW_HOLLOW_UP" variable (:constant-flag t) nil [34876 34901])
-            ("FONT_WING_ARROW_HOLLOW_DOWN" variable (:constant-flag t) nil [34929 34956])
-            ("FONT_WING_ARROW_HOLLOW_LEFT" variable (:constant-flag t) nil [34988 35015])
-            ("FONT_WING_ARROW_HOLLOW_RIGHT" variable (:constant-flag t) nil [35048 35076])
-            ("FONT_WING_ARROW_HOLLOW_UPLEFT" variable (:constant-flag t) nil [35109 35138])
-            ("FONT_WING_ARROW_HOLLOW_UPRIGHT" variable (:constant-flag t) nil [35175 35205])
-            ("FONT_WING_ARROW_HOLLOW_DOWNLEFT" variable (:constant-flag t) nil [35242 35273])
-            ("FONT_WING_ARROW_HOLLOW_DOWNRIGHT" variable (:constant-flag t) nil [35307 35339])
-            ("FONT_WING_ARROW_HOLLOW_UPDOWN" variable (:constant-flag t) nil [35373 35402])
-            ("FONT_WING_ARROW_HOLLOW_LEFTRIGHT" variable (:constant-flag t) nil [35438 35470])
-            ("FONT_WING_ARROW_ROUTE_DOWNLEFT" variable (:constant-flag t) nil [35534 35564])
-            ("FONT_WING_ARROW_ROUTE_DOWNRIGHT" variable (:constant-flag t) nil [35598 35629])
-            ("FONT_WING_ARROW_ROUTE_UPLEFT" variable (:constant-flag t) nil [35663 35691])
-            ("FONT_WING_ARROW_ROUTE_UPRIGHT" variable (:constant-flag t) nil [35728 35757])
-            ("FONT_WING_ARROW_ROUTE_LEFTUP" variable (:constant-flag t) nil [35794 35822])
-            ("FONT_WING_ARROW_ROUTE_RIGHTUP" variable (:constant-flag t) nil [35859 35888])
-            ("FONT_WING_ARROW_ROUTE_LEFTDOWN" variable (:constant-flag t) nil [35925 35955])
-            ("FONT_WING_ARROW_ROUTE_RIGHTDOWN" variable (:constant-flag t) nil [35989 36020])
-            ("FONT_WING_SQUARE" variable (:constant-flag t) nil [36070 36086])
-            ("FONT_WING_SQUARE_ACCEPT" variable (:constant-flag t) nil [36119 36142])
-            ("FONT_WING_SQUARE_DECLINE" variable (:constant-flag t) nil [36186 36210])
-            ("FONT_WING_ACCEPT" variable (:constant-flag t) nil [36254 36270])
-            ("FONT_WING_DECLINE" variable (:constant-flag t) nil [36301 36318])
-            ("FONT_WING_CIRCLE" variable (:constant-flag t) nil [36348 36364])
-            ("FONT_WING_CIRCLE_BOLD" variable (:constant-flag t) nil [36394 36415])
-            ("FONT_WING_CIRCLE_THICK" variable (:constant-flag t) nil [36455 36477])
-            ("FONT_WING_CIRCLE_TARGET" variable (:constant-flag t) nil [36522 36545])
-            ("FONT_WING_POINT" variable (:constant-flag t) nil [36589 36604])
-            ("FONT_WING_POINT_BOLD" variable (:constant-flag t) nil [36643 36663])
-            ("FONT_WING_CIRCLE_ONE" variable (:constant-flag t) nil [36782 36802])
-            ("FONT_WING_CIRCLE_TWO" variable (:constant-flag t) nil [36828 36848])
-            ("FONT_WING_CIRCLE_THREE" variable (:constant-flag t) nil [36874 36896])
-            ("FONT_WING_CIRCLE_FOUR" variable (:constant-flag t) nil [36920 36941])
-            ("FONT_WING_CIRCLE_FIVE" variable (:constant-flag t) nil [36966 36987])
-            ("GetFontSizePX" variable (:constant-flag t) nil [37013 37026])
+                nil [32228 33062])
+            ("FONT_WING_ARROW_UP" variable (:constant-flag t) nil [33400 33418])
+            ("FONT_WING_ARROW_DOWN" variable (:constant-flag t) nil [33446 33466])
+            ("FONT_WING_ARROW_LEFT" variable (:constant-flag t) nil [33498 33518])
+            ("FONT_WING_ARROW_RIGHT" variable (:constant-flag t) nil [33551 33572])
+            ("FONT_WING_ARROW_UPLEFT" variable (:constant-flag t) nil [33605 33627])
+            ("FONT_WING_ARROW_UPRIGHT" variable (:constant-flag t) nil [33664 33687])
+            ("FONT_WING_ARROW_DOWNLEFT" variable (:constant-flag t) nil [33724 33748])
+            ("FONT_WING_ARROW_DOWNRIGHT" variable (:constant-flag t) nil [33782 33807])
+            ("FONT_WING_ARROW_UP_BOLD" variable (:constant-flag t) nil [33860 33883])
+            ("FONT_WING_ARROW_DOWN_BOLD" variable (:constant-flag t) nil [33911 33936])
+            ("FONT_WING_ARROW_LEFT_BOLD" variable (:constant-flag t) nil [33968 33993])
+            ("FONT_WING_ARROW_RIGHT_BOLD" variable (:constant-flag t) nil [34026 34052])
+            ("FONT_WING_ARROW_UPLEFT_BOLD" variable (:constant-flag t) nil [34085 34112])
+            ("FONT_WING_ARROW_UPRIGHT_BOLD" variable (:constant-flag t) nil [34149 34177])
+            ("FONT_WING_ARROW_DOWNLEFT_BOLD" variable (:constant-flag t) nil [34214 34243])
+            ("FONT_WING_ARROW_DOWNRIGHT_BOLD" variable (:constant-flag t) nil [34277 34307])
+            ("FONT_WING_ARROW_ANGLE_UP" variable (:constant-flag t) nil [34385 34409])
+            ("FONT_WING_ARROW_ANGLE_DOWN" variable (:constant-flag t) nil [34440 34466])
+            ("FONT_WING_ARROW_ANGLE_LEFT" variable (:constant-flag t) nil [34494 34520])
+            ("FONT_WING_ARROW_ANGLE_RIGHT" variable (:constant-flag t) nil [34549 34576])
+            ("FONT_WING_ARROW_CIRCLE_UP" variable (:constant-flag t) nil [34636 34661])
+            ("FONT_WING_ARROW_CIRCLE_DOWN" variable (:constant-flag t) nil [34692 34719])
+            ("FONT_WING_ARROW_CIRCLE_LEFT" variable (:constant-flag t) nil [34747 34774])
+            ("FONT_WING_ARROW_CIRCLE_RIGHT" variable (:constant-flag t) nil [34803 34831])
+            ("FONT_WING_ARROW_HOLLOW_UP" variable (:constant-flag t) nil [34888 34913])
+            ("FONT_WING_ARROW_HOLLOW_DOWN" variable (:constant-flag t) nil [34941 34968])
+            ("FONT_WING_ARROW_HOLLOW_LEFT" variable (:constant-flag t) nil [35000 35027])
+            ("FONT_WING_ARROW_HOLLOW_RIGHT" variable (:constant-flag t) nil [35060 35088])
+            ("FONT_WING_ARROW_HOLLOW_UPLEFT" variable (:constant-flag t) nil [35121 35150])
+            ("FONT_WING_ARROW_HOLLOW_UPRIGHT" variable (:constant-flag t) nil [35187 35217])
+            ("FONT_WING_ARROW_HOLLOW_DOWNLEFT" variable (:constant-flag t) nil [35254 35285])
+            ("FONT_WING_ARROW_HOLLOW_DOWNRIGHT" variable (:constant-flag t) nil [35319 35351])
+            ("FONT_WING_ARROW_HOLLOW_UPDOWN" variable (:constant-flag t) nil [35385 35414])
+            ("FONT_WING_ARROW_HOLLOW_LEFTRIGHT" variable (:constant-flag t) nil [35450 35482])
+            ("FONT_WING_ARROW_ROUTE_DOWNLEFT" variable (:constant-flag t) nil [35546 35576])
+            ("FONT_WING_ARROW_ROUTE_DOWNRIGHT" variable (:constant-flag t) nil [35610 35641])
+            ("FONT_WING_ARROW_ROUTE_UPLEFT" variable (:constant-flag t) nil [35675 35703])
+            ("FONT_WING_ARROW_ROUTE_UPRIGHT" variable (:constant-flag t) nil [35740 35769])
+            ("FONT_WING_ARROW_ROUTE_LEFTUP" variable (:constant-flag t) nil [35806 35834])
+            ("FONT_WING_ARROW_ROUTE_RIGHTUP" variable (:constant-flag t) nil [35871 35900])
+            ("FONT_WING_ARROW_ROUTE_LEFTDOWN" variable (:constant-flag t) nil [35937 35967])
+            ("FONT_WING_ARROW_ROUTE_RIGHTDOWN" variable (:constant-flag t) nil [36001 36032])
+            ("FONT_WING_SQUARE" variable (:constant-flag t) nil [36082 36098])
+            ("FONT_WING_SQUARE_ACCEPT" variable (:constant-flag t) nil [36131 36154])
+            ("FONT_WING_SQUARE_DECLINE" variable (:constant-flag t) nil [36198 36222])
+            ("FONT_WING_ACCEPT" variable (:constant-flag t) nil [36266 36282])
+            ("FONT_WING_DECLINE" variable (:constant-flag t) nil [36313 36330])
+            ("FONT_WING_CIRCLE" variable (:constant-flag t) nil [36360 36376])
+            ("FONT_WING_CIRCLE_BOLD" variable (:constant-flag t) nil [36406 36427])
+            ("FONT_WING_CIRCLE_THICK" variable (:constant-flag t) nil [36467 36489])
+            ("FONT_WING_CIRCLE_TARGET" variable (:constant-flag t) nil [36534 36557])
+            ("FONT_WING_POINT" variable (:constant-flag t) nil [36601 36616])
+            ("FONT_WING_POINT_BOLD" variable (:constant-flag t) nil [36655 36675])
+            ("FONT_WING_CIRCLE_ONE" variable (:constant-flag t) nil [36794 36814])
+            ("FONT_WING_CIRCLE_TWO" variable (:constant-flag t) nil [36840 36860])
+            ("FONT_WING_CIRCLE_THREE" variable (:constant-flag t) nil [36886 36908])
+            ("FONT_WING_CIRCLE_FOUR" variable (:constant-flag t) nil [36932 36953])
+            ("FONT_WING_CIRCLE_FIVE" variable (:constant-flag t) nil [36978 36999])
+            ("GetFontSizePX" variable (:constant-flag t) nil [37025 37038])
             ("CreateLabel" function
                (:arguments 
                   ( ("chart_ID" variable
                        (:constant-flag t
                         :default-value "0"
                         :type "long")
-                        (reparse-symbol arg-sub-list) [37326 37349])
+                        (reparse-symbol arg-sub-list) [37338 37361])
                     ("name" variable
                        (:constant-flag t
                         :default-value "\"Label\""
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [37376 37403])
+                        (reparse-symbol arg-sub-list) [37388 37415])
                     ("sub_window" variable
                        (:constant-flag t
                         :default-value "0"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [37429 37453])
+                        (reparse-symbol arg-sub-list) [37441 37465])
                     ("x" variable
                        (:constant-flag t
                         :default-value "0"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [37483 37498])
+                        (reparse-symbol arg-sub-list) [37495 37510])
                     ("y" variable
                        (:constant-flag t
                         :default-value "0"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [37535 37550])
+                        (reparse-symbol arg-sub-list) [37547 37562])
                     ("corner" variable
                        (:constant-flag t
                         :default-value "CORNER_LEFT_UPPER"
                         :type ("ENUM_BASE_CORNER" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [37587 37636])
+                        (reparse-symbol arg-sub-list) [37599 37648])
                     ("text" variable
                        (:constant-flag t
                         :default-value "\"Label\""
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [37672 37699])
+                        (reparse-symbol arg-sub-list) [37684 37711])
                     ("font" variable
                        (:constant-flag t
                         :default-value "\"Arial\""
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [37721 37748])
+                        (reparse-symbol arg-sub-list) [37733 37760])
                     ("font_size" variable
                        (:constant-flag t
                         :default-value "10"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [37770 37794])
+                        (reparse-symbol arg-sub-list) [37782 37806])
                     ("clr" variable
                        (:constant-flag t
                         :default-value "clrRed"
                         :type ("color" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [37824 37848])
+                        (reparse-symbol arg-sub-list) [37836 37860])
                     ("angle" variable
                        (:constant-flag t
                         :default-value "0.0"
                         :type "double")
-                        (reparse-symbol arg-sub-list) [37869 37893])
+                        (reparse-symbol arg-sub-list) [37881 37905])
                     ("anchor" variable
                        (:constant-flag t
                         :default-value "ANCHOR_LEFT_UPPER"
                         :type ("ENUM_ANCHOR_POINT" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [37923 37973])
+                        (reparse-symbol arg-sub-list) [37935 37985])
                     ("back" variable
                        (:constant-flag t
                         :default-value "false"
                         :type "bool")
-                        (reparse-symbol arg-sub-list) [37998 38021])
+                        (reparse-symbol arg-sub-list) [38010 38033])
                     ("selection" variable
                        (:constant-flag t
                         :default-value "false"
                         :type "bool")
-                        (reparse-symbol arg-sub-list) [38053 38081])
+                        (reparse-symbol arg-sub-list) [38065 38093])
                     ("hidden" variable
                        (:constant-flag t
                         :default-value "true"
                         :type "bool")
-                        (reparse-symbol arg-sub-list) [38122 38146])
+                        (reparse-symbol arg-sub-list) [38134 38158])
                     ("z_order" variable
                        (:constant-flag t
                         :default-value "0"
                         :type "long")
-                        (reparse-symbol arg-sub-list) [38186 38208]))                  
+                        (reparse-symbol arg-sub-list) [38198 38220]))                  
                 :type "bool")
-                nil [37309 39695])
+                nil [37321 39707])
             ("ChangeLabelText" function
                (:arguments 
                   ( ("chart_ID" variable
                        (:constant-flag t
                         :default-value "0"
                         :type "long")
-                        (reparse-symbol arg-sub-list) [39931 39954])
+                        (reparse-symbol arg-sub-list) [39943 39966])
                     ("name" variable
                        (:constant-flag t
                         :default-value "\"Label\""
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [39982 40009])
+                        (reparse-symbol arg-sub-list) [39994 40021])
                     ("text" variable
                        (:constant-flag t
                         :default-value "\"Text\""
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [40034 40060])
+                        (reparse-symbol arg-sub-list) [40046 40072])
                     ("clr" variable
                        (:constant-flag t
                         :default-value "clrBlack"
                         :type ("color" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [40080 40106]))                  
+                        (reparse-symbol arg-sub-list) [40092 40118]))                  
                 :type "bool")
-                nil [39910 40517])
+                nil [39922 40529])
             ("DeleteLabel" function
                (:arguments 
                   ( ("chart_ID" variable
                        (:constant-flag t
                         :default-value "0"
                         :type "long")
-                        (reparse-symbol arg-sub-list) [40749 40772])
+                        (reparse-symbol arg-sub-list) [40761 40784])
                     ("name" variable
                        (:constant-flag t
                         :default-value "\"Label\""
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [40796 40823]))                  
+                        (reparse-symbol arg-sub-list) [40808 40835]))                  
                 :type "bool")
-                nil [40732 41036])
+                nil [40744 41048])
             ("ETimeFrames" type
                (:members 
                   ( ("E_TF_CURRENT" variable
                        (:constant-flag t
                         :default-value (41105 41106)
                         :type "int")
-                        (reparse-symbol enumsubparts) [41090 41106])
+                        (reparse-symbol enumsubparts) [41102 41118])
                     ("E_TF_SHIFT" variable
                        (:constant-flag t
                         :default-value (41122 41123)
                         :type "int")
-                        (reparse-symbol enumsubparts) [41109 41123])
+                        (reparse-symbol enumsubparts) [41121 41135])
                     ("E_TF_M1" variable
                        (:constant-flag t
                         :default-value (41136 41137)
                         :type "int")
-                        (reparse-symbol enumsubparts) [41126 41137])
+                        (reparse-symbol enumsubparts) [41138 41149])
                     ("E_TF_M5" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [41140 41148])
+                        (reparse-symbol enumsubparts) [41152 41160])
                     ("E_TF_M15" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [41150 41159])
+                        (reparse-symbol enumsubparts) [41162 41171])
                     ("E_TF_M30" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [41161 41170])
+                        (reparse-symbol enumsubparts) [41173 41182])
                     ("E_TF_H1" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [41172 41180])
+                        (reparse-symbol enumsubparts) [41184 41192])
                     ("E_TF_H4" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [41182 41190])
+                        (reparse-symbol enumsubparts) [41194 41202])
                     ("E_TF_D1" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [41192 41200])
+                        (reparse-symbol enumsubparts) [41204 41212])
                     ("E_TF_W1" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [41202 41210])
+                        (reparse-symbol enumsubparts) [41214 41222])
                     ("E_TF_MN" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [41212 41220])
+                        (reparse-symbol enumsubparts) [41224 41232])
                     ("E_TF_MN1" variable
                        (:constant-flag t
                         :default-value (41233 41240)
                         :type "int")
-                        (reparse-symbol enumsubparts) [41222 41240])
+                        (reparse-symbol enumsubparts) [41234 41252])
                     ("E_TF_SIZE" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [41243 41253])
+                        (reparse-symbol enumsubparts) [41255 41265])
                     ("E_TF_UNKNOWN" variable
                        (:constant-flag t
                         :default-value (41270 41279)
                         :type "int")
-                        (reparse-symbol enumsubparts) [41255 41279]))                  
+                        (reparse-symbol enumsubparts) [41267 41291]))                  
                 :type "enum")
-                nil [41070 41282])
+                nil [41082 41294])
             ("GetStringByTf" function
                (:arguments 
                   ( ("_tf" variable
                        (:constant-flag t
                         :type ("ETimeFrames" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [41305 41327]))                  
+                        (reparse-symbol arg-sub-list) [41317 41339]))                  
                 :type ("string" type (:type "class") nil nil))
-                nil [41284 41484])
+                nil [41296 41496])
             ("GetStringByPeriod" function
                (:arguments 
-                  ( ("_tf_period" variable (:type ("ENUM_TIMEFRAMES" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [41511 41538]))                  
+                  ( ("_tf_period" variable (:type ("ENUM_TIMEFRAMES" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [41523 41550]))                  
                 :type ("string" type (:type "class") nil nil))
-                nil [41486 41592])
+                nil [41498 41604])
             ("GetPeriodByTf" function
                (:arguments 
                   ( ("_tf" variable
                        (:constant-flag t
                         :type ("ETimeFrames" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [41624 41646]))                  
+                        (reparse-symbol arg-sub-list) [41636 41658]))                  
                 :type ("ENUM_TIMEFRAMES" type (:type "class") nil nil))
-                nil [41594 41863])
+                nil [41606 41875])
             ("GetTfByPeriod" function
                (:arguments 
                   ( ("_tf_period" variable
                        (:constant-flag t
                         :type ("ENUM_TIMEFRAMES" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [41891 41924]))                  
+                        (reparse-symbol arg-sub-list) [41903 41936]))                  
                 :type ("ETimeFrames" type (:type "class") nil nil))
-                nil [41865 42374])
+                nil [41877 42386])
             ("WingCodeNumbers" variable
                (:dereference 1
                 :default-value "{
@@ -917,187 +921,187 @@
 	FONT_WING_CIRCLE_FOUR,
 	FONT_WING_CIRCLE_FIVE}"
                 :type ("string" type (:type "class") nil nil))
-                nil [42408 42581])
+                nil [42420 42593])
             ("GetTrendWingSymbol" function
                (:arguments 
                   ( ("trend" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol arg-sub-list) [42609 42625]))                  
+                        (reparse-symbol arg-sub-list) [42621 42637]))                  
                 :type ("string" type (:type "class") nil nil))
-                nil [42583 43424])
+                nil [42595 43436])
             ("InitInfoRSIAC" function
                (:arguments 
                   ( ("rsi_period" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol arg-sub-list) [43474 43495])
+                        (reparse-symbol arg-sub-list) [43486 43507])
                     ("sub_window" variable
                        (:constant-flag t
                         :default-value "0"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [43496 43520])
+                        (reparse-symbol arg-sub-list) [43508 43532])
                     ("corner" variable
                        (:default-value "CORNER_RIGHT_LOWER"
                         :type ("ENUM_BASE_CORNER" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [43522 43566])
+                        (reparse-symbol arg-sub-list) [43534 43578])
                     ("obj_name" variable
                        (:constant-flag t
                         :default-value "\"RSIAC\""
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [43568 43599]))                  
+                        (reparse-symbol arg-sub-list) [43580 43611]))                  
                 :type "bool")
-                nil [43455 51448])
+                nil [43467 51460])
             ("RedrawInfoRSIAC" function
                (:arguments 
                   ( ("rsi_period" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol arg-sub-list) [51471 51492])
+                        (reparse-symbol arg-sub-list) [51483 51504])
                     ("obj_name" variable
                        (:constant-flag t
                         :default-value "\"RSIAC\""
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [51493 51524]))                  
+                        (reparse-symbol arg-sub-list) [51505 51536]))                  
                 :type "bool")
-                nil [51450 53194])
+                nil [51462 53206])
             ("InitInfoAccSpd" function
                (:arguments 
                   ( ("sub_window" variable
                        (:constant-flag t
                         :default-value "0"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [53216 53240])
+                        (reparse-symbol arg-sub-list) [53228 53252])
                     ("corner" variable
                        (:constant-flag t
                         :default-value "CORNER_LEFT_LOWER"
                         :type ("ENUM_BASE_CORNER" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [53242 53291])
+                        (reparse-symbol arg-sub-list) [53254 53303])
                     ("obj_name" variable
                        (:constant-flag t
                         :default-value "\"AccSpd\""
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [53293 53325]))                  
+                        (reparse-symbol arg-sub-list) [53305 53337]))                  
                 :type "bool")
-                nil [53196 55037])
+                nil [53208 55049])
             ("RedrawInfoAccSpd" function
                (:arguments 
                   ( ("obj_name" variable
                        (:constant-flag t
                         :default-value "\"AccSpd\""
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [55061 55093]))                  
+                        (reparse-symbol arg-sub-list) [55073 55105]))                  
                 :type "bool")
-                nil [55039 55921])
+                nil [55051 55933])
             ("InitInfo" function
                (:arguments 
                   ( ("sub_window" variable
                        (:constant-flag t
                         :default-value "0"
                         :type "int")
-                        (reparse-symbol arg-sub-list) [55937 55961])
+                        (reparse-symbol arg-sub-list) [55949 55973])
                     ("corner" variable
                        (:constant-flag t
                         :default-value "CORNER_LEFT_LOWER"
                         :type ("ENUM_BASE_CORNER" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [55963 56012])
+                        (reparse-symbol arg-sub-list) [55975 56024])
                     ("obj_name" variable
                        (:constant-flag t
                         :default-value "\"FastBot\""
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [56014 56047]))                  
+                        (reparse-symbol arg-sub-list) [56026 56059]))                  
                 :type "bool")
-                nil [55923 57172])
+                nil [55935 57184])
             ("RedrawInfo" function
                (:arguments 
                   ( ("obj_name" variable
                        (:constant-flag t
                         :default-value "\"FastBot\""
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [57190 57223]))                  
+                        (reparse-symbol arg-sub-list) [57202 57235]))                  
                 :type "bool")
-                nil [57174 57747])
+                nil [57186 57759])
             ("EPropertySymbol" type
                (:members 
                   ( ("SYMDEF" variable
                        (:constant-flag t
                         :default-value (57782 57783)
                         :type "int")
-                        (reparse-symbol enumsubparts) [57773 57783])
+                        (reparse-symbol enumsubparts) [57785 57795])
                     ("USDCHF" variable
                        (:constant-flag t
                         :default-value (57795 57796)
                         :type "int")
-                        (reparse-symbol enumsubparts) [57786 57796])
+                        (reparse-symbol enumsubparts) [57798 57808])
                     ("USDJPY" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [57799 57806])
+                        (reparse-symbol enumsubparts) [57811 57818])
                     ("EURUSD" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [57808 57815])
+                        (reparse-symbol enumsubparts) [57820 57827])
                     ("GBPJPY" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [57817 57824])
+                        (reparse-symbol enumsubparts) [57829 57836])
                     ("GBPUSD" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [57826 57833])
+                        (reparse-symbol enumsubparts) [57838 57845])
                     ("EURJPY" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [57835 57842])
+                        (reparse-symbol enumsubparts) [57847 57854])
                     ("EURGBP" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [57844 57851])
+                        (reparse-symbol enumsubparts) [57856 57863])
                     ("SYMSIZE" variable
                        (:constant-flag t
                         :type "int")
-                        (reparse-symbol enumsubparts) [57853 57862]))                  
+                        (reparse-symbol enumsubparts) [57865 57874]))                  
                 :type "enum")
-                nil [57749 57863])
+                nil [57761 57875])
             ("PropertySymbol" type
                (:members 
-                  ( ("symbol" variable (:type ("string" type (:type "class") nil nil)) (reparse-symbol classsubparts) [57890 57904])
-                    ("symbol_code" variable (:type ("EPropertySymbol" type (:type "class") nil nil)) (reparse-symbol classsubparts) [57932 57960])
-                    ("method" variable (:type ("ESignalMethod" type (:type "class") nil nil)) (reparse-symbol classsubparts) [57978 57999])
-                    ("RSIACPeriod" variable (:type "int") (reparse-symbol classsubparts) [58019 58035])
-                    ("tfPeriod" variable (:type ("ENUM_TIMEFRAMES" type (:type "class") nil nil)) (reparse-symbol classsubparts) [58065 58090])
-                    ("RSIACEnableOpenOnTurn" variable (:type "bool") (reparse-symbol classsubparts) [58116 58143])
-                    ("RSIACEnableOpenCross" variable (:type "bool") (reparse-symbol classsubparts) [58183 58209])
-                    ("tested_period" variable (:type ("string" type (:type "class") nil nil)) (reparse-symbol classsubparts) [58242 58263])
-                    ("Drawdown" variable (:type "double") (reparse-symbol classsubparts) [58290 58306])
-                    ("Expected" variable (:type "double") (reparse-symbol classsubparts) [58360 58376])
-                    ("ProfitFactor" variable (:type "double") (reparse-symbol classsubparts) [58403 58423])
-                    ("TSDistance" variable (:type "int") (reparse-symbol classsubparts) [58473 58488])
-                    ("TSStep" variable (:type "int") (reparse-symbol classsubparts) [58523 58534])
-                    ("SSDistance" variable (:type "int") (reparse-symbol classsubparts) [58565 58580])
-                    ("SSPoints" variable (:type "int") (reparse-symbol classsubparts) [58611 58624]))                  
+                  ( ("symbol" variable (:type ("string" type (:type "class") nil nil)) (reparse-symbol classsubparts) [57902 57916])
+                    ("symbol_code" variable (:type ("EPropertySymbol" type (:type "class") nil nil)) (reparse-symbol classsubparts) [57944 57972])
+                    ("method" variable (:type ("ESignalMethod" type (:type "class") nil nil)) (reparse-symbol classsubparts) [57990 58011])
+                    ("RSIACPeriod" variable (:type "int") (reparse-symbol classsubparts) [58031 58047])
+                    ("tfPeriod" variable (:type ("ENUM_TIMEFRAMES" type (:type "class") nil nil)) (reparse-symbol classsubparts) [58077 58102])
+                    ("RSIACEnableOpenOnTurn" variable (:type "bool") (reparse-symbol classsubparts) [58128 58155])
+                    ("RSIACEnableOpenCross" variable (:type "bool") (reparse-symbol classsubparts) [58195 58221])
+                    ("tested_period" variable (:type ("string" type (:type "class") nil nil)) (reparse-symbol classsubparts) [58254 58275])
+                    ("Drawdown" variable (:type "double") (reparse-symbol classsubparts) [58302 58318])
+                    ("Expected" variable (:type "double") (reparse-symbol classsubparts) [58372 58388])
+                    ("ProfitFactor" variable (:type "double") (reparse-symbol classsubparts) [58415 58435])
+                    ("TSDistance" variable (:type "int") (reparse-symbol classsubparts) [58485 58500])
+                    ("TSStep" variable (:type "int") (reparse-symbol classsubparts) [58535 58546])
+                    ("SSDistance" variable (:type "int") (reparse-symbol classsubparts) [58577 58592])
+                    ("SSPoints" variable (:type "int") (reparse-symbol classsubparts) [58623 58636]))                  
                 :type "struct")
-                nil [57865 58654])
+                nil [57877 58666])
             ("g_aPropertySymbols" variable
                (:dereference 1
                 :type ("PropertySymbol" type (:type "class") nil nil))
-                nil [58656 58699])
-            ("PROPS" variable (:constant-flag t) nil [58722 58727])
-            ("g_PropertySymbol" variable (:type ("PropertySymbol" type (:type "class") nil nil)) nil [58754 58786])
+                nil [58668 58711])
+            ("PROPS" variable (:constant-flag t) nil [58734 58739])
+            ("g_PropertySymbol" variable (:type ("PropertySymbol" type (:type "class") nil nil)) nil [58766 58798])
             ("GetSymbolCode" function
                (:arguments 
                   ( ("symbol" variable
                        (:constant-flag t
                         :default-value "NULL"
                         :type ("string" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [58874 58900]))                  
+                        (reparse-symbol arg-sub-list) [58886 58912]))                  
                 :type ("EPropertySymbol" type (:type "class") nil nil))
-                nil [58844 59245])
-            ("InitSymbolProperty" function (:type "bool") nil [59247 66803]))          
+                nil [58856 59257])
+            ("InitSymbolProperty" function (:type "bool") nil [59259 66896]))          
       :file "FastBot.mq4"
-      :pointmax 66833
-      :fsize 68860
-      :lastmodtime '(22447 40380 626442 433000)
+      :pointmax 66926
+      :fsize 68953
+      :lastmodtime '(22447 44130 100214 629000)
       :unmatched-syntax nil
       :lexical-table 
         '(("FONT_WING_ARROW_DOWN" . ((string "\"\\x0432\"" 33455 . 33463)))
@@ -1110,7 +1114,7 @@
           ("FONT_WING_ARROW_HOLLOW_DOWNLEFT" . ((string "\"\\x0447\"" 35274 . 35282)))
           ("FONT_WING_ARROW_HOLLOW_DOWNRIGHT" . ((string "\"\\x0448\"" 35340 . 35348)))
           ("FONT_WING_ARROW_ROUTE_DOWNLEFT" . ((string "\"\\x0413\"" 35565 . 35573)))
-          ("USE_TRAILING_STOP" . ((symbol "true" 613 . 617)))
+          ("USE_TRAILING_STOP" . ((symbol "true" 625 . 629)))
           ("FONT_WING_ARROW_RIGHT" . ((string "\"\\x0430\"" 33561 . 33569)))
           ("FONT_WING_ARROW_ANGLE_LEFT" . ((string "\"\\x0427\"" 34509 . 34517)))
           ("FONT_WING_ARROW_CIRCLE_LEFT" . ((string "\"\\x042B\"" 34763 . 34771)))
@@ -1170,12 +1174,7 @@
       :file "TrailingStop.mqh"
       :fsize 10556
       :lastmodtime '(22334 8787 223249 532000))
-    (semanticdb-table "FastBot.mq5"
-      :major-mode 'c++-mode
-      :tags nil
-      :file "FastBot.mq5"
-      :pointmax 1
-      :unmatched-syntax nil))
+)
   :file "!home!diabolo!src!FX!FastBot!MQL4!Experts!semantic.cache"
   :semantic-tag-version "2.0"
   :semanticdb-version "2.2")

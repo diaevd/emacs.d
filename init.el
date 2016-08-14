@@ -539,105 +539,229 @@
 ;; Mail
 ;;
 ;;------------------------------------------------------------------------
-(require 'mu4e)
-
-;; default
-;; (setq mu4e-maildir "~/Maildir")
-
-(setq mu4e-drafts-folder "/[Gmail].Drafts")
-(setq mu4e-sent-folder   "/[Gmail].Sent Mail")
-(setq mu4e-trash-folder  "/[Gmail].Trash")
-
-;; don't save message to Sent Messages, Gmail/IMAP takes care of this
-(setq mu4e-sent-messages-behavior 'delete)
-
-;; (See the documentation for `mu4e-sent-messages-behavior' if you have
-;; additional non-Gmail addresses and want assign them different
-;; behavior.)
-
-;; setup some handy shortcuts
-;; you can quickly switch to your Inbox -- press ``ji''
-;; then, when you want archive some messages, move them to
-;; the 'All Mail' folder by pressing ``ma''.
-
-(setq mu4e-maildir-shortcuts
-      '( ("/INBOX"               . ?i)
-	 ("/[Gmail].Sent Mail"   . ?s)
-	 ("/[Gmail].Trash"       . ?t)
-	 ("/[Gmail].All Mail"    . ?a)))
-
-;; allow for updating mail using 'U' in the main view:
-(setq mu4e-get-mail-command "offlineimap"
-      mu4e-update-interval 900)             ;; update every 15 minutes.
-
-
-;; mu4e-action-view-in-browser is built into mu4e
-;; by adding it to these lists of custom actions
-;; it can be invoked by first pressing a, then selecting
-;;(add-to-list ‘mu4e-headers-actions ‘("in browser" . mu4e-action-view-in-browser) t)
-;;(add-to-list ‘mu4e-view-actions ‘("in browser" . mu4e-action-view-in-browser) t)
-
-;; don’t keep message buffers around
-(setq message-kill-buffer-on-exit t)
-;; attachments go here
-(setq mu4e-attachment-dir "~/Downloads")
-
-
 ;; something about ourselves
-(setq
- user-mail-address "diaevd@gmail.com"
- user-full-name  "Evgeny Duzhakov"
- mu4e-compose-signature
- (concat
-  "WBR,\n"
-  "Evgeny Duzhakov aka diabolo"
-  "Skype: diaevd\n"
-  "ICQ: 5176006\n"))
+(setq user-mail-address "diaevd@gmail.com")
+(setq user-full-name  "Evgeny Duzhakov")
 
-(setq message-kill-buffer-on-exit t)
-;; Use fancy chars
-(setq mu4e-use-fancy-chars t)
+(autoload 'wl "wl" "Wanderlust" t)
+(autoload 'wl-other-frame "wl" "Wanderlust on new frame." t)
+(autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
 
-;; Try to display images in mu4e
-(setq
- mu4e-view-show-images t
- mu4e-view-image-max-width 800)
+(setq elmo-imap4-use-modified-utf7 t) ;; Чтобы понимал русские названия
+(setq mime-edit-split-message nil)
 
-;; when you want to use some external command for html->text
-;; conversion, e.g. the ‘html2text’ program
-;; (cpbotha: html2text sees to work better than the built-in one)
-(setq mu4e-html2text-command "html2text -utf8")
+;; (setq wl-from "Evgeny Duzhakov ")
+;; (setq elmo-imap4-default-user "diaevd"
+;;       elmo-imap4-default-server "imap.gmail.com"
+;;       elmo-imap4-default-port 993
+;;       elmo-imap4-default-authenticate-type 'clear
+;;       elmo-imap4-default-stream-type 'ssl
+;;       elmo-imap4-use-modified-utf7 t
+;;       ;;
+;;       wl-message-id-domain "diaevd@gmail.com"
+;;       wl-from "Evgeny Duzhakov "
+;;       wl-smtp-posting-server "smtp.gmail.com"
+;;       wl-smtp-connection-type 'starttls
+;;       wl-smtp-posting-port 587
+;;       wl-smtp-authenticate-type "plain"
+;;       wl-smtp-posting-user "diaevd"
+;;       wl-local-domain "gmail.com"
+;;       ;;
+;;       elmo-pop3-debug t
+;;       ssl-certificate-verification-policy 1
+;;       wl-default-folder "%inbox"
+;;       wl-default-spec "%"
+;;       wl-folder-check-async t
+;;       wl-thread-indent-level 4
+;;       wl-thread-have-younger-brother-str "+"
+;;       wl-thread-youngest-child-str       "+"
+;;       wl-thread-vertical-str             "|"
+;;       wl-thread-horizontal-str           "-"
+;;       wl-thread-space-str                " "
+;;       wl-summary-widthnil
+;;       ;; l-summary-line-format "%n%T%P %W %D-%M-%Y %h:%m %t%[%c %f% %] %s"
+;;       ;; wl-message-buffer-prefetch-folder-type-list nil
+;;       ;; mime-transfer-level 8
+;;       mime-edit-split-message nil
+;;       ;; mime-edit-message-max-length 32768
+;;       ;; mime-header-accept-quoted-encoded-words t
+;;       ;; mime-browse-url-function 'browse-url-conkeror
+;;       ;; pgg-passphrase-cache-expiry 300
+;;       ;; pgg-decrypt-automatically t
+;;       ;; wl-message-ignored-field-list '("^.*")
+;;       ;; wl-message-visible-field-list '("^From:" "^To:" "^Cc:"
+;;       ;; 				      "^Date:" "^Subject:" "^User-Agent:" "^X-Mailer:")
+;;       ;; wl-message-sort-field-list    wl-message-visible-field-list
+;;       ;; wl-message-window-size '(1 . 3)
+;;       ;; wl-folder-window-width 40
+;;       ;; wl-draft-preview-attributes-buffer-lines 7
+;;       wl-draft-config-alist
+;;       '(
+;; 	;; ((string-match "avenger" wl-draft-parent-folder)
+;; 	;;  (wl-message-id-domain . "avenger@yandex.ru")
+;; 	;;  (wl-from . "rigidus ")
+;; 	;;  ("From" . "avenger@yandex.ru")
+;; 	;;  ;; ("Fcc" . "%Sent:avenger@yandex.ru:993")
+;; 	;;  (wl-smtp-posting-server . "smtp.yandex.ru")
+;; 	;;  ;; (wl-smtp-connection-type . nil)
+;; 	;;  (wl-smtp-connection-type . 'starttls)
+;; 	;;  ;; (wl-smtp-connection-type . 'ssl)
+;; 	;;  ;; (wl-smtp-posting-port . 25)
+;; 	;;  ;; (wl-smtp-posting-port . 465)
+;; 	;;  (wl-smtp-posting-port . 587)
+;; 	;;  (wl-smtp-authenticate-type . "plain")
+;; 	;;  (wl-smtp-posting-user . "avenger")
+;; 	;;  (wl-local-domain . "yandex.ru")
+;; 	;;  )
+;; 	((string-match "diaevd" wl-draft-parent-folder)
+;; 	 (wl-message-id-domain . "diaevd@gmail.com")
+;; 	 (wl-from . "Evgeny Duzhakov ")
+;; 	 ("From" . "diaved@gmail.com")
+;; 	 ;; ("Fcc" . "%Sent:rigidus@imap.gmail.com:993")
+;; 	 (wl-smtp-posting-server . "smtp.gmail.com")
+;; 	 (wl-smtp-connection-type . 'starttls)
+;; 	 (wl-smtp-posting-port . 587)
+;; 	 (wl-smtp-authenticate-type . "plain")
+;; 	 (wl-smtp-posting-user . "diaevd")
+;; 	 (wl-local-domain . "gmail.com")
+;; 	 )
+;; 	)
+;;       )
 
-;; Silly mu4e only shows names in From: by default. Of course we also
-;; want the addresses.
-(setq mu4e-view-show-addresses t)
+(autoload 'wl-user-agent-compose "wl-draft" nil t)
+(if (boundp 'mail-user-agent)
+    (setq mail-user-agent 'wl-user-agent))
+(if (fboundp 'define-mail-user-agent)
+    (define-mail-user-agent
+      'wl-user-agent
+      'wl-user-agent-compose
+      'wl-draft-send
+      'wl-draft-kill
+      'mail-send-hook))
 
-;; Re-index every 15 minutes.
-(setq mu4e-update-interval (* 15 60))
+;; эта часть настроек для доступа к Gmail по IMAP
+(setq elmo-imap4-default-server "imap.gmail.com"
+      elmo-imap4-default-user "diaevd@gmail.com"
+      elmo-imap4-default-authenticate-type 'clear
+      elmo-imap4-default-port '993
+      elmo-imap4-default-stream-type 'ssl
+      elmo-imap4-use-modified-utf7 t)
 
-;; sending mail -- replace USERNAME with your gmail username
-;; also, make sure the gnutls command line utils are installed
-;; package 'gnutls-bin' in Debian/Ubuntu
+;; тут настройки отвечающие за SMTP
+(setq wl-smtp-connection-type 'starttls
+      wl-smtp-posting-port 587
+      wl-smtp-authenticate-type "plain"
+      wl-smtp-posting-user "diaevd@gmail.com_на_конце"
+      wl-smtp-posting-server "smtp.gmail.com"
+      wl-local-domain "gmail.com"
+      wl-message-id-domain "smtp.gmail.com")
 
-(require 'smtpmail)
-(setq message-send-mail-function 'smtpmail-send-it
-      starttls-use-gnutls t
-      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
-      smtpmail-auth-credentials
-      '(("smtp.gmail.com" 587 "diaevd@gmail.com" nil))
-      smtpmail-default-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-service 587)
+(setq wl-from "Evgeny Duzhakov <diaevd@gmail.com>"
+      ;; настройки папок IMAP
+      ;; если у вас в настройках gmail стоит русский язык то копируйте все как есть
+      ;; gmail создает имена папок в зависимости от локали
+;;       wl-default-folder "%inbox"
+;;       wl-draft-folder   "%[Gmail]/Черновики"
+;;       wl-trash-folder   "%[Gmail]/Корзина"
+;;       wl-fcc            "%[Gmail]/Отправленные"
+      wl-fcc-force-as-read    t
+      wl-default-spec "%")
 
-;; alternatively, for emacs-24 you can use:
-;;(setq message-send-mail-function 'smtpmail-send-it
-;;     smtpmail-stream-type 'starttls
-;;     smtpmail-default-smtp-server "smtp.gmail.com"
-;;     smtpmail-smtp-server "smtp.gmail.com"
-;;     smtpmail-smtp-service 587)
+;; список правил для удаления писем - тут вы указываете какую папку использовать для
+;; удаления сообщений в каждом ящике. Правила срабатывают по регулярному выражению,
+;; применяемому к имени папки, в которой вы сейчас находитесь. Например папка для входящих
+;; сообщений %INBOX:some_test/clear@imap.gmail.com:993! подпадает под регулярное выражение
+;; "^%.*some_test", и сообщения удаленные из нее будут перемещаться в папку
+;; [Gmail]/Корзина:some_test/clear@imap.gmail.com:993!
+;; (setq wl-dispose-folder-alist
+;;       '(
+;; 	("^%.*diaevd" . "%[Gmail]/Корзина:diaevd/clear@imap.gmail.com:993!")
+;; 	;;("^%.*rambler_test" . "%Trash:rambler_test/clear@imap.rambler.ru:993!")
+;; 	))
 
-;; don't keep message buffers around
-(setq message-kill-buffer-on-exit t)
+;; список почтовых адресов, с которых вы планируете отправлять письма
+;;(setq wl-user-mail-address-list (quote ("some_test@gmail.com" "rambler_test@rambler.ru" "mail_ru_test@mail.ru")))
+;; (setq wl-user-mail-address-list (quote ("diaevd@gmail.com")))
+;; чтобы не выдавало ошибку при старте из-за того, что smtp сервер по умолчанию не определен сразу
+;; (setq wl-insert-message-id nil)
+
+;; чтобы при создании нового сообщения отправитель подставлялся в
+;; зависимости от того в какой папке вы сейчас находитесь
+;; (add-hook 'wl-mail-setup-hook 'wl-draft-config-exec)
+;; (remove-hook 'wl-draft-send-hook 'wl-draft-config-exec)
+
+;; указываем что выбор SMTP сервера для отправки должен осуществляться в зависимости от правил
+;; (setq wl-draft-config-matchone t)
+
+;; и вот эти правила и настройки применяющиеся в случае срабатывания одного из них
+;; (setq wl-draft-config-alist
+;;       '(
+;; 	;; some_test@gmail.com
+;; 	(
+;; 	 (string-match "diaevd" wl-draft-parent-folder)
+;; 	 (wl-message-id-domain . "diaevd@gmail.com")
+;; 	 (wl-from "Evgeny Duzhakov <diaevd@gmail.com>")
+;; 	 (wl-smtp-posting-server . "smtp.gmail.com")
+;; 	 (wl-smtp-connection-type . 'starttls)
+;; 	 (wl-smtp-posting-port . 587)
+;; 	 (wl-smtp-authenticate-type . "plain")
+;; 	 (wl-smtp-posting-user . "diaevd")
+;; 	 (wl-local-domain . "smtp.gmail.com")
+;; 	 )
+;; 	;; rambler_test@rambler.ru
+;; 	;; (
+;; 	;;  (string-match "rambler_test" wl-draft-parent-folder)
+;; 	;;  (wl-message-id-domain . "rambler_test@rambler.ru")
+;; 	;;  (wl-from . "rambler_test ")
+;; 	;;  ("From" . "rambler_test@rambler.ru")
+;; 	;;  (wl-smtp-posting-server . "smtp.rambler.ru")
+;; 	;;  (wl-smtp-connection-type . 'starttls)
+;; 	;;  (wl-smtp-posting-port . 587)
+;; 	;;  (wl-smtp-authenticate-type . "plain")
+;; 	;;  (wl-smtp-posting-user . "rambler_test")
+;; 	;;  (wl-local-domain . "smtp.rambler.ru")
+;; 	;;  )
+;; 	;; mail_ru@mail.ru
+;; 	;; (
+;; 	;;  (string-match "mail_ru" wl-draft-parent-folder)
+;; 	;;  (wl-message-id-domain . "mail_ru@mail.ru")
+;; 	;;  (wl-from . "mail_ru ")
+;; 	;;  ("From" . "mail_ru@mail.ru")
+;; 	;;  (wl-smtp-posting-server . "smtp.mail.ru")
+;; 	;;  (wl-smtp-connection-type . 'starttls)
+;; 	;;  (wl-smtp-posting-port . 587)
+;; 	;;  (wl-smtp-authenticate-type . "plain")
+;; 	;;  (wl-smtp-posting-user . "mail_ru")
+;; 	;;  (wl-local-domain . "smtp.mail.ru")
+;; 	;; )
+;; 	))
+
+
+ (setq
+  ;; чтобы интерфейсы был как у Thunderbird - слева панель папок,
+   ;; справа список писем и прсомотр текущего сообшения
+    wl-stay-folder-window t
+    wl-folder-window-width 40
+
+     ;; чтобы при просмотре сообщения не видеть слишком много ненужных полей
+    wl-message-ignored-field-list '("^.*:")
+    wl-message-visible-field-list
+    '("^\\(To\\|Cc\\):"
+      "^Subject:"
+      "^\\(From\\|Reply-To\\):"
+      "^Organization:"
+      "^Message-Id:"
+      "^\\(Posted\\|Date\\):"
+      )
+    wl-message-sort-field-list
+    '("^From"
+      "^Organization:"
+      "^X-Attribution:"
+      "^Subject"
+      "^Date"
+      "^To"
+      "^Cc"))
+
 ;;------------------------------------------------------------------------
 ;;
 ;; Goto functions
