@@ -62,9 +62,12 @@
 ;; http://melpa.org/#/clang-format
 ;;------------------------------------------------------------------------
 (require 'clang-format)
-(global-set-key [f12] 'clang-format-buffer)
-(global-set-key [S-f12] 'clang-format-region)
-
+;; (global-set-key [f12] 'clang-format-buffer)
+;; (global-set-key [S-f12] 'clang-format-region)
+(add-hook 'c-mode-hook (lambda () (interactive) (local-set-key [f12] 'clang-format-buffer)))
+(add-hook 'c-mode-hook (lambda () (interactive) (local-set-key [S-f12] 'clang-format-region)))
+(add-hook 'c++-mode-hook (lambda () (interactive) (local-set-key [f12] 'clang-format-buffer)))
+(add-hook 'c++-mode-hook (lambda () (interactive) (local-set-key [S-f12] 'clang-format-region)))
 
 ;;------------------------------------------------------------------------
 ;; Make sure "Anything" is available
@@ -259,20 +262,20 @@
 ;; perldb-many-windows
 ;; perldb-restore-windows
 ;;
-;; 
+;;
 (autoload 'perldb-ui "perldb-ui" "perl debugger" t)
 
 ;; (eval-after-load 'cperl-mode
 ;; '(progn
-;; 
+;;
 ;;    ;;-- @LanX - not related to your question, but perhaps useful?
 ;;    ;;     (define-key cperl-mode-map (kbd "RET")   'reindent-then-newline-and-indent)
 ;;    ;;     (define-key cperl-mode-map (kbd "C-M-h") 'backward-kill-word)
 ;;    ;;     (define-key 'help-command "P" 'cperl-perldoc-at-point)
-;; 
-;; 
+;;
+;;
 ;;    ;; experiment: ;; (setq cperl-dark-background "gray14")
-;; 
+;;
 ;;    (set-face-attribute 'cperl-array-face nil
 ;;                        :foreground  "#ffff88"              ;; "yellow3"  "#ffff88"
 ;;                        :background  'unspecified
@@ -286,6 +289,64 @@
 ;;                        :slant       'normal
 ;;                        )
 ;;    ))
+
+;; (require 'perltidy)
+(autoload 'perltidy "perltidy-mode" nil t)
+(autoload 'perltidy-mode "perltidy-mode" nil t)
+
+;; Makes perltidy-mode automatic for cperl-mode
+(eval-after-load "cperl-mode"
+  '(add-hook 'cperl-mode-hook 'perltidy-mode))
+
+(defmacro mark-active ()
+  "Xemax/emacs compatibility macro"
+  (if (boundp 'mark-active)
+      'mark-active
+    '(mark)))
+
+(defun perltidy ()
+  "Run perltidy on the current region or buffer."
+  (interactive)
+  ;; Inexplicably, save-excursion doesn'r work here.
+  (let ((orig-point (point)))
+    (unless (mark-active) (mark-defun))
+    (shell-command-on-region (point) (mark) "perltidy -q" nil t)
+    (goto-char orig-point)))
+
+(global-set-key "\C-ct" 'perltidy)
+
+;; (defvar perltidy-mode nil
+;;   "Automaticaly 'perltidy' when saving.")
+
+;; (make-variable-buffer-local 'perltidy-mode)
+;; (defun perltidy-write-hook ()
+;;   "Perltidys a buffer during 'write-file-hooks' for 'perltidy-mode'"
+;;   (if perltidy-mode
+;;       (save-excursion
+;; 	(widen)
+;; 	(mark-whole-buffer)
+;; 	(not (perltidy)))
+;;     nil))
+
+;; (defun perltidy-mode (&optional arg)
+;;   "Perltidy minor mode."
+;;   (interactive "P")
+;;   (setq perltidy-mode
+;; 	(if (null arg)
+;; 	    (not perltidy-mode)
+;; 	  (> (prefix-numeric-value arg) 0)))
+;;   (make-local-hook 'write-file-hooks)
+;;   (if perltidy-mode
+;;       (add-hook 'write-file-hooks 'perltidy-write-hook)
+;;     (remove-hook 'write-file-hooks 'perltidy-write-hook)))
+
+;; (if (not (assq 'perltidy-mode minor-mode-alist))
+;;     (setq minor-mode-alist
+;; 	  (cons '(perltidy " Perltidy")
+;; 		minor-mode-alist)))
+
+;; (eval-after-load "cperl-mode"
+;;   '(add-hook 'cperl-mode-hook 'perltidy-mode))
 
 ;;------------------------------------------------------------------------
 ;;
@@ -452,6 +513,7 @@
 ;; Enable helm-gtags-mode
 (add-hook 'c-mode-hook 'helm-gtags-mode)
 (add-hook 'c++-mode-hook 'helm-gtags-mode)
+;; (add-hook 'mql-mode-hook 'helm-gtags-mode)
 (add-hook 'asm-mode-hook 'helm-gtags-mode)
 
 ;; customize
@@ -549,6 +611,7 @@
 
 (setq elmo-imap4-use-modified-utf7 t) ;; Чтобы понимал русские названия
 (setq mime-edit-split-message nil)
+(setq wl-folder-check-async t)
 
 ;; (setq wl-from "Evgeny Duzhakov ")
 ;; (setq elmo-imap4-default-user "diaevd"
@@ -816,17 +879,28 @@ because all compilers consider the number of COLUMN from 1 (just for copy-past)"
  '(org-agenda-files (list "~/Documents/org/work.org"
 			  "~/Documents/org/home.org"
 			  "~/Documents/org/links.org"
+			  "~/Documents/org/daily.org"
 			  ))
  '(org-default-notes-file "~/Documents/org/notes")
  '(org-directory "~/Documents/org/org")
  '(org-return-follows-link t)
+ '(org-log-done t)
+ ;; '(org-startup-indented t)
+ '(org-indent-mode t)
+ ;; '(org-indent-indentation-per-level t)
+ ;; '(org-hide-leading-stars t)
+ '(org-adapt-indentation nil)
+ '(org-startup-folded nil)
 )
 
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
+
+;; (setq org-startup-indented t)
+;; (setq org-indent-mode t)
+;; (setq org-hide-leading-stars t)
 
 (defun my-org ()
   "Create org-mode windows open files"
@@ -849,7 +923,7 @@ because all compilers consider the number of COLUMN from 1 (just for copy-past)"
   (split-window-vertically)
   (split-window-horizontally)
   (other-window 1)
-  (find-file "~/")
+  (find-file "~/Documents/org/")
   (other-window 1)
   (find-file "~/")
   (other-window 1)
@@ -857,7 +931,7 @@ because all compilers consider the number of COLUMN from 1 (just for copy-past)"
   (dedicated-mode)
   (end-of-buffer)                       ; Go to the end of buffer
   (outline-previous-visible-heading 1)  ; Find the last heading
-  (org-cycle)                           ; Make subtree visible								  )
+  (org-cycle)                           ; Make subtree visible
   )
 
 (global-set-key (kbd "<f2> o") 'my-org)
