@@ -290,7 +290,7 @@
 ;;                        )
 ;;    ))
 
-;; (require 'perltidy)
+(require 'perltidy)
 (autoload 'perltidy "perltidy-mode" nil t)
 (autoload 'perltidy-mode "perltidy-mode" nil t)
 
@@ -313,7 +313,11 @@
     (shell-command-on-region (point) (mark) "perltidy -q" nil t)
     (goto-char orig-point)))
 
-(global-set-key "\C-ct" 'perltidy)
+;; (global-set-key "\C-ct" 'perltidy)
+(eval-after-load "cperl-mode"
+  '(add-hook 'cperl-mode-hook (lambda () (interactive) (local-set-key "\C-ct" 'perltidy))))
+(eval-after-load "cperl-mode"
+  '(add-hook 'cperl-mode-hook (lambda () (interactive) (local-set-key [f12] 'perltidy))))
 
 ;; (defvar perltidy-mode nil
 ;;   "Automaticaly 'perltidy' when saving.")
@@ -364,6 +368,13 @@
 ;;------------------------------------------------------------------------
 ;; activate whitespace-mode to view all whitespace characters
 (global-set-key (kbd "C-c w") 'whitespace-mode)
+;; delete trailing white space
+(add-hook 'c-mode-hook (lambda () (interactive) (local-set-key (kbd "C-x w") 'delete-trailing-whitespace)))
+(add-hook 'c++-mode-hook (lambda () (interactive) (local-set-key (kbd "C-x w") 'delete-trailing-whitespace)))
+;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; (add-hook 'c-mode-hook
+;; 	  (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+(global-set-key (kbd "C-c C-w") 'delete-trailing-whitespace)
 
 ;; show unncessary whitespace that can mess up your diff
 (add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
@@ -513,7 +524,7 @@
 ;; Enable helm-gtags-mode
 (add-hook 'c-mode-hook 'helm-gtags-mode)
 (add-hook 'c++-mode-hook 'helm-gtags-mode)
-;; (add-hook 'mql-mode-hook 'helm-gtags-mode)
+(add-hook 'mql-mode-hook 'helm-gtags-mode)
 (add-hook 'asm-mode-hook 'helm-gtags-mode)
 
 ;; customize
@@ -528,6 +539,7 @@
 (eval-after-load "helm-gtags"
   '(progn
      (define-key helm-gtags-mode-map (kbd "M-t") 'helm-gtags-find-tag)
+     (define-key helm-gtags-mode-map (kbd "C-c t") 'helm-gtags-dwim)
      (define-key helm-gtags-mode-map (kbd "M-r") 'helm-gtags-find-rtag)
      (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
      (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
@@ -543,6 +555,9 @@
 (set-default 'semantic-case-fold t)
 (semantic-add-system-include "/usr/include" 'c-mode)
 (semantic-add-system-include "/usr/include/boost" 'c++-mode)
+(semantic-add-system-include "~/.wine/drive_c/Program\\ Files\\ \\(x86\\)/MetaTrader\\ 4/MQL4/Include" 'c++-mode)
+(semantic-add-system-include "~/.wine/drive_c/Program\\ Files\\ \\(x86\\)/MetaTrader\\ 4/MQL4/Libraries" 'c-mode)
+(semantic-add-system-include "~/.wine/drive_c/Program\\ Files/Alpari\\ Limited\\ MT5/MQL5/Include" 'c++-mode)
 
 ;;------------------------------------------------------------------------
 (require 'helm)
@@ -800,30 +815,30 @@
 ;; 	))
 
 
- (setq
-  ;; чтобы интерфейсы был как у Thunderbird - слева панель папок,
-   ;; справа список писем и прсомотр текущего сообшения
-    wl-stay-folder-window t
-    wl-folder-window-width 40
-
-     ;; чтобы при просмотре сообщения не видеть слишком много ненужных полей
-    wl-message-ignored-field-list '("^.*:")
-    wl-message-visible-field-list
-    '("^\\(To\\|Cc\\):"
-      "^Subject:"
-      "^\\(From\\|Reply-To\\):"
-      "^Organization:"
-      "^Message-Id:"
-      "^\\(Posted\\|Date\\):"
-      )
-    wl-message-sort-field-list
-    '("^From"
-      "^Organization:"
-      "^X-Attribution:"
-      "^Subject"
-      "^Date"
-      "^To"
-      "^Cc"))
+(setq
+ ;; чтобы интерфейсы был как у Thunderbird - слева панель папок,
+ ;; справа список писем и прсомотр текущего сообшения
+ wl-stay-folder-window t
+ wl-folder-window-width 40
+ 
+ ;; чтобы при просмотре сообщения не видеть слишком много ненужных полей
+ wl-message-ignored-field-list '("^.*:")
+ wl-message-visible-field-list
+ '("^\\(To\\|Cc\\):"
+   "^Subject:"
+   "^\\(From\\|Reply-To\\):"
+   "^Organization:"
+   "^Message-Id:"
+   "^\\(Posted\\|Date\\):"
+   )
+ wl-message-sort-field-list
+ '("^From"
+   "^Organization:"
+   "^X-Attribution:"
+   "^Subject"
+   "^Date"
+   "^To"
+   "^Cc"))
 
 ;;------------------------------------------------------------------------
 ;;
@@ -923,9 +938,9 @@ because all compilers consider the number of COLUMN from 1 (just for copy-past)"
   (split-window-vertically)
   (split-window-horizontally)
   (other-window 1)
-  (find-file "~/Documents/org/")
+  (find-file "~/Documents/org")
   (other-window 1)
-  (find-file "~/")
+  (find-file "~/Documents/org")
   (other-window 1)
   (other-window 1)
   (dedicated-mode)
@@ -1046,3 +1061,5 @@ because all compilers consider the number of COLUMN from 1 (just for copy-past)"
 ;;;; (global-set-key (kbd "<f6>") (lambda() (interactive) (find-file "~/.emacs")))
 (set-register ?e (cons 'file "~/.emacs.d/init.el")) ;; open it with  C-x r j e
 (set-register ?l (cons 'file "~/Documents/org/links.org")) ;; open it with  C-x r j l
+
+;;(add-to-list 'auto-mode-alist '(^\\.\\w+$ . sh-mode))
