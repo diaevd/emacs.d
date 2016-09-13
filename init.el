@@ -1,3 +1,4 @@
+;; .git
 ;;(setq user-mail-address "diaevd@gmail.com")
 (setq-default major-mode 'text-mode)
 (setq column-number-mode t)
@@ -611,12 +612,90 @@
   (kill-emacs))
 (global-set-key (kbd "C-x C-c") 'my-kill-emacs)
 
+
+;;------------------------------------------------------------------------
+;;
+;; Org-Mode
+;;
+;;------------------------------------------------------------------------
+(custom-set-variables
+ '(org-agenda-files (list "~/Documents/org/work.org"
+			  "~/Documents/org/home.org"
+			  "~/Documents/org/links.org"
+			  "~/Documents/org/daily.org"
+			  ))
+ '(org-default-notes-file "~/Documents/org/notes.org")
+ '(org-directory "~/Documents/org")
+ '(org-return-follows-link t)
+ '(org-log-done t)
+ ;; '(org-startup-indented t)
+ '(org-indent-mode t)
+ ;; '(org-indent-indentation-per-level t)
+ ;; '(org-hide-leading-stars t)
+ '(org-adapt-indentation nil)
+ '(org-startup-folded nil)
+)
+
+(require 'org-install)
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+
+;; (setq org-startup-indented t)
+;; (setq org-indent-mode t)
+;; (setq org-hide-leading-stars t)
+
+(defun my-org ()
+  "Create org-mode windows open files"
+  (interactive)
+  (setq default-frame-alist
+	`((width . ,140)
+	  (height . ,45)
+	  (top . ,5)
+	  (left . ,5)
+	  (user-position . t)
+	  ))
+  (delete-other-windows)
+  (split-window-horizontally)
+  (setq eik-links-win-w 60)
+  (shrink-window-horizontally 32)
+  (find-file "~/Documents/org/links.org")
+  (dedicated-mode)
+  (other-window 1)
+  (find-file "~/Documents/org/daily.org")
+  (split-window-vertically)
+  (split-window-horizontally)
+  (other-window 1)
+  (find-file "~/Documents/org")
+  (other-window 1)
+  (find-file "~/Documents/org")
+  (other-window 1)
+  (other-window 1)
+  (dedicated-mode)
+  (end-of-buffer)                       ; Go to the end of buffer
+  (outline-previous-visible-heading 1)  ; Find the last heading
+  (org-cycle)                           ; Make subtree visible
+  )
+
+(global-set-key (kbd "<f2> o") 'my-org)
+
+;; (global-set-key (kbd "C-c m") 'org-table-copy-down)
+;; (global-set-key (kbd "C-c RET") 'org-insert-heading-after-current)
+;(global-set-key (kbd "C-c C-c RET") 'org-insert-heading)
+
+(add-hook 'org-mode-hook (lambda () (interactive) (local-set-key (kbd "C-c m") 'org-table-copy-down)))
+;; (add-hook 'mql-mode-hook (lambda () (interactive) (local-set-key (kbd "C-RET") 'org-insert-heading-after-current)))
+;; (add-hook 'org-mode-hook (lambda () (interactive) (local-set-key (kbd "<C-return>") 'org-insert-heading)))
+;; (add-hook 'org-mode-hook (lambda () (interactive) (local-set-key [(control return)] 'org-insert-heading-after-current)))
+;; (add-hook 'mql-mode-hook (lambda () (interactive) (local-set-key (kbd "C-\j") 'org-insert-heading-after-current)))
+
+
 ;;------------------------------------------------------------------------
 ;;
 ;; Mail
 ;;
 ;;------------------------------------------------------------------------
-;; something about ourselves
+;; Something About Ourselves
 (setq user-mail-address "diaevd@gmail.com")
 (setq user-full-name  "Evgeny Duzhakov")
 
@@ -729,7 +808,7 @@
 (setq wl-smtp-connection-type 'starttls
       wl-smtp-posting-port 587
       wl-smtp-authenticate-type "plain"
-      wl-smtp-posting-user "diaevd@gmail.com_на_конце"
+      wl-smtp-posting-user "diaevd@gmail.com"
       wl-smtp-posting-server "smtp.gmail.com"
       wl-local-domain "gmail.com"
       wl-message-id-domain "smtp.gmail.com")
@@ -738,10 +817,10 @@
       ;; настройки папок IMAP
       ;; если у вас в настройках gmail стоит русский язык то копируйте все как есть
       ;; gmail создает имена папок в зависимости от локали
-;;       wl-default-folder "%inbox"
-;;       wl-draft-folder   "%[Gmail]/Черновики"
-;;       wl-trash-folder   "%[Gmail]/Корзина"
-;;       wl-fcc            "%[Gmail]/Отправленные"
+      ;;       wl-default-folder "%inbox"
+      ;;       wl-draft-folder   "%[Gmail]/Черновики"
+      ;;       wl-trash-folder   "%[Gmail]/Корзина"
+      ;;       wl-fcc            "%[Gmail]/Отправленные"
       wl-fcc-force-as-read    t
       wl-default-spec "%")
 
@@ -820,7 +899,7 @@
  ;; справа список писем и прсомотр текущего сообшения
  wl-stay-folder-window t
  wl-folder-window-width 40
- 
+
  ;; чтобы при просмотре сообщения не видеть слишком много ненужных полей
  wl-message-ignored-field-list '("^.*:")
  wl-message-visible-field-list
@@ -861,9 +940,9 @@
 Just :COLUMN or ,COLUMN moves to the specified column on the current line.
 LINE alone still moves to the beginning of the specified line (like LINE:0 or LINE,0).
 By Default I'm bind it to M-g M-l.
-The default value of the COLUMN is decrement by -1 
+The default value of the COLUMN is decrement by -1
 because all compilers consider the number of COLUMN from 1 (just for copy-past)"
-  (interactive "sLine,Column: ")
+  (interactive "sLine<[,:]>Column: ")
   (let (line delim column max-lines)
     (setq max-lines (count-lines (point-min) (point-max)))
     (save-match-data
@@ -884,73 +963,6 @@ because all compilers consider the number of COLUMN from 1 (just for copy-past)"
 (global-set-key (kbd "M-g M-l") 'go-to-line-and-column-cond)
 (global-unset-key (kbd "M-g M-g"))
 (global-set-key (kbd "M-g M-g") 'go-to-line-and-column-cond)
-
-;;------------------------------------------------------------------------
-;;
-;; Org-Mode
-;;
-;;------------------------------------------------------------------------
-(custom-set-variables
- '(org-agenda-files (list "~/Documents/org/work.org"
-			  "~/Documents/org/home.org"
-			  "~/Documents/org/links.org"
-			  "~/Documents/org/daily.org"
-			  ))
- '(org-default-notes-file "~/Documents/org/notes")
- '(org-directory "~/Documents/org/org")
- '(org-return-follows-link t)
- '(org-log-done t)
- ;; '(org-startup-indented t)
- '(org-indent-mode t)
- ;; '(org-indent-indentation-per-level t)
- ;; '(org-hide-leading-stars t)
- '(org-adapt-indentation nil)
- '(org-startup-folded nil)
-)
-
-(require 'org-install)
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-
-;; (setq org-startup-indented t)
-;; (setq org-indent-mode t)
-;; (setq org-hide-leading-stars t)
-
-(defun my-org ()
-  "Create org-mode windows open files"
-  (interactive)
-  (setq default-frame-alist
-	`((width . ,140)
-	  (height . ,45)
-	  (top . ,5)
-	  (left . ,5)
-	  (user-position . t)
-	  ))
-  (delete-other-windows)
-  (split-window-horizontally)
-  (setq eik-links-win-w 60)
-  (shrink-window-horizontally 32)
-  (find-file "~/Documents/org/links.org")
-  (dedicated-mode)
-  (other-window 1)
-  (find-file "~/Documents/org/daily.org")
-  (split-window-vertically)
-  (split-window-horizontally)
-  (other-window 1)
-  (find-file "~/Documents/org")
-  (other-window 1)
-  (find-file "~/Documents/org")
-  (other-window 1)
-  (other-window 1)
-  (dedicated-mode)
-  (end-of-buffer)                       ; Go to the end of buffer
-  (outline-previous-visible-heading 1)  ; Find the last heading
-  (org-cycle)                           ; Make subtree visible
-  )
-
-(global-set-key (kbd "<f2> o") 'my-org)
-(global-set-key (kbd "C-c m") 'org-table-copy-down)
 
 ;;------------------------------------------------------------------------
 ;;
@@ -1055,6 +1067,30 @@ because all compilers consider the number of COLUMN from 1 (just for copy-past)"
 
 ;;------------------------------------------------------------------------
 ;;
+;; Yaml mode
+;;
+;;------------------------------------------------------------------------
+;; If you wish to have Return key automatically indent cursor on new line, add the following to emacs config:
+(add-hook 'yaml-mode-hook
+	  (lambda ()
+	    (define-key yaml-mode-map (kbd "C-<ret>") 'newline-and-indent)))
+
+;;------------------------------------------------------------------------
+;;
+;; GO mode
+;;
+;;------------------------------------------------------------------------
+;; (require 'go-autocomplete)
+
+;;------------------------------------------------------------------------
+;;
+;; GIT (magit)
+;;
+;;------------------------------------------------------------------------
+;; (autoload 'magit-status "magit" nil t)
+
+;;------------------------------------------------------------------------
+;;
 ;; Registers to open files
 ;;
 ;;------------------------------------------------------------------------
@@ -1062,4 +1098,5 @@ because all compilers consider the number of COLUMN from 1 (just for copy-past)"
 (set-register ?e (cons 'file "~/.emacs.d/init.el")) ;; open it with  C-x r j e
 (set-register ?l (cons 'file "~/Documents/org/links.org")) ;; open it with  C-x r j l
 
-;;(add-to-list 'auto-mode-alist '(^\\.\\w+$ . sh-mode))
+;; (add-to-list 'auto-mode-alist '("\\`\\.[^.]\\w+\\'" . sh-mode))
+(add-to-list 'auto-mode-alist '("[^[:alnum:]|[:space:]]\\.[^.]\\w+\\'" . sh-mode))
