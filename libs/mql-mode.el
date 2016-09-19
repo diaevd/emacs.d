@@ -175,7 +175,7 @@
     "WindowPriceMin"  "WindowPriceOnDropped"  "WindowRedraw"  "WindowScreenShot"
     "WindowTimeOnDropped"  "WindowsTotal"  "WindowXOnDropped"  "WindowYOnDropped"
     "Year" "Ask" "Bars" "Bid" "Close" "Digits" "High" "Low" "Open" "Point" "Time"
-    "Volume"))
+    "Volume" "FileIsExist" "ResetLastError" "FolderCreate"))
 
 (defvar ac-source-mql
   '((candidates . mql-source-canidates)))

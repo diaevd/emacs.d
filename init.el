@@ -53,8 +53,10 @@
 ;; BASH
 ;;
 ;;------------------------------------------------------------------------
-;; (require 'bash-completion)
-;; (bash-completion-setup)
+(require 'bash-completion)
+(bash-completion-setup)
+(add-to-list 'auto-mode-alist '("[^_[:alnum:]|[:space:]]\\.[^.]\\w+\\'" . sh-mode))
+(global-set-key [f6] 'shell)
 
 ;;------------------------------------------------------------------------
 ;;
@@ -237,6 +239,9 @@
     (define-key map "\C-c" 'hs-hide-block)
     (define-key map "\C-e" 'hs-show-block)
     map))
+;; (global-set-key (kbd "C-c q") 'hs-toggle-hiding)
+;; (global-set-key (kbd "C-c c") 'hs-hide-block)
+;; (global-set-key (kbd "C-c e") 'hs-show-block)
 
 ;;;; Finding Documents
 ;; Commands
@@ -372,6 +377,7 @@
 ;; delete trailing white space
 (add-hook 'c-mode-hook (lambda () (interactive) (local-set-key (kbd "C-x w") 'delete-trailing-whitespace)))
 (add-hook 'c++-mode-hook (lambda () (interactive) (local-set-key (kbd "C-x w") 'delete-trailing-whitespace)))
+(add-hook 'mql-mode-hook (lambda () (interactive) (local-set-key (kbd "C-x w") 'delete-trailing-whitespace)))
 ;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
 ;; (add-hook 'c-mode-hook
 ;; 	  (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
@@ -541,6 +547,7 @@
   '(progn
      (define-key helm-gtags-mode-map (kbd "M-t") 'helm-gtags-find-tag)
      (define-key helm-gtags-mode-map (kbd "C-c t") 'helm-gtags-dwim)
+     (define-key helm-gtags-mode-map (kbd "C-c f") 'helm-gtags-select)
      (define-key helm-gtags-mode-map (kbd "M-r") 'helm-gtags-find-rtag)
      (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
      (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
@@ -549,16 +556,121 @@
      (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)))
 
 ;;------------------------------------------------------------------------
-
+;; Function args
 (add-to-list 'load-path "~/.emacs.d/libs/function-args")
 (require 'function-args)
 (fa-config-default)
+
+;; Semantic (CEDET)
 (set-default 'semantic-case-fold t)
+;; ключает глобальную поддержку Semanticdb
+(global-semanticdb-minor-mode t)
+;; включает режим автоматического запоминания информации о редактируемых тагах,
+;; так что вы можете перейти к ним позднее с помощью команды semantic-mrub-switch-tags
+(global-semantic-mru-bookmark-mode t)
+;; активирует подстветку первой строки текущего тага
+(global-semantic-highlight-func-mode t)
+;; активирует показ названия текущего тага в верхней строке буфера
+(global-semantic-stickyfunc-mode t)
+;; активирует использование стилей при показе тагов разных типов.
+;; Набор стилей определяется списком semantic-decoration-styles;
+;; (global-semantic-decoration-mode t)
+;; активирует автоматический анализ кода в буферах когда Emacs "свободен"
+;; и ожидает ввода данных от пользователя (idle time)
+(global-semantic-idle-scheduler-mode t)
+;; включает подсветку вхождений локальных переменных
+;; чье имя совпадает с именем текущего тага;
+(global-semantic-idle-local-symbol-highlight-mode t)
+;; активирует показ возможных дополнений имен во время ожидания ввода.
+;; Требует чтобы был включен global-semantic-idle-scheduler-mode
+(global-semantic-idle-completions-mode t)
+;; активирует показ информации о текущем таге во время ожидания ввода
+;; Требует чтобы был включен global-semantic-idle-scheduler-mode
+(global-semantic-idle-summary-mode t)
+;; ;; включает показ элементов, которые не обработались текущими правилами парсера
+;; (global-semantic-show-unmatched-syntax-mode t)
+;; ;; включает показ в строке статуса состояния парсера;
+;; (global-semantic-show-parser-state-mode t)
+;; ;; включает показ изменений сделанных в буфере, но которые еще не были
+;; ;; обработаны инкрементальным парсером.
+;; (global-semantic-highlight-edits-mode t)
+
+;; ;; select which submodes we want to activate
+(add-to-list 'semantic-default-submodes 'global-semantic-mru-bookmark-mode)
+(add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode)
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
+(add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+;; (add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode)
+(add-to-list 'semantic-default-submodes 'global-semantic-highlight-func-mode)
+(add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode)
+
+;; Activate semanticLibraries
+(semantic-mode 1)
+
+(require 'eassist)
+
+;; возможности по дополнению имен и показу информации о функциях и классах
+(require 'semantic/ia)
+(defun my-semantic-hook ()
+  (imenu-add-to-menubar "TAGS"))
+(add-hook 'semantic-init-hooks 'my-semantic-hook)
+
+;; customisation of modes
+(defun alexott/cedet-hook ()
+  ;; (local-set-key [(control return)] 'semantic-ia-complete-symbol-menu)
+  ;; (local-set-key (kbd "M-RET") 'semantic-ia-complete-symbol-menu)
+  (local-set-key (kbd "M-RET") 'semantic-ia-complete-symbol)
+  (local-set-key "\C-c?" 'semantic-ia-complete-symbol)
+  ;;
+  (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
+  (local-set-key "\C-c=" 'semantic-decoration-include-visit)
+  ;;
+  (local-set-key "\C-cj" 'semantic-ia-fast-jump)
+  (local-set-key "\C-cq" 'semantic-ia-show-doc)
+  (local-set-key "\C-cs" 'semantic-ia-show-summary)
+  (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)
+  ;; Впихиваем таги в auto-complete
+  (add-to-list 'ac-sources 'ac-source-gtags)
+  (add-to-list 'ac-sources 'ac-source-semantic)
+  )
+
+(add-hook 'c-mode-common-hook 'alexott/cedet-hook)
+(add-hook 'lisp-mode-hook 'alexott/cedet-hook)
+(add-hook 'scheme-mode-hook 'alexott/cedet-hook)
+(add-hook 'emacs-lisp-mode-hook 'alexott/cedet-hook)
+(add-hook 'erlang-mode-hook 'alexott/cedet-hook)
+
+(defun alexott/c-mode-cedet-hook ()
+  (local-set-key "\C-ct" 'eassist-switch-h-cpp)
+  (local-set-key "\C-xt" 'eassist-switch-h-cpp)
+  (local-set-key "\C-ce" 'eassist-list-methods)
+  (local-set-key "\C-c\C-r" 'semantic-symref)
+  )
+(add-hook 'c-mode-common-hook 'alexott/c-mode-cedet-hook)
+
+(semanticdb-enable-gnu-global-databases 'c-mode t)
+(semanticdb-enable-gnu-global-databases 'c++-mode t)
+
 (semantic-add-system-include "/usr/include" 'c-mode)
 (semantic-add-system-include "/usr/include/boost" 'c++-mode)
 (semantic-add-system-include "~/.wine/drive_c/Program\\ Files\\ \\(x86\\)/MetaTrader\\ 4/MQL4/Include" 'c++-mode)
-(semantic-add-system-include "~/.wine/drive_c/Program\\ Files\\ \\(x86\\)/MetaTrader\\ 4/MQL4/Libraries" 'c-mode)
+(semantic-add-system-include "~/.wine/drive_c/Program\\ Files\\ \\(x86\\)/MetaTrader\\ 4/MQL4/Libraries" 'c++-mode)
 (semantic-add-system-include "~/.wine/drive_c/Program\\ Files/Alpari\\ Limited\\ MT5/MQL5/Include" 'c++-mode)
+(semantic-add-system-include "~/.wine/drive_c/Program Files (x86)/MetaTrader 4/MQL4/Include" 'c++-mode)
+(semantic-add-system-include "~/.wine/drive_c/Program Files (x86)/MetaTrader 4/MQL4/Libraries" 'c++-mode)
+(semantic-add-system-include "~/.wine/drive_c/Program Files/Alpari Limited MT5/MQL5/Include" 'c++-mode)
+(semantic-add-system-include "~/src/FX/mt4-Include" 'c++-mode)
+(semantic-add-system-include "~/src/FX/mt4-Include" 'c++-mode)
+
+;; если вы хотите включить поддержку gnu global
+;; (when (cedet-gnu-global-version-check t)
+;;   (semanticdb-enable-gnu-global-databases 'c-mode)
+;;   (semanticdb-enable-gnu-global-databases 'c++-mode))
+
+;; включить поддержку ctags для основных языков:
+;;  Unix Shell, Perl, Pascal, Tcl, Fortran, Asm
+;; (when (cedet-ectag-version-check t)
+;;   (semantic-load-enable-primary-exuberent-ctags-support))
 
 ;;------------------------------------------------------------------------
 (require 'helm)
@@ -1062,8 +1174,21 @@ because all compilers consider the number of COLUMN from 1 (just for copy-past)"
 			'(("input" . 'font-lock-keyword-face)))
 (font-lock-add-keywords 'mql-mode
 			'(("sinput" . 'font-lock-keyword-face)))
+(font-lock-add-keywords 'mql-mode
+			'(("SEEK_SET" . 'font-lock-builtin-face)))
+(font-lock-add-keywords 'mql-mode
+			'(("SEEK_CUR" . 'font-lock-builtin-face)))
+(font-lock-add-keywords 'mql-mode
+			'(("SEEK_END" . 'font-lock-builtin-face)))
+(font-lock-add-keywords 'mql-mode
+			'(("FileIsExist" . 'font-lock-function-name-face)))
+(font-lock-add-keywords 'mql-mode
+			'(("FolderCreate" . 'font-lock-function-name-face)))
+(font-lock-add-keywords 'mql-mode
+			'(("ResetLastError" . 'font-lock-function-name-face)))
 
 (add-hook 'mql-mode-hook (lambda () (interactive) (local-set-key (kbd "C-c C-b") 'mql-compile-dispatcher)))
+;; (add-hook 'mql-mode-hook 'turn-on-orgtbl)
 
 ;;------------------------------------------------------------------------
 ;;
@@ -1087,7 +1212,62 @@ because all compilers consider the number of COLUMN from 1 (just for copy-past)"
 ;; GIT (magit)
 ;;
 ;;------------------------------------------------------------------------
-;; (autoload 'magit-status "magit" nil t)
+(autoload 'magit-status "magit" nil t)
+;; (global-set-key (kbd "M-g r m") 'magit-status)
+(global-set-key (kbd "M-g m") 'magit-status)
+
+;;------------------------------------------------------------------------
+;;
+;; popup-switcher
+;;
+;;------------------------------------------------------------------------
+(require 'popup-switcher)
+
+;; (setq psw-in-window-center t)
+
+(global-set-key [f7] 'psw-switch-buffer)
+;; (global-set-key [f8] 'psw-switch-projectile-files)
+
+(eval-after-load "eassist"
+   '(global-set-key [f8] 'psw-switch-function)
+   )
+
+;; (eval-after-load "eassist"
+;;    '(global-set-key (kbd "M-o") 'psw-switch-h-cpp))
+
+;; (eval-after-load "eassist"
+;;   '(global-set-key (kbd "M-m") 'psw-list-methods))
+
+;;      (define-key c-mode-base-map (kbd "M-o") 'eassist-switch-h-cpp)
+;;      (define-key c-mode-base-map (kbd "M-m") 'eassist-list-method))
+
+(defun my-c-mode-common-hook ()
+  (define-key c-mode-base-map (kbd "M-o") 'eassist-switch-h-cpp)
+  (define-key c-mode-base-map (kbd "M-m") 'eassist-list-methods))
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+(add-hook 'c++-mode-common-hook 'my-c-mode-common-hook)
+
+;; (global-set-key [f8] 'psw-switch-function)
+
+;; (defun psw-switch-h-cpp ()
+;;    (interactive)
+;;    (psw-switcher
+;;     :items-list (eassist-switch-h-cpp)
+;;     :item-name-getter 'car
+;;     :switcher (psw-compose 'goto-char 'cdr)))
+
+(defun psw-list-methods ()
+   (interactive)
+   (psw-switcher
+    :items-list (eassist-mode)
+    :item-name-getter 'car
+    :switcher (psw-compose 'goto-char 'cdr)))
+
+(global-set-key [f8] 'psw-switch-function)
+;; Redefine switch file/buffers to
+(global-set-key (kbd "C-x C-f") 'psw-navigate-files)
+(global-set-key (kbd "C-x C-b") 'psw-switch-buffer)
+(global-set-key (kbd "C-<f8>") 'psw-list-methods)
 
 ;;------------------------------------------------------------------------
 ;;
@@ -1097,6 +1277,3 @@ because all compilers consider the number of COLUMN from 1 (just for copy-past)"
 ;;;; (global-set-key (kbd "<f6>") (lambda() (interactive) (find-file "~/.emacs")))
 (set-register ?e (cons 'file "~/.emacs.d/init.el")) ;; open it with  C-x r j e
 (set-register ?l (cons 'file "~/Documents/org/links.org")) ;; open it with  C-x r j l
-
-;; (add-to-list 'auto-mode-alist '("\\`\\.[^.]\\w+\\'" . sh-mode))
-(add-to-list 'auto-mode-alist '("[^[:alnum:]|[:space:]]\\.[^.]\\w+\\'" . sh-mode))
