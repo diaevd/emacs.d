@@ -25,6 +25,11 @@
     (add-hook 'java-mode-hook 'helm-gtags-mode)
     (add-hook 'asm-mode-hook 'helm-gtags-mode)
 
+    ;; MQL
+    (add-hook 'mql-mode-hook 'helm-gtags-mode)
+    ;; Perl
+    (add-hook 'perl-mode-hook 'helm-gtags-mode)
+
     ;; key bindings
     (with-eval-after-load 'helm-gtags
       (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)

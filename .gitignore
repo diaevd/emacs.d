@@ -3,3 +3,10 @@ ac-comphist.dat
 ido.last
 semanticdb
 \#*\#
+/bookmarks
+/projectile-bookmarks.eld
+/projectile.cache
+/themes/*.elc
+/tuhdo-emacs.d/
+/init-backup.el
+/url

@@ -152,7 +152,7 @@
 ;; C-c h help-dwim
 ;; pde-pod-to-manpage
 ;; perldoc-tree
-(global-set-key (kbd "C-c h") 'help-dwim)
+;; (global-set-key (kbd "C-c h") 'help-dwim)
 (setq cperl-lazy-help-time 2)
 (defun pde-perl-mode-hook ()
   (cperl-lazy-install))

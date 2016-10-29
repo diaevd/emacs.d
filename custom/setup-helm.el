@@ -135,4 +135,30 @@
       (setq projectile-completion-system 'helm)
       (setq projectile-indexing-method 'alien))))
 
+(require 'helm-imenu)
+
+(defun my-helm-imenu-transformer (cands)
+  (with-helm-current-buffer
+    (save-excursion
+      (cl-loop for (func-name . mrkr) in cands
+               collect
+               (cons (format "Line %4d: %s"
+                             (line-number-at-pos mrkr)
+                             (progn (goto-char mrkr)
+                                    (buffer-substring mrkr (line-end-position))))
+                     (cons func-name mrkr))))))
+
+(defvar my-helm-imenu-source  (helm-make-source "Imenu" 'helm-imenu-source
+                                :candidate-transformer
+                                'my-helm-imenu-transformer))
+(defun my-helm-imenu ()
+  (interactive)
+  (let ((imenu-auto-rescan t)
+        (str (thing-at-point 'symbol))
+        (helm-execute-action-at-once-if-one
+         helm-imenu-execute-action-at-once-if-one))
+    (helm :sources 'my-helm-imenu-source
+          :preselect str
+          :buffer "*helm imenu*")))
+
 (provide 'setup-helm)

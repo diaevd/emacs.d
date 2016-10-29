@@ -29,19 +29,6 @@
               indent-tabs-mode 't
               c-default-style "linux")
 
-;;------------------------------------------------------------------------
-;;
-;; auto complete mode
-;;
-;;------------------------------------------------------------------------
-(ac-config-default)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(ac-set-trigger-key "TAB")
-(setq ac-auto-start nil)
-;; Make sure "Anything" is available
-(require 'anything)
-(require 'anything-match-plugin)
-
 ;; Compilation Support
 ;; C-o Display matched location, but do not switch point to matched buffer
 ;; M-n Move to next error message, but do not visit error location
@@ -56,6 +43,9 @@
                                (interactive)
                                (setq-local compilation-read-command nil)
                                (call-interactively 'compile)))
+;; Compilation output
+(setq compilation-scroll-output t)
+;; (setq compilation-scroll-output 'first-error) ;; scroll to first error
 
 ;; Debugging
 ;; 1. GUD interaction buffer
@@ -99,6 +89,10 @@
 (use-package projectile
   :init
   (projectile-global-mode)
+  (setq projectile-mode-line '(:eval (format " Proj[%s]" (projectile-project-name))))
+  ;; (setq projectile-switch-project-action 'projectile-dired)
+  ;; (setq projectile-switch-project-action 'projectile-find-dir)
+  (setq projectile-find-dir-includes-top-level t)
   (setq projectile-enable-caching t))
 
 ;; Package zygospore

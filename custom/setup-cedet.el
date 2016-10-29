@@ -4,6 +4,12 @@
 (require 'swiper-helm)
 (require 'function-args)
 (fa-config-default)
+(eval-after-load 'function-args
+   '(progn
+      (define-key function-args-mode-map (kbd "C-M-l") 'moo-jump-local)
+      (define-key function-args-mode-map (kbd "C-M-j") 'moo-jump-directory) ;;))
+      (define-key moo-jump-keymap (kbd "C-M-l") 'moo-jump-local)
+      (setq moo-select-method 'helm-fuzzy)))
 
 (set-default 'semantic-case-fold t)
 ;; ключает глобальную поддержку Semanticdb
@@ -38,8 +44,6 @@
 ;; ;; обработаны инкрементальным парсером.
 ;; (global-semantic-highlight-edits-mode t)
 
-(semantic-mode 1)
-
 (defun alexott/cedet-hook ()
   (local-set-key "\C-c\C-j" 'semantic-ia-fast-jump)
   (local-set-key "\C-c\C-s" 'semantic-ia-show-summary))
@@ -49,6 +53,9 @@
 (add-hook 'c++-mode-hook 'alexott/cedet-hook)
 (add-hook 'mql-mode-hook 'alexott/cedet-hook)
 
+(semantic-mode 1)
+
+(require 'stickyfunc-enhance)
 ;; Enable EDE only in C/C++
 (require 'ede)
 (global-ede-mode)

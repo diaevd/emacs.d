@@ -1,4 +1,4 @@
-(when window-system (add-to-list 'default-frame-alist '(width . 210))
+(when window-system (add-to-list 'default-frame-alist '(width . 208))
       (add-to-list 'default-frame-alist '(height . 56))
       (setq inhibit-splash-screen t)	;; disable splash screan
       (setq inhibit-startup-message t)	;; ...
@@ -47,6 +47,7 @@
 
 (byte-recompile-directory (expand-file-name "~/.emacs.d/custom") 0)
 (byte-recompile-directory (expand-file-name "~/.emacs.d/libs") 0)
+;; (byte-recompile-directory (expand-file-name "~/.emacs.d/themes") 0)
 
 (load "profile-dotemacs")
 (defvar profile-dotemacs-file "~/.emacs.d/init.el" "File to be profiled.")
@@ -66,6 +67,38 @@
 (require 'setup-hideshow)
 (require 'setup-mql)
 (require 'setup-erlang)
+(require 'setup-autocomplete)
+(require 'setup-popup-switcher)
+(require 'setup-git)
+(require 'setup-functions)
+
+;;------------------------------------------------------------------------
+;;
+;; All global keys place here because maybe currupted by prev setups
+;;
+;;------------------------------------------------------------------------
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-set-key (kbd "C-c C-f") 'helm-find-files)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x r") 'helm-recentf)
+(global-set-key (kbd "C-h SPC") 'helm-all-mark-rings)
+(global-set-key (kbd "C-h o") 'helm-occur)
+(global-set-key (kbd "C-h w") 'helm-wikipedia-suggest)
+(global-set-key (kbd "C-h g") 'helm-google-suggest)
+(global-set-key (kbd "C-h x") 'helm-register)
+;;
+(global-set-key (kbd "C-M-k") 'kill-sexp)
+;;
+(global-set-key (kbd "C-c i") 'imenu)
+(global-set-key (kbd "C-c v") 'imenu-tree)
+(global-set-key (kbd "C-c j") 'ffap)
+(setq imenu-tree-auto-update 't)
+(setq imenu-auto-rescan 't)
+(eval-after-load "imenu"
+  '(defalias 'imenu--completion-buffer 'pde-ido-imenu-completion))
 
 ;;------------------------------------------------------------------------
 ;;
@@ -98,7 +131,7 @@
  '(org-startup-folded nil)
  '(package-selected-packages
    (quote
-    (swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu)))
+    (magit sr-speedbar swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu)))
  '(safe-local-variable-values
    (quote
     ((eval when
