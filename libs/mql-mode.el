@@ -5,6 +5,8 @@
 
 ;; how to write emacs mode: http://www.emacswiki.org/emacs/ModeTutorial
 
+(eval-when-compile
+  (require 'cl))
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.mq4\\'" . mql-mode))
@@ -196,7 +198,7 @@
                         (t mql-compiler-default-version)))
 
     (case mql-version
-      (4 (c-mode))
+      (4 (c++-mode))
       (5 (c++-mode)))
     (setq mql-version-string (concat "MQL" (number-to-string mql-version)))))
 
