@@ -42,7 +42,14 @@
 ;; (require 'magit)
 (autoload 'magit-status "magit" nil t)
 ;; (global-set-key (kbd "M-g r m") 'magit-status)
-(global-set-key (kbd "M-g m") 'magit-status)
-
+(global-set-key (kbd "C-x g s") 'magit-status)
+(global-set-key (kbd "C-x g d") 'magit-diff)
+(global-set-key (kbd "C-x g e") 'magit-ediff-popup)
+(global-set-key (kbd "C-x g b") 'magit-branch)
+(global-set-key (kbd "C-x g c") 'magit-commit)
+;; (require 'git-blamed)
+(autoload 'git-blamed-mode "git-blamed"
+  "Minor mode for incremental blame for Git." t)
+(global-set-key (kbd "C-x g v") 'git-blamed-mode)
 (provide 'setup-git)
 ;;; setup-git.el ends here

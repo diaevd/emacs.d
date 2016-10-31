@@ -893,7 +893,7 @@ Preconfigured anything for `anything-c-source-evaluation-result'.
 \(fn ARG)" t nil)
 
 (autoload 'anything-eval-expression-with-eldoc "anything-config" "\
-Preconfigured anything for `anything-c-source-evaluation-result' with `eldoc' support. 
+Preconfigured anything for `anything-c-source-evaluation-result' with `eldoc' support.
 
 \(fn)" t nil)
 

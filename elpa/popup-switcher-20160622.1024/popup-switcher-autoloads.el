@@ -1,10 +1,10 @@
 ;;; popup-switcher-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
+(add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "popup-switcher" "popup-switcher.el" (22494
-;;;;;;  45480 382709 401000))
+;;;### (autoloads nil "popup-switcher" "popup-switcher.el" (0 0 0
+;;;;;;  0))
 ;;; Generated autoloads from popup-switcher.el
 
 (autoload 'psw-switch-buffer "popup-switcher" "\
@@ -31,6 +31,8 @@
 
 
 \(fn)" t nil)
+
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "popup-switcher" '("psw-")))
 
 ;;;***
 
