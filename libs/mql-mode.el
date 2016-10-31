@@ -2,6 +2,7 @@
 ;; created at : Fri 06 Jul 2012 10:50:46 AM CST
 ;; author     : Jianing Yang <jianingy.yang AT gmail DOT com>
 ;; patched by : Kostafey.
+;; patched by : Diabolo
 
 ;; how to write emacs mode: http://www.emacswiki.org/emacs/ModeTutorial
 
