@@ -95,6 +95,14 @@
   (setq projectile-find-dir-includes-top-level t)
   (setq projectile-enable-caching t))
 
+;; fix for .dir-locals.el
+(defun ketbra/projectile-switch-project-action ()
+  "Run projectile-find-file with dir-locals properly set."
+  (with-temp-buffer
+    (hack-dir-local-variables-non-file-buffer)
+    (projectile-find-file)))
+(setq projectile-switch-project-action #'ketbra/projectile-switch-project-action)
+
 ;; Package zygospore
 (use-package zygospore
   :bind (("C-x 1" . zygospore-toggle-delete-other-windows)
