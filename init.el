@@ -1,5 +1,5 @@
 (when window-system (add-to-list 'default-frame-alist '(width . 208))
-      (add-to-list 'default-frame-alist '(height . 56))
+      (add-to-list 'default-frame-alist '(height . 58))
       (setq inhibit-splash-screen t)	;; disable splash screan
       (setq inhibit-startup-message t)	;; ...
       ;; (setq split-height-threshold nil) ;; in window mode split horizontaly
@@ -172,7 +172,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background nil))))
+ ;; '(default ((t (:background nil))))
+ ;; '(default ((t (:family "Droid Sans Mono" :foundry "outline" :slant normal :weight bold :height 113 :width normal))))
+ ;; '(default ((t (:family "DejaVu Sans Mono" :foundry "outline" :slant normal :weight normal :height 110 :width normal))))
+ '(default ((t (:family "Anonymous Pro" :foundry "outline" :slant normal :weight bold :height 120 :width normal))))
+ ;; '(default ((t (:family "Monaco" :foundry "outline" :slant normal :weight normal :height 108 :width normal))))
+ ;; '(default ((t (:family "Monospace" :foundry "outline" :slant normal :weight normal :height 108 :width normal))))
+ ;; '(default ((t (:family "Source Code Pro Regular" :foundry "outline" :slant normal :weight normal :height 110 :width normal))))
+ ;; '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight bold :height 113 :width normal))))
+ ;; '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal :weight bold :height 118 :width normal))))
+ ;; '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 120 :width normal))))
  '(cperl-array-face ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
  '(cperl-hash-face ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
  '(fa-face-hint ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))

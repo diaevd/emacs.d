@@ -1,6 +1,9 @@
-;; (menu-bar-mode -1)
+;; in window session disable menubar
+(when window-system (menu-bar-mode -1))
 (tool-bar-mode -1)
-(global-set-key [f9] 'menu-bar-open) ;; Sometimes need
+;; Display the name of the current buffer in the title bar
+(setq frame-title-format "%b")
+;; (global-set-key [f9] 'menu-bar-open) ;; Sometimes need (F10 by default)
 
 (setq gc-cons-threshold 100000000)
 (setq inhibit-startup-message t)
