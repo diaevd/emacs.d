@@ -3,6 +3,7 @@ ac-comphist.dat
 ido.last
 semanticdb
 \#*\#
+<<<<<<< HEAD
 /bookmarks
 /projectile-bookmarks.eld
 /projectile.cache
@@ -10,3 +11,5 @@ semanticdb
 /tuhdo-emacs.d/
 /init-backup.el
 /url
+=======
+>>>>>>> 2028ede... * .gitignore: Add #*# files
