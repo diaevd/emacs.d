@@ -1,0 +1,56 @@
+perltidy-mode is a minor mode for emacs. It hooks cperl-mode so that
+perltidy is called whenever you save your source code.
+
+Quick setup instructions
+------------------------
+
+  Run the perltidy-mode.PL program with like so to generate the
+  perltidy-mode.el.
+
+    perl perltidy-mode.PL
+
+  Copy the perltidy-mode.el file to your ~/.site-lisp directory. Use a
+  different directory if you like, just make sure that path is in
+  load-path.
+
+  Add this to your ~/.emacs file and fill in the appropriate filenames:
+
+    (add-to-list 'load-path "~/.site-lisp/")  ; your target directory
+    (autoload 'perltidy "perltidy-mode" nil t)
+    (autoload 'perltidy-mode "perltidy-mode" nil t)
+
+  Add the following snippet to enable full-auto mode where perltidy-mode
+  will be automatically on when cperl-mode is on.
+
+    ; Makes perltidy-mode automatic for cperl-mode
+    (eval-after-load "cperl-mode"
+      '(add-hook 'cperl-mode-hook 'perltidy-mode))
+
+Support and Documentation
+-------------------------
+
+After installing, you can find documentation for this minor mode by
+reading the source code.
+
+You can also look for information at:
+
+    Search CPAN
+        http://search.cpan.org/dist/perltidy-mode
+
+    CPAN Request Tracker:
+        http://rt.cpan.org/NoAuth/Bugs.html?Dist=perltidy-mode
+
+    AnnoCPAN, annotated CPAN documentation:
+        http://annocpan.org/dist/perltidy-mode
+
+    CPAN Ratings:
+        http://cpanratings.perl.org/d/perltidy-mode
+
+Copyright and Licence
+---------------------
+
+Copyright (C) 2006 Joshua ben Jore
+  
+This program is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+

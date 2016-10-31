@@ -93,14 +93,18 @@
   ;; (setq projectile-switch-project-action 'projectile-dired)
   ;; (setq projectile-switch-project-action 'projectile-find-dir)
   (setq projectile-find-dir-includes-top-level t)
-  (setq projectile-enable-caching t))
+  (setq projectile-enable-caching t)
+  (hack-dir-local-variables-non-file-buffer)
+  (hack-local-variables))
+(add-hook 'after-change-major-mode-hook 'hack-local-variables)
 
 ;; fix for .dir-locals.el
 (defun ketbra/projectile-switch-project-action ()
   "Run projectile-find-file with dir-locals properly set."
   (with-temp-buffer
+    (setq default-directory project-to-switch)
     (hack-dir-local-variables-non-file-buffer)
-    (projectile-find-file)))
+    (funcall switch-project-action)))
 (setq projectile-switch-project-action #'ketbra/projectile-switch-project-action)
 
 ;; Package zygospore

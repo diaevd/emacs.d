@@ -90,6 +90,7 @@
 (require 'setup-autocomplete)
 (require 'setup-popup-switcher)
 (require 'setup-git)
+(require 'setup-org)
 (require 'setup-functions)
 
 ;;------------------------------------------------------------------------
@@ -130,6 +131,12 @@
 (set-register ?l (cons 'file "~/Documents/org/links.org")) ;; open it with  C-x r j l
 (set-register ?o (cons 'file "~/Documents/org/notes.org")) ;; open it with  C-x o j 0
 
+;;------------------------------------------------------------------------
+;;
+;; Custom variables (changed automatic)
+;;
+;;------------------------------------------------------------------------
+;;
 ;; function-args
 ;; (require 'function-args)
 ;; (fa-config-default)
@@ -152,7 +159,7 @@
  '(org-startup-folded nil)
  '(package-selected-packages
    (quote
-    (comment-dwim-2 git-blamed helm-projectile erlang clang-format bug-hunter magit sr-speedbar swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu)))
+    (perl6-mode comment-dwim-2 git-blamed helm-projectile erlang clang-format bug-hunter magit sr-speedbar swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu)))
  '(safe-local-variable-values
    (quote
     ((eval when

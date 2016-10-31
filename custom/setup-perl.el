@@ -27,9 +27,9 @@
 ;; Commands
 ;; C-M-\ indent-region
 ;; C-M-= pde-indent-dwim
-;; C-; comment-dwim
+;; M-; comment-dwim
 ;; M-/ dabbrev-expand
-;; M-; hippie-expand
+;; C-; hippie-expand
 ;; C-c f comint-dynamic-complete
 ;; M-' just-one-space
 ;; M-\ delete-horizontal-space
@@ -80,19 +80,32 @@
   (set (make-local-variable 'compile-dwim-check-tools) nil)
   (add-to-list 'cperl-style-alist
 	       '("PDE"
-		 (cperl-auto-newline                         . nil)
-		 (cperl-brace-offset                         . 0)
-		 (cperl-close-paren-offset                   . -8)
-		 (cperl-continued-brace-offset               . 0)
-		 (cperl-continued-statement-offset           . 0)
-		 (cperl-extra-newline-before-brace           . nil)
-		 (cperl-extra-newline-before-brace-multiline . nil)
-		 (cperl-indent-level                         . 8)
-		 (cperl-indent-parens-as-block               . t)
-		 (cperl-indent-tabs-mode                     . t)
-		 (cperl-label-offset                         . -8)
-		 (cperl-merge-trailing-else                  . t)
-		 (cperl-tab-always-indent                    . t)))
+                 ;; (cperl-auto-newline                         . nil)
+                 ;; (cperl-brace-offset                         . 0)
+                 ;; (cperl-close-paren-offset                   . -8)
+                 ;; (cperl-continued-brace-offset               . 0)
+                 ;; (cperl-continued-statement-offset           . 0)
+                 ;; (cperl-extra-newline-before-brace           . nil)
+                 ;; (cperl-extra-newline-before-brace-multiline . nil)
+                 ;; (cperl-indent-level                         . 8)
+                 ;; (cperl-indent-parens-as-block               . t)
+                 ;; (cperl-indent-tabs-mode                     . t)
+                 ;; (cperl-label-offset                         . -8)
+                 ;; (cperl-merge-trailing-else                  . t)
+                 ;; (cperl-tab-always-indent                    . t)))
+                 (cperl-auto-newline                         . nil)
+                 (cperl-brace-offset                         . 0)
+                 (cperl-close-paren-offset                   . -4)
+                 (cperl-continued-brace-offset               . 0)
+                 (cperl-continued-statement-offset           . 4)
+                 (cperl-extra-newline-before-brace           . nil)
+                 (cperl-extra-newline-before-brace-multiline . nil)
+                 (cperl-indent-level                         . 4)
+                 (cperl-indent-parens-as-block               . t)
+                 (cperl-indent-tabs-mode                     . nil)
+                 (cperl-label-offset                         . -4)
+                 (cperl-merge-trailing-else                  . t)
+                 (cperl-tab-always-indent                    . t)))
   (cperl-set-style "PDE"))
 
 ;;;; Syntax Checking and Running
@@ -202,11 +215,11 @@
 
 (require 'perltidy)
 (autoload 'perltidy "perltidy-mode" nil t)
-(autoload 'perltidy-mode "perltidy-mode" nil t)
+;; (autoload 'perltidy-mode "perltidy-mode" nil t)
 
 ;; Makes perltidy-mode automatic for cperl-mode
-(eval-after-load "cperl-mode"
-  '(add-hook 'cperl-mode-hook 'perltidy-mode))
+;; (eval-after-load "cperl-mode"
+;;   '(add-hook 'cperl-mode-hook 'perltidy-mode))
 
 (defmacro mark-active ()
   "Xemax/emacs compatibility macro"
@@ -220,35 +233,45 @@
   ;; Inexplicably, save-excursion doesn'r work here.
   (let ((orig-point (point)))
     (unless (mark-active) (mark-defun))
-    (shell-command-on-region (point) (mark) "perltidy -q" nil t)
+    (shell-command-on-region (point) (mark) (concat "perltidy -q --profile=" (substitute-in-file-name "$HOME/.perltidy-tabs-rc")) nil t)
+    (goto-char orig-point)
+    (message (concat "Perltidy profile " (substitute-in-file-name "$HOME/.perltidy-tabs-rc")))))
+
+(defun perltidy-pbp ()
+  "Run perltidy on the current region or buffer."
+  (interactive)
+  ;; Inexplicably, save-excursion doesn'r work here.
+  (let ((orig-point (point)))
+    (unless (mark-active) (mark-defun))
+    (shell-command-on-region (point) (mark) "perltidy -q -pbp" nil t)
     (goto-char orig-point)))
 
-;; (global-set-key "\C-ct" 'perltidy)
 (eval-after-load "cperl-mode"
-  '(add-hook 'cperl-mode-hook (lambda () (interactive) (local-set-key "\C-ct" 'perltidy))))
-(eval-after-load "cperl-mode"
-  '(add-hook 'cperl-mode-hook (lambda () (interactive) (local-set-key [f12] 'perltidy))))
+  '(progn
+     (add-hook 'cperl-mode-hook (lambda () (local-set-key "\C-ct" 'perltidy))) ; my style
+     (add-hook 'cperl-mode-hook (lambda () (local-set-key [f12] 'perltidy)))
+     (add-hook 'cperl-mode-hook (lambda () (local-set-key "\C-cT" 'perltidy-pbp))))) ; perl best pratice config
 
 ;; (defvar perltidy-mode nil
 ;;   "Automaticaly 'perltidy' when saving.")
 
 ;; (make-variable-buffer-local 'perltidy-mode)
 ;; (defun perltidy-write-hook ()
-;;   "Perltidys a buffer during 'write-file-hooks' for 'perltidy-mode'"
-;;   (if perltidy-mode
-;;       (save-excursion
-;; 	(widen)
-;; 	(mark-whole-buffer)
-;; 	(not (perltidy)))
-;;     nil))
+;;    "Perltidys a buffer during 'write-file-hooks' for 'perltidy-mode'"
+;;    (if perltidy-mode
+;;        (save-excursion
+;;          (widen)
+;;          (mark-whole-buffer)
+;;          (not (perltidy)))
+;;      nil))
 
 ;; (defun perltidy-mode (&optional arg)
 ;;   "Perltidy minor mode."
 ;;   (interactive "P")
 ;;   (setq perltidy-mode
-;; 	(if (null arg)
-;; 	    (not perltidy-mode)
-;; 	  (> (prefix-numeric-value arg) 0)))
+;;         (if (null arg)
+;;             (not perltidy-mode)
+;;           (> (prefix-numeric-value arg) 0)))
 ;;   (make-local-hook 'write-file-hooks)
 ;;   (if perltidy-mode
 ;;       (add-hook 'write-file-hooks 'perltidy-write-hook)
@@ -256,9 +279,7 @@
 
 ;; (if (not (assq 'perltidy-mode minor-mode-alist))
 ;;     (setq minor-mode-alist
-;; 	  (cons '(perltidy " Perltidy")
-;; 		minor-mode-alist)))
+;;           (cons '(perltidy " Perltidy")
+;;                 minor-mode-alist)))
 
-;; (eval-after-load "cperl-mode"
-;;   '(add-hook 'cperl-mode-hook 'perltidy-mode))
 (provide 'setup-perl)

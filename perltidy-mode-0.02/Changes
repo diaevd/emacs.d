@@ -1,0 +1,9 @@
+Revision history for perltidy-mode
+
+0.01    Jul 4th, 2006
+  - Initial version
+0.02    Jul 5th, 2006
+  - Better install instructions
+  - Removed configuration info from library to the documentation
+  - Changed perltidy-mode.PL to not require an argument
+
