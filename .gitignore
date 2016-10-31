@@ -11,3 +11,5 @@ semanticdb
 /init-backup.el
 /url
 /recentf
+*-backup.el
+*-backup
