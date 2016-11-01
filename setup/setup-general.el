@@ -1,9 +1,24 @@
 ;; in window session disable menubar
 (when window-system (menu-bar-mode -1))
-(tool-bar-mode -1)
+(tool-bar-mode -1) ;; disable toolbar
+(scroll-bar-mode -1) ;; disable scroll bars
 ;; Display the name of the current buffer in the title bar
 (setq frame-title-format "%b")
 ;; (global-set-key [f9] 'menu-bar-open) ;; Sometimes need (F10 by default)
+;; '(default ((t (:family "Droid Sans Mono" :foundry "outline" :slant normal :weight bold :height 113 :width normal))))
+;; '(default ((t (:family "DejaVu Sans Mono" :foundry "outline" :slant normal :weight normal :height 110 :width normal))))
+;; '(default ((t (:family "Anonymous Pro Regular" :foundry "outline" :slant normal :weight bold :height 113 :width normal))))
+;; '(default ((t (:family "Monaco" :foundry "outline" :slant normal :weight normal :height 108 :width normal))))
+;; '(default ((t (:family "Monospace" :foundry "outline" :slant normal :weight normal :height 108 :width normal))))
+;; '(default ((t (:family "Source Code Pro Regular" :foundry "outline" :slant normal :weight normal :height 110 :width normal))))
+;; '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight bold :height 113 :width normal))))
+;; '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal :weight bold :height 118 :width normal))))
+;; '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 120 :width normal))))
+;; (set-default-font "Hack-12")
+;; (set-default-font "Droid Sans Mono-12")
+;; (set-face-attribute 'default t :family "Hack")
+(setq-default user-full-name   "Evgeny Duzhakov"
+              user-mail-adress "diaevd@gmail.com")
 
 (setq gc-cons-threshold 100000000)
 (setq inhibit-startup-message t)
@@ -17,6 +32,34 @@
 
 (setq-default major-mode 'text-mode)
 (setq column-number-mode t)
+;; (setq-default truncate-lines 1) ;; no wordwrap
+
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward)  ;; buffernames that are foo<1>, foo<2> are hard to read. This makes them foo|dir  foo|otherdir
+(setq abbrev-file-name "~/.emacs.d/abbrev_defs") ;; where to save auto-replace maps
+;; Use desktop-mode only in window-mode
+(when window-system (progn
+                      (setq desktop-load-locked-desktop "ask") ;; sometimes desktop is locked, ask if we want to load it.
+                      (desktop-save-mode 1) ;; auto-save buffer state on close for a later time.
+                      ))
+
+;; colorize the output of the compilation mode.
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (toggle-read-only)
+  (ansi-color-apply-on-region (point-min) (point-max))
+
+  ;; mocha seems to output some non-standard control characters that
+  ;; aren't recognized by ansi-color-apply-on-region, so we'll
+  ;; manually convert these into the newlines they should be.
+  (goto-char (point-min))
+  (while (re-search-forward "\\[2K\\[0G" nil t)
+    (progn
+      (replace-match "
+")))
+  (toggle-read-only))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
 (require 'linum)
 
 ;; use space to indent by default
@@ -79,6 +122,16 @@
 (windmove-default-keybindings)
 ;; when cursor is on edge, move to the other side, as in a torus space
 (setq windmove-wrap-around t )
+
+;;------------------------------------------------------------------------
+;;
+;; auto complete mode
+;;
+;;------------------------------------------------------------------------
+(ac-config-default)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-set-trigger-key "TAB")
+(setq ac-auto-start nil)
 
 ;; company
 (use-package company

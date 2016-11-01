@@ -41,31 +41,55 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+(defvar my-packages '(
+                      bash-completion
+                      zygospore
+                      yasnippet
+                      ws-butler
+                      undo-tree         ; Undo (C-c u) with tree
+                      swiper
+                      sublime-themes    ;
+                      sr-speedbar       ;
+                      projectile        ; project tracker
+                      popup-switcher    ; lib for popup menu creation
+                      perl6-mode
+                      magit             ; git
+                      ivy               ; alternative for helm
+                      highlight-parentheses ;
+                      helm
+                      helm-gtags
+                      helm-projectile
+                      git-blamed        ; coloze changes
+                      ggtags            ; gtags analog
+                      function-args     ; show function args
+                      erlang
+                      dtrt-indent       ; auto configure indent style
+                      counsel
+                      comment-dwim-2    ; advanced comment-dwim (M-;)
+                      clang-format      ; use clang for code format
+                      bug-hunter        ; hunting bugs in init.el, etc.
+                      auto-complete     ; advanced AC
+                      anything
+                      anzu
+                      )
+  "A list of packages to ensure are installed at launch.")
+
+(dolist (p my-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
+
 ;; place for my libs
 (add-to-list 'load-path "~/.emacs.d/libs")
-(add-to-list 'load-path "~/.emacs.d/custom")
+(add-to-list 'load-path "~/.emacs.d/setup")
 
-;;------------------------------------------------------------------------
-;;
-;; auto complete mode
-;;
-;;------------------------------------------------------------------------
-(ac-config-default)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(ac-set-trigger-key "TAB")
-(setq ac-auto-start nil)
+(defun load-if-exists (f)
+  (if (file-exists-p (expand-file-name f))
+      (load-file (expand-file-name f))))
 
-;;------------------------------------------------------------------------
-;;
-;; BASH
-;;
-;;------------------------------------------------------------------------
-(require 'bash-completion)
-(bash-completion-setup)
-(add-to-list 'auto-mode-alist '("[^_[:alnum:]|[:space:]]\\.[^.]\\w+\\'" . sh-mode))
-(global-set-key [f6] 'shell)
+;; (load-if-exists "~/src/bitbucket.org/blais/beancount/src/elisp/beancount.el")
 
-(byte-recompile-directory (expand-file-name "~/.emacs.d/custom") 0)
+;; auto compile local libs
+(byte-recompile-directory (expand-file-name "~/.emacs.d/setup") 0)
 (byte-recompile-directory (expand-file-name "~/.emacs.d/libs") 0)
 ;; (byte-recompile-directory (expand-file-name "~/.emacs.d/themes") 0)
 
@@ -142,6 +166,15 @@
 ;; (fa-config-default)
 ;; (define-key c-mode-map  [(tab)] 'company-complete)
 ;; (define-key c++-mode-map  [(tab)] 'company-complete)
+;; '(default ((t (:family "Droid Sans Mono" :foundry "outline" :slant normal :weight bold :height 113 :width normal))))
+;; '(default ((t (:family "DejaVu Sans Mono" :foundry "outline" :slant normal :weight normal :height 110 :width normal))))
+;; '(default ((t (:family "Anonymous Pro Regular" :foundry "outline" :slant normal :weight bold :height 113 :width normal))))
+;; '(default ((t (:family "Monaco" :foundry "outline" :slant normal :weight normal :height 108 :width normal))))
+;; '(default ((t (:family "Monospace" :foundry "outline" :slant normal :weight normal :height 108 :width normal))))
+;; '(default ((t (:family "Source Code Pro Regular" :foundry "outline" :slant normal :weight normal :height 110 :width normal))))
+;; '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight bold :height 113 :width normal))))
+;; '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal :weight bold :height 118 :width normal))))
+;; '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 120 :width normal))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -159,7 +192,7 @@
  '(org-startup-folded nil)
  '(package-selected-packages
    (quote
-    (perl6-mode comment-dwim-2 git-blamed helm-projectile erlang clang-format bug-hunter magit sr-speedbar swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu)))
+    (bash-completion perl6-mode comment-dwim-2 git-blamed helm-projectile erlang clang-format bug-hunter magit sr-speedbar swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu)))
  '(safe-local-variable-values
    (quote
     ((eval when
@@ -172,16 +205,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- ;; '(default ((t (:background nil))))
- ;; '(default ((t (:family "Droid Sans Mono" :foundry "outline" :slant normal :weight bold :height 113 :width normal))))
- ;; '(default ((t (:family "DejaVu Sans Mono" :foundry "outline" :slant normal :weight normal :height 110 :width normal))))
- '(default ((t (:family "Anonymous Pro" :foundry "outline" :slant normal :weight bold :height 120 :width normal))))
- ;; '(default ((t (:family "Monaco" :foundry "outline" :slant normal :weight normal :height 108 :width normal))))
- ;; '(default ((t (:family "Monospace" :foundry "outline" :slant normal :weight normal :height 108 :width normal))))
- ;; '(default ((t (:family "Source Code Pro Regular" :foundry "outline" :slant normal :weight normal :height 110 :width normal))))
- ;; '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight bold :height 113 :width normal))))
- ;; '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal :weight bold :height 118 :width normal))))
- ;; '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 120 :width normal))))
+ '(default ((t (:background nil))))
  '(cperl-array-face ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
  '(cperl-hash-face ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
  '(fa-face-hint ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))

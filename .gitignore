@@ -13,3 +13,5 @@ semanticdb
 /recentf
 *-backup.el
 *-backup
+.emacs.desktop*
+/session.*
