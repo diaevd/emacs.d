@@ -2,11 +2,11 @@
 (setq global-mark-ring-max 5000         ; increase mark ring to contains 5000 entries
       mark-ring-max 5000                ; increase kill ring to contains 5000 entries
       mode-require-final-newline t      ;
-      tab-width 8
       )
-
-(add-hook 'sh-mode-hook (lambda ()
-                          (setq tab-width 8)))
+(setq x-select-enable-clipboard t)
+;; (setq select-active-regions t)          ; usefull for quick copy regions
+(setq save-interprogram-paste-before-kill 1)
+(setq yank-pop-change-selection t)
 
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)

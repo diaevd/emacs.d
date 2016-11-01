@@ -75,6 +75,9 @@
               indent-tabs-mode 't
               c-default-style "linux")
 
+(add-hook 'sh-mode-hook (lambda ()
+                          (setq tab-width 8)))
+
 ;; Compilation Support
 ;; C-o Display matched location, but do not switch point to matched buffer
 ;; M-n Move to next error message, but do not visit error location
