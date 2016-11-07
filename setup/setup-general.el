@@ -32,6 +32,11 @@
 
 (setq-default major-mode 'text-mode)
 (setq column-number-mode t)
+;; fix column number format for starting from 1
+(setq mode-line-position
+      '("%p (%l," (:eval (format "%d)" (1+ (current-column))))))
+;; force the update of the mode line so the column gets updated
+(add-hook 'post-command-hook 'force-mode-line-update)
 ;; (setq-default truncate-lines 1) ;; no wordwrap
 
 (require 'uniquify)

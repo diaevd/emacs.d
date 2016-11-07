@@ -1,19 +1,23 @@
-(when window-system (add-to-list 'default-frame-alist '(width . 208))
-      (add-to-list 'default-frame-alist '(height . 58))
-      (setq inhibit-splash-screen t)	;; disable splash screan
-      (setq inhibit-startup-message t)	;; ...
-      ;; (setq split-height-threshold nil) ;; in window mode split horizontaly
-      ;; (setq split-width-threshold 0)	;; ...
-      (add-hook 'emacs-startup-hook '2-windows-vertical-to-horizontal)
-      (tool-bar-mode -1)		;; disable tool bar
-      )
+;; (when window-system
+;;    (if (not server-mode)
+;;       (server-start nil t)))
 
-(defun 2-windows-vertical-to-horizontal ()
-  (let ((buffers (mapcar 'window-buffer (window-list))))
-    (when (= 2 (length buffers))
-      (delete-other-windows)
-      (set-window-buffer (split-window-horizontally) (cadr buffers)))))
-;; (add-hook 'emacs-startup-hook '2-windows-vertical-to-horizontal)
+(when window-system
+  (add-to-list 'initial-frame-alist '(width . 210))
+  (add-to-list 'initial-frame-alist '(height . 58))
+  (add-to-list 'default-frame-alist '(width . 210))
+  (add-to-list 'default-frame-alist '(height . 58))
+  (add-to-list 'frame-inherited-parameters 'width)
+  (add-to-list 'frame-inherited-parameters 'height)
+  (setq inhibit-splash-screen t)	;; disable splash screan
+  (setq inhibit-startup-message t)	;; ...
+  ;; (setq split-height-threshold nil) ;; in window mode split horizontaly
+  ;; (setq split-width-threshold 0)	;; ...
+  (add-hook 'emacs-startup-hook '2-windows-vertical-to-horizontal)
+  (tool-bar-mode -1)		;; disable tool bar
+  (menu-bar-mode -1)            ;; disable menu bar
+  (scroll-bar-mode -1)          ;; disable scroll bar
+  )
 
 ;;------------------------------------------------------------------------
 ;;
@@ -47,7 +51,7 @@
                       yasnippet
                       ws-butler
                       undo-tree         ; Undo (C-c u) with tree
-                      swiper
+                      swiper-helm       ;
                       sublime-themes    ;
                       sr-speedbar       ;
                       projectile        ; project tracker
@@ -65,12 +69,19 @@
                       erlang
                       dtrt-indent       ; auto configure indent style
                       counsel
+                      counsel-projectile
                       comment-dwim-2    ; advanced comment-dwim (M-;)
                       clang-format      ; use clang for code format
                       bug-hunter        ; hunting bugs in init.el, etc.
                       auto-complete     ; advanced AC
                       anything
+                      iedit
+                      volatile-highlights
                       anzu
+                      company
+                      clean-aindent-mode
+                      paredit           ; auto pair
+                      slime             ; part of lisp ide
                       )
   "A list of packages to ensure are installed at launch.")
 
@@ -128,7 +139,7 @@
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-x r") 'helm-recentf)
+;; (global-set-key (kbd "C-x r") 'helm-recentf)
 (global-set-key (kbd "C-h SPC") 'helm-all-mark-rings)
 (global-set-key (kbd "C-h o") 'helm-occur)
 (global-set-key (kbd "C-h w") 'helm-wikipedia-suggest)
@@ -140,6 +151,13 @@
 (global-set-key (kbd "C-c i") 'imenu)
 (global-set-key (kbd "C-c v") 'imenu-tree)
 (global-set-key (kbd "C-c j") 'ffap)
+;;
+;; (define-key helm-command-map (kbd "C-x r j") 'jump-to-register)
+;;
+(global-set-key (kbd "M-g M-c") 'diabolo/goto-column)
+(global-unset-key (kbd "M-g M-g"))
+(global-set-key (kbd "M-g M-g") 'diabolo/goto-line-and-column)
+
 (setq imenu-tree-auto-update 't)
 (setq imenu-auto-rescan 't)
 (eval-after-load "imenu"
@@ -153,7 +171,7 @@
 ;;;; (global-set-key (kbd "<f6>") (lambda() (interactive) (find-file "~/.emacs")))
 (set-register ?e (cons 'file "~/.emacs.d/init.el")) ;; open it with  C-x r j e
 (set-register ?l (cons 'file "~/Documents/org/links.org")) ;; open it with  C-x r j l
-(set-register ?o (cons 'file "~/Documents/org/notes.org")) ;; open it with  C-x o j 0
+(set-register ?o (cons 'file "~/Documents/org/notes.org")) ;; open it with  C-x r j o
 
 ;;------------------------------------------------------------------------
 ;;

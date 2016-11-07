@@ -3,6 +3,11 @@
   (progn
     (require 'helm-config)
     (require 'helm-grep)
+    ;; To fix error at compile:
+    ;; Error (bytecomp): Forgot to expand macro with-helm-buffer in
+    ;; (with-helm-buffer helm-echo-input-in-header-line)
+    (if (version< "26.0.50" emacs-version)
+        (eval-when-compile (require 'helm-lib)))
 
     (defun helm-hide-minibuffer-maybe ()
       (when (with-helm-buffer helm-echo-input-in-header-line)
@@ -11,8 +16,8 @@
           (overlay-put ov 'face (let ((bg-color (face-background 'default nil)))
                                   `(:background ,bg-color :foreground ,bg-color)))
           (setq-local cursor-type nil))))
-
     (add-hook 'helm-minibuffer-set-up-hook 'helm-hide-minibuffer-maybe)
+
     ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
     ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
     ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
@@ -37,11 +42,12 @@
           helm-ff-search-library-in-sexp t ; search for library in `require' and `declare-function' sexp.
 
           ;; you can customize helm-do-grep to execute ack-grep
-          ;; helm-grep-default-command "ack-grep -Hn --smart-case --no-group --no-color %e %p %f"
-          ;; helm-grep-default-recurse-command "ack-grep -H --smart-case --no-group --no-color %e %p %f"
+          helm-grep-default-command "ack-grep -Hn --smart-case --no-group --no-color %e %p %f"
+          helm-grep-default-recurse-command "ack-grep -H --smart-case --no-group --no-color %e %p %f"
           helm-split-window-in-side-p t ;; open helm buffer inside current window, not occupy whole other window
 
-          helm-echo-input-in-header-line t
+          helm-echo-input-in-header-line nil ;;
+          helm-display-header-line nil
 
           ;; helm-candidate-number-limit 500 ; limit the number of displayed canidates
           helm-ff-file-name-history-use-recentf t
@@ -63,7 +69,7 @@
           ;; helm-apropos-fuzzy-match t
           helm-buffer-skip-remote-checking t
           helm-locate-fuzzy-match t
-          helm-display-header-line nil)
+          )
 
     (add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
 
@@ -71,7 +77,7 @@
     (global-set-key (kbd "M-y") 'helm-show-kill-ring)
     (global-set-key (kbd "C-x b") 'helm-buffers-list)
     (global-set-key (kbd "C-x C-f") 'helm-find-files)
-    (global-set-key (kbd "C-x r") 'helm-recentf)
+    ;; (global-set-key (kbd "C-x C-r") 'helm-recentf)
     (global-set-key (kbd "C-h SPC") 'helm-all-mark-rings)
     (global-set-key (kbd "C-h o") 'helm-occur)
 
@@ -79,7 +85,7 @@
     (global-set-key (kbd "C-h g") 'helm-google-suggest)
 
     (global-set-key (kbd "C-h x") 'helm-register)
-    ;; (global-set-key (kbd "C-x r j") 'jump-to-register)
+    ;; (define-key helm-command-map (kbd "C-x r j") 'jump-to-register)
 
     (define-key 'help-command (kbd "C-f") 'helm-apropos)
     (define-key 'help-command (kbd "r") 'helm-info-emacs)

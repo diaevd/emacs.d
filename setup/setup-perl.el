@@ -111,14 +111,20 @@
 
 ;;;; Syntax Checking and Running
 ;; Commands
-;; C-c s compile-dwim-compile
+;; C-c b compile-dwim-compile
 ;; C-c r compile-dwim-run
 ;; compile
 ;; flymake-mode
 ;; executable-set-magic
 
-(global-set-key (kbd "C-c s") 'compile-dwim-compile)
-(global-set-key (kbd "C-c r") 'compile-dwim-run)
+;; (global-set-key (kbd "C-c s") 'compile-dwim-compile)
+;; (global-set-key (kbd "C-c r") 'compile-dwim-run)
+(eval-after-load "cperl-mode"
+  '(progn
+     (add-hook 'cperl-mode-hook (lambda () (local-set-key (kbd "C-c b") 'compile-dwim-compile)))
+     (add-hook 'cperl-mode-hook (lambda () (local-set-key (kbd "C-c r") 'compile-dwim-run)))
+     )) ; perl best pratice config
+
 (setq compilation-buffer-name-function 'pde-compilation-buffer-name)
 (autoload 'compile-dwim-run "compile-dwim" "Build and run" t)
 (autoload 'compile-dwim-compile "compile-dwim" "Compile or check syntax" t)
@@ -136,7 +142,7 @@
 (global-set-key (kbd "C-c i") 'imenu)
 (global-set-key (kbd "C-c v") 'imenu-tree)
 (global-set-key (kbd "C-c j") 'ffap)
-(setq tags-table-list '("./TAGS" "../TAGS" "../../TAGS"))
+(setq tags-table-list '("./TAGS" "../TAGS" "../../TAGS" "./GTAGS" "../GTAGS" "../../GTAGS"))
 (autoload 'imenu-tree "imenu-tree" "Show imenu tree" t)
 (setq imenu-tree-auto-update t)
 (eval-after-load "imenu"
