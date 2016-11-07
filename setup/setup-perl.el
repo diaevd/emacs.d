@@ -139,9 +139,15 @@
 ;; cperl-tags-hier-init
 ;; M-. find-tag
 ;; M-* pop-tag-mark
-(global-set-key (kbd "C-c i") 'imenu)
-(global-set-key (kbd "C-c v") 'imenu-tree)
-(global-set-key (kbd "C-c j") 'ffap)
+;; (global-set-key (kbd "C-c i") 'imenu)
+;; (global-set-key (kbd "C-c v") 'imenu-tree)
+;; (global-set-key (kbd "C-c j") 'ffap)
+(eval-after-load "cperl-mode"
+  '(progn
+     (add-hook 'cperl-mode-hook (lambda () (local-set-key (kbd "C-c i") 'imenu)))
+     (add-hook 'cperl-mode-hook (lambda () (local-set-key (kbd "C-c v") 'imenu-tree)))
+     (add-hook 'cperl-mode-hook (lambda () (local-set-key (kbd "C-c j") 'ffap))))
+
 (setq tags-table-list '("./TAGS" "../TAGS" "../../TAGS" "./GTAGS" "../GTAGS" "../../GTAGS"))
 (autoload 'imenu-tree "imenu-tree" "Show imenu tree" t)
 (setq imenu-tree-auto-update t)
