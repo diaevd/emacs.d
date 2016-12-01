@@ -121,8 +121,8 @@
 ;; (global-set-key (kbd "C-c r") 'compile-dwim-run)
 (eval-after-load "cperl-mode"
   '(progn
-     (add-hook 'cperl-mode-hook (lambda () (local-set-key (kbd "C-c b") 'compile-dwim-compile)))
-     (add-hook 'cperl-mode-hook (lambda () (local-set-key (kbd "C-c r") 'compile-dwim-run)))
+     (add-hook 'cperl-mode-hook (lambda () (local-set-key (kbd "C-c C-b") 'compile-dwim-compile)))
+     (add-hook 'cperl-mode-hook (lambda () (local-set-key (kbd "C-c C-r") 'compile-dwim-run)))
      )) ; perl best pratice config
 
 (setq compilation-buffer-name-function 'pde-compilation-buffer-name)

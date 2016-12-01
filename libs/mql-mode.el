@@ -9,7 +9,6 @@
 (eval-when-compile
   (require 'cl))
 
-;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.mq4\\'" . mql-mode))
 (add-to-list 'auto-mode-alist '("\\.mq5\\'" . mql-mode))
 (add-to-list 'auto-mode-alist '("\\.mql\\'" . mql-mode))

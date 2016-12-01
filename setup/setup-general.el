@@ -129,7 +129,7 @@
 ;; use Shift+arrow_keys to move cursor around split panes
 (windmove-default-keybindings)
 ;; when cursor is on edge, move to the other side, as in a torus space
-(setq windmove-wrap-around t )
+(setq windmove-wrap-around t)
 
 ;;------------------------------------------------------------------------
 ;;
@@ -181,9 +181,9 @@
 ;; activate whitespace-mode to view all whitespace characters
 (global-set-key (kbd "C-c w") 'whitespace-mode)
 ;; delete trailing white space
-(add-hook 'c-mode-hook (lambda () (interactive) (local-set-key (kbd "C-x w") 'delete-trailing-whitespace)))
-(add-hook 'c++-mode-hook (lambda () (interactive) (local-set-key (kbd "C-x w") 'delete-trailing-whitespace)))
-(add-hook 'mql-mode-hook (lambda () (interactive) (local-set-key (kbd "C-x w") 'delete-trailing-whitespace)))
+(add-hook 'c-mode-hook (lambda () (local-set-key (kbd "C-x w") 'delete-trailing-whitespace)))
+(add-hook 'c++-mode-hook (lambda () (local-set-key (kbd "C-x w") 'delete-trailing-whitespace)))
+(add-hook 'mql-mode-hook (lambda () (local-set-key (kbd "C-x w") 'delete-trailing-whitespace)))
 ;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
 ;; (add-hook 'c-mode-hook
 ;; 	  (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
