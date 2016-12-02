@@ -51,7 +51,6 @@
 
 (global-highlight-parentheses-mode t)
 
-
 ;; Package: volatile-highlights
 ;; GROUP: Editing -> Volatile Highlights
 (use-package volatile-highlights
@@ -71,7 +70,9 @@
 (use-package yasnippet
   :defer t
   :init
-  (add-hook 'prog-mode-hook 'yas-minor-mode))
+  (add-hook 'prog-mode-hook 'yas-minor-mode)
+  (add-hook 'prog-mode-hook 'yas-reload-all) ; without this snippets don't working
+)
 
 ;; Package: clean-aindent-mode
 (use-package clean-aindent-mode

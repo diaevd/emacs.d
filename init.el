@@ -82,6 +82,13 @@
                       clean-aindent-mode
                       paredit           ; auto pair
                       slime             ; part of lisp ide
+                      ;; for golang
+                      go-autocomplete   ; go autoomplete
+                      flycheck
+                      company-go        ;
+                      multi-compile
+                      go-eldoc
+                      go-rename
                       )
   "A list of packages to ensure are installed at launch.")
 
@@ -125,6 +132,7 @@
 (require 'setup-autocomplete)
 (require 'setup-popup-switcher)
 (require 'setup-git)
+(require 'setup-go)
 (require 'setup-org)
 (require 'setup-functions)
 
@@ -210,7 +218,7 @@
  '(org-startup-folded nil)
  '(package-selected-packages
    (quote
-    (bash-completion perl6-mode comment-dwim-2 git-blamed helm-projectile erlang clang-format bug-hunter magit sr-speedbar swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu)))
+    (go-rename go-autocomplete bash-completion perl6-mode comment-dwim-2 git-blamed helm-projectile erlang clang-format bug-hunter magit sr-speedbar swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu)))
  '(safe-local-variable-values
    (quote
     ((eval when
@@ -223,7 +231,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background nil))))
+ '(default ((t (:family "Anonymous Pro" :foundry "outline" :slant normal :weight bold :height 119 :width normal))))
  '(cperl-array-face ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
  '(cperl-hash-face ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
  '(fa-face-hint ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
