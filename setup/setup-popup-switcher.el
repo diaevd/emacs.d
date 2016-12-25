@@ -65,6 +65,7 @@
   (define-key c-mode-base-map (kbd "M-m") 'eassist-list-methods))
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 (add-hook 'c++-mode-common-hook 'my-c-mode-common-hook)
+(add-hook 'go-mode-hook 'psw-list-methods)
 
 ;; (global-set-key [f8] 'psw-switch-function)
 

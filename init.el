@@ -165,6 +165,10 @@
 (global-set-key (kbd "M-g M-c") 'diabolo/goto-column)
 (global-unset-key (kbd "M-g M-g"))
 (global-set-key (kbd "M-g M-g") 'diabolo/goto-line-and-column)
+(global-set-key (kbd "C-c C-t") 'diabolo/transpose-buffers)
+
+(global-set-key (kbd "\e\el") 'desktop-read)
+(global-set-key (kbd "\e\es") 'desktop-save)
 
 (setq imenu-tree-auto-update 't)
 (setq imenu-auto-rescan 't)

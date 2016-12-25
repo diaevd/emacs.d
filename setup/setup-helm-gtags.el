@@ -29,6 +29,8 @@
     (add-hook 'mql-mode-hook 'helm-gtags-mode)
     ;; Perl
     (add-hook 'perl-mode-hook 'helm-gtags-mode)
+    ;; Go-lang
+    (add-hook 'go-mode-hook 'helm-gtags-mode)
 
     ;; key bindings
     (with-eval-after-load 'helm-gtags

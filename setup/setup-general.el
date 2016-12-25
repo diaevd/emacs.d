@@ -43,10 +43,10 @@
 (setq uniquify-buffer-name-style 'post-forward)  ;; buffernames that are foo<1>, foo<2> are hard to read. This makes them foo|dir  foo|otherdir
 (setq abbrev-file-name "~/.emacs.d/abbrev_defs") ;; where to save auto-replace maps
 ;; Use desktop-mode only in window-mode
-(when window-system (progn
-                      (setq desktop-load-locked-desktop "ask") ;; sometimes desktop is locked, ask if we want to load it.
-                      (desktop-save-mode 1) ;; auto-save buffer state on close for a later time.
-                      ))
+;; (when window-system (progn
+;;                       (setq desktop-load-locked-desktop "ask") ;; sometimes desktop is locked, ask if we want to load it.
+;;                       (desktop-save-mode 1) ;; auto-save buffer state on close for a later time.
+;;                       ))
 
 ;; colorize the output of the compilation mode.
 (require 'ansi-color)

@@ -184,5 +184,37 @@ frame."
       (set-window-buffer (split-window-horizontally) (cadr buffers)))))
 ;; (add-hook 'emacs-startup-hook '2-windows-vertical-to-horizontal)
 
+(defun diabolo/transpose-buffers (&optional arg)
+  "Transpose the buffers shown in two windows."
+  (interactive "p")
+  (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
+    (while (/= arg 0)
+      (let ((this-win (window-buffer))
+            (next-win (window-buffer (funcall selector))))
+        (set-window-buffer (selected-window) next-win)
+        (set-window-buffer (funcall selector) this-win)
+        (select-window (funcall selector)))
+      (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
+
+(defun diabolo/reformat-region (&optional b e)
+  (interactive "r")
+  (when (not (buffer-file-name))
+    (error "A buffer must be associated with a file in order to use REFORMAT-REGION."))
+  (when (not (executable-find "clang-format"))
+    (error "clang-format not found."))
+    ;; (goto-char (point-min))
+    ;; (push-mark)
+    (shell-command-on-region b e
+                             "clang-format"
+                             (current-buffer) t)
+    (indent-region b e))
+
+(defun diabolo/reformat-buffer ()
+  (interactive)
+  (setq cur (point))
+  (diabolo/reformat-region (point-min) (point-max))
+  (goto-char cur)
+  )
+
 (provide 'setup-functions)
 ;;; setup-functions.el ends here
