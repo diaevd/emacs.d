@@ -11,7 +11,7 @@ semanticdb
 /init-backup.el
 /url
 /recentf
-/elpa
+elpa/*
 *-backup.el
 *-backup
 .emacs.desktop*
