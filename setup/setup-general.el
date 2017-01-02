@@ -31,6 +31,7 @@
             (setq show-trailing-whitespace 1)))
 
 (setq-default major-mode 'text-mode)
+
 (setq column-number-mode t)
 ;; fix column number format for starting from 1
 (setq mode-line-position
@@ -77,7 +78,6 @@
 
 (setq-default c-basic-offset 8
               c-indentation 8
-              indent-tabs-mode 't
               c-default-style "linux")
 
 (add-hook 'sh-mode-hook (lambda ()
@@ -131,6 +131,9 @@
 ;; when cursor is on edge, move to the other side, as in a torus space
 (setq windmove-wrap-around t)
 
+;; pos-tip fixes popups https://github.com/pitkali/pos-tip
+(require 'pos-tip)
+
 ;;------------------------------------------------------------------------
 ;;
 ;; auto complete mode
@@ -145,6 +148,7 @@
 (use-package company
   :init
   (global-company-mode 1)
+  (company-quickhelp-mode 1)
   (delete 'company-semantic company-backends))
 ;; (define-key c-mode-map  [(control tab)] 'company-complete)
 ;; (define-key c++-mode-map  [(control tab)] 'company-complete)
