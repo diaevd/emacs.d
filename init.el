@@ -91,6 +91,7 @@
                       go-eldoc
                       go-rename
                       ;;
+                      swiper
                       swiper-helm
                       ;; debug
                       realgud
