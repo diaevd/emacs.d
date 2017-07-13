@@ -50,6 +50,7 @@
 (require 'multi-compile)
 (require 'go-eldoc)
 (require 'company-go)
+(require 'go-dlv)
 ;; (require 'go-autocomplete)
 ;; (require 'auto-complete-config)
 ;; (ac-config-default)
@@ -76,7 +77,7 @@
                                         ("go-build-and-run" "go build -v && echo 'build finish' && eval ./${PWD##*/}"
                                          (multi-compile-locate-file-dir ".git"))))
                             ))))
-(add-hook 'go-mode-hook (lambda () (setq compile-command "go build -v && go test -v && go vet")
+(add-hook 'go-mode-hook (lambda () (setq compile-command "go build -v && go test -tags debug -v && go vet")
                           (define-key (current-local-map) "\C-c\C-b" 'compile)))
 
 (add-hook 'go-mode-hook (lambda () (local-set-key (kbd "M-.") 'helm-gtags-dwim)))

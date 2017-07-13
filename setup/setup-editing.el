@@ -92,8 +92,18 @@
   (add-hook 'text-mode 'ws-butler-mode)
   (add-hook 'fundamental-mode 'ws-butler-mode))
 
+;;------------------------------------------------------------------------
+;;
+;; Customize comments
+;;
+;;------------------------------------------------------------------------
 ;; PACKAGE: comment-dwim-2
+(require 'comment-dwim-2)
 (global-set-key (kbd "M-;") 'comment-dwim-2)
+
+(setq comment-dwim-2--inline-comment-behavior 'reindent-comment)
+(add-hook 'c-mode-hook (lambda () (setq comment-start "//"
+					comment-end   "")))
 
 ;; PACKAGE: anzu
 ;; GROUP: Editing -> Matching -> Isearch -> Anzu

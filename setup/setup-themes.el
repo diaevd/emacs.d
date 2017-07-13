@@ -84,7 +84,7 @@
 (setq theme-current my-color-themes)
 (setq color-theme-is-global nil) ; Initialization
 (my-theme-set-default)
-(global-set-key [f4] 'my-theme-cycle)
+;; (global-set-key [f4] 'my-theme-cycle)
 
 ;; '(default ((t (:family "Droid Sans Mono" :foundry "outline" :slant normal :weight bold :height 113 :width normal))))
 ;; '(default ((t (:family "DejaVu Sans Mono" :foundry "outline" :slant normal :weight normal :height 110 :width normal))))
