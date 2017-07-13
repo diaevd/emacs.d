@@ -90,6 +90,8 @@
                       multi-compile
                       go-eldoc
                       go-rename
+                      ;;
+                      swiper-helm
                       ;; debug
                       realgud
                       )
