@@ -25,6 +25,9 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+;; Перечитываем измененные файлы
+(global-auto-revert-mode t)
+
 ;; show unncessary whitespace that can mess up your diff
 (add-hook 'prog-mode-hook
           (lambda () (interactive)

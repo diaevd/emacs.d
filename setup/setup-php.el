@@ -44,144 +44,96 @@
 (require 'flycheck)
 (flycheck-define-checker my-php
   "A PHP syntax checker using the PHP command line interpreter.
-
 See URL `http://php.net/manual/en/features.commandline.php'."
   :command ("php" "-l" "-d" "error_reporting=E_ALL" "-d" "display_errors=1"
             "-d" "log_errors=0" source)
   :error-patterns
   ((error line-start (or "Parse" "Fatal" "syntax") " error" (any ":" ",") " "
           (message) " in " (file-name) " on line " line line-end))
-  :modes (php-mode php+-mode web-mode))
+  :modes (web-mode php-mode))
 
-;; ;; (add-hook 'php-mode-hook (lambda () ((flycheck-select-checker my-php)
-;; ;;                                      (flycheck-mode nil))))
-;; ;; (add-hook 'php-mode-hook (lambda () (flycheck-mode t)))
+;; TODO: use yasnippet to do this
+;; (defun insert-php-doc-comment ()
+;;   "To insert doc comments on php functions."
+;;   (interactive)
+;;   (insert "/**\n * TODO add description. \n * \n * @param \n * @return \n */"))
 
-;; (add-hook 'php-mode-hook (lambda () (local-set-key (kbd "M-;") 'comment-dwim-2)))
-;; (add-hook 'php-mode-hook (lambda () (setq comment-multi-line nil ;; maybe
-;;                                           comment-start "// "
-;;                                           comment-end ""
-;;                                           comment-style 'indent
-;;                                           comment-use-syntax t)))
+;; (add-hook 'web-mode-hook (lambda () (local-set-key [(S-f1)] 'insert-php-doc-comment)))
 
-(defun my-setup-php ()
-  ;; enable web mode
-  (web-mode)
+(defun my-web-mode-hook ()
+  ;; ""
+  ;; (web-mode)
+  (local-set-key (kbd "M-;") 'comment-dwim-2)
+  (setq comment-multi-line nil ;; maybe
+        comment-start "// "
+        comment-end ""
+        comment-style 'indent
+        comment-use-syntax t)
+  (set (make-local-variable 'company-backends)
+       '((php-extras-company company-dabbrev-code) company-capf company-files))
+  (local-set-key [(S-f1)] 'insert-php-doc-comment)
 
-  ;; make these variables local
-  (make-local-variable 'web-mode-code-indent-offset)
-  (make-local-variable 'web-mode-markup-indent-offset)
-  (make-local-variable 'web-mode-css-indent-offset)
-  (add-hook 'web-mode-hook (lambda () (local-set-key (kbd "M-;") 'comment-dwim-2)))
-  (add-hook 'web-mode-hook (lambda () (setq comment-multi-line nil ;; maybe
-                                            comment-start "// "
-                                            comment-end ""
-                                            comment-style 'indent
-                                            comment-use-syntax t)))
+  (local-set-key (kbd "C-c C-w") 'delete-trailing-whitespace)
   (setq web-mode-comment-formats
         '(("java"       . "//")
           ("javascript" . "//")
           ("php"        . "//")
           ))
-  ;; (setq web-mode-comment-style 2)
 
-  (defun web-mode-comment-php-block (pos)
-    (let (beg end)
-      (setq beg (web-mode-block-beginning-position pos)
-            end (web-(message "message" format-args)ode-block-end-position pos))
-      (web-mode-insert-text-at-pos "" (- end 2))
-      (web-mode-insert-text-at-pos "//" (+ beg 1 (if (web-mode-looking-at "<\\?php" beg) 5 3)))))
+  (setq web-mode-enable-current-element-highlight t)
+  (setq web-mode-enable-current-column-highlight t)
 
-  ;; set indentation, can set different indentation level for different code type
-  (setq web-mode-code-indent-offset 4)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-ac-sources-alist
-        '(("css" . (ac-source-words-in-buffer ac-source-css-property))
-          ("html" . (ac-source-words-in-buffer ac-source-abbrev))
-          ("php" . (ac-source-words-in-buffer
-                    ac-source-words-in-same-mode-buffers
-                    ac-source-dictionary))))
-  ;;
-  (flycheck-select-checker my-php)
-  (flycheck-mode t))
+  (use-package php-auto-yasnippets)
+  (require 'php-auto-yasnippets)
+  (local-set-key (kbd "C-c C-y") 'yas/create-php-snippet)
 
-;; (defun my-setup-php2 ()
-;;   (require 'php-cs-fixer)
-;;   ;; enable web mode
-;;   (php-mode)
+  ;; (flymake-mode-on)
+  (flycheck-mode nil)
+  (flycheck-select-checker 'my-php)
+  )
+;; (add-hook 'web-mode-hook (lambda () (local-set-key (kbd "M-;") 'comment-dwim-2)))
+;; (add-hook 'web-mode-hook (lambda () (setq comment-multi-line nil ;; maybe
+;;                                           comment-start "// "
+;;                                           comment-end ""
+;;                                           comment-style 'indent
+;;                                           comment-use-syntax t)))
+;; (add-hook 'web-mode-hook (lambda () (flycheck-mode t)))
+;; (add-hook 'web-mode-hook (lambda () (flymake-mode-on)))
 
-;;   (add-hook 'php-mode-hook (lambda () (local-set-key (kbd "M-;") 'comment-dwim-2)))
-;;   (add-hook 'php-mode-hook (lambda () (setq comment-start "//"
-;; 					    comment-end   "")))
-;;   (setq comment-multi-line nil ;; maybe
-;;         comment-start "// "
-;;         comment-end ""
-;;         comment-style 'indent
-;;         comment-use-syntax t)
-
-;;   ;; set indentation, can set different indentation level for different code type
-;;   (setq php-mode-code-indent-offset 4)
-;;   (setq php-mode-css-indent-offset 2)
-;;   (setq php-mode-markup-indent-offset 2)
-;;   (setq php-mode-ac-sources-alist
-;;         '(("php" . (ac-source-words-in-buffer
-;;                     ac-source-words-in-same-mode-buffers
-;;                     ac-source-dictionary))))
-;;   ;;
-;;   (flycheck-select-checker my-php)
-;;   (flycheck-mode t))
-
-(add-to-list 'auto-mode-alist '("\\.php$" . my-setup-php)) ;
-
-(require 'php-cs-fixer)
+;; (require 'php-cs-fixer)
 
 ;; php documentation
-;; (use-package php-eldoc
-;;   :ensure t
-;;   :init (add-hook 'php-mode-hook 'eldoc-mode))
+; (require 'php-eldoc)
+; (add-hook 'php-mode-hook 'eldoc-mode)
 
 (use-package company-php
   :ensure t)
 
-(add-hook 'php-mode-hook
-	  (lambda ()
-	    (set (make-local-variable 'company-backends)
-		 '((php-extras-company company-dabbrev-code) company-capf company-files))))
+;; (add-hook 'web-mode-hook
+;; 	  (lambda ()
+;; 	    (set (make-local-variable 'company-backends)
+;; 		 '((php-extras-company company-dabbrev-code) company-capf company-files))))
 
-;; TODO: use yasnippet to do this
-(defun insert-php-doc-comment ()
-  "To insert doc comments on php functions."
-  (interactive)
-  (insert "/**\n * TODO add description. \n * \n * @param \n * @return \n */"))
-(define-key global-map [(S-f1)] 'insert-php-doc-comment) ;; shift + F1
-
-;; PHP
-;; php-mode
-;; TODO: make doc comments to not indent. Make indentation to always use tabs
-;; (use-package php-mode
-;;   :init(progn
-;; 	 ;; Configure per-project phpcs if available
-;; 	 (setq-default php-manual-path "~/www/utilidades/docs/php5/php-manual/") ;; php docs local copy
-;; 	 ))
 
 ;; set psr-2 coding style
-(add-hook 'php-mode-hook 'php-enable-psr2-coding-style)
-(setq flycheck-phpcs-standard "PSR2")
-
-(add-hook 'php-mode-hook (lambda () (flycheck-mode t)))
+;; (add-hook 'web-mode-hook 'php-enable-psr2-coding-style)
+ ;; (setq flycheck-phpcs-standard "PSR2")
 
 ;; php-auto-yasnippet
 (use-package php-auto-yasnippets)
 (require 'php-auto-yasnippets)
-(define-key php-mode-map (kbd "C-c C-y") 'yas/create-php-snippet)
+(add-hook 'web-mode-hook (lambda () (local-set-key (kbd "C-c C-y") 'yas/create-php-snippet)))
 
 ;; php-extras
-(use-package php-extras
-  :ensure t
-  :defer t)
+;; (use-package php-extras
+;; :ensure t
+  ;; :defer t)
 
-
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.php$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tmpl$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl$" . web-mode))
+(add-hook 'web-mode-hook 'my-web-mode-hook)
 
 (provide 'setup-php)
 ;;; setup-php.el ends here

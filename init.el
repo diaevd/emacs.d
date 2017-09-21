@@ -2,6 +2,8 @@
 ;;    (if (not server-mode)
 ;;       (server-start nil t)))
 
+(setq start-directory-path (getenv "PWD"))
+
 (when window-system
   (add-to-list 'initial-frame-alist '(width . 210))
   (add-to-list 'initial-frame-alist '(height . 58))
@@ -29,6 +31,8 @@
 	     '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives
             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives
+            '("melpa-milkbox" . "https://melpa.milkbox.net/packages/") t)
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
@@ -95,6 +99,9 @@
                       swiper-helm
                       ;; debug
                       realgud
+                      ;; SQL
+                      sql-indent
+                      expand-region
                       )
   "A list of packages to ensure are installed at launch.")
 
@@ -143,6 +150,7 @@
 (require 'setup-rust)
 (require 'setup-functions)
 (require 'setup-php)
+(require 'setup-sql)
 
 ;;------------------------------------------------------------------------
 ;;
@@ -175,8 +183,22 @@
 (global-set-key (kbd "M-g M-g") 'diabolo/goto-line-and-column)
 (global-set-key (kbd "C-c C-t") 'diabolo/transpose-buffers)
 
-(global-set-key (kbd "\e\el") 'desktop-read)
-(global-set-key (kbd "\e\es") 'desktop-save)
+(defun diabolo-desktop-change-dir ()
+  ""
+  (interactive)
+  (desktop-change-dir default-directory))
+
+(defun diabolo-desktop-save ()
+  ""
+  (interactive)
+  (desktop-save default-directory))
+
+(global-set-key (kbd "\e\el") '(lambda () (interactive)
+                                 (desktop-change-dir start-directory-path)
+                                 (message "Loaded desktop file from %s" start-directory-path)))
+(global-set-key (kbd "\e\es") '(lambda () (interactive)
+                                 (desktop-save start-directory-path)
+                                 (message "Saved desktop file to %s" start-directory-path)))
 
 (setq imenu-tree-auto-update 't)
 (setq imenu-auto-rescan 't)
@@ -230,7 +252,7 @@
  '(org-startup-folded nil)
  '(package-selected-packages
    (quote
-    (web-mode phpcbf web-beautify racer rust-mode php+-mode php-mode markdown-mode go-dlv realgud company-quickhelp go-rename go-autocomplete bash-completion perl6-mode comment-dwim-2 git-blamed helm-projectile erlang clang-format bug-hunter magit sr-speedbar swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu)))
+    (expand-region sql-indent web-mode phpcbf web-beautify racer rust-mode php+-mode php-mode markdown-mode go-dlv realgud company-quickhelp go-rename go-autocomplete bash-completion perl6-mode comment-dwim-2 git-blamed helm-projectile erlang clang-format bug-hunter magit sr-speedbar swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu)))
  '(safe-local-variable-values
    (quote
     ((eval when
