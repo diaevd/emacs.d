@@ -94,6 +94,7 @@
                       multi-compile
                       go-eldoc
                       go-rename
+                      go-dlv
                       ;;
                       swiper
                       swiper-helm
@@ -102,6 +103,10 @@
                       ;; SQL
                       sql-indent
                       expand-region
+                      ;; Rust
+                      rust-mode
+                      ;; web
+                      web-mode
                       )
   "A list of packages to ensure are installed at launch.")
 
@@ -265,7 +270,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Anonymous Pro" :foundry "outline" :slant normal :weight bold :height 119 :width normal))))
+ '(default ((t (:background nil))))
  '(cperl-array-face ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
  '(cperl-hash-face ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
  '(fa-face-hint ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
