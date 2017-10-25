@@ -264,7 +264,9 @@
            (require
             (quote rainbow-mode)
             nil t)
-           (rainbow-mode 1))))))
+           (rainbow-mode 1)))))
+ '(tramp-syntax (quote default) nil (tramp)))
+;; '(default ((t (:background nil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
