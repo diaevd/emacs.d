@@ -107,6 +107,7 @@
                       rust-mode
                       ;; web
                       web-mode
+                      editorconfig
                       )
   "A list of packages to ensure are installed at launch.")
 
@@ -257,7 +258,7 @@
  '(org-startup-folded nil)
  '(package-selected-packages
    (quote
-    (expand-region sql-indent web-mode phpcbf web-beautify racer rust-mode php+-mode php-mode markdown-mode go-dlv realgud company-quickhelp go-rename go-autocomplete bash-completion perl6-mode comment-dwim-2 git-blamed helm-projectile erlang clang-format bug-hunter magit sr-speedbar swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu)))
+    (yaml-mode sqlup-mode expand-region sql-indent web-mode phpcbf web-beautify racer rust-mode php+-mode php-mode markdown-mode go-dlv realgud company-quickhelp go-rename go-autocomplete bash-completion perl6-mode comment-dwim-2 git-blamed helm-projectile erlang clang-format bug-hunter magit sr-speedbar swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu)))
  '(safe-local-variable-values
    (quote
     ((eval when
