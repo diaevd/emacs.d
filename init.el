@@ -37,7 +37,9 @@
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 ;;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(package-initialize) ;; You might already have this line
+;; (package-initialize) ;; You might already have this line
+(when (version< emacs-version "27.0")
+  (unless package--initialized (package-initialize t)))
 
 (when (not package-archive-contents)
     (package-refresh-contents))
@@ -105,6 +107,9 @@
                       expand-region
                       ;; Rust
                       rust-mode
+                      racer
+                      cargo
+                      flycheck-rust
                       ;; web
                       web-mode
                       editorconfig
@@ -140,6 +145,8 @@
   (require 'setup-helm-gtags))
 ;; (require 'setup-ggtags)
 (require 'setup-themes)
+;; (require 'setup-font-firacode)          ; firacode font
+;; (require 'setup-font-firacode2)          ; firacode font v2
 (require 'setup-cedet)
 (require 'setup-editing)
 (require 'setup-bash)
@@ -246,10 +253,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ede-project-directories (quote ("/usr/src/zen/zen-kernel")))
+ '(ede-project-directories '("/usr/src/zen/zen-kernel"))
  '(org-agenda-files
-   (quote
-    ("~/Documents/org/notes.org" "~/Documents/org/work.org" "~/Documents/org/home.org" "~/Documents/org/links.org" "~/Documents/org/daily.org")))
+   '("~/Documents/org/notes.org" "~/Documents/org/work.org" "~/Documents/org/home.org" "~/Documents/org/links.org" "~/Documents/org/daily.org"))
  '(org-default-notes-file "~/Documents/org/notes.org")
  '(org-directory "~/Documents/org")
  '(org-indent-mode t)
@@ -257,16 +263,12 @@
  '(org-return-follows-link t)
  '(org-startup-folded nil)
  '(package-selected-packages
-   (quote
-    (yaml-mode sqlup-mode expand-region sql-indent web-mode phpcbf web-beautify racer rust-mode php+-mode php-mode markdown-mode go-dlv realgud company-quickhelp go-rename go-autocomplete bash-completion perl6-mode comment-dwim-2 git-blamed helm-projectile erlang clang-format bug-hunter magit sr-speedbar swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu)))
+   '(flycheck-rust cargo yaml-mode sqlup-mode expand-region sql-indent web-mode phpcbf web-beautify racer rust-mode php+-mode php-mode markdown-mode go-dlv realgud company-quickhelp go-rename go-autocomplete bash-completion perl6-mode comment-dwim-2 git-blamed helm-projectile erlang clang-format bug-hunter magit sr-speedbar swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu))
  '(safe-local-variable-values
-   (quote
-    ((eval when
-           (require
-            (quote rainbow-mode)
-            nil t)
-           (rainbow-mode 1)))))
- '(tramp-syntax (quote default) nil (tramp)))
+   '((eval when
+           (require 'rainbow-mode nil t)
+           (rainbow-mode 1))))
+ '(tramp-syntax 'default nil (tramp)))
 ;; '(default ((t (:background nil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

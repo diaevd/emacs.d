@@ -40,8 +40,11 @@
 ;; For automatic completions, customize company-idle-delay and company-minimum-prefix-length
 
 (add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'rust-mode-hook 'cargo-minor-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
+(with-eval-after-load 'rust-mode
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 (provide 'setup-rust)
 ;;; setup-rust.el ends here
