@@ -1,11 +1,11 @@
-;;; setup-php.el --- PHP Config
+;;; setup-web.el --- WEB Config
 
 ;; Copyright (C) 2017 Free Software Foundation, Inc.
 ;;
 ;; Author: Evgeny Duzhakov <diabolo@veles>
 ;; Maintainer: Evgeny Duzhakov <diabolo@veles>
 ;; Created: 10 Jul 2017
-;; Version: 0.01
+;; Version: 0.02
 ;; Keywords
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 ;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'setup-php)
+;;   (require 'setup-web)
 
 ;;; Code:
 
@@ -136,6 +136,10 @@ See URL `http://php.net/manual/en/features.commandline.php'."
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.tmpl$" . web-mode)) ;;
 (add-to-list 'auto-mode-alist '("\\.tpl$" . web-mode))  ;;
+(add-to-list 'auto-mode-alist '("\\.vue$" . web-mode))  ;;
+(add-hook 'web-mode 'vue-mode)
+(add-hook 'web-mode 'vue-html-mode)
+;(add-hook 'vue-html-mode 'emmet-mode)
 
 (add-to-list 'auto-mode-alist '("\\.erb\\'"    . web-mode))       ;; ERB
 (add-to-list 'auto-mode-alist '("\\.html?\\'"  . web-mode))       ;; Plain HTML
@@ -178,5 +182,5 @@ See URL `http://php.net/manual/en/features.commandline.php'."
 (add-hook 'editorconfig-custom-hooks
 	  (lambda (hash) (setq web-mode-block-padding 0)))
 
-(provide 'setup-php)
+(provide 'setup-web)
 ;;; setup-php.el ends here

@@ -113,6 +113,7 @@
                       ;; web
                       web-mode
                       editorconfig
+                      vue-mode
                       )
   "A list of packages to ensure are installed at launch.")
 
@@ -162,7 +163,7 @@
 (require 'setup-org)
 (require 'setup-rust)
 (require 'setup-functions)
-(require 'setup-php)
+(require 'setup-web)
 (require 'setup-sql)
 
 ;;------------------------------------------------------------------------
@@ -263,7 +264,7 @@
  '(org-return-follows-link t)
  '(org-startup-folded nil)
  '(package-selected-packages
-   '(flycheck-rust cargo yaml-mode sqlup-mode expand-region sql-indent web-mode phpcbf web-beautify racer rust-mode php+-mode php-mode markdown-mode go-dlv realgud company-quickhelp go-rename go-autocomplete bash-completion perl6-mode comment-dwim-2 git-blamed helm-projectile erlang clang-format bug-hunter magit sr-speedbar swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu))
+   '(vue-mode flycheck-rust cargo yaml-mode sqlup-mode expand-region sql-indent web-mode phpcbf web-beautify racer rust-mode php+-mode php-mode markdown-mode go-dlv realgud company-quickhelp go-rename go-autocomplete bash-completion perl6-mode comment-dwim-2 git-blamed helm-projectile erlang clang-format bug-hunter magit sr-speedbar swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu))
  '(safe-local-variable-values
    '((eval when
            (require 'rainbow-mode nil t)
