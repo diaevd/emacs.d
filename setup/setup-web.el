@@ -123,9 +123,6 @@ See URL `http://php.net/manual/en/features.commandline.php'."
 ;; php-auto-yasnippet
 (use-package php-auto-yasnippets)
 (require 'php-auto-yasnippets)
-(add-hook 'web-mode-hook (lambda ()
-			   (local-set-key (kbd "C-c C-y") 'yas/create-php-snippet)
-			   (editorconfig-mode t)))
 
 ;; php-extras
 ;; (use-package php-extras
@@ -181,6 +178,12 @@ See URL `http://php.net/manual/en/features.commandline.php'."
 
 (add-hook 'editorconfig-custom-hooks
 	  (lambda (hash) (setq web-mode-block-padding 0)))
+
+(add-hook 'web-mode-hook (lambda ()
+			   (local-set-key (kbd "C-c C-y") 'yas/create-php-snippet)
+                           (setq editorconfig-exec-path "/usr/bin/editorconfig")
+			   (editorconfig-mode t)
+                           (editorconfig-apply)))
 
 (provide 'setup-web)
 ;;; setup-php.el ends here
