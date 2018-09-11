@@ -183,7 +183,8 @@ See URL `http://php.net/manual/en/features.commandline.php'."
 			   (local-set-key (kbd "C-c C-y") 'yas/create-php-snippet)
                            (setq editorconfig-exec-path "/usr/bin/editorconfig")
 			   (editorconfig-mode t)
-                           (editorconfig-apply)))
+                           (editorconfig-apply)
+                           (lambda (hash) (setq web-mode-block-padding 0))))
 
 (provide 'setup-web)
 ;;; setup-php.el ends here
