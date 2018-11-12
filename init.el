@@ -38,18 +38,29 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 ;;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 ;; (package-initialize) ;; You might already have this line
-(when (version< emacs-version "27.0")
-  (unless package--initialized (package-initialize t)))
+;; (when (version< emacs-version "27.0")
+  ;; (unless package--initialized (package-initialize t)))
+(unless package--initialized (package-initialize))
 
-(when (not package-archive-contents)
-    (package-refresh-contents))
+;; run package-initialize if running emacs version < 27
+;; (>=e "27.0"
+;;      nil
+;;      (package-initialize))
 
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
 
 ;; MELPA use-package
-(require 'use-package)
-(setq use-package-always-ensure t)
+(unless (package-installed-p 'use-package) ; unless it is already installed
+  (package-refresh-contents) ; update packages archive
+  (package-install 'use-package)) ; install the latest version of use-package
+(eval-when-compile (require 'use-package))
+
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+;; Manage your installed packages with emacs
+;; https://github.com/jabranham/system-packages
+(use-package system-packages)
+(use-package use-package-ensure-system-package)
 
 (defvar my-packages '(
                       bash-completion
@@ -161,10 +172,14 @@
 (require 'setup-git)
 (require 'setup-go)
 (require 'setup-org)
+(require 'setup-lsp)
 (require 'setup-rust)
 (require 'setup-functions)
 (require 'setup-web)
 (require 'setup-sql)
+
+;; install all packages (if they already not installed by use-package)
+(package-install-selected-packages)
 
 ;;------------------------------------------------------------------------
 ;;
@@ -264,7 +279,7 @@
  '(org-return-follows-link t)
  '(org-startup-folded nil)
  '(package-selected-packages
-   '(auto-package-update vue-mode flycheck-rust cargo yaml-mode sqlup-mode expand-region sql-indent web-mode phpcbf web-beautify racer rust-mode php+-mode php-mode markdown-mode go-dlv realgud company-quickhelp go-rename go-autocomplete bash-completion perl6-mode comment-dwim-2 git-blamed helm-projectile erlang clang-format bug-hunter magit sr-speedbar swiper-helm sublime-themes ggtags function-args zygospore helm-gtags helm yasnippet ws-butler volatile-highlights use-package undo-tree iedit dtrt-indent counsel-projectile company clean-aindent-mode anzu))
+   '(use-package-ensure-system-package system-packages zygospore yaml-mode ws-butler web-mode web-beautify vue-mode volatile-highlights use-package undo-tree swiper-helm sublime-themes sr-speedbar sqlup-mode sql-indent slime realgud racer popup-switcher phpcbf php-eldoc php-auto-yasnippets php+-mode perl6-mode paredit multi-compile magit lsp-ui lsp-rust iedit highlight-parentheses helm-swoop helm-projectile helm-gtags go-rename go-eldoc go-dlv go-autocomplete git-blamed ggtags function-args flycheck-rust expand-region erlang editorconfig dtrt-indent diminish counsel-projectile company-quickhelp company-php company-lsp company-go company-c-headers comment-dwim-2 clean-aindent-mode clang-format cargo bug-hunter bash-completion auto-package-update anzu anything))
  '(safe-local-variable-values
    '((eval when
            (require 'rainbow-mode nil t)
