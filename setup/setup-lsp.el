@@ -10,6 +10,7 @@
   :config
   ;; (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
   (setq lsp-rust-rls-command '("rustup" "run" "beta" "rls"))
+  ;; (setq lsp-rust-rls-command '("/home/diabolo/src/rust/rls/target/debug/rls"))
   ;; (add-to-list 'lsp-project-blacklist "^/Users/csraghunandan/Library/Caches/Homebrew/emacs--git/$")
   ;; (add-to-list 'lsp-project-blacklist "^/Users/csraghunandan/\\.emacs\\.d/$"))
   )

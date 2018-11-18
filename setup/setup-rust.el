@@ -65,7 +65,7 @@
                         (lsp-ui-sideline-mode)
                         (lsp-ui-doc-mode)
                         ;; (lsp-ui-doc-enable-eldoc)
-                        ;; (eldoc-mode)
+                        (eldoc-mode)
                         ;; (racer-mode)
                         ;; (smart-dash-mode)
                         (company-mode))))
@@ -74,13 +74,16 @@
          ("C-c C-r C-v" . wh/rust-toggle-visibility)
          ("C-c C-r C-m" . wh/rust-toggle-mutability)
          ("C-c C-r C-s" . wh/rust-vec-as-slice)
-         ("?\t" . #'company-indent-or-complete-common))
+         ([?\t] . #'company-indent-or-complete-common))
   :ensure-system-package
      ((rustfmt . "rustup component add rustfmt-preview")
        (racer . "cargo install racer")
         (rls . "rustup component add rls-preview rust-analysis rust-src"))
   :config
   (setq rust-indent-method-chain t)
+  ;; (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+  (setq company-tooltip-align-annotations t)
+  ;; For automatic completions, customize company-idle-delay and company-minimum-prefix-length
 
   (defun my-rust-mode-hook ()
     (set (make-local-variable 'company-backends)
