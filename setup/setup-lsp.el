@@ -6,30 +6,51 @@
 
 ;; lsp-mode:  Emacs client/library for the Language Server Protocol
 ;; https://github.com/emacs-lsp/lsp-mode
+;; (use-package lsp)
+;; (use-package lsp-clients)
 (use-package lsp-mode
+  :ensure t
   :config
+  (setq lsp-print-io t)
   ;; (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
-  (setq lsp-rust-rls-command '("rustup" "run" "beta" "rls"))
+  ;; (setq lsp-rust-rls-command '("rustup" "run" "nightly-2018-12-06" "rls"))
+  (setenv "RUST_BACKTRACE" "full")
+  (setenv "RUST_LOG" "rls::=debug")
+  ;; (setq lsp-rust-rls-command '("rustup" "run" "beta" "rls"))
+  ;; (setenv "LD_LIBRARY_PATH" "/home/diabolo/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/")
   ;; (setq lsp-rust-rls-command '("/home/diabolo/src/rust/rls/target/debug/rls"))
   ;; (add-to-list 'lsp-project-blacklist "^/Users/csraghunandan/Library/Caches/Homebrew/emacs--git/$")
   ;; (add-to-list 'lsp-project-blacklist "^/Users/csraghunandan/\\.emacs\\.d/$"))
+
+  ;; Fix problem seems to be caused by upgrading lsp-mode package to v3.
+  (unless (fboundp 'lsp-rust-enable)
+    (defun lsp-rust-enable ()
+      (require 'lsp-clients)
+      (when (boundp 'lsp-rust-rls-command)
+        (lsp-register-client
+         (make-lsp-client :new-connection (lsp-stdio-connection lsp-rust-rls-command)
+                          :major-modes '(rust-mode)
+                          :server-id 'rls
+                          :notification-handlers (lsp-ht ("window/progress" 'lsp-clients--rust-window-progress)))))
+      (lsp)))
   )
 
 ;; company-lsp: Company completion backend for lsp-mode.
 ;; https://github.com/tigersoldier/company-lsp/
 (use-package company-lsp
+  :ensure t
   :config
   (push 'company-lsp company-backends))
 
 ;; lsp-ui: This contains all the higher level UI modules of lsp-mode, like flycheck support and code lenses.
 ;; https://github.com/emacs-lsp/lsp-ui
 (use-package lsp-ui
+  :ensure t
   :config
   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
   (setq lsp-ui-sideline-enable nil
         lsp-ui-doc-enable nil
-        lsp-print-io t
         lsp-ui-flycheck-enable t
         lsp-ui-sideline-show-flycheck t
         lsp-ui-imenu-enable t

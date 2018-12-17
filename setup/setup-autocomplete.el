@@ -10,8 +10,8 @@
 (ac-set-trigger-key "TAB")
 (setq ac-auto-start nil)
 ;; Make sure "Anything" is available
-(require 'anything)
-(require 'anything-match-plugin)
+;;(require 'anything)
+;;(require 'anything-match-plugin)
 
 (defun iqbal-setup-cedet-auto-completion ()
   (add-to-list 'ac-sources 'ac-source-semantic))

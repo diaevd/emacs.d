@@ -53,16 +53,14 @@
   (package-refresh-contents) ; update packages archive
   (package-install 'use-package)) ; install the latest version of use-package
 (eval-when-compile (require 'use-package))
+(setq use-package-always-ensure t)
 
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-;; Manage your installed packages with emacs
-;; https://github.com/jabranham/system-packages
-(use-package system-packages)
-(use-package use-package-ensure-system-package)
-
 (defvar my-packages '(
+                      system-packages
+                      use-package-ensure-system-package ;;
                       bash-completion
                       zygospore
                       yasnippet
@@ -91,7 +89,7 @@
                       clang-format      ; use clang for code format
                       bug-hunter        ; hunting bugs in init.el, etc.
                       auto-complete     ; advanced AC
-                      anything
+                      ;; anything		;
                       iedit
                       volatile-highlights
                       anzu
@@ -116,14 +114,20 @@
                       ;; SQL
                       sql-indent
                       expand-region
+                      ;; lsp
+                      lsp-mode
+                      lsp-ui
+                      company-lsp
                       ;; Rust
                       rust-mode
                       racer
                       cargo
                       flycheck-rust
+                      lsp-rust
                       ;; web
                       web-mode
-                      editorconfig
+                      php-auto-yasnippets
+                      company-php
                       vue-mode
                       )
   "A list of packages to ensure are installed at launch.")
@@ -131,6 +135,11 @@
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
+
+;; Manage your installed packages with emacs
+;; https://github.com/jabranham/system-packages
+(use-package system-packages)
+(use-package use-package-ensure-system-package)
 
 ;; place for my libs
 (add-to-list 'load-path "~/.emacs.d/libs")
@@ -266,3 +275,5 @@
 ;; '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 120 :width normal))))
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
+(add-hook 'kill-emacs-query-functions
+          'custom-prompt-customize-unsaved-options)

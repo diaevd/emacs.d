@@ -52,14 +52,18 @@
 ;; lsp-rust: Rust support for lsp-mode using the Rust Language Server.
 ;; https://github.com/emacs-lsp/lsp-rust
 (use-package lsp-rust
+  :ensure t
   :after lsp-mode
   )
 
 ;; rust-mode: major-mode for editing rust files
 ;; https://github.com/rust-lang/rust-mode
 (use-package rust-mode
+  :ensure t
   :hook ((rust-mode . (lambda ()
+                        (lsp-rust-set-goto-def-racer-fallback t)
                         (lsp-rust-enable)
+                        (flycheck-rust-setup)
                         (flycheck-mode)
                         (lsp-ui-mode)
                         (lsp-ui-sideline-mode)
@@ -138,6 +142,7 @@ foo -> &foo[..]"
 ;; cargo-mode: execute cargo commands easily
 ;; https://github.com/kwrooijen/cargo.el
 (use-package cargo
+  :ensure t
   :after rust-mode
   :hook ((rust-mode . cargo-minor-mode)))
 
