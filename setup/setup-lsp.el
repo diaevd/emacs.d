@@ -12,6 +12,7 @@
   :ensure t
   :config
   (setq lsp-print-io t)
+  (setq lsp-rust-rls-command '("rls"))
   ;; (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
   ;; (setq lsp-rust-rls-command '("rustup" "run" "nightly-2018-12-06" "rls"))
   (setenv "RUST_BACKTRACE" "full")
@@ -24,6 +25,19 @@
 
   ;; Fix problem seems to be caused by upgrading lsp-mode package to v3.
   (unless (fboundp 'lsp-rust-enable)
+    (defun diabolo-lsp-rust-window-progress (_workspace params)
+      "Progress report handling.
+PARAMS progress report notification data."
+      ;; Minimal implementation - we could show the progress as well.
+      (setq id (gethash "id" params))
+      (setq title (gethash "title" params))
+      (setq msg (gethash "message" params))
+      (setq done (gethash "done" params))
+      (message "RLS: %s%s%s"
+               title
+               (if msg (format " \"%s\"" msg) "")
+               (if done " done" "")))
+
     (defun lsp-rust-enable ()
       (require 'lsp-clients)
       (when (boundp 'lsp-rust-rls-command)
@@ -31,7 +45,7 @@
          (make-lsp-client :new-connection (lsp-stdio-connection lsp-rust-rls-command)
                           :major-modes '(rust-mode)
                           :server-id 'rls
-                          :notification-handlers (lsp-ht ("window/progress" 'lsp-clients--rust-window-progress)))))
+                          :notification-handlers (lsp-ht ("window/progress" 'diabolo-lsp-rust-window-progress)))))
       (lsp)))
   )
 
