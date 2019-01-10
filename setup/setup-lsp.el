@@ -8,16 +8,16 @@
 ;; https://github.com/emacs-lsp/lsp-mode
 ;; (use-package lsp)
 ;; (use-package lsp-clients)
+(remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
 (use-package lsp-mode
   :ensure t
   :config
   (setq lsp-print-io t)
   (setq lsp-rust-rls-command '("rls"))
   ;; (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
-  ;; (setq lsp-rust-rls-command '("rustup" "run" "nightly-2018-12-06" "rls"))
+  ;; (setq lsp-rust-rls-command '("rustup" "run" "beta" "rls"))
   (setenv "RUST_BACKTRACE" "full")
   (setenv "RUST_LOG" "rls::=debug")
-  ;; (setq lsp-rust-rls-command '("rustup" "run" "beta" "rls"))
   ;; (setenv "LD_LIBRARY_PATH" "/home/diabolo/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/")
   ;; (setq lsp-rust-rls-command '("/home/diabolo/src/rust/rls/target/debug/rls"))
   ;; (add-to-list 'lsp-project-blacklist "^/Users/csraghunandan/Library/Caches/Homebrew/emacs--git/$")
@@ -29,7 +29,7 @@
       "Progress report handling.
 PARAMS progress report notification data."
       ;; Minimal implementation - we could show the progress as well.
-      (setq id (gethash "id" params))
+      ;; (setq id (gethash "id" params))
       (setq title (gethash "title" params))
       (setq msg (gethash "message" params))
       (setq done (gethash "done" params))

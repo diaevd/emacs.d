@@ -51,17 +51,20 @@
 ;;; Setup with rls, cargo, flyckeck
 ;; lsp-rust: Rust support for lsp-mode using the Rust Language Server.
 ;; https://github.com/emacs-lsp/lsp-rust
-(use-package lsp-rust
-  :ensure t
-  :after lsp-mode
-  )
+;; lsp-rust is deprecated around 20190105
+(when (< (car (pkg-info-package-version 'lsp-mode)) 20190105)
+  (use-package lsp-rust
+    :ensure t
+    :after lsp-mode
+    ))
 
 ;; rust-mode: major-mode for editing rust files
 ;; https://github.com/rust-lang/rust-mode
 (use-package rust-mode
   :ensure t
   :hook ((rust-mode . (lambda ()
-                        (lsp-rust-set-goto-def-racer-fallback t)
+                        (when (< (car (pkg-info-package-version 'lsp-mode)) 20190105)
+                          (lsp-rust-set-goto-def-racer-fallback t))
                         (lsp-rust-enable)
                         (flycheck-rust-setup)
                         (flycheck-mode)
@@ -145,6 +148,9 @@ foo -> &foo[..]"
   :ensure t
   :after rust-mode
   :hook ((rust-mode . cargo-minor-mode)))
+
+(use-package toml-mode
+  :ensure t)
 
 (provide 'setup-rust)
 ;;; setup-rust.el ends here

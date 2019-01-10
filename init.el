@@ -61,6 +61,7 @@
 (defvar my-packages '(
                       system-packages
                       use-package-ensure-system-package ;;
+                      pkg-info
                       bash-completion
                       zygospore
                       yasnippet
