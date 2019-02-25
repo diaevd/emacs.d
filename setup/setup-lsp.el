@@ -60,14 +60,55 @@ PARAMS progress report notification data."
 ;; https://github.com/emacs-lsp/lsp-ui
 (use-package lsp-ui
   :ensure t
+  :after lsp-mode
+  :init
+  (when window-system (setq lsp-ui-doc-use-webkit t))
   :config
   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
-  (setq lsp-ui-sideline-enable nil
-        lsp-ui-doc-enable nil
-        lsp-ui-flycheck-enable t
-        lsp-ui-sideline-show-flycheck t
+  ;; (setq lsp-ui-sideline-enable nil
+  ;;       lsp-ui-doc-enable nil
+  ;;       lsp-ui-flycheck-enable t
+  ;;       lsp-ui-sideline-show-flycheck t
+  ;;       lsp-ui-imenu-enable t
+  ;;       lsp-ui-sideline-ignore-duplicate t)
+  (setq lsp-ui-doc-enable t
+        lsp-enable-completion-at-point t
         lsp-ui-imenu-enable t
-        lsp-ui-sideline-ignore-duplicate t))
+        lsp-ui-sideline-show-flycheck t
+        lsp-ui-sideline-ignore-duplicate t
+        lsp-ui-sideline-enable nil)
+  (if lsp-ui-doc-use-webkit ;; window-system
+      (setq lsp-ui-doc-position 'at-point
+            lsp-ui-doc-header t
+            lsp-ui-doc-include-signature t)
+    (setq lsp-ui-doc-header t
+          lsp-ui-doc-include-signature t))
+
+  ;; (setq lsp-ui-doc-frame-parameters
+  ;;       '((left . -1)
+  ;;         (top . -1)
+  ;;         (no-accept-focus . t)
+  ;;         (min-width . 0)
+  ;;         (width . 0)
+  ;;         (min-height . 0)
+  ;;         (height . 0)
+  ;;         (internal-border-width . 0)
+  ;;         (vertical-scroll-bars)
+  ;;         (horizontal-scroll-bars)
+  ;;         (left-fringe . 0)
+  ;;         (right-fringe . 0)
+  ;;         (menu-bar-lines . 0)
+  ;;         (tool-bar-lines . 0)
+  ;;         (line-spacing . 0.1)
+  ;;         (unsplittable . t)
+  ;;         (undecorated . t)
+  ;;         (minibuffer . nil)
+  ;;         (visibility . nil)
+  ;;         (mouse-wheel-frame . nil)
+  ;;         (no-other-frame . t)
+  ;;         (cursor-type)
+  ;;         (no-special-glyphs . t)))
+  )
 
 (provide 'setup-lsp)

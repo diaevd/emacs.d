@@ -64,14 +64,15 @@
   :ensure t
   :hook ((rust-mode . (lambda ()
                         (when (< (car (pkg-info-package-version 'lsp-mode)) 20190105)
-                          (lsp-rust-set-goto-def-racer-fallback t))
+                          (lsp-rust-set-goto-def-racer-fallback t)
+                          (lsp-ui-doc-enable-eldoc))
                         (lsp-rust-enable)
                         (flycheck-rust-setup)
                         (flycheck-mode)
                         (lsp-ui-mode)
                         (lsp-ui-sideline-mode)
                         (lsp-ui-doc-mode)
-                        ;; (lsp-ui-doc-enable-eldoc)
+                        ;;
                         (eldoc-mode)
                         ;; (racer-mode)
                         ;; (smart-dash-mode)
@@ -151,6 +152,18 @@ foo -> &foo[..]"
 
 (use-package toml-mode
   :ensure t)
+
+;; (use-package eglot
+;;   :ensure t)
+
+;; (use-package rustic
+;;   :ensure t
+;;   :after eglot
+;;   :commands rustic-mode
+;;   :mode ("\\.rs\\'" . rustic-mode)
+;;   :hook (rust-mode . rustic-mode)
+;;   :config
+;;   (setq rustic-rls-pkg 'eglot))
 
 (provide 'setup-rust)
 ;;; setup-rust.el ends here

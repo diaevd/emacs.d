@@ -4,6 +4,12 @@
 
 (setq start-directory-path (getenv "PWD"))
 
+(defun 2-windows-vertical-to-horizontal ()
+  (let ((buffers (mapcar 'window-buffer (window-list))))
+    (when (= 2 (length buffers))
+      (delete-other-windows)
+      (set-window-buffer (split-window-horizontally) (cadr buffers)))))
+
 (when window-system
   (add-to-list 'initial-frame-alist '(width . 210))
   (add-to-list 'initial-frame-alist '(height . 58))
@@ -59,8 +65,8 @@
   (package-refresh-contents))
 
 (defvar my-packages '(
-                      system-packages
                       use-package-ensure-system-package ;;
+                      system-packages
                       pkg-info
                       bash-completion
                       zygospore

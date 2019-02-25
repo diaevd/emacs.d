@@ -177,11 +177,12 @@ frame."
   (switch-to-buffer "*scratch*" t)
   (lisp-interaction-mode))
 
-(defun 2-windows-vertical-to-horizontal ()
-  (let ((buffers (mapcar 'window-buffer (window-list))))
-    (when (= 2 (length buffers))
-      (delete-other-windows)
-      (set-window-buffer (split-window-horizontally) (cadr buffers)))))
+;;; moved to init.el
+;; (defun 2-windows-vertical-to-horizontal ()
+;;   (let ((buffers (mapcar 'window-buffer (window-list))))
+;;     (when (= 2 (length buffers))
+;;       (delete-other-windows)
+;;       (set-window-buffer (split-window-horizontally) (cadr buffers)))))
 ;; (add-hook 'emacs-startup-hook '2-windows-vertical-to-horizontal)
 
 (defun diabolo/transpose-buffers (&optional arg)

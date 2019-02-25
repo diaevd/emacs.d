@@ -13,7 +13,7 @@
  '(org-return-follows-link t)
  '(org-startup-folded nil)
  '(package-selected-packages
-   '(use-package-ensure-system-package system-packages zygospore yaml-mode ws-butler web-mode web-beautify vue-mode volatile-highlights use-package undo-tree swiper-helm sublime-themes sr-speedbar sqlup-mode sql-indent slime realgud racer popup-switcher phpcbf php-eldoc php-auto-yasnippets php+-mode perl6-mode paredit multi-compile magit lsp-ui lsp-rust iedit highlight-parentheses helm-swoop helm-projectile helm-gtags go-rename go-eldoc go-dlv go-autocomplete git-blamed ggtags function-args flycheck-rust expand-region erlang editorconfig dtrt-indent diminish counsel-projectile company-quickhelp company-php company-lsp company-go company-c-headers comment-dwim-2 clean-aindent-mode clang-format cargo bug-hunter bash-completion auto-package-update anzu anything))
+   '(toml-mode use-package-ensure-system-package system-packages zygospore yaml-mode ws-butler web-mode web-beautify vue-mode volatile-highlights use-package undo-tree swiper-helm sublime-themes sr-speedbar sqlup-mode sql-indent slime realgud racer popup-switcher phpcbf php-eldoc php-auto-yasnippets php+-mode perl6-mode paredit multi-compile magit lsp-ui lsp-rust iedit highlight-parentheses helm-swoop helm-projectile helm-gtags go-rename go-eldoc go-dlv go-autocomplete git-blamed ggtags function-args flycheck-rust expand-region erlang editorconfig dtrt-indent diminish counsel-projectile company-quickhelp company-php company-lsp company-go company-c-headers comment-dwim-2 clean-aindent-mode clang-format cargo bug-hunter bash-completion auto-package-update anzu anything))
  '(safe-local-variable-values
    '((eval when
            (require 'rainbow-mode nil t)
