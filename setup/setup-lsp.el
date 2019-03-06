@@ -62,7 +62,7 @@ PARAMS progress report notification data."
   :ensure t
   :after lsp-mode
   :init
-  (when window-system (setq lsp-ui-doc-use-webkit t))
+  ;; (when window-system (setq lsp-ui-doc-use-webkit t))
   :config
   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
@@ -77,13 +77,14 @@ PARAMS progress report notification data."
         lsp-ui-imenu-enable t
         lsp-ui-sideline-show-flycheck t
         lsp-ui-sideline-ignore-duplicate t
-        lsp-ui-sideline-enable nil)
+        lsp-ui-sideline-enable t)
   (if lsp-ui-doc-use-webkit ;; window-system
       (setq lsp-ui-doc-position 'at-point
             lsp-ui-doc-header t
-            lsp-ui-doc-include-signature t)
-    (setq lsp-ui-doc-header t
-          lsp-ui-doc-include-signature t))
+            lsp-ui-doc-include-signature t
+            lsp-ui-sideline-enable nil)
+    (setq lsp-ui-doc-header nil
+          lsp-ui-doc-include-signature nil))
 
   ;; (setq lsp-ui-doc-frame-parameters
   ;;       '((left . -1)

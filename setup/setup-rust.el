@@ -70,10 +70,10 @@
                         (flycheck-rust-setup)
                         (flycheck-mode)
                         (lsp-ui-mode)
-                        (lsp-ui-sideline-mode)
-                        (lsp-ui-doc-mode)
+                        ;; (lsp-ui-sideline-mode)
+                        ;; (lsp-ui-doc-mode)
                         ;;
-                        (eldoc-mode)
+                        ;; (eldoc-mode)
                         ;; (racer-mode)
                         ;; (smart-dash-mode)
                         (company-mode))))
