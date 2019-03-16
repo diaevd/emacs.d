@@ -94,6 +94,8 @@
 ;; '(default ((t (:family "Inconsolata" :foundry "outline" :slant normal :weight bold :height 118 :width normal))))
 ;; '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 120 :width normal))))
 ;; '(default ((t (:family "Anonymous Pro" :foundry "outline" :slant normal :weight bold :height 120 :width normal))))
+
+;; (set-face-attribute 'default nil :family "Anonymous Pro" :height 119 :weight 'bold)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

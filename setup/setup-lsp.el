@@ -11,6 +11,8 @@
 (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
 (use-package lsp-mode
   :ensure t
+  :init
+  (setq eldoc-echo-area-use-multiline-p nil)
   :config
   (setq lsp-print-io t)
   (setq lsp-rust-rls-command '("rls"))
@@ -25,18 +27,18 @@
 
   ;; Fix problem seems to be caused by upgrading lsp-mode package to v3.
   (unless (fboundp 'lsp-rust-enable)
-    (defun diabolo-lsp-rust-window-progress (_workspace params)
+    (defun diabolo/lsp-rust-window-progress (_workspace params)
       "Progress report handling.
 PARAMS progress report notification data."
       ;; Minimal implementation - we could show the progress as well.
       ;; (setq id (gethash "id" params))
-      (setq title (gethash "title" params))
-      (setq msg (gethash "message" params))
-      (setq done (gethash "done" params))
-      (message "RLS: %s%s%s"
-               title
-               (if msg (format " \"%s\"" msg) "")
-               (if done " done" "")))
+      (let ((title (gethash "title" params))
+            (msg (gethash "message" params))
+            (done (gethash "done" params)))
+        (message "RLS: %s%s%s"
+                 title
+                 (if msg (format " \"%s\"" msg) "")
+                 (if done " done" ""))))
 
     (defun lsp-rust-enable ()
       (require 'lsp-clients)
@@ -45,7 +47,7 @@ PARAMS progress report notification data."
          (make-lsp-client :new-connection (lsp-stdio-connection lsp-rust-rls-command)
                           :major-modes '(rust-mode)
                           :server-id 'rls
-                          :notification-handlers (lsp-ht ("window/progress" 'diabolo-lsp-rust-window-progress)))))
+                          :notification-handlers (lsp-ht ("window/progress" 'diabolo/lsp-rust-window-progress)))))
       (lsp)))
   )
 
@@ -73,7 +75,8 @@ PARAMS progress report notification data."
   ;;       lsp-ui-imenu-enable t
   ;;       lsp-ui-sideline-ignore-duplicate t)
   (setq lsp-ui-doc-enable t
-        lsp-enable-completion-at-point t
+        ;; lsp-ui-doc-use-childframe nil
+        ;; lsp-enable-completion-at-point t
         lsp-ui-imenu-enable t
         lsp-ui-sideline-show-flycheck t
         lsp-ui-sideline-ignore-duplicate t
@@ -85,6 +88,14 @@ PARAMS progress report notification data."
             lsp-ui-sideline-enable nil)
     (setq lsp-ui-doc-header nil
           lsp-ui-doc-include-signature nil))
+
+  ;; (add-function :filter-args (lsp--eldoc-message msg)
+  ;;               (lambda (msg)
+  ;;                 (if lsp-ui-doc-enable '() (list msg))))
+  (defadvice lsp--eldoc-message (around diabolo/lsp--eldoc-message activate)
+    "Deactive output for eldoc is lsp-ui-doc-enable is true"
+    (when lsp-ui-doc-enable (setq msg nil))
+    ad-do-it)
 
   ;; (setq lsp-ui-doc-frame-parameters
   ;;       '((left . -1)

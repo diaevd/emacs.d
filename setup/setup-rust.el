@@ -49,121 +49,134 @@
 ;;   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 ;;; Setup with rls, cargo, flyckeck
+
+(defvar diabolo/use-rustic nil)
+(defvar diabolo/use-rustic-elgot nil)
+
 ;; lsp-rust: Rust support for lsp-mode using the Rust Language Server.
 ;; https://github.com/emacs-lsp/lsp-rust
 ;; lsp-rust is deprecated around 20190105
-(when (< (car (pkg-info-package-version 'lsp-mode)) 20190105)
-  (use-package lsp-rust
-    :ensure t
-    :after lsp-mode
-    ))
+(unless diabolo/use-rustic
+  (when (< (car (pkg-info-package-version 'lsp-mode)) 20190105)
+    (use-package lsp-rust
+      :ensure t
+      :after lsp-mode
+      )))
 
 ;; rust-mode: major-mode for editing rust files
 ;; https://github.com/rust-lang/rust-mode
-(use-package rust-mode
-  :ensure t
-  :hook ((rust-mode . (lambda ()
-                        (when (< (car (pkg-info-package-version 'lsp-mode)) 20190105)
-                          (lsp-rust-set-goto-def-racer-fallback t)
-                          (lsp-ui-doc-enable-eldoc))
-                        (lsp-rust-enable)
-                        (flycheck-rust-setup)
-                        (flycheck-mode)
-                        (lsp-ui-mode)
-                        ;; (lsp-ui-sideline-mode)
-                        ;; (lsp-ui-doc-mode)
-                        ;;
-                        ;; (eldoc-mode)
-                        ;; (racer-mode)
-                        ;; (smart-dash-mode)
-                        (company-mode))))
+(unless diabolo/use-rustic
+  (use-package rust-mode
+    :ensure t
+    :hook ((rust-mode . (lambda ()
+                          (when (< (car (pkg-info-package-version 'lsp-mode)) 20190105)
+                            (lsp-rust-set-goto-def-racer-fallback t)
+                            (lsp-ui-doc-enable-eldoc)
+                            (flycheck-rust-setup)
+                            (flycheck-mode)
+                            (lsp-ui-mode)
+                            (company-mode))
+                          (lsp-rust-enable)
+                          ;; (lsp-ui-sideline-mode)
+                          ;; (lsp-ui-doc-mode)
+                          ;;
+                          ;; (eldoc-mode)
+                          ;; (racer-mode)
+                          ;; (smart-dash-mode)
+                          )))
 
-  :bind (:map rust-mode-map
-         ("C-c C-r C-v" . wh/rust-toggle-visibility)
-         ("C-c C-r C-m" . wh/rust-toggle-mutability)
-         ("C-c C-r C-s" . wh/rust-vec-as-slice)
-         ([?\t] . #'company-indent-or-complete-common))
-  :ensure-system-package
-     ((rustfmt . "rustup component add rustfmt-preview")
-       (racer . "cargo install racer")
-        (rls . "rustup component add rls-preview rust-analysis rust-src"))
-  :config
-  (setq rust-indent-method-chain t)
-  ;; (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-  (setq company-tooltip-align-annotations t)
-  ;; For automatic completions, customize company-idle-delay and company-minimum-prefix-length
+    :bind (:map rust-mode-map
+                ("C-c C-r C-v" . wh/rust-toggle-visibility)
+                ("C-c C-r C-m" . wh/rust-toggle-mutability)
+                ("C-c C-r C-s" . wh/rust-vec-as-slice)
+                ([?\t] . #'company-indent-or-complete-common))
+    :ensure-system-package
+    ((rustfmt . "rustup component add rustfmt-preview")
+     (racer . "cargo install racer")
+     (rls . "rustup component add rls-preview rust-analysis rust-src"))
+    :config
+    (setq rust-indent-method-chain t)
+    ;; (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+    (setq company-tooltip-align-annotations t)
+    ;; For automatic completions, customize company-idle-delay and company-minimum-prefix-length
 
-  (defun my-rust-mode-hook ()
-    (set (make-local-variable 'company-backends)
-         '((company-lsp company-files :with company-yasnippet)
-           (company-dabbrev-code company-dabbrev))))
+    (defun my-rust-mode-hook ()
+      (set (make-local-variable 'company-backends)
+           '((company-lsp company-files :with company-yasnippet)
+             (company-dabbrev-code company-dabbrev))))
 
-  (add-hook 'rust-mode-hook #'my-rust-mode-hook)
+    (add-hook 'rust-mode-hook #'my-rust-mode-hook)
 
-  ;; format rust buffers using rustfmt(if it is installed)
-  (add-hook 'rust-mode-hook
-            (lambda ()
-              (add-hook 'before-save-hook
-                        (lambda ()
-                          (time-stamp)
-                          (lsp-format-buffer)) nil t)))
+    ;; format rust buffers using rustfmt(if it is installed)
+    (add-hook 'rust-mode-hook
+              (lambda ()
+                (add-hook 'before-save-hook
+                          (lambda ()
+                            (time-stamp)
+                            (lsp-format-buffer)) nil t)))
 
-  (defun wh/rust-toggle-mutability ()
-    "Toggle the mutability of the variable at point."
-    (interactive)
-    (save-excursion
-      (racer-find-definition)
-      (back-to-indentation)
-      (forward-char 4)
-      (if (looking-at "mut ")
-          (delete-char 4)
-        (insert "mut "))))
+    (defun wh/rust-toggle-mutability ()
+      "Toggle the mutability of the variable at point."
+      (interactive)
+      (save-excursion
+        (racer-find-definition)
+        (back-to-indentation)
+        (forward-char 4)
+        (if (looking-at "mut ")
+            (delete-char 4)
+          (insert "mut "))))
 
-  (defun wh/rust-toggle-visibility ()
-    "Toggle the public visibility of the function at point."
-    (interactive)
-    (save-excursion
-      ;; If we're already at the beginning of the function definition,
-      ;; `beginning-of-defun' moves to the previous function, so move elsewhere.
-      (end-of-line)
+    (defun wh/rust-toggle-visibility ()
+      "Toggle the public visibility of the function at point."
+      (interactive)
+      (save-excursion
+        ;; If we're already at the beginning of the function definition,
+        ;; `beginning-of-defun' moves to the previous function, so move elsewhere.
+        (end-of-line)
 
-      (beginning-of-defun)
-      (if (looking-at "pub ")
-          (delete-char 4)
-        (insert "pub "))))
+        (beginning-of-defun)
+        (if (looking-at "pub ")
+            (delete-char 4)
+          (insert "pub "))))
 
-  (defun wh/rust-vec-as-slice ()
-    "Convert the vector expression at point to a slice.
+    (defun wh/rust-vec-as-slice ()
+      "Convert the vector expression at point to a slice.
 foo -> &foo[..]"
-    (interactive)
-    (insert "&")
-    (forward-symbol 1)
-    (insert "[..]")))
+      (interactive)
+      (insert "&")
+      (forward-symbol 1)
+      (insert "[..]"))))
 
 ;; (with-eval-after-load 'rust-mode
 ;;   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 ;; cargo-mode: execute cargo commands easily
 ;; https://github.com/kwrooijen/cargo.el
-(use-package cargo
-  :ensure t
-  :after rust-mode
-  :hook ((rust-mode . cargo-minor-mode)))
+(unless diabolo/use-rustic
+  (use-package cargo
+    :ensure t
+    :after rust-mode
+    :hook ((rust-mode . cargo-minor-mode))))
 
-(use-package toml-mode
-  :ensure t)
+(unless diabolo/use-rustic
+  (use-package toml-mode
+    :ensure t))
 
-;; (use-package eglot
-;;   :ensure t)
+(when diabolo/use-rustic
+  (when diabolo/use-rustic-elgot
+    (use-package eglot
+      :ensure t
+      :config
+      (setq eglot-auto-display-help-buffer t)))
 
-;; (use-package rustic
-;;   :ensure t
-;;   :after eglot
-;;   :commands rustic-mode
-;;   :mode ("\\.rs\\'" . rustic-mode)
-;;   :hook (rust-mode . rustic-mode)
-;;   :config
-;;   (setq rustic-rls-pkg 'eglot))
+  (use-package rustic
+    :ensure t
+    ;; :after eglot
+    :commands rustic-mode
+    :mode ("\\.rs\\'" . rustic-mode)
+    :hook (rust-mode . rustic-mode)
+    :config
+    (when diabolo/use-rustic-elgot (setq rustic-rls-pkg 'eglot))))
 
 (provide 'setup-rust)
 ;;; setup-rust.el ends here
