@@ -90,6 +90,7 @@
                       function-args     ; show function args
                       erlang
                       dtrt-indent       ; auto configure indent style
+                      editorconfig      ; loading editorconfig
                       counsel
                       counsel-projectile
                       comment-dwim-2    ; advanced comment-dwim (M-;)
@@ -130,7 +131,7 @@
                       racer
                       cargo
                       flycheck-rust
-                      lsp-rust
+                      ;; lsp-rust
                       ;; web
                       web-mode
                       php-auto-yasnippets
@@ -188,6 +189,7 @@
 (require 'setup-git)
 (require 'setup-go)
 (require 'setup-org)
+;; (require 'setup-lsp-new)
 (require 'setup-lsp)
 (require 'setup-rust)
 (require 'setup-functions)
@@ -220,6 +222,8 @@
 (global-set-key (kbd "C-c i") 'imenu)
 (global-set-key (kbd "C-c v") 'imenu-tree)
 (global-set-key (kbd "C-c j") 'ffap)
+;;
+(global-set-key (kbd "\e\ea") 'dtrt-indent-adapt)
 ;;
 ;; (define-key helm-command-map (kbd "C-x r j") 'jump-to-register)
 ;;

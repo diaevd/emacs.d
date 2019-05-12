@@ -8,6 +8,8 @@
 ;; https://github.com/emacs-lsp/lsp-mode
 ;; (use-package lsp)
 ;; (use-package lsp-clients)
+;; (require 'ra-emacs-lsp)
+
 (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
 (use-package lsp-mode
   :ensure t
@@ -65,6 +67,9 @@ PARAMS progress report notification data."
   :after lsp-mode
   :init
   ;; (when window-system (setq lsp-ui-doc-use-webkit t))
+  :bind (:map lsp-ui-mode-map
+              ("C-c C-a" . lsp-ui-sideline-apply-code-actions)
+              ("C-c v" . lsp-ui-imenu))
   :config
   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
@@ -80,7 +85,8 @@ PARAMS progress report notification data."
         lsp-ui-imenu-enable t
         lsp-ui-sideline-show-flycheck t
         lsp-ui-sideline-ignore-duplicate t
-        lsp-ui-sideline-enable t)
+        lsp-ui-sideline-enable t
+        lsp-ui-sideline-code-actions-prefix "💡 ")
   (if lsp-ui-doc-use-webkit ;; window-system
       (setq lsp-ui-doc-position 'at-point
             lsp-ui-doc-header t
@@ -94,7 +100,8 @@ PARAMS progress report notification data."
   ;;                 (if lsp-ui-doc-enable '() (list msg))))
   (defadvice lsp--eldoc-message (around diabolo/lsp--eldoc-message activate)
     "Deactive output for eldoc is lsp-ui-doc-enable is true"
-    (when lsp-ui-doc-enable (setq msg nil))
+    (when (and lsp-ui-doc-enable eldoc-mode)
+      (setq msg (replace-regexp-in-string "[\r\n\t ]+" " " msg)))
     ad-do-it)
 
   ;; (setq lsp-ui-doc-frame-parameters

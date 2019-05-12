@@ -28,7 +28,6 @@
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'setup-rust)
-
 ;;; Code:
 
 (eval-when-compile
@@ -52,6 +51,12 @@
 
 (defvar diabolo/use-rustic nil)
 (defvar diabolo/use-rustic-elgot nil)
+(defvar diabolo/use-ra-lsp nil)
+;; (setenv "RUST_BACKTRACE" "full")
+;; (setenv "RUST_LOG" "rls::=debug")
+;; (setenv "RUST_WRAPPER" "sccache")
+
+;; (require 'ra-emacs-lsp)
 
 ;; lsp-rust: Rust support for lsp-mode using the Rust Language Server.
 ;; https://github.com/emacs-lsp/lsp-rust
@@ -70,7 +75,7 @@
     :ensure t
     :hook ((rust-mode . (lambda ()
                           (when (< (car (pkg-info-package-version 'lsp-mode)) 20190105)
-                            (lsp-rust-set-goto-def-racer-fallback t)
+                            (lsp-rust-set-goto-def-racer-fallback t) ;; Now is set by default
                             (lsp-ui-doc-enable-eldoc)
                             (flycheck-rust-setup)
                             (flycheck-mode)
@@ -83,8 +88,18 @@
                           ;; (eldoc-mode)
                           ;; (racer-mode)
                           ;; (smart-dash-mode)
-                          )))
-
+                          ))
+           ;; format rust buffers using rustfmt(if it is installed)
+           (rust-mode . (lambda ()
+                          (add-hook 'before-save-hook
+                                    (lambda ()
+                                    (time-stamp)
+                                    (lsp-format-buffer)) nil t)))
+           (rust-mode . (lambda ()
+                          (when (< (car (pkg-info-package-version 'lsp-mode)) 20190105)
+                            (set (make-local-variable 'company-backends)
+                                 '((company-lsp company-files :with company-yasnippet)
+                                   (company-dabbrev-code company-dabbrev)))))))
     :bind (:map rust-mode-map
                 ("C-c C-r C-v" . wh/rust-toggle-visibility)
                 ("C-c C-r C-m" . wh/rust-toggle-mutability)
@@ -96,24 +111,8 @@
      (rls . "rustup component add rls-preview rust-analysis rust-src"))
     :config
     (setq rust-indent-method-chain t)
-    ;; (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-    (setq company-tooltip-align-annotations t)
     ;; For automatic completions, customize company-idle-delay and company-minimum-prefix-length
-
-    (defun my-rust-mode-hook ()
-      (set (make-local-variable 'company-backends)
-           '((company-lsp company-files :with company-yasnippet)
-             (company-dabbrev-code company-dabbrev))))
-
-    (add-hook 'rust-mode-hook #'my-rust-mode-hook)
-
-    ;; format rust buffers using rustfmt(if it is installed)
-    (add-hook 'rust-mode-hook
-              (lambda ()
-                (add-hook 'before-save-hook
-                          (lambda ()
-                            (time-stamp)
-                            (lsp-format-buffer)) nil t)))
+    (setq company-tooltip-align-annotations t)
 
     (defun wh/rust-toggle-mutability ()
       "Toggle the mutability of the variable at point."
