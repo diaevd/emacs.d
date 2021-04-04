@@ -70,27 +70,27 @@
 (setq-default indent-tabs-mode nil)
 
 (defalias 'perl-mode 'cperl-mode)
-(defun pde-perl-mode-hook ()
+(defun pde-perl-mode-style-hook ()
   (abbrev-mode t)
   (ido-mode 1)
   (require 'template-simple)
   (when (and buffer-file-name
-	     (not (string-match "\\.\\(pm\\|pod\\)$" (buffer-file-name))))
+	     (not (string-match "\\.\\(pm\\|pod\\|ep\\)$" (buffer-file-name))))
     (add-hook 'after-save-hook 'executable-chmod nil t))
   (set (make-local-variable 'compile-dwim-check-tools) nil)
   (add-to-list 'cperl-style-alist
 	       '("PDE"
                  (cperl-auto-newline                         . nil)
                  (cperl-brace-offset                         . 0)
-                 (cperl-close-paren-offset                   . -8)
+                 (cperl-close-paren-offset                   . -4)
                  (cperl-continued-brace-offset               . 0)
                  (cperl-continued-statement-offset           . 0)
                  (cperl-extra-newline-before-brace           . nil)
                  (cperl-extra-newline-before-brace-multiline . nil)
-                 (cperl-indent-level                         . 8)
+                 (cperl-indent-level                         . 4)
                  (cperl-indent-parens-as-block               . t)
-                 (cperl-indent-tabs-mode                     . t)
-                 (cperl-label-offset                         . -8)
+                 (cperl-indent-tabs-mode                     . nil)
+                 (cperl-label-offset                         . -4)
                  (cperl-merge-trailing-else                  . t)
                  (cperl-tab-always-indent                    . t)))
   ;; ---
@@ -123,6 +123,9 @@
   '(progn
      (add-hook 'cperl-mode-hook (lambda () (local-set-key (kbd "C-c C-b") 'compile-dwim-compile)))
      (add-hook 'cperl-mode-hook (lambda () (local-set-key (kbd "C-c C-r") 'compile-dwim-run)))
+     ;; (add-hook 'cperl-mode-hook 'lsp)
+     (add-hook 'cperl-mode-hook 'pde-perl-mode-style-hook)
+     (push '(cperl-mode . "perl") lsp-language-id-configuration)
      )) ; perl best pratice config
 
 (setq compilation-buffer-name-function 'pde-compilation-buffer-name)

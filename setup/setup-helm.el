@@ -27,6 +27,7 @@
     (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebihnd tab to do persistent action
     (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
     (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
     (global-set-key (kbd "C-c C-f") 'helm-find-files)
 
     (define-key helm-grep-mode-map (kbd "<return>")  'helm-grep-mode-jump-other-window)
@@ -42,9 +43,10 @@
           helm-ff-search-library-in-sexp t ; search for library in `require' and `declare-function' sexp.
 
           ;; you can customize helm-do-grep to execute ack-grep
-          helm-grep-default-command "ack-grep -Hn --smart-case --no-group --no-color %e %p %f"
-          helm-grep-default-recurse-command "ack-grep -H --smart-case --no-group --no-color %e %p %f"
-          helm-split-window-in-side-p t ;; open helm buffer inside current window, not occupy whole other window
+          helm-grep-default-command "ack -Hn --smart-case --no-group --no-color %e %p %f"
+          helm-grep-default-recurse-command "ack -H --smart-case --no-group --no-color %e %p %f"
+          ;; open helm buffer inside current window, not occupy whole other window
+          helm-split-window-inside-p t ; helm-split-window-in-side-p t - is an obsolete variable (as of 2.8.6)
 
           helm-echo-input-in-header-line nil ;;
           helm-display-header-line nil
@@ -140,6 +142,9 @@
       (helm-projectile-on)
       (setq projectile-completion-system 'helm)
       (setq projectile-indexing-method 'alien))))
+
+(define-key helm-find-files-map (kbd "<C-left>")  'helm-find-files-up-one-level) ; up one level in find files
+(define-key helm-find-files-map (kbd "<C-right>")  'helm-execute-persistent-action) ; up one level in find files
 
 (require 'helm-imenu)
 

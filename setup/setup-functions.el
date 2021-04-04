@@ -39,13 +39,13 @@
 ;; Goto functions
 ;;
 ;;------------------------------------------------------------------------
-(defun diabolo/goto-column (column)
+(defun dia/goto-column (column)
   "Goto column. The default value of the COLUMN is decrement by -1"
   (interactive "nGoto Column: ")
   (if (> column 0) (setq column (1- column)))
   (move-to-column column t))
 
-(defun diabolo/goto-line-and-column (lc-cond)
+(defun dia/goto-line-and-column (lc-cond)
   "Allow a specification of LINE:COLUMN or LINE,COLUMN instead of just COLUMN.
 Just :COLUMN or ,COLUMN moves to the specified column on the current line.
 LINE alone still moves to the beginning of the specified line (like LINE:0 or LINE,0).
@@ -185,7 +185,7 @@ frame."
 ;;       (set-window-buffer (split-window-horizontally) (cadr buffers)))))
 ;; (add-hook 'emacs-startup-hook '2-windows-vertical-to-horizontal)
 
-(defun diabolo/transpose-buffers (&optional arg)
+(defun dia/transpose-buffers (&optional arg)
   "Transpose the buffers shown in two windows."
   (interactive "p")
   (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
@@ -197,7 +197,7 @@ frame."
         (select-window (funcall selector)))
       (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
 
-(defun diabolo/reformat-region (&optional b e)
+(defun dia/reformat-region (&optional b e)
   (interactive "r")
   (when (not (buffer-file-name))
     (error "A buffer must be associated with a file in order to use REFORMAT-REGION."))
@@ -210,10 +210,10 @@ frame."
                              (current-buffer) t)
     (indent-region b e))
 
-(defun diabolo/reformat-buffer ()
+(defun dia/reformat-buffer ()
   (interactive)
   (setq cur (point))
-  (diabolo/reformat-region (point-min) (point-max))
+  (dia/reformat-region (point-min) (point-max))
   (goto-char cur)
   )
 

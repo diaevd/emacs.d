@@ -11,10 +11,16 @@
       (set-window-buffer (split-window-horizontally) (cadr buffers)))))
 
 (when window-system
-  (add-to-list 'initial-frame-alist '(width . 210))
+  ;; Anonymous Pro
+  (add-to-list 'initial-frame-alist '(width . 211))
   (add-to-list 'initial-frame-alist '(height . 58))
-  (add-to-list 'default-frame-alist '(width . 210))
+  (add-to-list 'default-frame-alist '(width . 211))
   (add-to-list 'default-frame-alist '(height . 58))
+  ;; Iosevka SS02
+  ;; (add-to-list 'initial-frame-alist '(width . 237))
+  ;; (add-to-list 'initial-frame-alist '(height . 50))
+  ;; (add-to-list 'default-frame-alist '(width . 237))
+  ;; (add-to-list 'default-frame-alist '(height . 50))
   (add-to-list 'frame-inherited-parameters 'width)
   (add-to-list 'frame-inherited-parameters 'height)
   (setq inhibit-splash-screen t)	;; disable splash screan
@@ -29,6 +35,15 @@
 
 ;;------------------------------------------------------------------------
 ;;
+;; Unbind unneeded keys
+;;
+;;------------------------------------------------------------------------
+(global-unset-key (kbd "C-z"))
+(global-unset-key (kbd "M-z"))
+(global-unset-key (kbd "C-x C-z"))
+
+;;------------------------------------------------------------------------
+;;
 ;; MELPA
 ;;
 ;;------------------------------------------------------------------------
@@ -37,11 +52,11 @@
 	     '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives
             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives
-            '("melpa-milkbox" . "https://melpa.milkbox.net/packages/") t)
-(when (< emacs-major-version 24)
+;; (add-to-list 'package-archives
+            ;; '("melpa-milkbox" . "https://melpa.milkbox.net/packages/") t)
+;; (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 ;;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 ;; (package-initialize) ;; You might already have this line
 ;; (when (version< emacs-version "27.0")
@@ -68,6 +83,7 @@
                       use-package-ensure-system-package ;;
                       system-packages
                       pkg-info
+                      posframe
                       bash-completion
                       zygospore
                       yasnippet
@@ -85,6 +101,8 @@
                       helm
                       helm-gtags
                       helm-projectile
+                      helm-posframe
+                      helpful
                       git-blamed        ; coloze changes
                       ggtags            ; gtags analog
                       function-args     ; show function args
@@ -103,6 +121,7 @@
                       anzu
                       company
                       company-quickhelp
+                      company-posframe
                       clean-aindent-mode
                       paredit           ; auto pair
                       slime             ; part of lisp ide
@@ -149,9 +168,25 @@
 (use-package system-packages)
 (use-package use-package-ensure-system-package)
 
+;; for font-lock+
+;; (use-package quelpa
+;;   :defer nil
+;;   :config
+;;   (quelpa
+;;    '(quelpa-use-package
+;;      :fetcher git
+;;      :url "https://framagit.org/steckerhalter/quelpa-use-package.git"))
+;;   (require 'quelpa-use-package))
+
+;; (use-package font-lock+
+;;   :requires (quelpa quelpa-use-package)
+;;   :quelpa
+;;   (font-lock+ :repo "emacsmirror/font-lock-plus" :fetcher github))
+
 ;; place for my libs
 (add-to-list 'load-path "~/.emacs.d/libs")
 (add-to-list 'load-path "~/.emacs.d/setup")
+;; (add-to-list 'load-path "~/.local/share/icons-in-terminal")
 
 (defun load-if-exists (f)
   (if (file-exists-p (expand-file-name f))
@@ -190,7 +225,7 @@
 (require 'setup-go)
 (require 'setup-org)
 ;; (require 'setup-lsp-new)
-(require 'setup-lsp)
+;; (require 'setup-lsp)
 (require 'setup-rust)
 (require 'setup-functions)
 (require 'setup-web)
@@ -204,6 +239,8 @@
 ;; All global keys place here because maybe currupted by prev setups
 ;;
 ;;------------------------------------------------------------------------
+
+;;
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
 (global-set-key (kbd "C-c C-f") 'helm-find-files)
 (global-set-key (kbd "M-x") 'helm-M-x)
@@ -224,20 +261,29 @@
 (global-set-key (kbd "C-c j") 'ffap)
 ;;
 (global-set-key (kbd "\e\ea") 'dtrt-indent-adapt)
+;; Helpful
+(global-set-key (kbd "C-h v") 'helpful-variable)
+(global-set-key (kbd "C-h f") 'helpful-callable)
+(global-set-key (kbd "C-h k") 'helpful-key)
+(global-set-key (kbd "C-h c") 'helpful-command)
+
 ;;
 ;; (define-key helm-command-map (kbd "C-x r j") 'jump-to-register)
 ;;
-(global-set-key (kbd "M-g M-c") 'diabolo/goto-column)
+(global-set-key (kbd "M-g M-c") 'dia/goto-column)
 (global-unset-key (kbd "M-g M-g"))
-(global-set-key (kbd "M-g M-g") 'diabolo/goto-line-and-column)
-(global-set-key (kbd "C-c C-t") 'diabolo/transpose-buffers)
+(global-set-key (kbd "M-g M-g") 'dia/goto-line-and-column)
+(global-set-key (kbd "C-c C-t") 'dia/transpose-buffers)
 
-(defun diabolo-desktop-change-dir ()
+(require 'desktop) ;this line is needed.
+(push '(company-posframe-mode . nil) desktop-minor-mode-table)
+
+(defun dia/desktop-change-dir ()
   ""
   (interactive)
   (desktop-change-dir default-directory))
 
-(defun diabolo-desktop-save ()
+(defun dia/desktop-save ()
   ""
   (interactive)
   (desktop-save default-directory))

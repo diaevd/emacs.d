@@ -176,12 +176,11 @@ See URL `http://php.net/manual/en/features.commandline.php'."
 
 (add-hook 'web-mode-hook 'my-web-mode-hook)
 
-(add-hook 'editorconfig-custom-hooks
-	  (lambda (hash) (setq web-mode-block-padding 0)))
-
 (add-hook 'web-mode-hook (lambda ()
 			   (local-set-key (kbd "C-c C-y") 'yas/create-php-snippet)
                            (setq editorconfig-exec-path "/usr/bin/editorconfig")
+                           (add-hook 'editorconfig-custom-hooks
+	                             (lambda (hash) (setq web-mode-block-padding 0)))
 			   (editorconfig-mode t)
                            (editorconfig-apply)
                            (lambda (hash) (setq web-mode-block-padding 0))))

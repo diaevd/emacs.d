@@ -27,6 +27,8 @@
 
 ;; Перечитываем измененные файлы
 (global-auto-revert-mode t)
+;; в жопу eldoc в глобале
+(global-eldoc-mode -1)
 
 ;; show unncessary whitespace that can mess up your diff
 (add-hook 'prog-mode-hook
@@ -42,6 +44,12 @@
 ;; force the update of the mode line so the column gets updated
 (add-hook 'post-command-hook 'force-mode-line-update)
 ;; (setq-default truncate-lines 1) ;; no wordwrap
+
+;; doom-modeline игнорит падла mode-line-position
+(setq column-number-indicator-zero-based nil)
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
 
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward)  ;; buffernames that are foo<1>, foo<2> are hard to read. This makes them foo|dir  foo|otherdir

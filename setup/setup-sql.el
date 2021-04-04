@@ -34,6 +34,10 @@
 (eval-when-compile
   (require 'cl))
 
+;; for er/mark-inside-quotes
+(require 'expand-region)
+(require 'sql-indent)
+
 (defun sql-indent-string ()
   "Indents the string under the cursor as SQL."
   (interactive)
@@ -54,11 +58,25 @@
 
 (add-to-list 'auto-mode-alist '("\\.sql$" . sql-mode))
 (add-hook 'sql-mode-hook 'sqlup-mode)
+(add-hook 'sql-mode-hook 'sqlind-minor-mode)
+(add-hook 'sqlind-minor-mode-hook 'sqlind-setup-style-right)
 
 (add-to-list 'auto-mode-alist
              '("\\.psql$" . (lambda ()
                               (sql-mode)
                               (sql-highlight-postgres-keywords))))
+
+(add-hook 'sql-mode-hook
+          (lambda ()
+            ;; (make-local-variable 'indent-line-function)
+            ;; (setq indent-line-function 'ig-indent-sql)
+            (local-set-key (kbd "<tab>") #'company-indent-or-complete-common)
+            (make-local-variable 'company-backends)
+            (push '(company-tabnine company-semantic company-files
+                                    company-dabbrev-code company-keywords
+                                    company-oddmuse company-dabbrev)
+                  company-backends)
+            ))
 
 ;;
 ;; Fix SQL indentation
@@ -141,11 +159,6 @@
 
           (t
            (ig-move-line-to-column (+ current tab-width))))))
-
-(add-hook 'sql-mode-hook
-          (function (lambda ()
-                      (make-local-variable 'indent-line-function)
-                      (setq indent-line-function 'ig-indent-sql))))
 
 (provide 'setup-sql)
 ;;; setup-sql.el ends here

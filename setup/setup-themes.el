@@ -106,10 +106,19 @@
  ;; '(default ((t (:family "Monospace" :foundry "outline" :slant normal :weight normal :height 108 :width normal))))
  ;; '(default ((t (:family "Ubuntu Mono" :foundry "outline" :slant normal :weight bold :height 128 :width normal))))
  '(default ((t (:family "Anonymous Pro" :foundry "outline" :slant normal :weight bold :height 119 :width normal))))
+ ;; '(default ((t (:family "Iosevka SS02" :foundry "outline" :slant normal :weight bold :height 119 :width normal))))
  ;;'(default ((t (:family "Hack" :foundry "outline" :slant normal :weight bold :height 113 :width normal))))
  '(cperl-array-face ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
  '(cperl-hash-face ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
  '(fa-face-hint ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))
  '(fa-face-hint-bold ((t (:inherit font-lock-variable-name-face :slant italic :weight bold)))))
+
+;; (set-face-attribute 'default nil
+;; 		    :family "Iosevka SS02"
+;; 		    :height 120
+;;                     ;; :foundry 'outline
+;;                     ;; :slant 'normal
+;; 		    :weight 'normal
+;; 		    :width 'normal)
 
 (provide 'setup-themes)
