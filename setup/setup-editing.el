@@ -72,7 +72,11 @@
   :init
   (add-hook 'prog-mode-hook 'yas-minor-mode)
   (add-hook 'prog-mode-hook 'yas-reload-all) ; without this snippets don't working
-)
+  )
+
+;; Just install snippets
+(use-package yasnippet-snippets
+  :ensure t)
 
 ;; Package: clean-aindent-mode
 (use-package clean-aindent-mode
@@ -83,7 +87,7 @@
 (use-package dtrt-indent
   :init
   (dtrt-indent-mode 1)
-  (setq dtrt-indent-verbosity 0))
+  (setq dtrt-indent-verbosity 3))
 
 ;; Package: ws-butler
 (use-package ws-butler
@@ -103,7 +107,7 @@
 
 (setq comment-dwim-2--inline-comment-behavior 'reindent-comment)
 (add-hook 'c-mode-hook (lambda () (setq comment-start "//"
-					comment-end   "")))
+                                        comment-end   "")))
 
 ;; PACKAGE: anzu
 ;; GROUP: Editing -> Matching -> Isearch -> Anzu

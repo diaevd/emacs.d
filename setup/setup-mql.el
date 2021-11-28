@@ -8,8 +8,8 @@
 ;;(load "~/.emacs.d/mql-mode.el")
 
 (add-to-list 'load-path "~/.emacs.d/libs")
-(eval-when-compile (require 'mql-mode))
-(require 'mql-mode)
+(eval-and-compile (require 'mql-mode))
+;; (require 'mql-mode)
 
 (modify-coding-system-alist 'file "\\.mql\\'" 'windows-1251)
 (modify-coding-system-alist 'file "\\.mq4\\'" 'windows-1251)

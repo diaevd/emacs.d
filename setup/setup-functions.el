@@ -32,7 +32,13 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'cl))
+  (if (version< emacs-version "27.1")
+      (require 'cl)
+    (require 'cl-lib)
+    (defalias 'plusp 'cl-plusp)
+    (defalias 'first 'cl-first)
+    (defalias 'second 'cl-second)
+    (defalias 'incf 'cl-incf)))
 
 ;;------------------------------------------------------------------------
 ;;
@@ -48,7 +54,8 @@
 (defun dia/goto-line-and-column (lc-cond)
   "Allow a specification of LINE:COLUMN or LINE,COLUMN instead of just COLUMN.
 Just :COLUMN or ,COLUMN moves to the specified column on the current line.
-LINE alone still moves to the beginning of the specified line (like LINE:0 or LINE,0).
+LINE alone still moves to the beginning of the specified line
+(like LINE:0 or LINE,0).
 The default value of the COLUMN is decrement by -1
 because all compilers consider the number of COLUMN from 1 (just for copy-past)"
   (interactive "sLine:Column: ")
@@ -154,7 +161,7 @@ nil are ignored."
 
 ;;
 
-(defun stm-create-initial-frame ()
+(defun dia/create-initial-frame ()
   "Place initial frame on screen and visit the *scratch* buffer in it.
 This function can be called from emacsclient to move the created
 frame to a convenient place. The frame will open with the
@@ -176,6 +183,38 @@ frame."
       (set-frame-size (selected-frame) cols rows)))
   (switch-to-buffer "*scratch*" t)
   (lisp-interaction-mode))
+
+(defun dia/get-current-func-name ()
+  "Get the symbol of the function this function is called from."
+  ;; 5 is the magic number that makes us look
+  ;; above this function
+  (let* ((index 5)
+         (frame (backtrace-frame index)))
+    ;; from what I can tell, top level function call frames
+    ;; start with t and the second value is the symbol of the function
+    (while (not (equal t (first frame)))
+      (setq frame (backtrace-frame (incf index))))
+    (second frame)))
+
+(defun dia/resize-by-initial-frame-alist-or-props (&optional frame-props)
+  (interactive)
+  (message "+ Enter %s (%s) windows-system: %s display-graphic-p: %s server-clients: %s"
+           (dia/get-current-func-name)
+           (let ((frm (backtrace-frame 1))) (car (cdr frm)))
+           (window-system)
+           (display-graphic-p)
+           (bound-and-true-p server-clients))
+  (when window-system
+    (message "fp: %s" frame-props)
+    (let* ((_props (or frame-props 'initial-frame-alist))
+           (props (if (symbolp _props) (symbol-value _props) _props))
+           (w (or (alist-get 'width props) (frame-width)))
+           (h (or (alist-get 'height props) (frame-height)))
+           (x (or (alist-get 'left props) (car (frame-position))))
+           (y (or (alist-get 'top props) (cdr (frame-position)))))
+      (message "x: %s y: %s w: %s h: %s" x y w h)
+      (set-frame-position nil x y)
+      (set-frame-size nil w h))))
 
 ;;; moved to init.el
 ;; (defun 2-windows-vertical-to-horizontal ()
@@ -212,10 +251,18 @@ frame."
 
 (defun dia/reformat-buffer ()
   (interactive)
-  (setq cur (point))
-  (dia/reformat-region (point-min) (point-max))
-  (goto-char cur)
-  )
+  (let ((cur (point)))
+    (dia/reformat-region (point-min) (point-max))
+    (goto-char cur)))
+
+(defun dia/remove-mode-from-auto-mode-alist (mode_name)
+  "Remove associated types from auto-mode-alist by mode name"
+  (interactive "SMode name: ")
+  (while (rassoc mode_name auto-mode-alist)
+    (message ">> Remove %s" (rassoc mode_name auto-mode-alist))
+    (setq auto-mode-alist
+          (assq-delete-all (car (rassoc mode_name auto-mode-alist))
+                           auto-mode-alist))))
 
 (provide 'setup-functions)
 ;;; setup-functions.el ends here

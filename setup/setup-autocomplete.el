@@ -4,7 +4,7 @@
 ;;
 ;;------------------------------------------------------------------------
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(add-to-list 'ac-dictionary-directories (expand-file-name "ac-dict" user-emacs-directory))
 (ac-config-default)
 (global-auto-complete-mode t)
 (ac-set-trigger-key "TAB")

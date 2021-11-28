@@ -3,7 +3,7 @@
 ;; Faces
 ;;
 ;;------------------------------------------------------------------------
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
 (setq my-color-themes (list
                        'zenburn-dark    ;; my fixed zenburn

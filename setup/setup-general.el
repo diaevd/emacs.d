@@ -206,4 +206,27 @@
 (global-set-key (kbd "C-c C-w") 'delete-trailing-whitespace)
 (windmove-default-keybindings)
 
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode +1))
+
+;; (use-package git-gutter+-fringe
+(use-package git-gutter-fringe
+  :ensure t
+  :diminish git-gutter-mode
+  :init
+  (setq git-gutter-fr:side 'right-fringe)
+  :config
+  (global-git-gutter-mode t))
+
+;; Save point position between sessions.
+(use-package saveplace
+  :ensure t  ;; as not loading packages
+  :config
+  (setq save-place-file (expand-file-name "saveplace" user-emacs-directory))
+  ;; activate it for all buffers
+  ;; (setq-default save-place t)
+  (save-place-mode 1))
+
 (provide 'setup-general)

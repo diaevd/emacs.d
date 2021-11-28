@@ -42,7 +42,9 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'cl))
+  (if (version< emacs-version "27.1")
+      (require 'cl)
+    (require 'cl-lib)))
 
 (require 'company)
 (require 'flycheck)

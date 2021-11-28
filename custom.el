@@ -3,26 +3,26 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(cargo-process--command-clippy "+nightly clippy -Zunstable-options")
  '(ede-project-directories '("/usr/src/zen/zen-kernel"))
  '(editorconfig-mode t)
- '(eldoc-echo-area-use-multiline-p 1)
+ '(eldoc-echo-area-use-multiline-p 'truncate-sym-name-if-fit)
  '(helm-completion-style 'emacs)
  '(lsp-auto-execute-action nil)
  '(lsp-auto-guess-root t)
- '(lsp-eldoc-render-all nil)
  '(lsp-headerline-breadcrumb-enable t)
  '(lsp-headerline-breadcrumb-segments '(project path-up-to-project file symbols))
- '(lsp-keymap-prefix "C-c C-l")
  '(lsp-lens-enable t)
  '(lsp-rust-analyzer-cargo-load-out-dirs-from-check t)
- '(lsp-rust-analyzer-display-chaining-hints t t)
- '(lsp-rust-analyzer-display-parameter-hints t t)
+ '(lsp-rust-analyzer-cargo-run-build-scripts t)
+ '(lsp-rust-analyzer-display-chaining-hints t)
+ '(lsp-rust-analyzer-display-parameter-hints t)
  '(lsp-rust-analyzer-inlay-face 'lsp-face-semhl-label)
- '(lsp-rust-analyzer-macro-expansion-method 'dia/rust-analyzer-macro-expand t)
+ '(lsp-rust-analyzer-macro-expansion-method 'dia/rust-analyzer-macro-expand)
  '(lsp-rust-analyzer-proc-macro-enable t)
  '(lsp-rust-analyzer-rustfmt-extra-args [])
  '(lsp-rust-analyzer-rustfmt-override-command ["rustup run stable rustfmt"])
- '(lsp-rust-analyzer-server-display-inlay-hints t t)
+ '(lsp-rust-analyzer-server-display-inlay-hints t)
  '(lsp-rust-unstable-features t)
  '(lsp-semantic-tokens-enable t)
  '(lsp-treemacs-sync-mode t)
@@ -50,7 +50,7 @@
  '(org-return-follows-link t)
  '(org-startup-folded nil)
  '(package-selected-packages
-   '(helpful treemacs-projectile company-box company-posframe helm-posframe posframe rustic toml-mode use-package-ensure-system-package system-packages zygospore yaml-mode ws-butler web-mode web-beautify vue-mode volatile-highlights use-package undo-tree swiper-helm sublime-themes sr-speedbar sqlup-mode sql-indent slime realgud racer popup-switcher phpcbf php-eldoc php-auto-yasnippets php+-mode perl6-mode paredit multi-compile magit lsp-ui iedit highlight-parentheses helm-swoop helm-projectile helm-gtags go-rename go-eldoc go-dlv go-autocomplete git-blamed ggtags function-args flycheck-rust expand-region erlang editorconfig dtrt-indent diminish counsel-projectile company-quickhelp company-php company-lsp company-go company-c-headers comment-dwim-2 clean-aindent-mode clang-format cargo bug-hunter bash-completion auto-package-update anzu anything))
+   '(rustic-mode company-lsp zygospore yasnippet-snippets yaml-mode ws-butler which-key web-mode web-beautify vue-mode volatile-highlights use-package-ensure-system-package undo-tree treemacs-projectile toml-mode swiper-helm sublime-themes sr-speedbar sqlup-mode sql-indent slime rustic realgud popup-switcher php-eldoc paredit multi-compile magit lsp-ui iedit highlight-parentheses helpful helm-swoop helm-rg helm-projectile helm-posframe helm-gtags helm-ag go-rename go-eldoc go-dlv go-autocomplete git-gutter-fringe git-gutter-fringe+ git-blamed ggtags function-args fn flycheck expand-region erlang editorconfig dtrt-indent doom-modeline diminish dap-mode counsel-projectile company-quickhelp company-posframe company-php company-go company-c-headers company-box comment-dwim-2 clean-aindent-mode clang-format bug-hunter bash-completion auto-package-update anzu aggressive-indent adoc-mode))
  '(rustic-lsp-server 'rust-analyzer)
  '(safe-local-variable-values
    '(eval
@@ -59,9 +59,6 @@
        (rainbow-mode 1))))
  '(tramp-syntax 'default nil (tramp)))
 
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
 ;;  '(default ((t (:background nil))))
 ;;  ;; '(default ((t (:family "Anonymous Pro Regular" :foundry "outline" :slant normal :weight bold :height 113 :width normal))))
 ;;  '(cperl-array-face ((t (:inherit font-lock-variable-name-face :slant italic :weight bold))))

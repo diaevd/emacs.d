@@ -32,24 +32,37 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'cl))
+  (if (version< emacs-version "27.1")
+      (require 'cl)
+    (require 'cl-lib)))
 
 ;;------------------------------------------------------------------------
 ;;
 ;; GIT (magit)
 ;;
 ;;------------------------------------------------------------------------
-;; (require 'magit)
-(autoload 'magit-status "magit" nil t)
-;; (global-set-key (kbd "M-g r m") 'magit-status)
-(global-set-key (kbd "C-x g s") 'magit-status)
-(global-set-key (kbd "C-x g d") 'magit-diff)
-(global-set-key (kbd "C-x g e") 'magit-ediff-popup)
-(global-set-key (kbd "C-x g b") 'magit-branch)
-(global-set-key (kbd "C-x g c") 'magit-commit)
-;; (require 'git-blamed)
-(autoload 'git-blamed-mode "git-blamed"
-  "Minor mode for incremental blame for Git." t)
-(global-set-key (kbd "C-x g v") 'git-blamed-mode)
+;; ;; (require 'magit)
+;; (autoload 'magit-status "magit" nil t)
+;; ;; (global-set-key (kbd "M-g r m") 'magit-status)
+;; (global-set-key (kbd "C-x g") 'magit-status)
+;; (define-key global-map (kbd "C-x g") 'magit-status)
+;; ;; (global-set-key (kbd "C-x g s") #'magit-status)
+;; (global-set-key (kbd "C-x g d") #'magit-diff)
+;; (global-set-key (kbd "C-x g e") #'magit-ediff-popup)
+;; (global-set-key (kbd "C-x g b") #'magit-branch)
+;; (global-set-key (kbd "C-x g c") #'magit-commit)
+;; ;; (require 'git-blamed)
+;; (autoload 'git-blamed-mode "git-blamed"
+;;   "Minor mode for incremental blame for Git." t)
+;; (global-set-key (kbd "C-x g v") 'git-blamed-mode)
+(use-package magit ; TODO key bindings and such
+  :ensure t
+  :bind (("C-x g s" . magit-status)
+         ("C-x g d" . magit-diff)
+         ("C-x g e" . magit-ediff-popup)
+         ("C-x g b" . magit-branch)
+         ("C-x g c" . magit-commit))
+  )
+
 (provide 'setup-git)
 ;;; setup-git.el ends here
