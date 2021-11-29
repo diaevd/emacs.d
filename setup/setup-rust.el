@@ -176,16 +176,16 @@
 
 ;;; Company LSP
 ;;; https://github.com/tigersoldier/company-lsp
-(use-package company-lsp
-  :defer t
-  ;; :custom
-  ;; (company-lsp-cache-candidates 'auto)
-  :config
-  ;; (setq company-show-numbers t) - deprecated after 0.9.14 (now use show-quick-access)
-  (setq company-show-quick-access t)
-  (setq company-lsp-cache-candidates 'auto)
-  ;; (push 'company-lsp company-backends)
-  )
+;; (use-package company-lsp
+;;   :defer t
+;;   ;; :custom
+;;   ;; (company-lsp-cache-candidates 'auto)
+;;   :config
+;;   ;; (setq company-show-numbers t) - deprecated after 0.9.14 (now use show-quick-access)
+;;   (setq company-show-quick-access t)
+;;   (setq company-lsp-cache-candidates 'auto)
+;;   ;; (push 'company-lsp company-backends)
+;;   )
 
 ;;; Company TabNine
 ;;; https://github.com/TommyX12/company-tabnine
@@ -193,8 +193,9 @@
 ;;; Commentary: This is enabled by default, if ever you find it not good enough for a particular completion,
 ;;; simply use M-q to immediately switch to default backends.
 (use-package company-tabnine
-  :defer t
-  :disabled nil
+  ;; :defer t
+  :ensure t
+  ;;:disabled nil
   ;; :custom
   ;; (company-tabnine-max-num-results 9)
   :bind
@@ -202,13 +203,17 @@
    ("C-z t" . company-tabnine))
   :hook
   (lsp-after-open . (lambda ()
-                      (setq company-tabnine-max-num-results 3)
+                      (setq company-tabnine-max-num-results 4)
                       (add-to-list 'company-transformers 'company//sort-by-tabnine t)
-                      (add-to-list 'company-backends '(company-lsp :with company-tabnine :separate))))
+                      ;; (add-to-list 'company-backends 'company-tabnine)))
+                      (add-to-list 'company-backends '(company-capf :with company-tabnine :separate))))
+  ;; (add-to-list 'company-backends '(company-lsp :with company-tabnine :separate))))
   (kill-emacs . company-tabnine-kill-process)
   :config
   ;; Enable TabNine on default
   ;; (add-to-list 'company-backends #'company-tabnine)
+  (setq company-tabnine-max-num-results 3)
+  (setq company-show-quick-access t)
 
   ;; Integrate company-tabnine with lsp-mode
   (defun company//sort-by-tabnine (candidates)
@@ -353,7 +358,7 @@
 ;;         lsp-rust-full-docs t
 ;;         lsp-rust-server 'rust-analyzer))
 
-(use-package rustic-mode
+(use-package rustic
   :ensure t
   ;; :after lsp-mode
   ;; :hook
@@ -384,7 +389,7 @@
   (setq eldoc-echo-area-use-multiline-p 'truncate-sym-name-if-fit)
   (setq max-mini-window-height 1)
   (message "RUSTIC HOOK: Company backends is set to: %s" company-backends)
-  (set (make-local-variable 'company-backends) nil)
+  ;; (set (make-local-variable 'company-backends) nil)
   ;; (push 'company-lsp company-backends)
   (lsp)
   (message "RUSTIC HOOK: Started Lsp??? Realy???")

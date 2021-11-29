@@ -13,6 +13,11 @@
 (set-language-environment "UTF-8")
 (prefer-coding-system 'utf-8)
 
+;; https://github.com/antmak/auto-enca
+(setenv "ENCAOPT" "-L russian")
+(when (load "auto-enca" 'noerror)
+  (modify-coding-system-alist 'file "" 'enca-detect-coding))
+
 (setq-default indent-tabs-mode 't)
 (delete-selection-mode)
 (global-set-key (kbd "RET") 'newline-and-indent)

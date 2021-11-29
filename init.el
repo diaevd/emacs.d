@@ -121,17 +121,19 @@
         use-package-always-ensure t
         use-package-verbose t))
 
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
 (eval-when-compile
   (require 'package) ;; You might already have this line
   (add-to-list 'package-archives
-	       '("melpa" . "https://melpa.org/packages/"))
+               '("melpa" . "https://melpa.org/packages/"))
   (add-to-list 'package-archives
                '("melpa-stable" . "https://stable.melpa.org/packages/") t)
   ;; (add-to-list 'package-archives
-            ;; '("melpa-milkbox" . "https://melpa.milkbox.net/packages/") t)
+  ;;           '("melpa-milkbox" . "https://melpa.milkbox.net/packages/") t)
   ;; (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
   ;;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
   ;; (package-initialize) ;; You might already have this line
   ;; (when (version< emacs-version "27.0")

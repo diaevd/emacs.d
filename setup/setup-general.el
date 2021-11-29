@@ -49,7 +49,11 @@
 (setq column-number-indicator-zero-based nil)
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1))
+  :init
+  (doom-modeline-mode 1)
+  :config
+  (set-face-attribute 'mode-line nil :family "FiraCode Bold" :height 110)
+  (set-face-attribute 'mode-line-inactive nil :family "FiraCode Bold" :height 110))
 
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward)  ;; buffernames that are foo<1>, foo<2> are hard to read. This makes them foo|dir  foo|otherdir

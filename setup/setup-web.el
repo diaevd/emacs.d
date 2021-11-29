@@ -84,9 +84,9 @@ See URL `http://php.net/manual/en/features.commandline.php'."
   (setq web-mode-enable-current-element-highlight t)
   (setq web-mode-enable-current-column-highlight t)
 
-  (use-package php-auto-yasnippets)
-  (require 'php-auto-yasnippets)
-  (local-set-key (kbd "C-c C-y") 'yas/create-php-snippet)
+  ;; (use-package php-auto-yasnippets)
+  ;; (require 'php-auto-yasnippets)
+  ;; (local-set-key (kbd "C-c C-y") 'yas/create-php-snippet)
 
   ;; (flymake-mode-on)
   (flycheck-mode nil)
@@ -121,8 +121,8 @@ See URL `http://php.net/manual/en/features.commandline.php'."
  ;; (setq flycheck-phpcs-standard "PSR2")
 
 ;; php-auto-yasnippet
-(use-package php-auto-yasnippets)
-(require 'php-auto-yasnippets)
+;; (use-package php-auto-yasnippets)
+;; (require 'php-auto-yasnippets)
 
 ;; php-extras
 ;; (use-package php-extras

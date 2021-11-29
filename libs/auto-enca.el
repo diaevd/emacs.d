@@ -1,0 +1,1 @@
+/home/diabolo/src/emacs/auto-enca/auto-enca.el
