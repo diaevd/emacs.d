@@ -4,6 +4,7 @@ ido.last
 semanticdb
 \#*\#
 .\#*
+/straight
 /.cache
 /.cask
 /.dap-breakpoints

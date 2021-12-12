@@ -165,7 +165,9 @@
   (global-company-mode 1)
   (company-quickhelp-mode 1)
   (add-to-list 'company-backends 'php-extras-company t)
-  (delete 'company-semantic company-backends))
+  (delete 'company-semantic company-backends)
+  :config
+  (setq company-show-quick-access t))
 ;; (define-key c-mode-map  [(control tab)] 'company-complete)
 ;; (define-key c++-mode-map  [(control tab)] 'company-complete)
 

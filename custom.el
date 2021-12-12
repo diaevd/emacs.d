@@ -15,14 +15,14 @@
  '(lsp-lens-enable t)
  '(lsp-rust-analyzer-cargo-load-out-dirs-from-check t)
  '(lsp-rust-analyzer-cargo-run-build-scripts t)
- '(lsp-rust-analyzer-display-chaining-hints t t)
- '(lsp-rust-analyzer-display-parameter-hints t t)
+ '(lsp-rust-analyzer-display-chaining-hints t)
+ '(lsp-rust-analyzer-display-parameter-hints t)
  '(lsp-rust-analyzer-inlay-face 'lsp-face-semhl-label)
- '(lsp-rust-analyzer-macro-expansion-method 'dia/rust-analyzer-macro-expand t)
- '(lsp-rust-analyzer-proc-macro-enable t t)
+ '(lsp-rust-analyzer-macro-expansion-method 'dia/rust-analyzer-macro-expand)
+ '(lsp-rust-analyzer-proc-macro-enable t)
  '(lsp-rust-analyzer-rustfmt-extra-args [])
  '(lsp-rust-analyzer-rustfmt-override-command ["rustup run stable rustfmt"])
- '(lsp-rust-analyzer-server-display-inlay-hints t t)
+ '(lsp-rust-analyzer-server-display-inlay-hints t)
  '(lsp-rust-unstable-features t)
  '(lsp-semantic-tokens-enable t)
  '(lsp-treemacs-sync-mode t)
@@ -50,7 +50,7 @@
  '(org-return-follows-link t)
  '(org-startup-folded nil)
  '(package-selected-packages
-   '(doom-themes company-tabnine unicode-fonts fontawesome auto-yasnippet helm-company lsp-treemacs treemacs rustic-mode company-lsp zygospore yasnippet-snippets yaml-mode ws-butler which-key web-mode web-beautify vue-mode volatile-highlights use-package-ensure-system-package undo-tree treemacs-projectile toml-mode swiper-helm sublime-themes sr-speedbar sqlup-mode sql-indent slime rustic realgud popup-switcher php-eldoc paredit multi-compile magit lsp-ui iedit highlight-parentheses helpful helm-swoop helm-rg helm-projectile helm-posframe helm-gtags helm-ag go-rename go-eldoc go-dlv go-autocomplete git-gutter-fringe git-gutter-fringe+ git-blamed ggtags function-args fn flycheck expand-region erlang editorconfig dtrt-indent doom-modeline diminish dap-mode counsel-projectile company-quickhelp company-posframe company-php company-go company-c-headers company-box comment-dwim-2 clean-aindent-mode clang-format bug-hunter bash-completion auto-package-update anzu aggressive-indent adoc-mode))
+   '(helm-lsp doom-themes company-tabnine unicode-fonts fontawesome auto-yasnippet helm-company lsp-treemacs treemacs rustic-mode company-lsp zygospore yasnippet-snippets yaml-mode ws-butler which-key web-mode web-beautify vue-mode volatile-highlights use-package-ensure-system-package undo-tree treemacs-projectile toml-mode swiper-helm sublime-themes sr-speedbar sqlup-mode sql-indent slime rustic realgud popup-switcher php-eldoc paredit multi-compile magit lsp-ui iedit highlight-parentheses helpful helm-swoop helm-rg helm-projectile helm-posframe helm-gtags helm-ag go-rename go-eldoc go-dlv go-autocomplete git-gutter-fringe git-gutter-fringe+ git-blamed ggtags function-args fn flycheck expand-region erlang editorconfig dtrt-indent doom-modeline diminish dap-mode counsel-projectile company-quickhelp company-posframe company-php company-go company-c-headers company-box comment-dwim-2 clean-aindent-mode clang-format bug-hunter bash-completion auto-package-update anzu aggressive-indent adoc-mode))
  '(rustic-lsp-server 'rust-analyzer)
  '(safe-local-variable-values
    '(eval

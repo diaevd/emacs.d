@@ -195,7 +195,7 @@
 (use-package company-tabnine
   ;; :defer t
   :ensure t
-  ;;:disabled nil
+  :disabled t
   ;; :custom
   ;; (company-tabnine-max-num-results 9)
   :bind
@@ -233,7 +233,7 @@
         (setq candidates-lsp (nreverse candidates-lsp))
         (setq candidates-tabnine (nreverse candidates-tabnine))
         (nconc (seq-take candidates-tabnine 3)
-               (seq-take candidates-lsp 6))))))
+               (seq-take candidates-lsp 20))))))
 
 
 (defun dia/rust-analyzer-macro-expand (result)
