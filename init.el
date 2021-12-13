@@ -146,126 +146,18 @@
 
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
-(eval-when-compile
+(eval-and-compile
   (require 'package) ;; You might already have this line
   (add-to-list 'package-archives
                '("melpa" . "https://melpa.org/packages/"))
   (add-to-list 'package-archives
                '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-  ;; (add-to-list 'package-archives
-  ;;           '("melpa-milkbox" . "https://melpa.milkbox.net/packages/") t)
-  ;; (when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
-  ;;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-  ;; (package-initialize) ;; You might already have this line
-  ;; (when (version< emacs-version "27.0")
-  ;; (unless package--initialized (package-initialize t)))
-  (unless package--initialized (package-initialize))
+  (add-to-list 'package-archives
+               '("gnu" . "https://elpa.gnu.org/packages/"))
+)
 
-  ;; run package-initialize if running emacs version < 27
-  ;; (>=e "27.0"
-  ;;      nil
-  ;;      (package-initialize))
-
-  ;; MELPA use-package
-  (unless (package-installed-p 'use-package) ; unless it is already installed
-    (package-refresh-contents) ; update packages archive
-    (package-install 'use-package)) ; install the latest version of use-package
-  (unless (package-installed-p 'bind-key)
-    (package-refresh-contents)
-    (package-install 'bind-key))
-
-  (require 'use-package)
-  (require 'bind-key))
-
-(when (not package-archive-contents)
-  (package-refresh-contents))
-
-(defvar my-packages '(
-                      use-package-ensure-system-package ;;
-                      system-packages
-                      pkg-info
-                      posframe
-                      bash-completion
-                      zygospore
-                      yasnippet
-                      ws-butler
-                      undo-tree         ; Undo (C-c u) with tree
-                      swiper-helm       ;
-                      sublime-themes    ;
-                      sr-speedbar       ;
-                      projectile        ; project tracker
-                      popup-switcher    ; lib for popup menu creation
-                      ;; perl6-mode
-                      magit             ; git
-                      ivy               ; alternative for helm
-                      highlight-parentheses ;
-                      helm
-                      helm-gtags
-                      helm-projectile
-                      helm-posframe
-                      helpful
-                      git-blamed        ; coloze changes
-                      ggtags            ; gtags analog
-                      function-args     ; show function args
-                      erlang
-                      dtrt-indent       ; auto configure indent style
-                      editorconfig      ; loading editorconfig
-                      counsel
-                      counsel-projectile
-                      comment-dwim-2    ; advanced comment-dwim (M-;)
-                      clang-format      ; use clang for code format
-                      bug-hunter        ; hunting bugs in init.el, etc.
-                      auto-complete     ; advanced AC
-                      ;; anything		;
-                      iedit
-                      volatile-highlights
-                      anzu
-                      company
-                      company-quickhelp
-                      company-posframe
-                      clean-aindent-mode
-                      paredit           ; auto pair
-                      slime             ; part of lisp ide
-                      ;; for golang
-                      go-autocomplete   ; go autoomplete
-                      flycheck
-                      company-go        ;
-                      multi-compile
-                      go-eldoc
-                      go-rename
-                      go-dlv
-                      ;;
-                      swiper
-                      swiper-helm
-                      ;; debug
-                      realgud
-                      ;; SQL
-                      sql-indent
-                      expand-region
-                      ;; lsp
-                      lsp-mode
-                      lsp-ui
-                      ; company-lsp
-
-                      ;; Rust
-                      ;; rust-mode
-                      ;; racer
-                      ;; cargo
-                      ;; flycheck-rust
-                      ;; lsp-rust
-                      ;; web
-                      web-mode
-                      ;; php-auto-yasnippets
-                      ;; company-php
-                      vue-mode
-                      )
-  "A list of packages to ensure are installed at launch.")
-
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
+(straight-use-package 'bind-key)
+(straight-use-package 'bug-hunter)
 
 ;; Manage your installed packages with emacs
 ;; https://github.com/jabranham/system-packages

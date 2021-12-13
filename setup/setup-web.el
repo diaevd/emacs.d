@@ -41,16 +41,17 @@
 ;; PHPCS, PSR1, MySource, Squiz, PSR2, Zend and PEAR
 ;; (setq php-beautifier-phpcbf-standard "PSR2")
 
-(require 'flycheck)
-(flycheck-define-checker my-php
-  "A PHP syntax checker using the PHP command line interpreter.
+(use-package 'flycheck
+  :config
+  (flycheck-define-checker my-php
+    "A PHP syntax checker using the PHP command line interpreter.
 See URL `http://php.net/manual/en/features.commandline.php'."
-  :command ("php" "-l" "-d" "error_reporting=E_ALL" "-d" "display_errors=1"
-            "-d" "log_errors=0" source)
-  :error-patterns
-  ((error line-start (or "Parse" "Fatal" "syntax") " error" (any ":" ",") " "
-          (message) " in " (file-name) " on line " line line-end))
-  :modes (web-mode php-mode))
+    :command ("php" "-l" "-d" "error_reporting=E_ALL" "-d" "display_errors=1"
+              "-d" "log_errors=0" source)
+    :error-patterns
+    ((error line-start (or "Parse" "Fatal" "syntax") " error" (any ":" ",") " "
+            (message) " in " (file-name) " on line " line line-end))
+    :modes (web-mode php-mode)))
 
 ;; TODO: use yasnippet to do this
 ;; (defun insert-php-doc-comment ()
@@ -130,60 +131,61 @@ See URL `http://php.net/manual/en/features.commandline.php'."
   ;; :defer t)
 
 ;; https://github.com/prathamesh-sonpatki/dotemacs/blob/master/hooks/web.el
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.tmpl$" . web-mode)) ;;
-(add-to-list 'auto-mode-alist '("\\.tpl$" . web-mode))  ;;
-(add-to-list 'auto-mode-alist '("\\.vue$" . web-mode))  ;;
-(add-hook 'web-mode 'vue-mode)
-(add-hook 'web-mode 'vue-html-mode)
-;(add-hook 'vue-html-mode 'emmet-mode)
+(use-package 'web-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.tmpl$" . web-mode)) ;;
+  (add-to-list 'auto-mode-alist '("\\.tpl$" . web-mode))  ;;
+  (add-to-list 'auto-mode-alist '("\\.vue$" . web-mode))  ;;
+  (add-hook 'web-mode 'vue-mode)
+  (add-hook 'web-mode 'vue-html-mode)
+  ;;(add-hook 'vue-html-mode 'emmet-mode)
 
-(add-to-list 'auto-mode-alist '("\\.erb\\'"    . web-mode))       ;; ERB
-(add-to-list 'auto-mode-alist '("\\.html?\\'"  . web-mode))       ;; Plain HTML
-(add-to-list 'auto-mode-alist '("\\.js[x]?\\'" . web-mode))       ;; JS + JSX
-(add-to-list 'auto-mode-alist '("\\.es6\\'"    . web-mode))       ;; ES6
-(add-to-list 'auto-mode-alist '("\\.ts\\'"     . web-mode))       ;; TypeScript
-(add-to-list 'auto-mode-alist '("\\.css\\'"    . web-mode))       ;; CSS
-(add-to-list 'auto-mode-alist '("\\.scss\\'"   . web-mode))       ;; SCSS
-(add-to-list 'auto-mode-alist '("\\.php\\'"    . web-mode))       ;; PHP
-(add-to-list 'auto-mode-alist '("\\.blade\\.php\\'" . web-mode))  ;; Blade template
+  (add-to-list 'auto-mode-alist '("\\.erb\\'"    . web-mode))       ;; ERB
+  (add-to-list 'auto-mode-alist '("\\.html?\\'"  . web-mode))       ;; Plain HTML
+  (add-to-list 'auto-mode-alist '("\\.js[x]?\\'" . web-mode))       ;; JS + JSX
+  (add-to-list 'auto-mode-alist '("\\.es6\\'"    . web-mode))       ;; ES6
+  (add-to-list 'auto-mode-alist '("\\.ts\\'"     . web-mode))       ;; TypeScript
+  (add-to-list 'auto-mode-alist '("\\.css\\'"    . web-mode))       ;; CSS
+  (add-to-list 'auto-mode-alist '("\\.scss\\'"   . web-mode))       ;; SCSS
+  (add-to-list 'auto-mode-alist '("\\.php\\'"    . web-mode))       ;; PHP
+  (add-to-list 'auto-mode-alist '("\\.blade\\.php\\'" . web-mode))  ;; Blade template
 
-(setq web-mode-content-types-alist
-      '(("jsx" . "\\.js[x]?\\'")
-        ("javascript" . "\\.es6?\\'")))
+  (setq web-mode-content-types-alist
+        '(("jsx" . "\\.js[x]?\\'")
+          ("javascript" . "\\.es6?\\'")))
 
-(setq web-mode-engines-alist
-      '(("blade"  . "\\.blade\\.")))
+  (setq web-mode-engines-alist
+        '(("blade"  . "\\.blade\\.")))
 
-;; (setq web-mode-markup-indent-offset 2)
-;; (setq web-mode-css-indent-offset 2)
-;; (setq web-mode-code-indent-offset 2)
+  ;; (setq web-mode-markup-indent-offset 2)
+  ;; (setq web-mode-css-indent-offset 2)
+  ;; (setq web-mode-code-indent-offset 2)
 
-(defadvice web-mode-highlight-part (around tweak-jsx activate)
-  (if (equal web-mode-content-type "jsx")
-      (let ((web-mode-enable-part-face nil))
-        ad-do-it)
-    ad-do-it))
+  (defadvice web-mode-highlight-part (around tweak-jsx activate)
+    (if (equal web-mode-content-type "jsx")
+        (let ((web-mode-enable-part-face nil))
+          ad-do-it)
+      ad-do-it))
 
-(defadvice web-mode-highlight-part (around tweak-jsx activate)
-  (if (equal web-mode-content-type "js")
-      (let ((web-mode-enable-part-face nil))
-        ad-do-it)
-    ad-do-it))
+  (defadvice web-mode-highlight-part (around tweak-jsx activate)
+    (if (equal web-mode-content-type "js")
+        (let ((web-mode-enable-part-face nil))
+          ad-do-it)
+      ad-do-it))
 
-(setq web-mode-enable-auto-pairing t)
-(setq web-mode-enable-css-colorization t)
+  (setq web-mode-enable-auto-pairing t)
+  (setq web-mode-enable-css-colorization t)
 
-(add-hook 'web-mode-hook 'my-web-mode-hook)
+  (add-hook 'web-mode-hook 'my-web-mode-hook)
 
-(add-hook 'web-mode-hook (lambda ()
-			   (local-set-key (kbd "C-c C-y") 'yas/create-php-snippet)
-                           (setq editorconfig-exec-path "/usr/bin/editorconfig")
-                           (add-hook 'editorconfig-custom-hooks
-	                             (lambda (hash) (setq web-mode-block-padding 0)))
-			   (editorconfig-mode t)
-                           (editorconfig-apply)
-                           (lambda (hash) (setq web-mode-block-padding 0))))
+  (add-hook 'web-mode-hook (lambda ()
+			     (local-set-key (kbd "C-c C-y") 'yas/create-php-snippet)
+                             (setq editorconfig-exec-path "/usr/bin/editorconfig")
+                             (add-hook 'editorconfig-custom-hooks
+	                               (lambda (hash) (setq web-mode-block-padding 0)))
+			     (editorconfig-mode t)
+                             (editorconfig-apply)
+                             (lambda (hash) (setq web-mode-block-padding 0)))))
 
 (provide 'setup-web)
 ;;; setup-php.el ends here

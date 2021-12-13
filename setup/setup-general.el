@@ -154,13 +154,14 @@
 ;; auto complete mode
 ;;
 ;;------------------------------------------------------------------------
-(ac-config-default)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(ac-set-trigger-key "TAB")
-(setq ac-auto-start nil)
+;;; (ac-config-default)			
+;;;(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+;;; (ac-set-trigger-key "TAB")
+;;;(setq ac-auto-start nil)
 
 ;; company
 (use-package company
+  :requires (company-quickhelp)
   :init
   (global-company-mode 1)
   (company-quickhelp-mode 1)

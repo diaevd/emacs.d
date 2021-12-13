@@ -47,14 +47,13 @@
 ;; Fuck off the smartparens we can use beter show-paren-mode or highlight-parentheses
 ;;
 ;;------------------------------------------------------------------------
-(require 'highlight-parentheses)
-
-(define-globalized-minor-mode global-highlight-parentheses-mode
-  highlight-parentheses-mode
-  (lambda ()
-    (highlight-parentheses-mode t)))
-
-(global-highlight-parentheses-mode t)
+(use-package highlight-parentheses
+  :config
+  (define-globalized-minor-mode global-highlight-parentheses-mode
+    highlight-parentheses-mode
+    (lambda ()
+      (highlight-parentheses-mode t)))
+  (global-highlight-parentheses-mode t))
 
 ;; Package: volatile-highlights
 ;; GROUP: Editing -> Volatile Highlights
@@ -107,12 +106,13 @@
 ;;
 ;;------------------------------------------------------------------------
 ;; PACKAGE: comment-dwim-2
-(require 'comment-dwim-2)
-(global-set-key (kbd "M-;") 'comment-dwim-2)
+(use-package 'comment-dwim-2
+  :config
+  (global-set-key (kbd "M-;") 'comment-dwim-2)
 
-(setq comment-dwim-2--inline-comment-behavior 'reindent-comment)
-(add-hook 'c-mode-hook (lambda () (setq comment-start "//"
-                                        comment-end   "")))
+  (setq comment-dwim-2--inline-comment-behavior 'reindent-comment)
+  (add-hook 'c-mode-hook (lambda () (setq comment-start "//"
+                                          comment-end   ""))))
 
 ;; PACKAGE: anzu
 ;; GROUP: Editing -> Matching -> Isearch -> Anzu

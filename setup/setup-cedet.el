@@ -1,15 +1,19 @@
 (require 'cc-mode)
 (require 'semantic)
 
-(require 'swiper-helm)
-(require 'function-args)
-(fa-config-default)
-(eval-after-load 'function-args
-   '(progn
-      (define-key function-args-mode-map (kbd "C-M-l") 'moo-jump-local)
-      (define-key function-args-mode-map (kbd "C-M-j") 'moo-jump-directory) ;;))
-      (define-key moo-jump-keymap (kbd "C-M-l") 'moo-jump-local)
-      (setq moo-select-method 'helm-fuzzy)))
+(straight-use-package 'swiper-helm)
+
+(use-package 'function-args
+:config
+  (define-key function-args-mode-map (kbd "C-M-l") 'moo-jump-local)
+  (define-key function-args-mode-map (kbd "C-M-j") 'moo-jump-directory) ;;))
+  (define-key moo-jump-keymap (kbd "C-M-l") 'moo-jump-local)
+  (setq moo-select-method 'helm-fuzzy)
+  (fa-config-default))
+
+;; (eval-after-load 'function-args
+;;    '(progn
+;; )
 
 (set-default 'semantic-case-fold t)
 ;; ключает глобальную поддержку Semanticdb

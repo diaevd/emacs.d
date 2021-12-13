@@ -32,24 +32,46 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'cl))
+  (if (version< emacs-version "27.1")
+      (require 'cl)
+    (require 'cl-lib)))
 
 ;;------------------------------------------------------------------------
 ;;
 ;; popup-switcher
 ;;
 ;;------------------------------------------------------------------------
-(require 'eassist)
-(require 'popup-switcher)
-
-;; (setq psw-in-window-center t)
-
-(global-set-key [f7] 'psw-switch-buffer)
-;; (global-set-key [f8] 'psw-switch-projectile-files)
-
-(eval-after-load "eassist"
-  '(global-set-key [f8] 'psw-switch-function)
+(use-package 'eassist
+  :config
+  (defun my-c-mode-common-hook ()
+    (define-key c-mode-base-map (kbd "M-h") 'eassist-switch-h-cpp)
+    (define-key c-mode-base-map (kbd "M-m") 'eassist-list-methods))
+  (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+  (add-hook 'c++-mode-common-hook 'my-c-mode-common-hook)
   )
+
+(use-package 'popup-switcher
+  :requires (eassist)
+  :config
+
+  ;; (setq psw-in-window-center t)
+  (global-set-key [f7] 'psw-switch-buffer)
+  ;; (global-set-key [f8] 'psw-switch-projectile-files)
+
+  (eval-after-load "eassist"
+    '(global-set-key [f8] 'psw-switch-function))
+
+  (defun psw-list-methods ()
+    (interactive)
+    (psw-switcher
+     :items-list (eassist-mode)
+     :item-name-getter 'car
+     :switcher (psw-compose 'goto-char 'cdr)))
+
+  ;; Redefine switch file/buffers to
+  ;; (global-set-key (kbd "C-x C-f") 'psw-navigate-files)
+  ;; (global-set-key (kbd "C-x C-b") 'psw-switch-buffer)
+  (global-set-key (kbd "C-<f8>") 'psw-list-methods)
 
 ;; (eval-after-load "eassist"
 ;;    '(global-set-key (kbd "M-o") 'psw-switch-h-cpp))
@@ -59,12 +81,8 @@
 
 ;;      (define-key c-mode-base-map (kbd "M-o") 'eassist-switch-h-cpp)
 ;;      (define-key c-mode-base-map (kbd "M-m") 'eassist-list-method))
+  )
 
-(defun my-c-mode-common-hook ()
-  (define-key c-mode-base-map (kbd "M-h") 'eassist-switch-h-cpp)
-  (define-key c-mode-base-map (kbd "M-m") 'eassist-list-methods))
-(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
-(add-hook 'c++-mode-common-hook 'my-c-mode-common-hook)
 ;; (add-hook 'go-mode-hook 'psw-list-methods)
 
 ;; (global-set-key [f8] 'psw-switch-function)
@@ -75,18 +93,6 @@
 ;;     :items-list (eassist-switch-h-cpp)
 ;;     :item-name-getter 'car
 ;;     :switcher (psw-compose 'goto-char 'cdr)))
-
-(defun psw-list-methods ()
-   (interactive)
-   (psw-switcher
-    :items-list (eassist-mode)
-    :item-name-getter 'car
-    :switcher (psw-compose 'goto-char 'cdr)))
-
-;; Redefine switch file/buffers to
-;; (global-set-key (kbd "C-x C-f") 'psw-navigate-files)
-;; (global-set-key (kbd "C-x C-b") 'psw-switch-buffer)
-(global-set-key (kbd "C-<f8>") 'psw-list-methods)
 
 
 (provide 'setup-popup-switcher)
