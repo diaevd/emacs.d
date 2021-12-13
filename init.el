@@ -144,18 +144,6 @@
         use-package-always-ensure t
         use-package-verbose t))
 
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
-
-(eval-and-compile
-  (require 'package) ;; You might already have this line
-  (add-to-list 'package-archives
-               '("melpa" . "https://melpa.org/packages/"))
-  (add-to-list 'package-archives
-               '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-  (add-to-list 'package-archives
-               '("gnu" . "https://elpa.gnu.org/packages/"))
-)
-
 (straight-use-package 'bind-key)
 (straight-use-package 'bug-hunter)
 
@@ -228,9 +216,6 @@
   (require 'setup-web)
   (require 'setup-sql)
 ;; )
-
-;; install all packages (if they already not installed by use-package)
-(package-install-selected-packages)
 
 ;;------------------------------------------------------------------------
 ;;
