@@ -243,8 +243,8 @@
          (buf (get-buffer-create
                (format "*rust-analyzer macro expansion %s*" root))))
     (with-current-buffer buf
-      (let* ((inhibit-read-only t)
-             (fmt-done nil))
+      (let ((inhibit-read-only t)
+            (fmt-done "*rustfmt*"))
         (erase-buffer)
         ;; wrap expanded macro in a main function so we can run rustfmt
         (insert "fn __main(){\n")
@@ -255,34 +255,35 @@
         ;; (rusti-mode)
         ;; (ignore-errors (rust--format-call buf))
         (rustic-mode)
-        ;;
-        (ignore-errors
+        ;; (ignore-errors
+        (lexical-let ((buf buf)
+                      (fmt-done fmt-done))
           (set-process-sentinel
            (rustic-format-buffer)
            (lambda (p e)
-             (kill-buffer "*rustfmt*"))))
-        (with-current-buffer buf
-          (save-excursion
-            (read-only-mode -1)
-            ;; remove fn __main() {
-            (goto-char (point-min))
-            (delete-region (point-min) (line-end-position))
-            (goto-char (point-min))
-            (delete-blank-lines)
-            ;; remove } at end of fn __main()
-            (goto-char (point-max))
-            (forward-line -1)
-            (delete-region (line-beginning-position) (point-max))
-            (indent-region (point-min) (point-max))
-            ;; clean blanked line
-            (goto-char (point-max))
-            (delete-blank-lines)
-            (delete-trailing-whitespace (point-min) (point-max))))
-
-        ;; (read-only-mode t)
-        (goto-char (point-min))
-        (local-set-key "q" 'kill-current-buffer))
-      (display-buffer buf))))
+             (with-current-buffer buf
+               (read-only-mode -1)
+               (replace-buffer-contents fmt-done)
+               (kill-buffer fmt-done)
+               ;; remove fn __main() {
+               (goto-char (point-min))
+               (delete-region (point-min) (line-end-position))
+               (goto-char (point-min))
+               (delete-blank-lines)
+               ;; remove } at end of fn __main()
+               (goto-char (point-max))
+               (forward-line -1)
+               (delete-region (line-beginning-position) (point-max))
+               (indent-region (point-min) (point-max))
+               ;; clean blanked line
+               (goto-char (point-max))
+               (delete-blank-lines)
+               (delete-trailing-whitespace (point-min) (point-max))
+               ;;
+               (local-set-key "q" 'kill-current-buffer)
+               (goto-char (point-min))
+               (read-only-mode 1)
+               (display-buffer buf)))))))))
 
 ;;; prepare variable for set rust-rustfmt-bin or rustic-rustfmt-bin
 (defvar dia/rust-rustfmt-bin-v
