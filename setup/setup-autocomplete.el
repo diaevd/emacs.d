@@ -3,8 +3,9 @@
 ;; auto complete mode
 ;;
 ;;------------------------------------------------------------------------
-(use-package 'auto-complete-config
+(use-package auto-complete
   :config
+  ;;(requite 'auto-complete-config)
   (add-to-list 'ac-dictionary-directories (expand-file-name "ac-dict" user-emacs-directory))
   (ac-config-default)
   (global-auto-complete-mode t)
@@ -13,9 +14,9 @@
   (defun iqbal-setup-cedet-auto-completion ()
     (add-to-list 'ac-sources 'ac-source-semantic))
   (add-hook 'c-mode-common-hook 'iqbal-setup-cedet-auto-completion)
-;; Make sure "Anything" is available
-;;(require 'anything)
-;;(require 'anything-match-plugin)
+  ;; Make sure "Anything" is available
+  ;;(require 'anything)
+  ;;(require 'anything-match-plugin)
   )
 
 

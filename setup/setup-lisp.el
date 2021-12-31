@@ -32,7 +32,11 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'cl))
+  (if (version< emacs-version "27.1")
+      (require 'cl)
+    (require 'cl-lib)))
+
+(straight-use-package 'paredit)
 
 (eval-after-load 'paredit
   ;; need a binding that works in the terminal
@@ -47,6 +51,7 @@
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
 
 (use-package helpful
+  :ensure t
   :config
   ;; Note that the built-in `describe-function' includes both functions
   ;; and macros. `helpful-function' is functions only, so we provide
@@ -73,7 +78,7 @@
   ;; look at interactive functions.
   (global-set-key (kbd "C-h C") #'helpful-command))
 
-(require 'slime)
+;;;(require 'slime)
 
 (provide 'setup-lisp)
 ;;; setup-lisp.el ends here

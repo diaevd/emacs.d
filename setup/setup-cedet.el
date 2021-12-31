@@ -3,7 +3,7 @@
 
 (straight-use-package 'swiper-helm)
 
-(use-package 'function-args
+(use-package function-args
 :config
   (define-key function-args-mode-map (kbd "C-M-l") 'moo-jump-local)
   (define-key function-args-mode-map (kbd "C-M-j") 'moo-jump-directory) ;;))
@@ -51,7 +51,12 @@
 (defun alexott/cedet-hook ()
   (local-set-key "\C-c\C-j" 'semantic-ia-fast-jump)
   (local-set-key "\C-c\C-s" 'semantic-ia-show-summary)
-  (setq trunctate-lines t))
+  (setq trunctate-lines t)
+  (require 'stickyfunc-enhance)
+  ;; Enable EDE only in C/C++
+  (require 'ede)
+  (global-ede-mode)
+)
 
 (add-hook 'c-mode-common-hook 'alexott/cedet-hook)
 (add-hook 'c-mode-hook 'alexott/cedet-hook)
@@ -59,10 +64,5 @@
 (add-hook 'mql-mode-hook 'alexott/cedet-hook)
 
 (semantic-mode 1)
-
-(require 'stickyfunc-enhance)
-;; Enable EDE only in C/C++
-(require 'ede)
-(global-ede-mode)
 
 (provide 'setup-cedet)

@@ -38,7 +38,7 @@
 
 ;; for er/mark-inside-quotes
 (straight-use-package 'expand-region)
-(use-package 'sql-indent
+(use-package sql-indent
   :config
   (defun sql-indent-string ()
     "Indents the string under the cursor as SQL."

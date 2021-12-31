@@ -4,7 +4,7 @@
 ;;
 ;; http://melpa.org/#/clang-format
 ;;------------------------------------------------------------------------
-(use-package 'clang-format
+(use-package clang-format
   :config
 ;; (global-set-key [f12] 'clang-format-buffer)
 ;; (global-set-key [S-f12] 'clang-format-region)

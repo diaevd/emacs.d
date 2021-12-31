@@ -243,7 +243,8 @@
          (buf (get-buffer-create
                (format "*rust-analyzer macro expansion %s*" root))))
     (with-current-buffer buf
-      (let ((inhibit-read-only t))
+      (let* ((inhibit-read-only t)
+             (fmt-done nil))
         (erase-buffer)
         ;; wrap expanded macro in a main function so we can run rustfmt
         (insert "fn __main(){")
@@ -251,13 +252,21 @@
         (insert (replace-regexp-in-string "\\$" "" result))
         (insert "}")
         ;; /wrap expanded macro
-        (rust-mode)
-        (ignore-errors (rust--format-call buf))
-        ;; (lsp-mode)
+        ;; (rusti-mode)
+        ;; (ignore-errors (rust--format-call buf))
+        (rustic-mode)
+        ;;
+        (set-process-sentinel
+         (rustic-format-buffer)
+         (lambda (p e)
+           (ignore-errors (kill-buffer "*rustfmt*"))))
         (with-current-buffer buf
           (save-excursion
+            (read-only-mode -1)
+            (message "buf: %s" buf)
             ;; remove fn __main() {
             (goto-char (point-min))
+            (message "cur pos %s" (point))
             (delete-region (point-min) (line-end-position))
             (delete-blank-lines)
             (goto-char (point-max))
@@ -268,10 +277,12 @@
             (indent-buffer)
             (goto-char (point-max))
             ;; clean blanked line
-            (delete-blank-lines))))
+            ;; (delete-blank-lines)
+            (delete-trailing-whitespace (point-min) (point-max))))
       (read-only-mode t)
+      (goto-char (point-min))
       (local-set-key "q" 'kill-current-buffer))
-    (display-buffer buf)))
+    (display-buffer buf))))
 
 ;;; prepare variable for set rust-rustfmt-bin or rustic-rustfmt-bin
 (defvar dia/rust-rustfmt-bin-v

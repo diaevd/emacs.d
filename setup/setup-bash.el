@@ -3,7 +3,7 @@
 ;; BASH
 ;;
 ;;------------------------------------------------------------------------
-(use-package 'bash-completion
+(use-package bash-completion
  :config
  (bash-completion-setup)
  (add-to-list 'auto-mode-alist '("[^_[:alnum:]|[:space:]]\\.[^.]\\w+\\'" . sh-mode))

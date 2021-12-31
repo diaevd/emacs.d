@@ -2,10 +2,11 @@
 ;;
 ;;
 
-(use-package 'erlang-start
+(use-package erlang
   :config
   (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
   (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
+  (require 'erlang-start)
   (defun my-erlang-mode-hook ()
     ;; when starting an Erlang shell in Emacs, default in the node name
     (setq inferior-erlang-machine-options '("-sname" "emacs"))

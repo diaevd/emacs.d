@@ -51,6 +51,10 @@
  '(org-startup-folded nil)
  '(package-selected-packages
    '(helm-lsp doom-themes company-tabnine unicode-fonts fontawesome auto-yasnippet helm-company lsp-treemacs treemacs rustic-mode company-lsp zygospore yasnippet-snippets yaml-mode ws-butler which-key web-mode web-beautify vue-mode volatile-highlights use-package-ensure-system-package undo-tree treemacs-projectile toml-mode swiper-helm sublime-themes sr-speedbar sqlup-mode sql-indent slime rustic realgud popup-switcher php-eldoc paredit multi-compile magit lsp-ui iedit highlight-parentheses helpful helm-swoop helm-rg helm-projectile helm-posframe helm-gtags helm-ag go-rename go-eldoc go-dlv go-autocomplete git-gutter-fringe git-gutter-fringe+ git-blamed ggtags function-args fn flycheck expand-region erlang editorconfig dtrt-indent doom-modeline diminish dap-mode counsel-projectile company-quickhelp company-posframe company-php company-go company-c-headers company-box comment-dwim-2 clean-aindent-mode clang-format bug-hunter bash-completion auto-package-update anzu aggressive-indent adoc-mode))
+ '(rustic-ansi-faces
+   ["black" "red3" "green3" "yellow3" "deepskyblue" "magenta3" "cyan3" "white"])
+ '(rustic-babel-display-compilation-buffer t)
+ '(rustic-format-display-method 'ignore)
  '(rustic-lsp-server 'rust-analyzer)
  '(safe-local-variable-values
    '(eval
@@ -83,4 +87,10 @@
  '(lsp-ui-sideline-current-symbol ((t (:foreground "white" :box (:line-width (1 . -1) :color "white") :weight ultra-bold :height 0.99))))
  '(lsp-ui-sideline-global ((t (:foreground "deep sky blue" :family "Anonymous Pro"))))
  '(mode-line ((t (:weight light :height 110 :family "Firacode"))))
- '(mode-line-inactive ((t (:weight light :height 110 :family "Firacode")))))
+ '(mode-line-inactive ((t (:weight light :height 110 :family "Firacode"))))
+ '(rustic-compilation-column ((t (:inherit default :foreground "deep sky blue"))))
+ '(rustic-compilation-error ((t (:inherit default :foreground "dark violet"))))
+ '(rustic-compilation-info ((t (:inherit default :foreground "burlywood"))))
+ '(rustic-compilation-line ((t (:inherit default :foreground "deep sky blue"))))
+ '(rustic-compilation-warning ((t (:inherit default :foreground "dark salmon"))))
+ '(rustic-message ((t (:inherit default :foreground "burlywood")))))

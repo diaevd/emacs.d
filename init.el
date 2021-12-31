@@ -179,7 +179,7 @@
 ;; (load-if-exists "~/src/bitbucket.org/blais/beancount/src/elisp/beancount.el")
 
 ;; auto compile local libs
-(byte-recompile-directory (expand-file-name "setup" user-emacs-directory) 0)
+;; (byte-recompile-directory (expand-file-name "setup" user-emacs-directory) 0)
 (byte-recompile-directory (expand-file-name "libs" user-emacs-directory) 0)
 ;; (byte-recompile-directory (expand-file-name "~/.emacs.d/themes") 0)
 
@@ -189,6 +189,7 @@
 ;; (eval-and-compile
   (require 'setup-functions)
   (require 'setup-general)
+  (require 'setup-lisp)
   (require 'setup-helm)
   (require 'setup-helm-gtags)
   ;; (require 'setup-ggtags)
@@ -202,7 +203,7 @@
   (require 'setup-perl)
   (require 'setup-hideshow)
   (require 'setup-mql)
-  (require 'setup-erlang)
+  ;;; (require 'setup-erlang)
   (require 'setup-autocomplete)
   (require 'setup-popup-switcher)
   (require 'setup-git)

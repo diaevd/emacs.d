@@ -106,7 +106,7 @@
 ;;
 ;;------------------------------------------------------------------------
 ;; PACKAGE: comment-dwim-2
-(use-package 'comment-dwim-2
+(use-package comment-dwim-2
   :config
   (global-set-key (kbd "M-;") 'comment-dwim-2)
 
@@ -287,5 +287,9 @@ Position the cursor at it's beginning, according to the current mode."
 
 (global-set-key (kbd "M-o") 'prelude-smart-open-line)
 (global-set-key (kbd "M-o") 'open-line)
+
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
 
 (provide 'setup-editing)

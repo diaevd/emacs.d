@@ -41,18 +41,16 @@
 ;; popup-switcher
 ;;
 ;;------------------------------------------------------------------------
-(use-package 'eassist
+(use-package popup-switcher
+  :requires (eassist)
   :config
+
   (defun my-c-mode-common-hook ()
     (define-key c-mode-base-map (kbd "M-h") 'eassist-switch-h-cpp)
     (define-key c-mode-base-map (kbd "M-m") 'eassist-list-methods))
+
   (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
   (add-hook 'c++-mode-common-hook 'my-c-mode-common-hook)
-  )
-
-(use-package 'popup-switcher
-  :requires (eassist)
-  :config
 
   ;; (setq psw-in-window-center t)
   (global-set-key [f7] 'psw-switch-buffer)

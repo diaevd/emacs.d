@@ -41,7 +41,7 @@
 ;; PHPCS, PSR1, MySource, Squiz, PSR2, Zend and PEAR
 ;; (setq php-beautifier-phpcbf-standard "PSR2")
 
-(use-package 'flycheck
+(use-package flycheck
   :config
   (flycheck-define-checker my-php
     "A PHP syntax checker using the PHP command line interpreter.
@@ -131,7 +131,7 @@ See URL `http://php.net/manual/en/features.commandline.php'."
   ;; :defer t)
 
 ;; https://github.com/prathamesh-sonpatki/dotemacs/blob/master/hooks/web.el
-(use-package 'web-mode
+(use-package web-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.tmpl$" . web-mode)) ;;
   (add-to-list 'auto-mode-alist '("\\.tpl$" . web-mode))  ;;
