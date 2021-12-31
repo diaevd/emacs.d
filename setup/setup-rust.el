@@ -254,6 +254,7 @@
         ;; /wrap expanded macro
         ;; (rusti-mode)
         ;; (ignore-errors (rust--format-call buf))
+        ;; (rustic-macro-expansion-mode)
         (rustic-mode)
         ;; (ignore-errors
         (lexical-let ((buf buf)
@@ -282,7 +283,8 @@
                ;;
                (local-set-key "q" 'kill-current-buffer)
                (goto-char (point-min))
-               (read-only-mode 1)
+               ;; (read-only-mode 1)
+               (rustic-macro-expansion-mode)
                (display-buffer buf)))))))))
 
 ;;; prepare variable for set rust-rustfmt-bin or rustic-rustfmt-bin
