@@ -34,36 +34,36 @@
 (eval-when-compile
   (if (version< emacs-version "27.1")
       (require 'cl)
-    (require 'cl-lib)))
+      (require 'cl-lib)))
 
 ;; (require 'use-package)
 
 (use-package diminish
-  :defer 5
-  :config
-  (diminish 'org-indent-mode)
-  (diminish 'projectile-mode)
-  (diminish 'undo-tree-mode))
+    :defer 5
+    :config
+    (diminish 'org-indent-mode)
+    (diminish 'projectile-mode)
+    (diminish 'undo-tree-mode))
 
 (use-package flycheck
-  :bind (:map flycheck-mode-map
-              ("C-z C-l" . #'flycheck-list-errors)
-              ("M-<up>" . #'flycheck-previous-error)
-              ("M-<down>" . #'flycheck-next-error)))
+    :bind (:map flycheck-mode-map
+                ("C-z C-l" . #'flycheck-list-errors)
+                ("M-<up>" . #'flycheck-previous-error)
+                ("M-<down>" . #'flycheck-next-error)))
 
 (use-package treemacs
-  :ensure t)
+    :ensure t)
 
 (use-package treemacs-projectile
-  :ensure t
-  :after treemacs)
+    :ensure t
+    :after treemacs)
 
 (use-package lsp-treemacs
-  :ensure t
-  :after treemacs lsp-mode)
+    :ensure t
+    :after treemacs lsp-mode)
 
 (use-package lsp-mode
-  :init
+    :init
   :custom
   (lsp-keymap-prefix "C-c C-l")
   ;; what to use when checking on-save. "check" is default, I prefer clippy
@@ -82,37 +82,37 @@
   )
 
 (use-package toml-mode
-  :ensure t)
+    :ensure t)
 
 (use-package lsp-ui
-  :ensure t
-  ;; :after lsp-mode
-  ;; :hook lsp-mode
-  :bind
-  (:map lsp-ui-mode-map
-        ;; ("C-c C-a" . lsp-ui-sideline-apply-code-actions)
-        ("C-c v" . lsp-ui-imenu)
-        ("C-c C-r" . lsp-ui-peek-find-references)
-        ("C-c C-d" . lsp-ui-peek-find-definitions)
-        ("C-c i" . lsp-ui-peek-find-implementation)
-        ("C-c C-h" . dia/lsp-ui-doc-toggle)
-        ("C-M-i" . dia/lsp-ui-doc-toggle))
+    :ensure t
+    ;; :after lsp-mode
+    ;; :hook lsp-mode
+    :bind
+    (:map lsp-ui-mode-map
+          ;; ("C-c C-a" . lsp-ui-sideline-apply-code-actions)
+          ("C-c v" . lsp-ui-imenu)
+          ("C-c C-r" . lsp-ui-peek-find-references)
+          ("C-c C-d" . lsp-ui-peek-find-definitions)
+          ("C-c i" . lsp-ui-peek-find-implementation)
+          ("C-c C-h" . dia/lsp-ui-doc-toggle)
+          ("C-M-i" . dia/lsp-ui-doc-toggle))
 
-  :config
-  (setq lsp-ui-doc-alignment 'window
-        lsp-ui-doc-position 'top
-        ;; ???
-        lsp-ui-peek-always-show t
-        lsp-ui-sideline-enable t
-        lsp-ui-sideline-show-symbol t
-        lsp-ui-sideline-show-hover nil
-        lsp-ui-sideline-show-code-actions t
-        lsp-ui-sideline-show-flycheck t
-        lsp-ui-sideline-ignore-duplicate t
-        lsp-ui-sideline-code-actions-prefix "💡 "
-        lsp-ui-sideline-update-mode 'point
-        lsp-eldoc-enable-hover t)
-  )
+    :config
+    (setq lsp-ui-doc-alignment 'window
+          lsp-ui-doc-position 'top
+          ;; ???
+          lsp-ui-peek-always-show t
+          lsp-ui-sideline-enable t
+          lsp-ui-sideline-show-symbol t
+          lsp-ui-sideline-show-hover nil
+          lsp-ui-sideline-show-code-actions t
+          lsp-ui-sideline-show-flycheck t
+          lsp-ui-sideline-ignore-duplicate t
+          lsp-ui-sideline-code-actions-prefix "💡 "
+          lsp-ui-sideline-update-mode 'point
+          lsp-eldoc-enable-hover t)
+    )
 
 (defvar dia/lsp-ui-doc-toggle-v nil)
 (defun dia/lsp-ui-doc-toggle ()
@@ -124,14 +124,14 @@
       (progn
         (lsp-ui-doc-hide)
         (setq dia/lsp-ui-doc-toggle-v nil))
-    (lsp-ui-doc-show)
-    (setq dia/lsp-ui-doc-toggle-v t)))
+      (lsp-ui-doc-show)
+      (setq dia/lsp-ui-doc-toggle-v t)))
 
 ;;; DAP (Debug Adapter Protocol Mode)
 ;;; https://github.com/emacs-lsp/dap-mode#configuration
 (when (executable-find "lldb-mi")
   (use-package dap-mode
-    :ensure
+      :ensure
     :bind
     (:map dap-mode-map
           (("<f12>" . dap-debug)
@@ -193,47 +193,47 @@
 ;;; Commentary: This is enabled by default, if ever you find it not good enough for a particular completion,
 ;;; simply use M-q to immediately switch to default backends.
 (use-package company-tabnine
-  ;; :defer t
-  :ensure t
-  :disabled t
-  ;; :custom
-  ;; (company-tabnine-max-num-results 9)
-  :bind
-  (("M-q" . company-other-backend)
-   ("C-z t" . company-tabnine))
-  :hook
-  (lsp-after-open . (lambda ()
-                      (setq company-tabnine-max-num-results 4)
-                      (add-to-list 'company-transformers 'company//sort-by-tabnine t)
-                      ;; (add-to-list 'company-backends 'company-tabnine)))
-                      (add-to-list 'company-backends '(company-capf :with company-tabnine :separate))))
-  ;; (add-to-list 'company-backends '(company-lsp :with company-tabnine :separate))))
-  (kill-emacs . company-tabnine-kill-process)
-  :config
-  ;; Enable TabNine on default
-  ;; (add-to-list 'company-backends #'company-tabnine)
-  (setq company-tabnine-max-num-results 3)
-  (setq company-show-quick-access t)
+    ;; :defer t
+    :ensure t
+    :disabled t
+    ;; :custom
+    ;; (company-tabnine-max-num-results 9)
+    :bind
+    (("M-q" . company-other-backend)
+     ("C-z t" . company-tabnine))
+    :hook
+    (lsp-after-open . (lambda ()
+                        (setq company-tabnine-max-num-results 4)
+                        (add-to-list 'company-transformers 'company//sort-by-tabnine t)
+                        ;; (add-to-list 'company-backends 'company-tabnine)))
+                        (add-to-list 'company-backends '(company-capf :with company-tabnine :separate))))
+    ;; (add-to-list 'company-backends '(company-lsp :with company-tabnine :separate))))
+    (kill-emacs . company-tabnine-kill-process)
+    :config
+    ;; Enable TabNine on default
+    ;; (add-to-list 'company-backends #'company-tabnine)
+    (setq company-tabnine-max-num-results 3)
+    (setq company-show-quick-access t)
 
-  ;; Integrate company-tabnine with lsp-mode
-  (defun company//sort-by-tabnine (candidates)
-    (if (or (functionp company-backend)
-            (not (and (listp company-backend) (memq 'company-tabnine company-backend))))
-        candidates
-      (let ((candidates-table (make-hash-table :test #'equal))
-            candidates-lsp
-            candidates-tabnine)
-        (dolist (candidate candidates)
-          (if (eq (get-text-property 0 'company-backend candidate)
-                  'company-tabnine)
-              (unless (gethash candidate candidates-table)
-                (push candidate candidates-tabnine))
-            (push candidate candidates-lsp)
-            (puthash candidate t candidates-table)))
-        (setq candidates-lsp (nreverse candidates-lsp))
-        (setq candidates-tabnine (nreverse candidates-tabnine))
-        (nconc (seq-take candidates-tabnine 3)
-               (seq-take candidates-lsp 20))))))
+    ;; Integrate company-tabnine with lsp-mode
+    (defun company//sort-by-tabnine (candidates)
+      (if (or (functionp company-backend)
+              (not (and (listp company-backend) (memq 'company-tabnine company-backend))))
+          candidates
+          (let ((candidates-table (make-hash-table :test #'equal))
+                candidates-lsp
+                candidates-tabnine)
+            (dolist (candidate candidates)
+              (if (eq (get-text-property 0 'company-backend candidate)
+                      'company-tabnine)
+                  (unless (gethash candidate candidates-table)
+                    (push candidate candidates-tabnine))
+                  (push candidate candidates-lsp)
+                  (puthash candidate t candidates-table)))
+            (setq candidates-lsp (nreverse candidates-lsp))
+            (setq candidates-tabnine (nreverse candidates-tabnine))
+            (nconc (seq-take candidates-tabnine 3)
+                   (seq-take candidates-lsp 20))))))
 
 
 (defun dia/rust-analyzer-macro-expand (result)
@@ -247,42 +247,42 @@
              (fmt-done nil))
         (erase-buffer)
         ;; wrap expanded macro in a main function so we can run rustfmt
-        (insert "fn __main(){")
+        (insert "fn __main(){\n")
         ;; rustfmt complains about $s
         (insert (replace-regexp-in-string "\\$" "" result))
-        (insert "}")
+        (insert "}\n")
         ;; /wrap expanded macro
         ;; (rusti-mode)
         ;; (ignore-errors (rust--format-call buf))
         (rustic-mode)
         ;;
-        (set-process-sentinel
-         (rustic-format-buffer)
-         (lambda (p e)
-           (ignore-errors (kill-buffer "*rustfmt*"))))
+        (ignore-errors
+          (set-process-sentinel
+           (rustic-format-buffer)
+           (lambda (p e)
+             (kill-buffer "*rustfmt*"))))
         (with-current-buffer buf
           (save-excursion
             (read-only-mode -1)
-            (message "buf: %s" buf)
             ;; remove fn __main() {
             (goto-char (point-min))
-            (message "cur pos %s" (point))
             (delete-region (point-min) (line-end-position))
+            (goto-char (point-min))
             (delete-blank-lines)
+            ;; remove } at end of fn __main()
             (goto-char (point-max))
-            ;; remove } from fn __main()
             (forward-line -1)
             (delete-region (line-beginning-position) (point-max))
-            ;; reindent buffer to left
-            (indent-buffer)
-            (goto-char (point-max))
+            (indent-region (point-min) (point-max))
             ;; clean blanked line
-            ;; (delete-blank-lines)
+            (goto-char (point-max))
+            (delete-blank-lines)
             (delete-trailing-whitespace (point-min) (point-max))))
-      (read-only-mode t)
-      (goto-char (point-min))
-      (local-set-key "q" 'kill-current-buffer))
-    (display-buffer buf))))
+
+        ;; (read-only-mode t)
+        (goto-char (point-min))
+        (local-set-key "q" 'kill-current-buffer))
+      (display-buffer buf))))
 
 ;;; prepare variable for set rust-rustfmt-bin or rustic-rustfmt-bin
 (defvar dia/rust-rustfmt-bin-v
@@ -370,30 +370,30 @@
 ;;         lsp-rust-server 'rust-analyzer))
 
 (use-package rustic
-  :ensure t
-  ;; :after lsp-mode
-  ;; :hook
-  ;; (rust-mode . dia/rust-mode-hook)
-  :init
-  ;; (add-hook 'rust-mode-hook 'dia/rust-mode-hook)
-  (dia/remove-mode-from-auto-mode-alist 'rust-mode)
-  :bind (:map
-         rustic-mode-map . (([?\t] . #'company-indent-or-complete-common)
-                          ("C-c C-e" . #'lsp-rust-analyzer-expand-macro)))
-  :config
-  ;; (add-hook 'rust-mode-hook #'dia/rust-mode-hook)
-  (setq rustic-format-on-save t
-        lsp-rust-analyzer-display-chaining-hints t
-        lsp-rust-analyzer-display-parameter-hints t
-        ;; lsp-rust-analyzer-macro-expansion-method 'rustic-analyzer-macro-expand
-        ;; lsp-rust-analyzer-macro-expansion-method 'lsp-rust-analyzer-macro-expansion-default
-        lsp-rust-analyzer-macro-expansion-method 'dia/rust-analyzer-macro-expand
-        ;;
-        lsp-rust-analyzer-server-display-inlay-hints t
-        lsp-rust-analyzer-proc-macro-enable t
-        lsp-rust-analyzer-experimental-proc-attr-macros t ; experimental
-        lsp-rust-full-docs t
-        lsp-rust-server 'rust-analyzer))
+    :ensure t
+    ;; :after lsp-mode
+    ;; :hook
+    ;; (rust-mode . dia/rust-mode-hook)
+    :init
+    ;; (add-hook 'rust-mode-hook 'dia/rust-mode-hook)
+    (dia/remove-mode-from-auto-mode-alist 'rust-mode)
+    :bind (:map
+           rustic-mode-map . (([?\t] . #'company-indent-or-complete-common)
+                              ("C-c C-e" . #'lsp-rust-analyzer-expand-macro)))
+    :config
+    ;; (add-hook 'rust-mode-hook #'dia/rust-mode-hook)
+    (setq rustic-format-on-save t
+          lsp-rust-analyzer-display-chaining-hints t
+          lsp-rust-analyzer-display-parameter-hints t
+          ;; lsp-rust-analyzer-macro-expansion-method 'rustic-analyzer-macro-expand
+          ;; lsp-rust-analyzer-macro-expansion-method 'lsp-rust-analyzer-macro-expansion-default
+          lsp-rust-analyzer-macro-expansion-method 'dia/rust-analyzer-macro-expand
+          ;;
+          lsp-rust-analyzer-server-display-inlay-hints t
+          lsp-rust-analyzer-proc-macro-enable t
+          lsp-rust-analyzer-experimental-proc-attr-macros t ; experimental
+          lsp-rust-full-docs t
+          lsp-rust-server 'rust-analyzer))
 
 (defun dia/rustic-mode-hook()
   (setq rustic-rustfmt-bin dia/rust-rustfmt-bin-v)
@@ -410,7 +410,7 @@
            eldoc-echo-area-use-multiline-p
            max-mini-window-height
            eldoc-echo-area-display-truncation-message)
-)
+  )
 
 ;; (defun dia/rust-mode-hook()
 ;;   (setq rust-rustfmt-bin dia/rust-rustfmt-bin-v)
