@@ -133,6 +133,7 @@
 ;;; https://github.com/raxod502/straight.el/blob/develop/README.md#integration-with-use-package
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
+(straight-use-package 'async)
 
 ;;------------------------------------------------------------------------
 ;;
@@ -170,6 +171,7 @@
 ;; place for my libs
 (add-to-list 'load-path (expand-file-name "libs" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "setup" user-emacs-directory))
+;; (add-to-list 'load-path (expand-file-name "straight/repos/helm" user-emacs-directory))
 ;; (add-to-list 'load-path "~/.local/share/icons-in-terminal")
 
 (defun load-if-exists (f)
@@ -186,12 +188,17 @@
 (load "profile-dotemacs")
 (defvar profile-dotemacs-file (expand-file-name "init.el" user-emacs-directory) "File to be profiled.")
 
+;; (straight-use-package 'gas-mode)
+(straight-use-package 'riscv-mode)
+(straight-use-package 'mips-mode)
+(straight-use-package 's12cpuv2-mode)
+
 ;; (eval-and-compile
   (require 'setup-functions)
   (require 'setup-general)
   (require 'setup-lisp)
   (require 'setup-helm)
-  (require 'setup-helm-gtags)
+  ;; (require 'setup-helm-gtags)
   ;; (require 'setup-ggtags)
   (require 'setup-themes)
   ;; (require 'setup-font-firacode)          ; firacode font
@@ -200,7 +207,7 @@
   (require 'setup-editing)
   (require 'setup-bash)
   (require 'setup-clang)
-  (require 'setup-perl)
+  ;; (require 'setup-perl)
   (require 'setup-hideshow)
   (require 'setup-mql)
   ;;; (require 'setup-erlang)
@@ -212,10 +219,10 @@
   ;; (require 'setup-lsp-new)
   ;; (require 'setup-lsp)
   (require 'setup-rust)
-  ;; (require 'setup-shackle)
+  (require 'setup-shackle)
   ;; (require 'setup-maple-minibuffer)
-  (require 'setup-web)
-  (require 'setup-sql)
+  ;; (require 'setup-web)
+  ;; (require 'setup-sql)
 ;; )
 
 ;;------------------------------------------------------------------------

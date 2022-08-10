@@ -160,17 +160,186 @@
 ;;;(setq ac-auto-start nil)
 
 ;; company
+;; (use-package company
+;;   :requires (company-quickhelp)
+;;   :init
+;;   (global-company-mode 1)
+;;   (company-quickhelp-mode 1)
+;;   (add-to-list 'company-backends 'php-extras-company t)
+;;   (delete 'company-semantic company-backends)
+;;   :config
+;;   (setq company-show-quick-access t))
+;; ;; (define-key c-mode-map  [(control tab)] 'company-complete)
+;; ;; (define-key c++-mode-map  [(control tab)] 'company-complete)
+;; company
+
+(straight-use-package 'company-quickhelp)
+
 (use-package company
-  :requires (company-quickhelp)
-  :init
-  (global-company-mode 1)
-  (company-quickhelp-mode 1)
-  (add-to-list 'company-backends 'php-extras-company t)
-  (delete 'company-semantic company-backends)
+  :ensure t
+  ;; :requires (company-quickhelp)
+  :bind (:map company-active-map
+              ("M-/" . company-other-backend) ; (("M-/" . company-complete-common-or-cycle)
+              ("<tab>" . company-complete-common-or-cycle)
+              ("TAB" . company-complete-common-or-cycle)
+              ) ;; overwritten by flyspell
+  :init (add-hook 'after-init-hook 'global-company-mode)
   :config
-  (setq company-show-quick-access t))
-;; (define-key c-mode-map  [(control tab)] 'company-complete)
-;; (define-key c++-mode-map  [(control tab)] 'company-complete)
+  (company-quickhelp-mode 1)
+  (setq ; company-show-numbers            t
+	company-minimum-prefix-length   1
+        company-tooltip-align-annotations t
+	company-idle-delay              0.5
+	company-backends
+	'((:separate
+           company-capf           ; bridge for completeion-in-point-functions
+           ; :with
+           company-dabbrev-code
+           company-yasnippet
+	   company-keywords       ; keywords
+           company-semantic
+           company-files          ; files & directory
+	   )))
+
+  ;; (setq company-transformers nil)
+  (add-to-list 'company-transformers 'dia/company-transform t)
+  (defun dia/company-transform (candidates)
+    (let ((result-lsp ())
+          (result-other ())
+          (result ()))
+      (dolist (candidate candidates)
+        (let ((props (text-properties-at 0 candidate))
+              (lsp-item (get-text-property 0 'lsp-completion-item candidate))
+              (lsp-prefix (get-text-property 0 'lsp-completion-prefix candidate))
+              (new-string))
+          ;; (if lsp-item
+          ;;     (dia/print-list-pairs props))
+          ;; (print lsp-item)
+          (if (not lsp-item)
+              (push (cons candidate 100) result-other)
+            ;; ()
+            (let* (;(data (gethash "data" lsp-item))
+                   (label (gethash "label" lsp-item))
+                   (kind (gethash "kind" lsp-item 0))
+                   (sort-order 0)
+                   (detail (gethash "detail" lsp-item "")))
+              ;; debug for catch only
+              (unless (or
+                       (= kind 2) ; method
+                       (= kind 5) ; field
+                       (= kind 3) ; function / macro
+                       (= kind 9) ; namespace / module
+                       (= kind 6) ; Variable
+                       (= kind 22) ; Type
+                       (= kind 21) ; Constant
+                       (= kind 14) ; Keyword
+                       (= kind 15) ; Snippet
+                       )
+                (message "l: %s k: %s d: %s" label kind detail))
+              (when (or
+                     (> (length lsp-prefix) 0)
+                     (and (= (length lsp-prefix) 0)
+                          (or
+                           (equal kind 2) ; method
+                           (equal kind 5) ; field
+                           ;; (equal kind 3) ; function / macro
+                           ;; (equal kind 9) ; namespace / module
+                           (equal kind 6) ; Variable
+                           ;; (equal kind 22) ; Type
+                           ;; (equal kind 21) ; Constant
+                           ;; (equal kind 14) ; Keyword
+                           )))
+                ;; (message "l: %s k: %s d: %s" label kind detail)
+                ;; (dia/print-hashmap-r lsp-item)
+                (setq sort-order
+                      (cl-case kind
+                        (6 1) ; Variable
+                        (5 3) ; field
+                        (2 5) ; method
+                        (t kind)))
+                (if (or (string-search "()" label) (string-search "(…)" label))
+                    (when (or (string-search "fn(" detail) (string-search "#[macro" detail))
+                      (string-match "^\\(.+\\)(\\(.?\\))\\(.*\\)$" label)
+                      (let ((head (match-string 1 label))
+                            (middle (match-string 2 label))
+                            (tail (match-string 3 label)))
+                        ;; (message "head: %s tail: %s" head tail)
+                        (setq new-string
+                              (if (string-search "fn(" detail)
+                                  (concat head "(" (substring detail 3))
+                                (setq tail
+                                      (substring detail (string-search "macro_rules" detail)))
+                                (concat head "(" middle ")")))
+                        ;; (message "new-string: %s" new-string)
+                        ;; (debug)
+                        (puthash "detail" tail lsp-item)
+                        (set-text-properties 0 (length new-string) props new-string)
+                        (put-text-property 0 (length new-string)
+                                           'lsp-completion-item lsp-item new-string)
+                        (push (cons new-string sort-order) result-lsp))
+                      )
+                  (push (cons candidate sort-order) result-lsp)
+                  )
+                )))
+          ))
+      ;; (message "\n====\nresult-lsp: %s" result-lsp)
+      ;; (message "result-other: %s" result-other)
+      ;; (append result-lsp result-other)
+      (setq result-lsp (sort (append result-lsp result-other) (lambda (b a) (< (cdr a) (cdr b)))))
+      ;; (message "\n====\nresult-lsp: %s" result-lsp)
+      (dolist (c result-lsp)
+        ;; (message "c => %s" c)
+        (push (car c) result))
+      result
+      )
+    )
+
+
+  )
+
+(defun dia/print-list-pairs (listpairs)
+  (when (listp listpairs)
+    (cl-loop for (head . tail) on listpairs by 'cddr do
+             (if (not (hash-table-p (car tail)))
+                 (message "%s: %s" head (car tail))
+               (message "=> %s:" head)
+               (dia/print-hashmap-r (car tail)))))
+  )
+
+(defun dia/print-hashmap-r (hmap)
+  (when (hash-table-p hmap)
+    (maphash
+     (lambda (key val)
+       (if (not (hash-table-p val))
+           (message "  %s: %s" key val)
+         (message " => %s:" key)
+         (dia/print-hashmap-r val)))
+     hmap)
+    ))
+
+(use-package company-tabnine
+  :disabled t
+  :config
+  (setq
+   company-backends
+   '((:separate
+      company-tabnine
+      company-capf           ; bridge for completeion-in-point-functions
+                                        ; :with
+      company-dabbrev-code
+      company-yasnippet
+      company-keywords       ; keywords
+      company-semantic
+      company-files          ; files & directory
+      )))
+  )
+
+(use-package company-box
+  :disabled t
+  :hook (company-mode . company-box-mode))
+
+(straight-use-package 'posframe)
+;; (use-package company-posframe)
 
 ;; Package: projejctile
 (use-package projectile

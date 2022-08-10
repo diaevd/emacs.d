@@ -264,5 +264,24 @@ frame."
           (assq-delete-all (car (rassoc mode_name auto-mode-alist))
                            auto-mode-alist))))
 
+(defun dia/select-bottom-window ()
+  (let ((bottom-window (selected-window))
+        window-below)
+    (while (setq window-below (window-in-direction 'below bottom-window))
+      (setq bottom-window window-below))
+    (select-window bottom-window)))
+
+(defun dia/compilation-hook ()
+  (when (not (get-buffer-window "*compilation*"))
+    (save-selected-window
+      (save-excursion
+        (dia/select-bottom-window)
+        (let* ((w (split-window-vertically))
+               (h (window-height w)))
+          (select-window w)
+          (switch-to-buffer "*compile5*")
+          (shrink-window (- h compilation-window-height)))))))
+;;; (add-hook 'compilation-mode-hook 'dia-compilation-hook)
+
 (provide 'setup-functions)
 ;;; setup-functions.el ends here

@@ -1,14 +1,25 @@
-;;;;
+;;;; (debug-on-error)
+
+;; (require 'helm-autoloads)
+;; (require 'helm)				
+;; (use-package helm)
+
+;; (setq debug-on-error t)
+
+;; (setq straight-recipe-overrides nil)
+;; (straight-override-recipe '(helm :files ("*.el" "emacs-helm.sh" (:exclude "helm-core.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el"))))
+;; (straight-override-recipe '(helm-core :files ("helm-core.el" "helm-lib.el" "helm-source.el" "helm-multi-match.el")))
 
 (use-package helm
+  ;; :disabled t
  :config
   (require 'helm-config)
   (require 'helm-grep)
   ;; To fix error at compile:
   ;; Error (bytecomp): Forgot to expand macro with-helm-buffer in
   ;; (with-helm-buffer helm-echo-input-in-header-line)
-  (if (version< "26.0.50" emacs-version)
-      (eval-when-compile (require 'helm-lib)))
+  ;; (if (version< emacs-version "26.0.50")
+  ;;     (eval-when-compile (require 'helm-lib)))
 
   (defun helm-hide-minibuffer-maybe ()
     (when (with-helm-buffer helm-echo-input-in-header-line)
@@ -108,13 +119,14 @@
 
   (helm-mode 1))
 
-
 (use-package helm-rg
   :config
   (global-set-key (kbd "C-h r") 'helm-rg) ; Original value is info-emacs-manual
   )
 
-(straight-use-package 'helm-lsp)
+(use-package helm-lsp)
+
+(use-package helm-ls-git)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; PACKAGE: helm-swoop                ;;

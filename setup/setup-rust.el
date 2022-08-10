@@ -39,7 +39,7 @@
 ;; (require 'use-package)
 
 (use-package diminish
-    :defer 5
+    ;; :defer 5
     :config
     (diminish 'org-indent-mode)
     (diminish 'projectile-mode)
@@ -63,7 +63,10 @@
     :after treemacs lsp-mode)
 
 (use-package lsp-mode
-    :init
+  :init
+  :hook ((lsp-after-initialize . dia/lsp-after-init-hook)
+         (lsp-after-open . dia/lsp-after-open-hook))
+
   :custom
   (lsp-keymap-prefix "C-c C-l")
   ;; what to use when checking on-save. "check" is default, I prefer clippy
@@ -71,14 +74,42 @@
   (lsp-eldoc-render-all t)
   :bind
   (:map lsp-mode-map
-        ("C-c C-a" . lsp-execute-code-action)
+        ;; ("C-c C-a" . lsp-execute-code-action)
+        ("C-c C-a" . helm-lsp-code-actions)
         ("C-c C-j" . lsp-rust-analyzer-join-lines)
         ("C-c C-i" . lsp-rust-analyzer-inlay-hints-mode))
   :config
   (setq lsp-prefer-flymake nil)
+  (setq lsp-log-io t)
+  ;; (setq lsp-log-io-allowlist-methods t)
   (setq lsp-signature-auto-activate nil)
+  (lsp-semantic-tokens-mode 1)
+  ;; (push 'dia/lsp-after-init-hook lsp-after-initialize-hook)
   ;; (setq lsp-eldoc-hook nil)
   ;; (eldoc-mode t)
+  )
+
+(defun dia/lsp-after-init-hook ()
+  (message "LSP AFTER INIT HOOK")
+  (dia/lsp-hook))
+
+(defun dia/lsp-after-open-hook ()
+  (message "LSP AFTER OPEN HOOK")
+  (dia/lsp-hook))
+
+(defun dia/lsp-ui-mode-hook ()
+  (message "LSP UI MODE HOOK: %s" company-backends)
+  ;; (dia/lsp-hook)
+  )
+
+(defun dia/lsp-hook ()
+  ;; (set (make-local-variable 'company-backends)
+  ;;      '((company-capf           ; what is this? it is capture backend
+  ;;                                ; company-lsp - fucking shit
+  ;;         company-files          ; files & directory
+  ;;         company-keywords       ; keywords
+  ;;         company-yasnippet)
+  ;;        (company-abbrev company-dabbrev)))
   )
 
 (use-package toml-mode
@@ -88,6 +119,7 @@
     :ensure t
     ;; :after lsp-mode
     ;; :hook lsp-mode
+    :hook ((lsp-ui-mode . dia/lsp-ui-mode-hook))
     :bind
     (:map lsp-ui-mode-map
           ;; ("C-c C-a" . lsp-ui-sideline-apply-code-actions)
@@ -176,16 +208,16 @@
 
 ;;; Company LSP
 ;;; https://github.com/tigersoldier/company-lsp
-;; (use-package company-lsp
-;;   :defer t
-;;   ;; :custom
-;;   ;; (company-lsp-cache-candidates 'auto)
-;;   :config
-;;   ;; (setq company-show-numbers t) - deprecated after 0.9.14 (now use show-quick-access)
-;;   (setq company-show-quick-access t)
-;;   (setq company-lsp-cache-candidates 'auto)
-;;   ;; (push 'company-lsp company-backends)
-;;   )
+(use-package company-lsp
+  :defer t
+  ;; :custom
+  ;; (company-lsp-cache-candidates 'auto)
+  :config
+  ;; (setq company-show-numbers t) - deprecated after 0.9.14 (now use show-quick-access)
+  ;; (setq company-show-quick-access t)
+  (setq company-lsp-cache-candidates 'auto)
+  ;; (push 'company-lsp company-backends)
+  )
 
 ;;; Company TabNine
 ;;; https://github.com/TommyX12/company-tabnine
@@ -386,6 +418,7 @@
     :config
     ;; (add-hook 'rust-mode-hook #'dia/rust-mode-hook)
     (setq rustic-format-on-save t
+          ;; rustic-compile-display-method 'dia/rustic-compile-display
           lsp-rust-analyzer-display-chaining-hints t
           lsp-rust-analyzer-display-parameter-hints t
           ;; lsp-rust-analyzer-macro-expansion-method 'rustic-analyzer-macro-expand
@@ -398,21 +431,32 @@
           lsp-rust-full-docs t
           lsp-rust-server 'rust-analyzer))
 
+(defun dia/rustic-compile-display (buf)
+  (let ((found-win nil))
+    (unless (dolist (win (window-list) found-win)
+            (when (equal "*rustic-compilation*" (buffer-name (window-buffer win)))
+              (setq found-win t)))
+      (display-buffer-below-selected buf '(( window-height . 0.3))))))
+
 (defun dia/rustic-mode-hook()
   (setq rustic-rustfmt-bin dia/rust-rustfmt-bin-v)
-  (setq eldoc-echo-area-use-multiline-p 'truncate-sym-name-if-fit)
+  ;; (setq eldoc-echo-area-use-multiline-p 'truncate-sym-name-if-fit)
   (setq max-mini-window-height 1)
+  ;; (lsp)
+
+  ;; (message "RUSTIC HOOK: Started Lsp??? Realy???")
+  ;; (message "RUSTIC HOOK: Company backends now set to: %s" company-backends)
+  ;; (message "RUSTIC HOOK: eldoc-mode is: %s eldoc-echo-area-use-multiline-p: %s max-mini-window-height: %s eldoc-echo-area-display-truncation-message: %s"
+  ;;          eldoc-mode
+  ;;          eldoc-echo-area-use-multiline-p
+  ;;          max-mini-window-height
+  ;;          eldoc-echo-area-display-truncation-message)
+  ;; (message "RUSTIC HOOK: Company backends is set to: %s" company-backends)
+  ;; (dia/lsp-after-init-hook)
   (message "RUSTIC HOOK: Company backends is set to: %s" company-backends)
-  ;; (set (make-local-variable 'company-backends) nil)
-  ;; (push 'company-lsp company-backends)
-  (lsp)
-  (message "RUSTIC HOOK: Started Lsp??? Realy???")
-  (message "RUSTIC HOOK: Company backends now set to: %s" company-backends)
-  (message "RUSTIC HOOK: eldoc-mode is: %s eldoc-echo-area-use-multiline-p: %s max-mini-window-height: %s eldoc-echo-area-display-truncation-message: %s"
-           eldoc-mode
-           eldoc-echo-area-use-multiline-p
-           max-mini-window-height
-           eldoc-echo-area-display-truncation-message)
+  ;; (when (eq 'company-capf (car company-backends))
+  ;;   (message "RUSTIC HOOK: company-capf in head of list")
+  ;;   (setq company-backends (cdr company-backends)))
   )
 
 ;; (defun dia/rust-mode-hook()

@@ -25,7 +25,7 @@
                                        "/.wine/dosdevices/c:"))
          ((eq 'windows-nt system-type) "\"C:"))
 ;;   "/Program Files (x86)/MetaTrader 4/MQL4/mql.exe\""))
-   "/Program Files (x86)/MetaTrader 4/metaeditor.exe\""))
+   "/Program Files (x86)/MetaTrader 4 NPBFX Limited/metaeditor.exe\""))
 
 (cl-defun mql-compile (version &optional check-only)
   (compile (concat

@@ -43,7 +43,7 @@
   '(define-key paredit-mode-map (kbd "M-)") 'paredit-forward-slurp-sexp))
 
 ;; (show-paren-mode 1)  ;; highlight matching parenthasis
-(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+;; (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 
 ;; nifty documentation at point for lisp files
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
@@ -76,7 +76,35 @@
   ;; By default, C-h C is bound to describe `describe-coding-system'. I
   ;; don't find this very useful, but it's frequently useful to only
   ;; look at interactive functions.
-  (global-set-key (kbd "C-h C") #'helpful-command))
+  (global-set-key (kbd "C-h C") #'helpful-command)
+
+  ;; fix https://github.com/Wilfred/helpful/issues/282
+  ;;
+  ;; (defun helpful--autoloaded-p (sym buf)
+  ;;   "Return non-nil if function SYM is autoloaded."
+  ;;   (-when-let (file-name (buffer-file-name buf))
+  ;;     (setq file-name (s-chop-suffix ".gz" file-name))
+  ;;     (if (boundp 'read-symbol-positions-list)
+  ;;         (help-fns--autoloaded-p sym file-name)
+  ;;       (help-fns--autoloaded-p sym))))
+
+  (defun helpful--autoloaded-p (sym buf)
+    "Return non-nil if function SYM is autoloaded."
+    (-when-let (file-name (buffer-file-name buf))
+      (setq file-name (s-chop-suffix ".gz" file-name))
+      (help-fns--autoloaded-p sym)))
+
+  (defun helpful--skip-advice (docstring)
+    "Remove mentions of advice from DOCSTRING."
+    (let* ((lines (s-lines docstring))
+           (relevant-lines
+            (--take-while
+             (not (or (s-starts-with-p ":around advice:" it)
+                      (s-starts-with-p "This function has :around advice:" it)))
+             lines)))
+      (s-trim (s-join "\n" relevant-lines))))
+
+  )
 
 ;;;(require 'slime)
 
