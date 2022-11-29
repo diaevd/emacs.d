@@ -36,7 +36,7 @@
   '(progn
      (add-to-list 'semantic-new-buffer-setup-functions
                   (cons 'mql-mode 'semantic-default-c-setup))
-     (define-child-mode mql-mode c++-mode
+     (define-derived-mode mql-mode c++-mode
        "`mql-mode' uses the same parser as `c++-mode'.")))
 
 (eval-after-load "speedbar"

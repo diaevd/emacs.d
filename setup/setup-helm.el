@@ -154,11 +154,13 @@
   ;; If nil, you can slightly boost invoke speed in exchange for text color
   (setq helm-swoop-speed-or-color t))
 
-(use-package helm-projectile
-  :config
-  (setq projectile-completion-system 'helm)
-  (setq projectile-indexing-method 'alien)
-  (helm-projectile-on))
+(straight-use-package 'helm-projectile)
+(straight-use-package 'helm-projectile-all)
+;;(use-package helm-projectile
+;;   :config
+;;   (setq projectile-completion-system 'helm)
+;;   (setq projectile-indexing-method 'alien)
+;;   (helm-projectile-on))
 
 (define-key helm-find-files-map (kbd "<C-left>")  'helm-find-files-up-one-level) ; up one level in find files
 (define-key helm-find-files-map (kbd "<C-right>")  'helm-execute-persistent-action) ; up one level in find files

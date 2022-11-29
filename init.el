@@ -192,6 +192,7 @@
 (straight-use-package 'riscv-mode)
 (straight-use-package 'mips-mode)
 (straight-use-package 's12cpuv2-mode)
+(straight-use-package 'solidity-mode)
 
 ;; (eval-and-compile
   (require 'setup-functions)
