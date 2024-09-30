@@ -73,14 +73,17 @@
 ;; Package: yasnippet
 (use-package yasnippet
   :defer t
+  :disabled t
   :init
   (add-hook 'prog-mode-hook 'yas-minor-mode)
-  (add-hook 'prog-mode-hook 'yas-reload-all) ; without this snippets don't working
+  ;; (add-hook 'prog-mode-hook 'yas-reload-all) ; without this snippets don't working
   )
 
 ;; Just install snippets
 (use-package yasnippet-snippets
+  :disabled t
   :ensure t)
+
 
 ;; Package: clean-aindent-mode
 (use-package clean-aindent-mode
@@ -289,6 +292,7 @@ Position the cursor at it's beginning, according to the current mode."
 (global-set-key (kbd "M-o") 'open-line)
 
 (use-package editorconfig
+  :ensure t
   :config
   (editorconfig-mode 1))
 

@@ -32,7 +32,9 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'cl))
+  (if (version< emacs-version "27.1")
+      (require 'cl)
+    (require 'cl-lib)))
 
 ;;; Fira code
 ;; This works when using emacs --daemon + emacsclient

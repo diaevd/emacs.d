@@ -2,6 +2,8 @@
 ;;    (if (not server-mode)
 ;;       (server-start nil t)))
 
+(setq max-lisp-eval-depth 10000)
+
 (when (boundp 'server-mode) (message "!>> server-mode: %s" server-mode))
 (when (boundp 'server-process) (message "!>> server-process: %s" server-process))
 (when (boundp 'windows-system) (message "!>> windows-system: %s" window-system))
@@ -202,6 +204,7 @@
   ;; (require 'setup-helm-gtags)
   ;; (require 'setup-ggtags)
   (require 'setup-themes)
+  (require 'setup-nerd-icons)
   ;; (require 'setup-font-firacode)          ; firacode font
   ;; (require 'setup-font-firacode2)          ; firacode font v2
   (require 'setup-cedet)
@@ -219,6 +222,7 @@
   (require 'setup-org)
   ;; (require 'setup-lsp-new)
   ;; (require 'setup-lsp)
+  (require 'setup-codium)
   (require 'setup-rust)
   (require 'setup-shackle)
   ;; (require 'setup-maple-minibuffer)

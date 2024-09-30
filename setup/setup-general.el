@@ -37,23 +37,35 @@
 
 (setq-default major-mode 'text-mode)
 
-(setq column-number-mode t)
 ;; fix column number format for starting from 1
-(setq mode-line-position
-      '("%p (%l," (:eval (format "%d)" (1+ (current-column))))))
+;; doom-modeline игнорит падла mode-line-position
+;; (setq mode-line-position
+;;       '("%p (%l," (:eval (format "%d)" (1+ (current-column))))))
+(setq mode-line-position-column-line-format '(" (%l,%c)"))
+(setq column-number-indicator-zero-based nil)
+(setq column-number-mode t)
+;; doom-modeline игнорит падла mode-line-position-column-line-format
+;; column-number-indicator-zero-based и т.д.
+(setq doom-modeline-column-zero-based nil)
+(setq doom-modeline-position-line-format '("L%l"))
+(setq doom-modeline-position-column-format '("C%c"))
+(setq doom-modeline-position-column-line-format '("%l:%c"))
+
 ;; force the update of the mode line so the column gets updated
-(add-hook 'post-command-hook 'force-mode-line-update)
+;; (add-hook 'post-command-hook 'force-mode-line-update)
 ;; (setq-default truncate-lines 1) ;; no wordwrap
 
-;; doom-modeline игнорит падла mode-line-position
-(setq column-number-indicator-zero-based nil)
 (use-package doom-modeline
+  ;; :straight
   :ensure t
   :init
   (doom-modeline-mode 1)
   :config
-  (set-face-attribute 'mode-line nil :family "FiraCode Bold" :height 110)
-  (set-face-attribute 'mode-line-inactive nil :family "FiraCode Bold" :height 110))
+  ;; (set-face-attribute 'mode-line nil :family "FiraCode Bold" :height 110)
+  ;; (set-face-attribute 'mode-line-inactive nil :family "FiraCode Bold" :height 110)
+  ;; (set-face-attribute 'mode-line nil :family "Symbols Nerd Font Mono" :height 110)
+  ;; (set-face-attribute 'mode-line-inactive nil :family "Symbols Nerd Font Mono" :height 110)
+  )
 
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward)  ;; buffernames that are foo<1>, foo<2> are hard to read. This makes them foo|dir  foo|otherdir
@@ -81,7 +93,8 @@
   (toggle-read-only))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
-(require 'linum)
+;; linum is deprecated - use display-line-numbers-mode
+;; (require 'linum)
 
 ;; use space to indent by default
 (setq-default indent-tabs-mode 't)
@@ -139,6 +152,9 @@
 (setq-default scroll-conservatively 0) ;; lags fix (like ssh sessions)
 (setq-default scroll-up-aggressively 0.01)
 (setq-default scroll-down-aggressively 0.01)
+;; disable auto-wrap strings
+(global-visual-line-mode -1)
+;; (visual-line-mode nil)
 
 ;; shift+arrows_keys is for select by default, however change it so
 ;; use Shift+arrow_keys to move cursor around split panes
@@ -154,7 +170,7 @@
 ;; auto complete mode
 ;;
 ;;------------------------------------------------------------------------
-;;; (ac-config-default)			
+;;; (ac-config-default)
 ;;;(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 ;;; (ac-set-trigger-key "TAB")
 ;;;(setq ac-auto-start nil)

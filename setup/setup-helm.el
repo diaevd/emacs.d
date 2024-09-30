@@ -13,7 +13,7 @@
 (use-package helm
   ;; :disabled t
  :config
-  (require 'helm-config)
+  ;; (require 'helm-config)
   (require 'helm-grep)
   ;; To fix error at compile:
   ;; Error (bytecomp): Forgot to expand macro with-helm-buffer in
@@ -122,6 +122,7 @@
 (use-package helm-rg
   :config
   (global-set-key (kbd "C-h r") 'helm-rg) ; Original value is info-emacs-manual
+  (global-set-key (kbd "C-h C-r") 'helm-projectile-rg) ; Original value is info-emacs-manual
   )
 
 (use-package helm-lsp)

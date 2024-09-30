@@ -1,4 +1,4 @@
-;;; setup-rust.el --- Setup Rust environment -*- no-byte-compile: t -*-
+;;; setup-rust.el --- Setup Rust environment -*- no-byte-compile: t;  lexical-binding: t -*-
 
 ;; Copyright (C) 2016-2020 Free Software Foundation, Inc.
 ;;
@@ -34,7 +34,7 @@
 (eval-when-compile
   (if (version< emacs-version "27.1")
       (require 'cl)
-      (require 'cl-lib)))
+    (require 'cl-lib)))
 
 ;; (require 'use-package)
 
@@ -77,10 +77,10 @@
         ;; ("C-c C-a" . lsp-execute-code-action)
         ("C-c C-a" . helm-lsp-code-actions)
         ("C-c C-j" . lsp-rust-analyzer-join-lines)
-        ("C-c C-i" . lsp-rust-analyzer-inlay-hints-mode))
+        ("C-c C-i" . lsp-inlay-hints-mode))
   :config
   (setq lsp-prefer-flymake nil)
-  (setq lsp-log-io t)
+  (setq lsp-log-io nil)
   ;; (setq lsp-log-io-allowlist-methods t)
   (setq lsp-signature-auto-activate nil)
   (lsp-semantic-tokens-mode 1)
@@ -138,7 +138,7 @@
           lsp-ui-sideline-enable t
           lsp-ui-sideline-show-symbol t
           lsp-ui-sideline-show-hover nil
-          lsp-ui-sideline-show-code-actions t
+          lsp-ui-sideline-show-code-actions nil
           lsp-ui-sideline-show-flycheck t
           lsp-ui-sideline-ignore-duplicate t
           lsp-ui-sideline-code-actions-prefix "💡 "
@@ -162,6 +162,7 @@
 ;;; DAP (Debug Adapter Protocol Mode)
 ;;; https://github.com/emacs-lsp/dap-mode#configuration
 (when (executable-find "lldb-mi")
+  (message "Try to load dap-mode")
   (use-package dap-mode
       :ensure
     :bind
@@ -177,6 +178,7 @@
     (dap-ui-controls-mode 1)
 
     ;; (require 'dap-lldb)
+    (message "Try to load dap-mode extentions")
     (require 'dap-hydra)
     (require 'dap-gdb-lldb)
     (require 'dap-cpptools)
@@ -198,7 +200,7 @@
      (list :type "gdb"
            :request "launch"
            :name "GDB::Run"
-	   :gdbpath "rust-gdb"
+	   ;; :gdbpath "rust-gdb"
            :gdbpath "rust-gdb"
            ;; uncomment if lldb-mi is not in PATH
            ;; :lldbmipath "path/to/lldb-mi"
@@ -268,7 +270,28 @@
                    (seq-take candidates-lsp 20))))))
 
 
-(defun dia/rust-analyzer-macro-expand (result)
+(defmacro lambda-let (varlist args &rest body)
+  (declare (indent 2))
+  (let (bindings parameter argument)
+    (dolist (var varlist)
+      (if (listp var)
+          (if (length= var 2)
+              (setq parameter (car var)
+                    argument  (cadr var))
+              (if (length= var 1)
+                  (setq parameter (setq argument (car var)))
+                  (eval `(let (,var)))))
+          (setq parameter (setq argument var)))
+      (push `(cons ',parameter ,argument) bindings))
+    (if bindings
+        (setq bindings (cons 'list (nreverse bindings)))
+        (setq bindings t))
+    `(eval
+      '(lambda ,args
+        ,@body)
+      ,bindings)))
+
+(defun dia/rust-analyzer-macro-expantion (result)
   "Default method for displaying macro expansion results."
   (interactive)
   (let* ((root (lsp-workspace-root default-directory))
@@ -289,11 +312,11 @@
         ;; (rustic-macro-expansion-mode)
         (rustic-mode)
         ;; (ignore-errors
-        (lexical-let ((buf buf)
-                      (fmt-done fmt-done))
-          (set-process-sentinel
-           (rustic-format-buffer)
-           (lambda (p e)
+	;; (eval
+        ;; '(lambda (p e)
+	(lambda-let ((buf) (fmt-done)) ()
+	   (set-process-sentinel
+            (rustic-format-buffer)
              (with-current-buffer buf
                (read-only-mode -1)
                (replace-buffer-contents fmt-done)
@@ -317,7 +340,9 @@
                (goto-char (point-min))
                ;; (read-only-mode 1)
                (rustic-macro-expansion-mode)
-               (display-buffer buf)))))))))
+               (display-buffer buf)))) ))))
+;; '((buf . buf)
+;; (fmt-done . fmt-done)))
 
 ;;; prepare variable for set rust-rustfmt-bin or rustic-rustfmt-bin
 (defvar dia/rust-rustfmt-bin-v
@@ -410,22 +435,24 @@
     ;; :hook
     ;; (rust-mode . dia/rust-mode-hook)
     :init
-    ;; (add-hook 'rust-mode-hook 'dia/rust-mode-hook)
-    (dia/remove-mode-from-auto-mode-alist 'rust-mode)
+    (add-hook 'rust-mode-hook 'dia/rust-mode-hook)
+    ;; (dia/remove-mode-from-auto-mode-alist 'rust-mode)
     :bind (:map
            rustic-mode-map . (([?\t] . #'company-indent-or-complete-common)
                               ("C-c C-e" . #'lsp-rust-analyzer-expand-macro)))
     :config
-    ;; (add-hook 'rust-mode-hook #'dia/rust-mode-hook)
+    (add-hook 'rust-mode-hook #'dia/rust-mode-hook)
     (setq rustic-format-on-save t
           ;; rustic-compile-display-method 'dia/rustic-compile-display
+	  rust-mode-treesitter-derive 't
           lsp-rust-analyzer-display-chaining-hints t
           lsp-rust-analyzer-display-parameter-hints t
           ;; lsp-rust-analyzer-macro-expansion-method 'rustic-analyzer-macro-expand
           ;; lsp-rust-analyzer-macro-expansion-method 'lsp-rust-analyzer-macro-expansion-default
-          lsp-rust-analyzer-macro-expansion-method 'dia/rust-analyzer-macro-expand
+          ;; lsp-rust-analyzer-macro-expansion-method 'dia/rust-analyzer-macro-expand
+          lsp-rust-analyzer-macro-expansion-method 'dia/rust-analyzer-macro-expantion
           ;;
-          lsp-rust-analyzer-server-display-inlay-hints t
+          lsp-rust-analyzer-server-display-inlay-hints nil
           lsp-rust-analyzer-proc-macro-enable t
           lsp-rust-analyzer-experimental-proc-attr-macros t ; experimental
           lsp-rust-full-docs t
@@ -442,6 +469,7 @@
   (setq rustic-rustfmt-bin dia/rust-rustfmt-bin-v)
   ;; (setq eldoc-echo-area-use-multiline-p 'truncate-sym-name-if-fit)
   (setq max-mini-window-height 1)
+  (dia/remove-mode-from-auto-mode-alist 'rust-ts-mode)
   ;; (lsp)
 
   ;; (message "RUSTIC HOOK: Started Lsp??? Realy???")
@@ -459,7 +487,7 @@
   ;;   (setq company-backends (cdr company-backends)))
   )
 
-;; (defun dia/rust-mode-hook()
+(defun dia/rust-mode-hook()
 ;;   (setq rust-rustfmt-bin dia/rust-rustfmt-bin-v)
 ;;   (setq rustic-rustfmt-bin dia/rust-rustfmt-bin-v)
 ;;   (setq eldoc-echo-area-use-multiline-p 'truncate-sym-name-if-fit)
@@ -489,10 +517,12 @@
 ;;            eldoc-echo-area-use-multiline-p
 ;;            max-mini-window-height
 ;;            eldoc-echo-area-display-truncation-message)
-;; )
+  (dia/remove-mode-from-auto-mode-alist 'rust-ts-mode)
+)
 
 ;; (add-hook 'rust-mode-hook 'dia/rust-mode-hook)
 (add-hook 'rustic-mode-hook 'dia/rustic-mode-hook)
+(dia/remove-mode-from-auto-mode-alist 'rust-ts-mode)
 
 ;;; Use rustic-mode
 ;; (eval-when-compile

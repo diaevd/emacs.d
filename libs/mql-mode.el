@@ -22,30 +22,36 @@
   (concat
    (cond ((eq 'gnu/linux system-type) (concat
                                        "wine \"/home/" (user-login-name)
-                                       "/.wine/dosdevices/c:"))
+                                       ;; "/.wine/dosdevices/c:"))
+				       "/.wine32/dosdevices/c:"))
          ((eq 'windows-nt system-type) "\"C:"))
 ;;   "/Program Files (x86)/MetaTrader 4/MQL4/mql.exe\""))
-   "/Program Files (x86)/MetaTrader 4 NPBFX Limited/metaeditor.exe\""))
+;; "/Program Files (x86)/MetaTrader 4 NPBFX Limited/metaeditor.exe\""))
+   "/Program Files/RoboForex - MetaTrader 4/metaeditor.exe\""))
 
 (cl-defun mql-compile (version &optional check-only)
-  (compile (concat
-            mql-compiler-path
-            (case version
-              (4 " /mql4 ")
-              (5 " /mql5 "))
-            (if check-only " /s " "")
-            " /i:\""
-            (file-name-directory (buffer-file-name)) "\" "
-	    " /compile:\""
-            (file-name-nondirectory (buffer-file-name)) "\" "
-	    " /log:\"."
-	    (file-name-nondirectory (buffer-file-name)) ".compile\" "
-	    " 2>/dev/null"
-	    " ; iconv -f UTF-16 -t UTF-8 \"."
-	    (file-name-nondirectory (buffer-file-name)) ".compile\" "
-	    " ; rm \"."
-	    (file-name-nondirectory (buffer-file-name)) ".compile\" "
-	    )))
+  (let* ((compile-directory-path (file-name-directory (buffer-file-name)))
+	 (compile-file-name (file-name-nondirectory (buffer-file-name)))
+	 (compile-log-name (concat "." compile-file-name ".compile")))
+    (compile (concat
+	      "pushd . >/dev/null 2>&1; cd \"" compile-directory-path "\"; "
+              mql-compiler-path
+              (cl-case version
+		(4 " /mql4 ")
+		(5 " /mql5 "))
+              (if check-only " /s " "")
+              ;; " /i:\""
+              ;; (file-name-directory (buffer-file-name)) "\" "
+	      " /compile:\""
+              compile-file-name "\" "
+	      " /log:\""
+	      compile-log-name "\" "
+	      " 2>/dev/null"
+	      " ; iconv -f UTF-16 -t UTF-8 \""
+	      compile-log-name "\" "
+	      " ; rm \""
+	    compile-log-name "\"; "
+	    "popd >/dev/null 2>&1"))))
 
 (defun mql-compile-dispatcher ()
   "Compile mql file."
@@ -197,7 +203,7 @@
                              (equal "ex5" extension)) 5)
                         (t mql-compiler-default-version)))
 
-    (case mql-version
+    (cl-case mql-version
       (4 (c++-mode))
       (5 (c++-mode)))
     (setq mql-version-string (concat "MQL" (number-to-string mql-version)))))
